@@ -1,0 +1,45 @@
+{
+  "name": "@lumora-ui/themes",
+  "version": "0.1.0",
+  "description": "Theme tokens for Lumora UI.",
+  "license": "MIT",
+  "homepage": "https://github.com/sitharaj88/lumora-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sitharaj88/lumora-ui.git",
+    "directory": "packages/themes"
+  },
+  "bugs": {
+    "url": "https://github.com/sitharaj88/lumora-ui/issues"
+  },
+  "keywords": [
+    "design-tokens",
+    "themes",
+    "tailwindcss",
+    "css-variables",
+    "design-system"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "typecheck": "tsc --noEmit"
+  }
+}

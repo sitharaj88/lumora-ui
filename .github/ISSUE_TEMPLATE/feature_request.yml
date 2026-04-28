@@ -1,0 +1,32 @@
+name: Feature request
+description: Propose a component, pattern, theme, or workflow improvement.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What user or team need should this solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: Describe the desired API, class, component, or docs behavior.
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - "Core CSS"
+        - "Themes"
+        - "React"
+        - "Vue"
+        - "Docs"
+        - "Enterprise patterns"
+    validations:
+      required: true

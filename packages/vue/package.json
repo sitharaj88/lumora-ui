@@ -1,0 +1,52 @@
+{
+  "name": "@lumora-ui/vue",
+  "version": "0.1.0",
+  "description": "Beta Vue wrappers for Lumora UI.",
+  "license": "MIT",
+  "homepage": "https://github.com/sitharaj88/lumora-ui#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sitharaj88/lumora-ui.git",
+    "directory": "packages/vue"
+  },
+  "bugs": {
+    "url": "https://github.com/sitharaj88/lumora-ui/issues"
+  },
+  "keywords": [
+    "vue",
+    "tailwindcss",
+    "components",
+    "design-system",
+    "enterprise-ui"
+  ],
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --external vue --clean",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@lumora-ui/core": "workspace:^"
+  },
+  "peerDependencies": {
+    "@lumora-ui/core": "0.1.0",
+    "vue": "^3.5.0"
+  }
+}
