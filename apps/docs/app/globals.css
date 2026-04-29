@@ -333,6 +333,7 @@ body {
   background: var(--lm-color-surface);
   border: 1px solid var(--lm-color-border);
   border-radius: var(--lm-radius-xl);
+  isolation: isolate;
   overflow: hidden;
   position: relative;
   transition:
@@ -351,7 +352,7 @@ body {
   pointer-events: none;
   position: absolute;
   transition: opacity 280ms var(--lm-ease-out);
-  z-index: 0;
+  z-index: -1;
 }
 .docs-feature-card:hover {
   border-color: color-mix(in oklab, var(--lm-color-primary) 50%, var(--lm-color-border));
@@ -359,10 +360,6 @@ body {
 }
 .docs-feature-card:hover::before {
   opacity: 0.4;
-}
-.docs-feature-card > * {
-  position: relative;
-  z-index: 1;
 }
 
 /* -- Stat ticker -------------------------------------------------- */

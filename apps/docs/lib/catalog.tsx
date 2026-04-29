@@ -17,6 +17,8 @@ export type CatalogVariant = {
   preview: ReactNode;
 };
 
+export type AdapterAvailability = "stable" | "preview" | "v0.3";
+
 export type ComponentCatalogEntry = {
   slug: string;
   name: string;
@@ -30,6 +32,10 @@ export type ComponentCatalogEntry = {
   accessibility: string[];
   htmlExample: string;
   reactExample?: string;
+  vueExample?: string;
+  /** Adapter availability — defaults to "stable" if React + Vue examples are provided. */
+  reactAdapter?: AdapterAvailability;
+  vueAdapter?: AdapterAvailability;
 };
 
 export type ComponentCategory =
@@ -90,10 +96,21 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     description:
       "Primary action primitive with 8 variants, 5 sizes, loading, pressed, icon, and block states. Subtle gradient + glow on focus.",
     preview: (
-      <div className="flex flex-wrap items-center gap-2">
-        <button className="lm-btn lm-btn-primary">Save changes</button>
-        <button className="lm-btn lm-btn-outline">Review</button>
-        <button className="lm-btn lm-btn-ghost">Cancel</button>
+      <div className="grid gap-3 w-full">
+        <div className="flex flex-wrap items-center gap-2">
+          <button className="lm-btn lm-btn-primary">Save changes</button>
+          <button className="lm-btn lm-btn-outline">Review</button>
+          <button className="lm-btn lm-btn-ghost">Cancel</button>
+          <button className="lm-btn lm-btn-danger">Delete</button>
+        </div>
+        <div className="flex flex-wrap items-center gap-2">
+          <button className="lm-btn lm-btn-primary lm-btn-sm">Small</button>
+          <button className="lm-btn lm-btn-primary">Medium</button>
+          <button className="lm-btn lm-btn-primary lm-btn-lg">Large</button>
+          <button className="lm-btn lm-btn-primary" aria-busy="true">
+            Loading
+          </button>
+        </div>
       </div>
     ),
     variants: [
@@ -186,8 +203,24 @@ export const componentCatalog: ComponentCatalogEntry[] = [
 </button>`,
     reactExample: `import { LumoraButton } from "@lumora-ui/react";
 
-<LumoraButton variant="primary" size="md">Save changes</LumoraButton>
-<LumoraButton variant="primary" loading>Saving…</LumoraButton>`
+export function SaveBar() {
+  return (
+    <>
+      <LumoraButton variant="primary" size="md">Save changes</LumoraButton>
+      <LumoraButton variant="outline">Review</LumoraButton>
+      <LumoraButton variant="primary" loading>Saving…</LumoraButton>
+    </>
+  );
+}`,
+    vueExample: `<script setup lang="ts">
+import { LumoraButton } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraButton variant="primary" size="md">Save changes</LumoraButton>
+  <LumoraButton variant="outline">Review</LumoraButton>
+  <LumoraButton variant="primary" :loading="true">Saving…</LumoraButton>
+</template>`
   },
   {
     slug: "button-group",
@@ -215,7 +248,25 @@ export const componentCatalog: ComponentCatalogEntry[] = [
   <button class="lm-btn">Day</button>
   <button class="lm-btn" aria-pressed="true">Week</button>
   <button class="lm-btn">Month</button>
-</div>`
+</div>`,
+    reactExample: `import { LumoraButtonGroup, LumoraButton } from "@lumora-ui/react";
+
+<LumoraButtonGroup aria-label="Time range">
+  <LumoraButton>Day</LumoraButton>
+  <LumoraButton active>Week</LumoraButton>
+  <LumoraButton>Month</LumoraButton>
+</LumoraButtonGroup>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraButtonGroup, LumoraButton } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraButtonGroup aria-label="Time range">
+    <LumoraButton>Day</LumoraButton>
+    <LumoraButton :active="true">Week</LumoraButton>
+    <LumoraButton>Month</LumoraButton>
+  </LumoraButtonGroup>
+</template>`
   },
   {
     slug: "toggle-group",
@@ -248,7 +299,25 @@ export const componentCatalog: ComponentCatalogEntry[] = [
   <button class="lm-toggle-group-item" aria-checked="false">Compact</button>
   <button class="lm-toggle-group-item" aria-pressed="true" aria-checked="true">Comfortable</button>
   <button class="lm-toggle-group-item" aria-checked="false">Spacious</button>
-</div>`
+</div>`,
+    reactExample: `import { LumoraToggleGroup, LumoraToggleGroupItem } from "@lumora-ui/react";
+
+<LumoraToggleGroup value={density} onValueChange={setDensity}>
+  <LumoraToggleGroupItem pressed={density === "compact"}>Compact</LumoraToggleGroupItem>
+  <LumoraToggleGroupItem pressed={density === "comfortable"}>Comfortable</LumoraToggleGroupItem>
+  <LumoraToggleGroupItem pressed={density === "spacious"}>Spacious</LumoraToggleGroupItem>
+</LumoraToggleGroup>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraToggleGroup, LumoraToggleGroupItem } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraToggleGroup>
+    <LumoraToggleGroupItem :pressed="density === 'compact'">Compact</LumoraToggleGroupItem>
+    <LumoraToggleGroupItem :pressed="density === 'comfortable'">Comfortable</LumoraToggleGroupItem>
+    <LumoraToggleGroupItem :pressed="density === 'spacious'">Spacious</LumoraToggleGroupItem>
+  </LumoraToggleGroup>
+</template>`
   },
   // -- DISPLAY ---------------------------------------------------------
   {
@@ -285,7 +354,19 @@ export const componentCatalog: ComponentCatalogEntry[] = [
       "Wrap in role='status' for live regions when content changes."
     ],
     htmlExample: `<span class="lm-badge lm-badge-success lm-badge-dot">Active</span>
-<span class="lm-badge lm-badge-soft">12 new</span>`
+<span class="lm-badge lm-badge-soft">12 new</span>`,
+    reactExample: `import { LumoraBadge } from "@lumora-ui/react";
+
+<LumoraBadge tone="success" dot>Active</LumoraBadge>
+<LumoraBadge variant="soft">12 new</LumoraBadge>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraBadge } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraBadge tone="success" :dot="true">Active</LumoraBadge>
+  <LumoraBadge variant="soft">12 new</LumoraBadge>
+</template>`
   },
   {
     slug: "tag",
@@ -327,7 +408,21 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<span class="lm-tag lm-tag-removable">
   enterprise
   <button class="lm-tag-remove" aria-label="Remove enterprise">×</button>
-</span>`
+</span>`,
+    reactExample: `import { LumoraTag } from "@lumora-ui/react";
+
+<LumoraTag removable onRemove={() => removeTag("enterprise")}>
+  enterprise
+</LumoraTag>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraTag } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraTag :removable="true" @remove="removeTag('enterprise')">
+    enterprise
+  </LumoraTag>
+</template>`
   },
   {
     slug: "avatar",
@@ -375,7 +470,19 @@ export const componentCatalog: ComponentCatalogEntry[] = [
   <span class="lm-avatar lm-avatar-sm">AL</span>
   <span class="lm-avatar lm-avatar-sm">MK</span>
   <span class="lm-avatar-stack-more">+5</span>
-</div>`
+</div>`,
+    reactExample: `import { LumoraAvatar } from "@lumora-ui/react";
+
+<LumoraAvatar size="md" fallback="AL" />
+<LumoraAvatar size="md" src="/users/maya.jpg" alt="Maya" />`,
+    vueExample: `<script setup lang="ts">
+import { LumoraAvatar } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraAvatar size="md" fallback="AL" />
+  <LumoraAvatar size="md" src="/users/maya.jpg" alt="Maya" />
+</template>`
   },
   {
     slug: "kbd",
@@ -395,7 +502,18 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     classes: [{ name: "lm-kbd", description: "Single key indicator" }],
     props: [],
     accessibility: ["Wrap keys in <kbd> element for semantic HTML."],
-    htmlExample: `<kbd class="lm-kbd">⌘</kbd> <kbd class="lm-kbd">K</kbd>`
+    htmlExample: `<kbd class="lm-kbd">⌘</kbd> <kbd class="lm-kbd">K</kbd>`,
+    reactExample: `import { LumoraKbd } from "@lumora-ui/react";
+
+<LumoraKbd>⌘</LumoraKbd> <LumoraKbd>K</LumoraKbd>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraKbd } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraKbd>⌘</LumoraKbd>
+  <LumoraKbd>K</LumoraKbd>
+</template>`
   },
   {
     slug: "code",
@@ -419,7 +537,21 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     props: [],
     accessibility: ["Use semantic <code> and <pre><code> elements."],
     htmlExample: `<code class="lm-code">npm install</code>
-<pre class="lm-code-block"><code>const x = 1;</code></pre>`
+<pre class="lm-code-block"><code>const x = 1;</code></pre>`,
+    reactExample: `import { LumoraCode, LumoraCodeBlock } from "@lumora-ui/react";
+
+<p>Run <LumoraCode>npm install</LumoraCode> first.</p>
+<LumoraCodeBlock>{\`@import "tailwindcss";
+@plugin "@lumora-ui/core";\`}</LumoraCodeBlock>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraCode, LumoraCodeBlock } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <p>Run <LumoraCode>npm install</LumoraCode> first.</p>
+  <LumoraCodeBlock>@import "tailwindcss";
+@plugin "@lumora-ui/core";</LumoraCodeBlock>
+</template>`
   },
   // -- FEEDBACK --------------------------------------------------------
   {
@@ -465,7 +597,21 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     <p class="lm-alert-title">Settings saved</p>
     <p class="lm-hint">Changes apply on next sign-in.</p>
   </div>
-</div>`
+</div>`,
+    reactExample: `import { LumoraAlert } from "@lumora-ui/react";
+
+<LumoraAlert tone="success" title="Settings saved">
+  Changes apply on next sign-in.
+</LumoraAlert>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraAlert } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraAlert tone="success" title="Settings saved">
+    Changes apply on next sign-in.
+  </LumoraAlert>
+</template>`
   },
   {
     slug: "toast",
@@ -506,7 +652,21 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     ],
     htmlExample: `<div class="lm-toaster" aria-live="polite">
   <div class="lm-toast lm-toast-success">…</div>
-</div>`
+</div>`,
+    reactExample: `import { LumoraToast } from "@lumora-ui/react";
+
+<LumoraToast tone="success" title="Backup completed">
+  128 GB encrypted snapshot uploaded.
+</LumoraToast>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraToast } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraToast tone="success" title="Backup completed">
+    128 GB encrypted snapshot uploaded.
+  </LumoraToast>
+</template>`
   },
   {
     slug: "banner",
@@ -528,7 +688,21 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Use role='status' or role='alert' depending on urgency."],
     htmlExample: `<div class="lm-banner lm-banner-warning" role="status">
   SSO certificate rotates in 7 days.
-</div>`
+</div>`,
+    reactExample: `import { LumoraBanner } from "@lumora-ui/react";
+
+<LumoraBanner tone="warning">
+  SSO certificate rotates in 7 days.
+</LumoraBanner>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraBanner } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraBanner tone="warning">
+    SSO certificate rotates in 7 days.
+  </LumoraBanner>
+</template>`
   },
   {
     slug: "progress",
@@ -552,7 +726,17 @@ export const componentCatalog: ComponentCatalogEntry[] = [
       { name: "max", type: "number", default: "100" }
     ],
     accessibility: ["Use native <progress>; provide aria-label for context."],
-    htmlExample: `<progress class="lm-progress" value="68" max="100" aria-label="Upload"></progress>`
+    htmlExample: `<progress class="lm-progress" value="68" max="100" aria-label="Upload"></progress>`,
+    reactExample: `import { LumoraProgress } from "@lumora-ui/react";
+
+<LumoraProgress value={68} max={100} size="md" aria-label="Upload" />`,
+    vueExample: `<script setup lang="ts">
+// Progress is a native <progress> with the lm-progress class. Use it directly:
+</script>
+
+<template>
+  <progress class="lm-progress lm-progress-md" :value="68" :max="100" aria-label="Upload" />
+</template>`
   },
   {
     slug: "spinner",
@@ -573,7 +757,18 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     ],
     props: [{ name: "size", type: "Size", default: "md" }],
     accessibility: ["Wrap in aria-live='polite' if standalone, or pair with aria-busy on container."],
-    htmlExample: `<span class="lm-spinner" aria-hidden="true"></span><span class="sr-only">Loading…</span>`
+    htmlExample: `<span class="lm-spinner" aria-hidden="true"></span><span class="sr-only">Loading…</span>`,
+    reactExample: `import { LumoraSpinner } from "@lumora-ui/react";
+
+<LumoraSpinner size="md" aria-label="Loading" />`,
+    vueExample: `<script setup lang="ts">
+// Spinner is a styled span. Use the lm-spinner class directly:
+</script>
+
+<template>
+  <span class="lm-spinner lm-spinner-md" aria-hidden="true" />
+  <span class="sr-only">Loading…</span>
+</template>`
   },
   {
     slug: "skeleton",
@@ -602,7 +797,22 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     ],
     props: [],
     accessibility: ["Mark loading regions with aria-busy='true' on a parent."],
-    htmlExample: `<div class="lm-skeleton h-6 w-1/2"></div>`
+    htmlExample: `<div class="lm-skeleton h-6 w-1/2"></div>`,
+    reactExample: `import { LumoraSkeleton } from "@lumora-ui/react";
+
+{loading ? (
+  <LumoraSkeleton className="h-6 w-2/3" />
+) : (
+  <h2>{user.name}</h2>
+)}`,
+    vueExample: `<script setup lang="ts">
+import { LumoraSkeleton } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraSkeleton v-if="loading" class="h-6 w-2/3" />
+  <h2 v-else>{{ user.name }}</h2>
+</template>`
   },
   // -- LAYOUT ----------------------------------------------------------
   {
@@ -655,7 +865,34 @@ export const componentCatalog: ComponentCatalogEntry[] = [
   </header>
   <div class="lm-card-body">…</div>
   <footer class="lm-card-footer">…</footer>
-</article>`
+</article>`,
+    reactExample: `import { LumoraCard } from "@lumora-ui/react";
+
+<LumoraCard variant="glass">
+  <LumoraCard.Header>
+    <LumoraCard.Title>Account</LumoraCard.Title>
+  </LumoraCard.Header>
+  <LumoraCard.Body>Plan and billing controls</LumoraCard.Body>
+  <LumoraCard.Footer>
+    <LumoraButton variant="primary">Save</LumoraButton>
+  </LumoraCard.Footer>
+</LumoraCard>`,
+    vueExample: `<script setup lang="ts">
+import {
+  LumoraCard, LumoraCardHeader, LumoraCardTitle,
+  LumoraCardBody, LumoraCardFooter
+} from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraCard variant="glass">
+    <LumoraCardHeader>
+      <LumoraCardTitle>Account</LumoraCardTitle>
+    </LumoraCardHeader>
+    <LumoraCardBody>Plan and billing controls</LumoraCardBody>
+    <LumoraCardFooter>Save</LumoraCardFooter>
+  </LumoraCard>
+</template>`
   },
   {
     slug: "app-shell",
@@ -699,7 +936,36 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<div class="lm-app-shell lm-app-shell-sidebar">
   <nav class="lm-sidebar">…</nav>
   <main class="lm-app-main">…</main>
-</div>`
+</div>`,
+    reactExample: `import { LumoraSidebar, LumoraSidebarItem, LumoraPageHeader } from "@lumora-ui/react";
+
+<div className="lm-app-shell lm-app-shell-sidebar">
+  <LumoraSidebar aria-label="Primary">
+    <LumoraSidebarItem href="/dashboard" active>Dashboard</LumoraSidebarItem>
+    <LumoraSidebarItem href="/billing">Billing</LumoraSidebarItem>
+  </LumoraSidebar>
+  <main className="lm-app-main">
+    <LumoraPageHeader>
+      <h1 className="lm-page-title">Dashboard</h1>
+    </LumoraPageHeader>
+  </main>
+</div>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraSidebar, LumoraSidebarItem, LumoraPageHeader } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <div class="lm-app-shell lm-app-shell-sidebar">
+    <LumoraSidebar aria-label="Primary">
+      <LumoraSidebarItem href="/dashboard" :active="true">Dashboard</LumoraSidebarItem>
+    </LumoraSidebar>
+    <main class="lm-app-main">
+      <LumoraPageHeader>
+        <h1 class="lm-page-title">Dashboard</h1>
+      </LumoraPageHeader>
+    </main>
+  </div>
+</template>`
   },
   {
     slug: "divider",
@@ -728,7 +994,19 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     props: [{ name: "orientation", type: "horizontal | vertical", default: "horizontal" }],
     accessibility: ["Use role='separator' if used purely for layout."],
     htmlExample: `<div class="lm-divider">or</div>
-<span class="lm-divider-vertical" role="separator"></span>`
+<span class="lm-divider-vertical" role="separator"></span>`,
+    reactExample: `import { LumoraDivider } from "@lumora-ui/react";
+
+<LumoraDivider>or</LumoraDivider>
+<LumoraDivider orientation="vertical" />`,
+    vueExample: `<script setup lang="ts">
+import { LumoraDivider } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraDivider>or</LumoraDivider>
+  <LumoraDivider orientation="vertical" />
+</template>`
   },
   // -- FORM ------------------------------------------------------------
   {
@@ -768,7 +1046,25 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     <span class="lm-input-addon">@</span>
     <input class="lm-input" type="email" required />
   </div>
-</label>`
+</label>`,
+    reactExample: `import { LumoraField, LumoraLabel, LumoraInput, LumoraHint } from "@lumora-ui/react";
+
+<LumoraField>
+  <LumoraLabel required>Company email</LumoraLabel>
+  <LumoraInput type="email" placeholder="name@company.com" />
+  <LumoraHint>Used for billing and security alerts.</LumoraHint>
+</LumoraField>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraField, LumoraLabel, LumoraInput, LumoraHint } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraField>
+    <LumoraLabel :required="true">Company email</LumoraLabel>
+    <LumoraInput type="email" placeholder="name@company.com" />
+    <LumoraHint>Used for billing and security alerts.</LumoraHint>
+  </LumoraField>
+</template>`
   },
   {
     slug: "textarea",
@@ -785,7 +1081,17 @@ export const componentCatalog: ComponentCatalogEntry[] = [
       { name: "resize", type: "vertical | none", default: "vertical" }
     ],
     accessibility: a11yForm,
-    htmlExample: `<textarea class="lm-textarea" rows="4"></textarea>`
+    htmlExample: `<textarea class="lm-textarea" rows="4"></textarea>`,
+    reactExample: `import { LumoraTextarea } from "@lumora-ui/react";
+
+<LumoraTextarea rows={4} placeholder="Type a note…" />`,
+    vueExample: `<script setup lang="ts">
+import { LumoraTextarea } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraTextarea :rows="4" placeholder="Type a note…" />
+</template>`
   },
   {
     slug: "select",
@@ -806,7 +1112,23 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     ],
     props: [{ name: "size", type: "Size", default: "md" }],
     accessibility: a11yForm,
-    htmlExample: `<select class="lm-select"><option>Annual</option></select>`
+    htmlExample: `<select class="lm-select"><option>Annual</option></select>`,
+    reactExample: `import { LumoraSelect } from "@lumora-ui/react";
+
+<LumoraSelect defaultValue="annual">
+  <option value="annual">Annual</option>
+  <option value="quarterly">Quarterly</option>
+</LumoraSelect>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraSelect } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraSelect default-value="annual">
+    <option value="annual">Annual</option>
+    <option value="quarterly">Quarterly</option>
+  </LumoraSelect>
+</template>`
   },
   {
     slug: "checkbox",
@@ -835,7 +1157,27 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     props: [{ name: "size", type: "Size", default: "md" }],
     accessibility: a11yForm,
     htmlExample: `<input class="lm-checkbox" type="checkbox" id="terms" />
-<label for="terms">I agree</label>`
+<label for="terms">I agree</label>`,
+    reactExample: `import { LumoraCheckbox, LumoraRadio } from "@lumora-ui/react";
+
+<label className="flex items-center gap-2">
+  <LumoraCheckbox defaultChecked /> Subscribe
+</label>
+<label className="flex items-center gap-2">
+  <LumoraRadio name="plan" value="annual" /> Annual
+</label>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraCheckbox, LumoraRadio } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <label class="flex items-center gap-2">
+    <LumoraCheckbox :defaultChecked="true" /> Subscribe
+  </label>
+  <label class="flex items-center gap-2">
+    <LumoraRadio name="plan" value="annual" /> Annual
+  </label>
+</template>`
   },
   {
     slug: "switch",
@@ -856,7 +1198,17 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     ],
     props: [{ name: "size", type: "Size", default: "md" }],
     accessibility: a11yForm,
-    htmlExample: `<input class="lm-switch" type="checkbox" aria-label="Enable SSO" />`
+    htmlExample: `<input class="lm-switch" type="checkbox" aria-label="Enable SSO" />`,
+    reactExample: `import { LumoraSwitch } from "@lumora-ui/react";
+
+<LumoraSwitch size="md" defaultChecked aria-label="Enable SSO" />`,
+    vueExample: `<script setup lang="ts">
+import { LumoraSwitch } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraSwitch size="md" :defaultChecked="true" aria-label="Enable SSO" />
+</template>`
   },
   {
     slug: "slider",
@@ -879,7 +1231,17 @@ export const componentCatalog: ComponentCatalogEntry[] = [
       { name: "value", type: "number" }
     ],
     accessibility: ["Provide aria-label or visible <label>; aria-valuetext for non-numeric values."],
-    htmlExample: `<input class="lm-slider" type="range" min="0" max="100" value="50" aria-label="Volume" />`
+    htmlExample: `<input class="lm-slider" type="range" min="0" max="100" value="50" aria-label="Volume" />`,
+    reactExample: `import { LumoraSlider } from "@lumora-ui/react";
+
+<LumoraSlider min={0} max={100} defaultValue={50} aria-label="Volume" />`,
+    vueExample: `<script setup lang="ts">
+import { LumoraSlider } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraSlider :min="0" :max="100" :value="50" aria-label="Volume" />
+</template>`
   },
   {
     slug: "rating",
@@ -918,7 +1280,17 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<div class="lm-rating" role="radiogroup">
   <button class="lm-rating-star" aria-checked="true">★</button>
   <button class="lm-rating-star" aria-checked="false">★</button>
-</div>`
+</div>`,
+    reactExample: `import { LumoraRating } from "@lumora-ui/react";
+
+<LumoraRating value={4} max={5} onValueChange={setRating} aria-label="Rating" />`,
+    vueExample: `<script setup lang="ts">
+import { LumoraRating } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraRating :value="4" :max="5" @update:value="setRating" aria-label="Rating" />
+</template>`
   },
   {
     slug: "otp",
@@ -953,7 +1325,23 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<div class="lm-otp">
   <input class="lm-otp-slot" maxlength="1" aria-label="Digit 1 of 6" />
   <!-- … -->
-</div>`
+</div>`,
+    reactExample: `import { LumoraOtp, LumoraOtpSlot } from "@lumora-ui/react";
+
+<LumoraOtp>
+  {Array.from({ length: 6 }, (_, i) => (
+    <LumoraOtpSlot key={i} aria-label={\`Digit \${i + 1} of 6\`} />
+  ))}
+</LumoraOtp>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraOtp, LumoraOtpSlot } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraOtp>
+    <LumoraOtpSlot v-for="i in 6" :key="i" :aria-label="\`Digit \${i} of 6\`" />
+  </LumoraOtp>
+</template>`
   },
   {
     slug: "number-input",
@@ -985,7 +1373,26 @@ export const componentCatalog: ComponentCatalogEntry[] = [
   <button type="button" aria-label="Decrement">−</button>
   <input type="number" value="42" />
   <button type="button" aria-label="Increment">+</button>
-</div>`
+</div>`,
+    reactExample: `import { LumoraNumberInput } from "@lumora-ui/react";
+
+<LumoraNumberInput
+  value={count}
+  onChange={(e) => setCount(Number(e.target.value))}
+  onIncrement={() => setCount((c) => c + 1)}
+  onDecrement={() => setCount((c) => c - 1)}
+/>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraNumberInput } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraNumberInput
+    :value="count"
+    @increment="count++"
+    @decrement="count--"
+  />
+</template>`
   },
   {
     slug: "tag-input",
@@ -1022,7 +1429,25 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<div class="lm-tag-input">
   <span class="lm-tag lm-tag-removable">enterprise<button class="lm-tag-remove">×</button></span>
   <input placeholder="Add tag…" />
-</div>`
+</div>`,
+    reactExample: `import { LumoraTagInput, LumoraTag } from "@lumora-ui/react";
+
+<LumoraTagInput>
+  {tags.map((t) => (
+    <LumoraTag key={t} removable onRemove={() => removeTag(t)}>{t}</LumoraTag>
+  ))}
+  <input placeholder="Add tag…" onKeyDown={onAddTag} />
+</LumoraTagInput>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraTagInput, LumoraTag } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraTagInput>
+    <LumoraTag v-for="t in tags" :key="t" :removable="true" @remove="removeTag(t)">{{ t }}</LumoraTag>
+    <input placeholder="Add tag…" @keydown="onAddTag" />
+  </LumoraTagInput>
+</template>`
   },
   {
     slug: "dropzone",
@@ -1053,7 +1478,25 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<label class="lm-dropzone">
   <strong class="lm-dropzone-title">Drop files</strong>
   <input type="file" class="sr-only" />
-</label>`
+</label>`,
+    reactExample: `import { LumoraDropzone } from "@lumora-ui/react";
+
+<LumoraDropzone>
+  <strong className="lm-dropzone-title">Drop files here</strong>
+  <span className="lm-hint">PDF, PNG, JPG up to 10 MB</span>
+  <input type="file" className="sr-only" multiple onChange={onSelect} />
+</LumoraDropzone>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraDropzone } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraDropzone>
+    <strong class="lm-dropzone-title">Drop files here</strong>
+    <span class="lm-hint">PDF, PNG, JPG up to 10 MB</span>
+    <input type="file" class="sr-only" multiple @change="onSelect" />
+  </LumoraDropzone>
+</template>`
   },
   {
     slug: "combobox",
@@ -1097,7 +1540,33 @@ export const componentCatalog: ComponentCatalogEntry[] = [
   <ul class="lm-combobox-listbox" role="listbox" id="lb">
     <li class="lm-combobox-option" role="option" aria-selected="true">…</li>
   </ul>
-</div>`
+</div>`,
+    reactExample: `import { LumoraCombobox, LumoraComboboxListbox, LumoraComboboxOption, LumoraInput } from "@lumora-ui/react";
+
+<LumoraCombobox>
+  <LumoraInput value={query} onChange={onQuery} />
+  <LumoraComboboxListbox open={open}>
+    {results.map((r) => (
+      <LumoraComboboxOption key={r.id} selected={r.id === activeId}>
+        {r.name}
+      </LumoraComboboxOption>
+    ))}
+  </LumoraComboboxListbox>
+</LumoraCombobox>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraCombobox, LumoraComboboxListbox, LumoraComboboxOption, LumoraInput } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraCombobox>
+    <LumoraInput v-model="query" />
+    <LumoraComboboxListbox :open="open">
+      <LumoraComboboxOption v-for="r in results" :key="r.id" :selected="r.id === activeId">
+        {{ r.name }}
+      </LumoraComboboxOption>
+    </LumoraComboboxListbox>
+  </LumoraCombobox>
+</template>`
   },
   {
     slug: "calendar",
@@ -1158,7 +1627,40 @@ export const componentCatalog: ComponentCatalogEntry[] = [
       "Use role='grid' with role='gridcell' on days.",
       "Arrow keys move focus; Page Up/Down for months."
     ],
-    htmlExample: `<div class="lm-calendar" role="grid">…</div>`
+    htmlExample: `<div class="lm-calendar" role="grid">…</div>`,
+    reactExample: `import { LumoraCalendar, LumoraCalendarHeader, LumoraCalendarGrid, LumoraCalendarDay } from "@lumora-ui/react";
+
+<LumoraCalendar>
+  <LumoraCalendarHeader>
+    <button>‹</button><span>April 2026</span><button>›</button>
+  </LumoraCalendarHeader>
+  <LumoraCalendarGrid>
+    {days.map((d) => (
+      <LumoraCalendarDay
+        key={d.iso}
+        selected={d.selected}
+        today={d.today}
+        outside={d.outside}
+      >
+        {d.day}
+      </LumoraCalendarDay>
+    ))}
+  </LumoraCalendarGrid>
+</LumoraCalendar>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraCalendar, LumoraCalendarHeader, LumoraCalendarGrid, LumoraCalendarDay } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraCalendar>
+    <LumoraCalendarHeader>April 2026</LumoraCalendarHeader>
+    <LumoraCalendarGrid>
+      <LumoraCalendarDay v-for="d in days" :key="d.iso" :selected="d.selected" :today="d.today">
+        {{ d.day }}
+      </LumoraCalendarDay>
+    </LumoraCalendarGrid>
+  </LumoraCalendar>
+</template>`
   },
   {
     slug: "datepicker",
@@ -1184,7 +1686,25 @@ export const componentCatalog: ComponentCatalogEntry[] = [
       { name: "mode", type: "single | range" }
     ],
     accessibility: ["Trigger uses aria-haspopup='dialog' + aria-expanded."],
-    htmlExample: `<button class="lm-datepicker-trigger">Apr 18 — Apr 24</button>`
+    htmlExample: `<button class="lm-datepicker-trigger">Apr 18 — Apr 24</button>`,
+    reactExample: `import { LumoraDatePicker, LumoraDatePickerTrigger } from "@lumora-ui/react";
+
+<LumoraDatePicker>
+  <LumoraDatePickerTrigger aria-expanded={open} onClick={() => setOpen((o) => !o)}>
+    {formatRange(value)}
+  </LumoraDatePickerTrigger>
+</LumoraDatePicker>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraDatePicker, LumoraDatePickerTrigger } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraDatePicker>
+    <LumoraDatePickerTrigger :aria-expanded="open" @click="open = !open">
+      {{ formatRange(value) }}
+    </LumoraDatePickerTrigger>
+  </LumoraDatePicker>
+</template>`
   },
   // -- NAVIGATION ------------------------------------------------------
   {
@@ -1194,19 +1714,28 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     status: "stable",
     description: "Tab list with underline + pills variants, 3 sizes, and disabled support.",
     preview: (
-      <div className="lm-tabs" role="tablist">
-        <button className="lm-tab" role="tab" aria-selected="true">
-          Overview
-        </button>
-        <button className="lm-tab" role="tab">
-          Activity
-        </button>
-        <button className="lm-tab" role="tab">
-          Settings
-        </button>
-        <button className="lm-tab" role="tab" aria-disabled="true">
-          Billing
-        </button>
+      <div className="grid gap-4 w-full">
+        <div className="lm-tabs" role="tablist">
+          <button className="lm-tab" role="tab" aria-selected="true">
+            Overview
+          </button>
+          <button className="lm-tab" role="tab">
+            Activity
+          </button>
+          <button className="lm-tab" role="tab">
+            Settings
+          </button>
+          <button className="lm-tab" role="tab" aria-disabled="true">
+            Billing
+          </button>
+        </div>
+        <div className="lm-tabs lm-tabs-pills" role="tablist">
+          <button className="lm-tab" aria-selected="true">
+            Daily
+          </button>
+          <button className="lm-tab">Weekly</button>
+          <button className="lm-tab">Monthly</button>
+        </div>
       </div>
     ),
     variants: [
@@ -1241,7 +1770,25 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<div class="lm-tabs" role="tablist">
   <button class="lm-tab" role="tab" aria-selected="true">Overview</button>
   <button class="lm-tab" role="tab">Activity</button>
-</div>`
+</div>`,
+    reactExample: `import { LumoraTabs, LumoraTab } from "@lumora-ui/react";
+
+<LumoraTabs aria-label="Settings">
+  <LumoraTab active>Overview</LumoraTab>
+  <LumoraTab>Activity</LumoraTab>
+  <LumoraTab>Settings</LumoraTab>
+</LumoraTabs>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraTabs, LumoraTab } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraTabs aria-label="Settings">
+    <LumoraTab :active="true">Overview</LumoraTab>
+    <LumoraTab>Activity</LumoraTab>
+    <LumoraTab>Settings</LumoraTab>
+  </LumoraTabs>
+</template>`
   },
   {
     slug: "segmented",
@@ -1267,7 +1814,25 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Use role='radiogroup' + role='radio' on items."],
     htmlExample: `<div class="lm-segmented" role="radiogroup">
   <button class="lm-segmented-item" aria-pressed="true">7 days</button>
-</div>`
+</div>`,
+    reactExample: `import { LumoraSegmented, LumoraSegmentedItem } from "@lumora-ui/react";
+
+<LumoraSegmented value={range} onValueChange={setRange}>
+  <LumoraSegmentedItem pressed={range === "24h"}>24h</LumoraSegmentedItem>
+  <LumoraSegmentedItem pressed={range === "7d"}>7 days</LumoraSegmentedItem>
+  <LumoraSegmentedItem pressed={range === "30d"}>30 days</LumoraSegmentedItem>
+</LumoraSegmented>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraSegmented, LumoraSegmentedItem } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraSegmented>
+    <LumoraSegmentedItem :pressed="range === '24h'">24h</LumoraSegmentedItem>
+    <LumoraSegmentedItem :pressed="range === '7d'">7 days</LumoraSegmentedItem>
+    <LumoraSegmentedItem :pressed="range === '30d'">30 days</LumoraSegmentedItem>
+  </LumoraSegmented>
+</template>`
   },
   {
     slug: "stepper",
@@ -1310,7 +1875,27 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<ol class="lm-stepper" aria-label="Onboarding">
   <li class="lm-step lm-step-complete"><span class="lm-step-marker"></span>Connect</li>
   <li class="lm-step" aria-current="step"><span class="lm-step-marker"></span>Map roles</li>
-</ol>`
+</ol>`,
+    reactExample: `import { LumoraStepper, LumoraStep } from "@lumora-ui/react";
+
+<LumoraStepper aria-label="Onboarding">
+  <LumoraStep state="complete">Connect identity</LumoraStep>
+  <LumoraStep state="current">Map roles</LumoraStep>
+  <LumoraStep>Invite admins</LumoraStep>
+  <LumoraStep>Review</LumoraStep>
+</LumoraStepper>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraStepper, LumoraStep } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraStepper aria-label="Onboarding">
+    <LumoraStep state="complete">Connect identity</LumoraStep>
+    <LumoraStep state="current">Map roles</LumoraStep>
+    <LumoraStep>Invite admins</LumoraStep>
+    <LumoraStep>Review</LumoraStep>
+  </LumoraStepper>
+</template>`
   },
   {
     slug: "breadcrumbs",
@@ -1333,7 +1918,25 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<nav class="lm-breadcrumbs" aria-label="Breadcrumb">
   <a href="/">Workspace</a> /
   <span aria-current="page">Atlas</span>
-</nav>`
+</nav>`,
+    reactExample: `import { LumoraBreadcrumbs } from "@lumora-ui/react";
+
+<LumoraBreadcrumbs aria-label="Breadcrumb">
+  <a href="/">Workspace</a>
+  <a href="/accounts">Accounts</a>
+  <span aria-current="page">Atlas Finance</span>
+</LumoraBreadcrumbs>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraBreadcrumbs } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraBreadcrumbs aria-label="Breadcrumb">
+    <a href="/">Workspace</a>
+    <a href="/accounts">Accounts</a>
+    <span aria-current="page">Atlas Finance</span>
+  </LumoraBreadcrumbs>
+</template>`
   },
   {
     slug: "pagination",
@@ -1376,7 +1979,28 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Use <nav aria-label='Pagination'>.", "Active page: aria-current='page'."],
     htmlExample: `<nav class="lm-pagination">
   <a class="lm-pagination-item" aria-current="page">2</a>
-</nav>`
+</nav>`,
+    reactExample: `import { LumoraPagination, LumoraPaginationItem } from "@lumora-ui/react";
+
+<LumoraPagination aria-label="Pagination">
+  <LumoraPaginationItem disabled>‹</LumoraPaginationItem>
+  <LumoraPaginationItem>1</LumoraPaginationItem>
+  <LumoraPaginationItem active>2</LumoraPaginationItem>
+  <LumoraPaginationItem>3</LumoraPaginationItem>
+  <LumoraPaginationItem>›</LumoraPaginationItem>
+</LumoraPagination>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraPagination, LumoraPaginationItem } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraPagination aria-label="Pagination">
+    <LumoraPaginationItem :disabled="true">‹</LumoraPaginationItem>
+    <LumoraPaginationItem>1</LumoraPaginationItem>
+    <LumoraPaginationItem :active="true">2</LumoraPaginationItem>
+    <LumoraPaginationItem>3</LumoraPaginationItem>
+  </LumoraPagination>
+</template>`
   },
   {
     slug: "navbar",
@@ -1404,7 +2028,23 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Wrap in <header> with role='banner'."],
     htmlExample: `<header class="lm-navbar">
   <a class="lm-navbar-brand" href="/">Lumora</a>
-</header>`
+</header>`,
+    reactExample: `import { LumoraNavbar } from "@lumora-ui/react";
+
+<LumoraNavbar>
+  <a className="lm-navbar-brand" href="/">Lumora</a>
+  <a href="/components" className="lm-btn lm-btn-ghost lm-btn-sm">Components</a>
+</LumoraNavbar>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraNavbar } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraNavbar>
+    <a class="lm-navbar-brand" href="/">Lumora</a>
+    <a href="/components" class="lm-btn lm-btn-ghost lm-btn-sm">Components</a>
+  </LumoraNavbar>
+</template>`
   },
   {
     slug: "sidebar",
@@ -1446,7 +2086,24 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Wrap in <nav aria-label='Primary'>.", "Active link: aria-current='page'."],
     htmlExample: `<nav class="lm-sidebar" aria-label="Primary">
   <a class="lm-sidebar-item" aria-current="page">Dashboard</a>
-</nav>`
+</nav>`,
+    reactExample: `import { LumoraSidebar, LumoraSidebarItem } from "@lumora-ui/react";
+
+<LumoraSidebar aria-label="Primary">
+  <LumoraSidebarItem href="/dashboard" active>Dashboard</LumoraSidebarItem>
+  <LumoraSidebarItem href="/accounts">Accounts</LumoraSidebarItem>
+  <LumoraSidebarItem href="/billing">Billing</LumoraSidebarItem>
+</LumoraSidebar>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraSidebar, LumoraSidebarItem } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraSidebar aria-label="Primary">
+    <LumoraSidebarItem href="/dashboard" :active="true">Dashboard</LumoraSidebarItem>
+    <LumoraSidebarItem href="/accounts">Accounts</LumoraSidebarItem>
+  </LumoraSidebar>
+</template>`
   },
   // -- OVERLAY ---------------------------------------------------------
   {
@@ -1457,19 +2114,28 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     description: "Blocking dialog with backdrop blur, spring scale-in animation, 4 sizes.",
     preview: (
       <div
-        className="lm-card overflow-hidden"
-        style={{ background: "var(--lm-color-overlay)", padding: "2rem" }}
+        className="grid w-full place-items-center overflow-hidden rounded-lg p-6"
+        style={{
+          background:
+            "radial-gradient(20rem 16rem at 50% 50%, color-mix(in oklab, var(--lm-color-primary) 20%, transparent), transparent 70%), var(--lm-color-overlay)",
+          minHeight: "13rem"
+        }}
       >
-        <section className="lm-modal-panel lm-modal-panel-md mx-auto" role="dialog" aria-modal="true">
+        <section
+          className="lm-modal-panel lm-modal-panel-sm w-full"
+          role="dialog"
+          aria-modal="true"
+          style={{ animation: "none" }}
+        >
           <header className="lm-modal-header">
             <h2 className="lm-modal-title">Confirm deletion</h2>
           </header>
-          <div className="lm-modal-body">
+          <div className="lm-modal-body text-sm">
             Atlas Finance will be permanently deleted. This cannot be undone.
           </div>
           <footer className="lm-modal-footer">
-            <button className="lm-btn lm-btn-ghost">Cancel</button>
-            <button className="lm-btn lm-btn-danger">Delete</button>
+            <button className="lm-btn lm-btn-ghost lm-btn-sm">Cancel</button>
+            <button className="lm-btn lm-btn-danger lm-btn-sm">Delete</button>
           </footer>
         </section>
       </div>
@@ -1492,7 +2158,43 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     <header class="lm-modal-header"><h2 id="title">Confirm</h2></header>
     <div class="lm-modal-body">…</div>
   </section>
-</div>`
+</div>`,
+    reactExample: `import { LumoraModal, LumoraButton } from "@lumora-ui/react";
+
+<LumoraModal open={open} size="md" onOpenChange={setOpen}>
+  <LumoraModal.Panel>
+    <LumoraModal.Header>
+      <h2 className="lm-modal-title">Confirm deletion</h2>
+    </LumoraModal.Header>
+    <LumoraModal.Body>
+      Atlas Finance will be permanently deleted.
+    </LumoraModal.Body>
+    <LumoraModal.Footer>
+      <LumoraButton variant="ghost" onClick={() => setOpen(false)}>Cancel</LumoraButton>
+      <LumoraButton variant="danger">Delete</LumoraButton>
+    </LumoraModal.Footer>
+  </LumoraModal.Panel>
+</LumoraModal>`,
+    vueExample: `<script setup lang="ts">
+import {
+  LumoraModal, LumoraModalPanel, LumoraModalHeader,
+  LumoraModalBody, LumoraModalFooter, LumoraButton
+} from "@lumora-ui/vue";
+const open = ref(false);
+</script>
+
+<template>
+  <LumoraModal :open="open" size="md" @update:open="(v) => (open = v)">
+    <LumoraModalPanel>
+      <LumoraModalHeader>Confirm deletion</LumoraModalHeader>
+      <LumoraModalBody>Atlas Finance will be permanently deleted.</LumoraModalBody>
+      <LumoraModalFooter>
+        <LumoraButton variant="ghost" @click="open = false">Cancel</LumoraButton>
+        <LumoraButton variant="danger">Delete</LumoraButton>
+      </LumoraModalFooter>
+    </LumoraModalPanel>
+  </LumoraModal>
+</template>`
   },
   {
     slug: "drawer",
@@ -1502,22 +2204,29 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     description: "Side-anchored panel with slide-in animation. Left or right, 3 sizes.",
     preview: (
       <div
-        className="lm-card overflow-hidden"
-        style={{
-          background: "var(--lm-color-overlay)",
-          minHeight: "12rem",
-          padding: "0",
-          position: "relative"
-        }}
+        className="grid w-full grid-cols-[1fr_15rem] gap-0 overflow-hidden rounded-lg border border-[var(--lm-color-border)]"
+        style={{ minHeight: "13rem" }}
       >
-        <aside
-          className="lm-drawer lm-drawer-md"
-          style={{ position: "static", height: "auto", boxShadow: "none" }}
+        <div
+          style={{ background: "var(--lm-color-overlay)" }}
+          className="grid place-items-center text-xs text-[var(--lm-color-primary-fg)]"
         >
-          <header className="grid gap-1">
+          Page content
+        </div>
+        <aside
+          className="lm-drawer lm-drawer-sm"
+          style={{ position: "static", height: "auto", boxShadow: "none", width: "100%" }}
+        >
+          <header className="grid gap-1 mb-3">
             <h3 className="lm-card-title">Filters</h3>
-            <p className="lm-hint">Refine the account list.</p>
+            <p className="lm-hint text-xs">Refine the account list</p>
           </header>
+          <label className="lm-field">
+            <span className="lm-label text-xs">Status</span>
+            <select className="lm-select lm-select-sm">
+              <option>Active</option>
+            </select>
+          </label>
         </aside>
       </div>
     ),
@@ -1531,7 +2240,22 @@ export const componentCatalog: ComponentCatalogEntry[] = [
       { name: "size", type: "sm | md | lg" }
     ],
     accessibility: a11yOverlay,
-    htmlExample: `<aside class="lm-drawer lm-drawer-md" role="dialog" aria-modal="true">…</aside>`
+    htmlExample: `<aside class="lm-drawer lm-drawer-md" role="dialog" aria-modal="true">…</aside>`,
+    reactExample: `import { LumoraDrawer } from "@lumora-ui/react";
+
+<LumoraDrawer open={open} side="right" size="md" onOpenChange={setOpen}>
+  <h3 className="lm-card-title">Filters</h3>
+</LumoraDrawer>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraDrawer } from "@lumora-ui/vue";
+const open = ref(false);
+</script>
+
+<template>
+  <LumoraDrawer :open="open" side="right" size="md" @update:open="(v) => (open = v)">
+    <h3 class="lm-card-title">Filters</h3>
+  </LumoraDrawer>
+</template>`
   },
   {
     slug: "tooltip",
@@ -1540,19 +2264,27 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     status: "stable",
     description: "Brief hover label with rotated arrow on every side.",
     preview: (
-      <div className="flex flex-wrap gap-3 py-12 text-sm">
-        <span className="lm-tooltip">
-          <button className="lm-btn lm-btn-outline">Hover me</button>
-          <span className="lm-tooltip-content" data-side="top">
-            Top tooltip
+      <div className="grid w-full place-items-center gap-6 py-8 text-sm">
+        <div className="flex flex-wrap items-center justify-center gap-6">
+          <span className="lm-tooltip">
+            <button className="lm-btn lm-btn-outline">Top</button>
+            <span className="lm-tooltip-content" data-side="top">
+              Tooltip top
+            </span>
           </span>
-        </span>
-        <span className="lm-tooltip">
-          <button className="lm-btn lm-btn-outline">Right</button>
-          <span className="lm-tooltip-content" data-side="right">
-            Right tooltip
+          <span className="lm-tooltip">
+            <button className="lm-btn lm-btn-outline">Right</button>
+            <span className="lm-tooltip-content" data-side="right">
+              Tooltip right
+            </span>
           </span>
-        </span>
+          <span className="lm-tooltip">
+            <button className="lm-btn lm-btn-outline">Bottom</button>
+            <span className="lm-tooltip-content" data-side="bottom">
+              Tooltip bottom
+            </span>
+          </span>
+        </div>
       </div>
     ),
     classes: [
@@ -1570,7 +2302,21 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<span class="lm-tooltip">
   <button aria-describedby="tip-1">?</button>
   <span class="lm-tooltip-content" id="tip-1">Help text</span>
-</span>`
+</span>`,
+    reactExample: `import { LumoraTooltip } from "@lumora-ui/react";
+
+<LumoraTooltip content="Help text" side="top">
+  <button className="lm-btn lm-btn-outline">Hover me</button>
+</LumoraTooltip>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraTooltip } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraTooltip content="Help text" side="top">
+    <button class="lm-btn lm-btn-outline">Hover me</button>
+  </LumoraTooltip>
+</template>`
   },
   {
     slug: "popover",
@@ -1579,14 +2325,27 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     status: "new",
     description: "Rich floating panel with arrow. For settings, inline help, or quick forms.",
     preview: (
-      <div className="flex flex-wrap gap-3 py-8 text-sm">
-        <span className="lm-popover">
-          <button className="lm-btn lm-btn-outline">Open popover</button>
-          <div className="lm-popover-content">
-            <div className="lm-popover-arrow" />
-            <p className="text-sm">Quick settings panel can live here.</p>
+      <div className="grid w-full gap-3 py-2">
+        <button className="lm-btn lm-btn-outline w-fit">Open settings ↓</button>
+        <div
+          className="lm-popover-content"
+          style={{ position: "static", animation: "none", width: "100%", maxWidth: "20rem" }}
+        >
+          <div className="grid gap-3">
+            <div>
+              <strong className="text-sm">Quick settings</strong>
+              <p className="lm-hint text-xs">Apply to this account.</p>
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm">Email digest</span>
+              <input type="checkbox" className="lm-switch lm-switch-sm" defaultChecked />
+            </div>
+            <div className="flex items-center justify-between">
+              <span className="text-sm">Auto-renew</span>
+              <input type="checkbox" className="lm-switch lm-switch-sm" />
+            </div>
           </div>
-        </span>
+        </div>
       </div>
     ),
     classes: [
@@ -1602,7 +2361,29 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<span class="lm-popover">
   <button aria-haspopup="dialog">Open</button>
   <div class="lm-popover-content"><div class="lm-popover-arrow"></div>…</div>
-</span>`
+</span>`,
+    reactExample: `import { LumoraPopover, LumoraPopoverContent } from "@lumora-ui/react";
+
+<LumoraPopover>
+  <button onClick={() => setOpen(true)} aria-haspopup="dialog">Open settings</button>
+  <LumoraPopoverContent open={open} side="bottom">
+    <div className="lm-popover-arrow" />
+    <div>Quick settings panel</div>
+  </LumoraPopoverContent>
+</LumoraPopover>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraPopover, LumoraPopoverContent } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraPopover>
+    <button @click="open = true" aria-haspopup="dialog">Open settings</button>
+    <LumoraPopoverContent :open="open" side="bottom">
+      <div class="lm-popover-arrow" />
+      <div>Quick settings panel</div>
+    </LumoraPopoverContent>
+  </LumoraPopover>
+</template>`
   },
   {
     slug: "hover-card",
@@ -1611,20 +2392,40 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     status: "new",
     description: "Rich preview on hover — perfect for user mentions and link previews.",
     preview: (
-      <span className="lm-hover-card">
-        <a href="#" className="text-[var(--lm-color-primary)] underline">
-          @maya-k
-        </a>
-        <div className="lm-hover-card-content">
-          <div className="flex items-center gap-3">
-            <span className="lm-avatar lm-avatar-md">MK</span>
-            <div>
-              <strong>Maya Krishnan</strong>
-              <p className="lm-hint">Engineering · Site Reliability</p>
+      <div className="grid w-full gap-3">
+        <p className="text-sm text-[var(--lm-color-muted)]">
+          Reviewed by{" "}
+          <a href="#" className="text-[var(--lm-color-primary)] underline">
+            @maya-k
+          </a>
+        </p>
+        <div
+          className="lm-hover-card-content"
+          style={{ position: "static", animation: "none", width: "100%", maxWidth: "20rem" }}
+        >
+          <div className="grid gap-3">
+            <div className="flex items-center gap-3">
+              <span
+                className="lm-avatar lm-avatar-md"
+                style={{
+                  background:
+                    "linear-gradient(135deg, var(--lm-color-primary), var(--lm-color-accent))"
+                }}
+              >
+                MK
+              </span>
+              <div className="grid">
+                <strong>Maya Krishnan</strong>
+                <span className="lm-hint text-xs">Site Reliability · Atlas</span>
+              </div>
+            </div>
+            <div className="flex gap-2 text-xs">
+              <span className="lm-badge lm-badge-soft">42 reviews</span>
+              <span className="lm-badge lm-badge-success lm-badge-dot">Online</span>
             </div>
           </div>
         </div>
-      </span>
+      </div>
     ),
     classes: [
       { name: "lm-hover-card", description: "Anchor wrapper" },
@@ -1641,7 +2442,29 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<span class="lm-hover-card">
   <a href="/users/maya">@maya</a>
   <div class="lm-hover-card-content">…</div>
-</span>`
+</span>`,
+    reactExample: `import { LumoraHoverCard, LumoraHoverCardContent } from "@lumora-ui/react";
+
+<LumoraHoverCard>
+  <a href="/users/maya">@maya</a>
+  <LumoraHoverCardContent open={hovered}>
+    <strong>Maya Krishnan</strong>
+    <p>Site Reliability · Atlas</p>
+  </LumoraHoverCardContent>
+</LumoraHoverCard>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraHoverCard, LumoraHoverCardContent } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraHoverCard>
+    <a href="/users/maya">@maya</a>
+    <LumoraHoverCardContent :open="hovered">
+      <strong>Maya Krishnan</strong>
+      <p>Site Reliability · Atlas</p>
+    </LumoraHoverCardContent>
+  </LumoraHoverCard>
+</template>`
   },
   {
     slug: "dropdown",
@@ -1691,7 +2514,29 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<div class="lm-dropdown">
   <button aria-haspopup="menu" aria-expanded="true">Actions</button>
   <div class="lm-dropdown-menu" role="menu">…</div>
-</div>`
+</div>`,
+    reactExample: `import { LumoraDropdown, LumoraDropdownMenu, LumoraDropdownItem } from "@lumora-ui/react";
+
+<LumoraDropdown>
+  <LumoraDropdownMenu>
+    <LumoraDropdownItem onSelect={() => editAccount()}>Edit profile</LumoraDropdownItem>
+    <LumoraDropdownItem onSelect={() => viewActivity()}>View activity</LumoraDropdownItem>
+    <LumoraDropdownItem variant="danger">Delete</LumoraDropdownItem>
+  </LumoraDropdownMenu>
+</LumoraDropdown>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraDropdown, LumoraDropdownMenu, LumoraDropdownItem } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraDropdown>
+    <LumoraDropdownMenu>
+      <LumoraDropdownItem @select="editAccount">Edit profile</LumoraDropdownItem>
+      <LumoraDropdownItem @select="viewActivity">View activity</LumoraDropdownItem>
+      <LumoraDropdownItem variant="danger">Delete</LumoraDropdownItem>
+    </LumoraDropdownMenu>
+  </LumoraDropdown>
+</template>`
   },
   {
     slug: "context-menu",
@@ -1724,7 +2569,26 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     ],
     props: [{ name: "anchor", type: "{x: number; y: number}" }],
     accessibility: ["Open on contextmenu OR Shift+F10.", "Same role/aria as dropdown."],
-    htmlExample: `<div class="lm-context-menu" role="menu" style="top: 100px; left: 200px">…</div>`
+    htmlExample: `<div class="lm-context-menu" role="menu" style="top: 100px; left: 200px">…</div>`,
+    reactExample: `import { LumoraContextMenu, LumoraContextMenuItem } from "@lumora-ui/react";
+
+<LumoraContextMenu x={pos.x} y={pos.y}>
+  <LumoraContextMenuItem onClick={cut}>Cut</LumoraContextMenuItem>
+  <LumoraContextMenuItem onClick={copy}>Copy</LumoraContextMenuItem>
+  <LumoraContextMenuItem onClick={paste}>Paste</LumoraContextMenuItem>
+  <LumoraContextMenuItem tone="danger" onClick={remove}>Delete</LumoraContextMenuItem>
+</LumoraContextMenu>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraContextMenu, LumoraContextMenuItem } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraContextMenu :x="pos.x" :y="pos.y">
+    <LumoraContextMenuItem @click="cut">Cut</LumoraContextMenuItem>
+    <LumoraContextMenuItem @click="copy">Copy</LumoraContextMenuItem>
+    <LumoraContextMenuItem tone="danger" @click="remove">Delete</LumoraContextMenuItem>
+  </LumoraContextMenu>
+</template>`
   },
   {
     slug: "command",
@@ -1784,7 +2648,39 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<div class="lm-command" role="dialog" aria-label="Command palette">
   <input class="lm-command-input" />
   <ul class="lm-command-list" role="listbox">…</ul>
-</div>`
+</div>`,
+    reactExample: `import {
+  LumoraCommand, LumoraCommandInput, LumoraCommandList,
+  LumoraCommandItem, LumoraCommandGroupLabel, LumoraCommandFooter
+} from "@lumora-ui/react";
+
+<LumoraCommand>
+  <LumoraCommandInput placeholder="Search…" value={query} onChange={onQuery} />
+  <LumoraCommandList>
+    <LumoraCommandGroupLabel>Suggested</LumoraCommandGroupLabel>
+    <LumoraCommandItem selected>Open billing dashboard</LumoraCommandItem>
+    <LumoraCommandItem>Invite teammates</LumoraCommandItem>
+  </LumoraCommandList>
+  <LumoraCommandFooter>↑↓ navigate · ↵ select</LumoraCommandFooter>
+</LumoraCommand>`,
+    vueExample: `<script setup lang="ts">
+import {
+  LumoraCommand, LumoraCommandInput, LumoraCommandList,
+  LumoraCommandItem, LumoraCommandGroupLabel, LumoraCommandFooter
+} from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraCommand>
+    <LumoraCommandInput v-model="query" placeholder="Search…" />
+    <LumoraCommandList>
+      <LumoraCommandGroupLabel>Suggested</LumoraCommandGroupLabel>
+      <LumoraCommandItem :selected="true">Open billing dashboard</LumoraCommandItem>
+      <LumoraCommandItem>Invite teammates</LumoraCommandItem>
+    </LumoraCommandList>
+    <LumoraCommandFooter>↑↓ navigate · ↵ select</LumoraCommandFooter>
+  </LumoraCommand>
+</template>`
   },
   // -- DISCLOSURE ------------------------------------------------------
   {
@@ -1830,7 +2726,45 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<div class="lm-accordion-item">
   <button class="lm-accordion-trigger" aria-expanded="true" aria-controls="panel-1">…</button>
   <div class="lm-accordion-content" id="panel-1" role="region">…</div>
-</div>`
+</div>`,
+    reactExample: `import {
+  LumoraAccordion, LumoraAccordionItem, LumoraAccordionTrigger, LumoraAccordionContent
+} from "@lumora-ui/react";
+
+<LumoraAccordion>
+  {items.map((item) => (
+    <LumoraAccordionItem key={item.id}>
+      <LumoraAccordionTrigger
+        expanded={open.includes(item.id)}
+        onClick={() => toggle(item.id)}
+      >
+        {item.question}
+      </LumoraAccordionTrigger>
+      <LumoraAccordionContent open={open.includes(item.id)}>
+        {item.answer}
+      </LumoraAccordionContent>
+    </LumoraAccordionItem>
+  ))}
+</LumoraAccordion>`,
+    vueExample: `<script setup lang="ts">
+import {
+  LumoraAccordion, LumoraAccordionItem,
+  LumoraAccordionTrigger, LumoraAccordionContent
+} from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraAccordion>
+    <LumoraAccordionItem v-for="item in items" :key="item.id">
+      <LumoraAccordionTrigger :expanded="open.includes(item.id)" @click="toggle(item.id)">
+        {{ item.question }}
+      </LumoraAccordionTrigger>
+      <LumoraAccordionContent :open="open.includes(item.id)">
+        {{ item.answer }}
+      </LumoraAccordionContent>
+    </LumoraAccordionItem>
+  </LumoraAccordion>
+</template>`
   },
   {
     slug: "tree",
@@ -1871,7 +2805,35 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     ],
     htmlExample: `<ul class="lm-tree" role="tree">
   <li role="treeitem"><div class="lm-tree-item">src</div></li>
-</ul>`
+</ul>`,
+    reactExample: `import { LumoraTree, LumoraTreeItem } from "@lumora-ui/react";
+
+<LumoraTree>
+  <li role="treeitem">
+    <LumoraTreeItem onClick={() => toggle("src")}>▸ src</LumoraTreeItem>
+    <ul>
+      <li role="treeitem">
+        <LumoraTreeItem selected={selected === "index.ts"}>index.ts</LumoraTreeItem>
+      </li>
+    </ul>
+  </li>
+</LumoraTree>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraTree, LumoraTreeItem } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraTree>
+    <li role="treeitem">
+      <LumoraTreeItem @click="toggle('src')">▸ src</LumoraTreeItem>
+      <ul>
+        <li role="treeitem">
+          <LumoraTreeItem :selected="selected === 'index.ts'">index.ts</LumoraTreeItem>
+        </li>
+      </ul>
+    </li>
+  </LumoraTree>
+</template>`
   },
   // -- DATA ------------------------------------------------------------
   {
@@ -1938,7 +2900,46 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     htmlExample: `<table class="lm-table">
   <thead><tr><th><button class="lm-table-sort" aria-sort="ascending">Name</button></th></tr></thead>
   <tbody>…</tbody>
-</table>`
+</table>`,
+    reactExample: `import { LumoraTable } from "@lumora-ui/react";
+
+<LumoraTable striped>
+  <LumoraTable.Header>
+    <LumoraTable.Row>
+      <LumoraTable.Head>Account</LumoraTable.Head>
+      <LumoraTable.Head>Status</LumoraTable.Head>
+    </LumoraTable.Row>
+  </LumoraTable.Header>
+  <LumoraTable.Body>
+    {accounts.map((a) => (
+      <LumoraTable.Row key={a.id}>
+        <LumoraTable.Cell>{a.name}</LumoraTable.Cell>
+        <LumoraTable.Cell>{a.status}</LumoraTable.Cell>
+      </LumoraTable.Row>
+    ))}
+  </LumoraTable.Body>
+</LumoraTable>`,
+    vueExample: `<script setup lang="ts">
+import {
+  LumoraTable, LumoraTableHeader, LumoraTableBody,
+  LumoraTableRow, LumoraTableHead, LumoraTableCell
+} from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraTable :striped="true">
+    <LumoraTableHeader>
+      <LumoraTableRow>
+        <LumoraTableHead>Account</LumoraTableHead>
+      </LumoraTableRow>
+    </LumoraTableHeader>
+    <LumoraTableBody>
+      <LumoraTableRow v-for="a in accounts" :key="a.id">
+        <LumoraTableCell>{{ a.name }}</LumoraTableCell>
+      </LumoraTableRow>
+    </LumoraTableBody>
+  </LumoraTable>
+</template>`
   },
   {
     slug: "stat",
@@ -1984,7 +2985,34 @@ export const componentCatalog: ComponentCatalogEntry[] = [
   <span class="lm-stat-label">Revenue</span>
   <span class="lm-stat-value">$1.28M</span>
   <span class="lm-stat-trend lm-stat-trend-up">▲ 12.4%</span>
-</div>`
+</div>`,
+    reactExample: `import { LumoraStat, LumoraStatGrid } from "@lumora-ui/react";
+
+<LumoraStatGrid>
+  <LumoraStat
+    label="Revenue"
+    value="$1.28M"
+    trend={{ direction: "up", label: "▲ 12.4% vs Q1" }}
+  />
+  <LumoraStat
+    label="Active seats"
+    value="18,420"
+    trend={{ direction: "up", label: "▲ 3.1% MoM" }}
+  />
+</LumoraStatGrid>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraStat, LumoraStatGrid, LumoraStatLabel, LumoraStatValue, LumoraStatTrend } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraStatGrid>
+    <LumoraStat>
+      <LumoraStatLabel>Revenue</LumoraStatLabel>
+      <LumoraStatValue>$1.28M</LumoraStatValue>
+      <LumoraStatTrend direction="up">▲ 12.4% vs Q1</LumoraStatTrend>
+    </LumoraStat>
+  </LumoraStatGrid>
+</template>`
   },
   {
     slug: "sparkline",
@@ -2022,7 +3050,17 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Provide a textual value next to the sparkline; include aria-label."],
     htmlExample: `<svg class="lm-sparkline" viewBox="0 0 100 30">
   <path class="lm-sparkline-line" d="M0,22 L10,18 …" />
-</svg>`
+</svg>`,
+    reactExample: `import { LumoraSparkline } from "@lumora-ui/react";
+
+<LumoraSparkline values={[42, 48, 52, 56, 62, 68, 72, 78, 84, 92]} />`,
+    vueExample: `<script setup lang="ts">
+import { LumoraSparkline } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraSparkline :values="[42, 48, 52, 56, 62, 68, 72, 78, 84, 92]" />
+</template>`
   },
   {
     slug: "description-list",
@@ -2045,7 +3083,24 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Use semantic <dl><dt><dd>."],
     htmlExample: `<dl class="lm-description-list">
   <dt>Plan</dt><dd>Enterprise</dd>
-</dl>`
+</dl>`,
+    reactExample: `import { LumoraDescriptionList } from "@lumora-ui/react";
+
+<LumoraDescriptionList>
+  <dt>Plan</dt><dd>Enterprise</dd>
+  <dt>Renewal</dt><dd>April 18, 2027</dd>
+  <dt>Owner</dt><dd>finance@atlas.example</dd>
+</LumoraDescriptionList>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraDescriptionList } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraDescriptionList>
+    <dt>Plan</dt><dd>Enterprise</dd>
+    <dt>Renewal</dt><dd>April 18, 2027</dd>
+  </LumoraDescriptionList>
+</template>`
   },
   {
     slug: "activity-feed",
@@ -2092,7 +3147,35 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Use semantic <ul><li>."],
     htmlExample: `<ul class="lm-activity-feed">
   <li class="lm-activity-item">…</li>
-</ul>`
+</ul>`,
+    reactExample: `import { LumoraActivityFeed, LumoraActivityItem, LumoraAvatar } from "@lumora-ui/react";
+
+<LumoraActivityFeed>
+  {events.map((e) => (
+    <LumoraActivityItem key={e.id}>
+      <LumoraAvatar size="sm" fallback={e.who} />
+      <div className="lm-activity-content">
+        <p>{e.text}</p>
+        <span className="lm-activity-meta">{e.time}</span>
+      </div>
+    </LumoraActivityItem>
+  ))}
+</LumoraActivityFeed>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraActivityFeed, LumoraActivityItem, LumoraAvatar } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraActivityFeed>
+    <LumoraActivityItem v-for="e in events" :key="e.id">
+      <LumoraAvatar size="sm" :fallback="e.who" />
+      <div class="lm-activity-content">
+        <p>{{ e.text }}</p>
+        <span class="lm-activity-meta">{{ e.time }}</span>
+      </div>
+    </LumoraActivityItem>
+  </LumoraActivityFeed>
+</template>`
   },
   {
     slug: "timeline",
@@ -2134,7 +3217,29 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Use semantic <ul><li>; provide order context (oldest/newest)."],
     htmlExample: `<ul class="lm-timeline">
   <li class="lm-timeline-item"><span class="lm-timeline-dot"></span>…</li>
-</ul>`
+</ul>`,
+    reactExample: `import { LumoraTimeline, LumoraTimelineItem } from "@lumora-ui/react";
+
+<LumoraTimeline>
+  {events.map((e) => (
+    <LumoraTimelineItem key={e.id}>
+      <strong>{e.title}</strong>
+      <p className="lm-hint">{e.date} · {e.author}</p>
+    </LumoraTimelineItem>
+  ))}
+</LumoraTimeline>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraTimeline, LumoraTimelineItem } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraTimeline>
+    <LumoraTimelineItem v-for="e in events" :key="e.id">
+      <strong>{{ e.title }}</strong>
+      <p class="lm-hint">{{ e.date }} · {{ e.author }}</p>
+    </LumoraTimelineItem>
+  </LumoraTimeline>
+</template>`
   },
   {
     slug: "diff",
@@ -2169,7 +3274,25 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Provide visible +/− markers (not just color)."],
     htmlExample: `<div class="lm-diff">
   <div class="lm-diff-line lm-diff-line-add"><span></span><span> new line</span></div>
-</div>`
+</div>`,
+    reactExample: `import { LumoraDiff, LumoraDiffLine } from "@lumora-ui/react";
+
+<LumoraDiff>
+  <LumoraDiffLine variant="meta">tokens.css</LumoraDiffLine>
+  <LumoraDiffLine variant="remove">--lm-radius-md: 0.375rem;</LumoraDiffLine>
+  <LumoraDiffLine variant="add">--lm-radius-md: 0.5rem;</LumoraDiffLine>
+</LumoraDiff>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraDiff, LumoraDiffLine } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraDiff>
+    <LumoraDiffLine variant="meta">tokens.css</LumoraDiffLine>
+    <LumoraDiffLine variant="remove">--lm-radius-md: 0.375rem;</LumoraDiffLine>
+    <LumoraDiffLine variant="add">--lm-radius-md: 0.5rem;</LumoraDiffLine>
+  </LumoraDiff>
+</template>`
   },
   {
     slug: "inbox",
@@ -2219,7 +3342,40 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Wrap in role='log' or aria-live='polite'.", "Mark unread with aria-label."],
     htmlExample: `<div class="lm-inbox" role="log" aria-live="polite">
   <ul class="lm-inbox-list">…</ul>
-</div>`
+</div>`,
+    reactExample: `import { LumoraInbox, LumoraInboxHeader, LumoraInboxList, LumoraInboxItem } from "@lumora-ui/react";
+
+<LumoraInbox>
+  <LumoraInboxHeader>
+    <span>Notifications</span>
+    <span className="lm-badge lm-badge-soft">3 unread</span>
+  </LumoraInboxHeader>
+  <LumoraInboxList>
+    {notifications.map((n) => (
+      <LumoraInboxItem key={n.id} unread={n.unread}>
+        <p className="lm-inbox-item-title">{n.title}</p>
+        <span className="lm-inbox-item-meta">{n.time}</span>
+      </LumoraInboxItem>
+    ))}
+  </LumoraInboxList>
+</LumoraInbox>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraInbox, LumoraInboxHeader, LumoraInboxList, LumoraInboxItem } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraInbox>
+    <LumoraInboxHeader>
+      <span>Notifications</span>
+    </LumoraInboxHeader>
+    <LumoraInboxList>
+      <LumoraInboxItem v-for="n in notifications" :key="n.id" :unread="n.unread">
+        <p class="lm-inbox-item-title">{{ n.title }}</p>
+        <span class="lm-inbox-item-meta">{{ n.time }}</span>
+      </LumoraInboxItem>
+    </LumoraInboxList>
+  </LumoraInbox>
+</template>`
   },
   {
     slug: "empty-state",
@@ -2242,7 +3398,24 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Provide a clear next-action button."],
     htmlExample: `<div class="lm-empty-state">
   <div class="lm-empty-state-title">No data</div>
-</div>`
+</div>`,
+    reactExample: `import { LumoraEmptyState, LumoraButton } from "@lumora-ui/react";
+
+<LumoraEmptyState title="No accounts yet">
+  <p className="lm-hint">Connect your first identity provider to get started.</p>
+  <LumoraButton variant="primary" size="sm">Connect provider</LumoraButton>
+</LumoraEmptyState>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraEmptyState, LumoraButton } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraEmptyState>
+    <p class="lm-empty-state-title">No accounts yet</p>
+    <p class="lm-hint">Connect your first identity provider.</p>
+    <LumoraButton variant="primary" size="sm">Connect provider</LumoraButton>
+  </LumoraEmptyState>
+</template>`
   },
   // -- MEDIA -----------------------------------------------------------
   {
@@ -2287,7 +3460,41 @@ export const componentCatalog: ComponentCatalogEntry[] = [
       { name: "interval", type: "number" }
     ],
     accessibility: ["Use role='region' aria-roledescription='carousel'."],
-    htmlExample: `<section class="lm-carousel" role="region" aria-roledescription="carousel">…</section>`
+    htmlExample: `<section class="lm-carousel" role="region" aria-roledescription="carousel">…</section>`,
+    reactExample: `import {
+  LumoraCarousel, LumoraCarouselTrack, LumoraCarouselItem,
+  LumoraCarouselDots, LumoraCarouselDot
+} from "@lumora-ui/react";
+
+<LumoraCarousel>
+  <LumoraCarouselTrack>
+    {slides.map((s) => (
+      <LumoraCarouselItem key={s.id}>{s.content}</LumoraCarouselItem>
+    ))}
+  </LumoraCarouselTrack>
+  <LumoraCarouselDots>
+    {slides.map((_, i) => (
+      <LumoraCarouselDot key={i} selected={i === active} onClick={() => setActive(i)} />
+    ))}
+  </LumoraCarouselDots>
+</LumoraCarousel>`,
+    vueExample: `<script setup lang="ts">
+import {
+  LumoraCarousel, LumoraCarouselTrack, LumoraCarouselItem,
+  LumoraCarouselDots, LumoraCarouselDot
+} from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraCarousel>
+    <LumoraCarouselTrack>
+      <LumoraCarouselItem v-for="s in slides" :key="s.id">{{ s.content }}</LumoraCarouselItem>
+    </LumoraCarouselTrack>
+    <LumoraCarouselDots>
+      <LumoraCarouselDot v-for="(_, i) in slides" :key="i" :selected="i === active" @click="active = i" />
+    </LumoraCarouselDots>
+  </LumoraCarousel>
+</template>`
   },
   {
     slug: "split",
@@ -2322,7 +3529,25 @@ export const componentCatalog: ComponentCatalogEntry[] = [
   <div>Left</div>
   <div class="lm-split-handle" role="separator"></div>
   <div>Right</div>
-</div>`
+</div>`,
+    reactExample: `import { LumoraSplit, LumoraSplitHandle } from "@lumora-ui/react";
+
+<LumoraSplit>
+  <div>Left pane</div>
+  <LumoraSplitHandle orientation="vertical" />
+  <div>Right pane</div>
+</LumoraSplit>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraSplit, LumoraSplitHandle } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraSplit>
+    <div>Left pane</div>
+    <LumoraSplitHandle orientation="vertical" />
+    <div>Right pane</div>
+  </LumoraSplit>
+</template>`
   },
   {
     slug: "chat",
@@ -2361,7 +3586,29 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Use role='log' aria-live='polite' on scroll container."],
     htmlExample: `<div class="lm-chat" role="log">
   <div class="lm-chat-message">…</div>
-</div>`
+</div>`,
+    reactExample: `import { LumoraChat, LumoraChatMessage, LumoraChatBubble, LumoraAvatar } from "@lumora-ui/react";
+
+<LumoraChat>
+  {messages.map((m) => (
+    <LumoraChatMessage key={m.id} self={m.fromMe}>
+      {!m.fromMe && <LumoraAvatar size="sm" fallback={m.author} />}
+      <LumoraChatBubble>{m.text}</LumoraChatBubble>
+    </LumoraChatMessage>
+  ))}
+</LumoraChat>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraChat, LumoraChatMessage, LumoraChatBubble, LumoraAvatar } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraChat>
+    <LumoraChatMessage v-for="m in messages" :key="m.id" :self="m.fromMe">
+      <LumoraAvatar v-if="!m.fromMe" size="sm" :fallback="m.author" />
+      <LumoraChatBubble>{{ m.text }}</LumoraChatBubble>
+    </LumoraChatMessage>
+  </LumoraChat>
+</template>`
   },
   {
     slug: "mention",
@@ -2378,7 +3625,17 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     classes: [{ name: "lm-mention", description: "@user chip with primary tint" }],
     props: [],
     accessibility: ["Use <a> if mentions link to a profile."],
-    htmlExample: `<a class="lm-mention" href="/users/alex">alex</a>`
+    htmlExample: `<a class="lm-mention" href="/users/alex">alex</a>`,
+    reactExample: `import { LumoraMention } from "@lumora-ui/react";
+
+<p>Reviewed by <LumoraMention as="a" href="/users/alex">alex</LumoraMention>.</p>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraMention } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <p>Reviewed by <LumoraMention>alex</LumoraMention>.</p>
+</template>`
   },
   {
     slug: "rt-toolbar",
@@ -2415,7 +3672,25 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     ],
     htmlExample: `<div class="lm-rt-toolbar" role="toolbar">
   <button class="lm-rt-button" aria-pressed="true">B</button>
-</div>`
+</div>`,
+    reactExample: `import { LumoraRichTextToolbar, LumoraRichTextButton } from "@lumora-ui/react";
+
+<LumoraRichTextToolbar aria-label="Formatting">
+  <LumoraRichTextButton pressed={isBold} onClick={toggleBold}>B</LumoraRichTextButton>
+  <LumoraRichTextButton pressed={isItalic} onClick={toggleItalic}><em>I</em></LumoraRichTextButton>
+  <LumoraRichTextButton pressed={isUnderline} onClick={toggleUnderline}><u>U</u></LumoraRichTextButton>
+</LumoraRichTextToolbar>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraRichTextToolbar, LumoraRichTextButton } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraRichTextToolbar aria-label="Formatting">
+    <LumoraRichTextButton :pressed="isBold" @click="toggleBold">B</LumoraRichTextButton>
+    <LumoraRichTextButton :pressed="isItalic" @click="toggleItalic"><em>I</em></LumoraRichTextButton>
+    <LumoraRichTextButton :pressed="isUnderline" @click="toggleUnderline"><u>U</u></LumoraRichTextButton>
+  </LumoraRichTextToolbar>
+</template>`
   },
   // -- PATTERN ---------------------------------------------------------
   {
@@ -2439,7 +3714,29 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     classes: [{ name: "lm-command-bar", description: "Title + actions toolbar" }],
     props: [],
     accessibility: ["Use role='toolbar' if it contains only buttons."],
-    htmlExample: `<div class="lm-command-bar">…</div>`
+    htmlExample: `<div class="lm-command-bar">…</div>`,
+    reactExample: `import { LumoraCommandBar, LumoraButton } from "@lumora-ui/react";
+
+<LumoraCommandBar>
+  <strong>Accounts</strong>
+  <div className="flex gap-2">
+    <LumoraButton variant="outline" size="sm">Filter</LumoraButton>
+    <LumoraButton variant="primary" size="sm">+ New</LumoraButton>
+  </div>
+</LumoraCommandBar>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraCommandBar, LumoraButton } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraCommandBar>
+    <strong>Accounts</strong>
+    <div class="flex gap-2">
+      <LumoraButton variant="outline" size="sm">Filter</LumoraButton>
+      <LumoraButton variant="primary" size="sm">+ New</LumoraButton>
+    </div>
+  </LumoraCommandBar>
+</template>`
   },
   {
     slug: "filter-bar",
@@ -2476,7 +3773,27 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     accessibility: ["Each filter must have a visible label."],
     htmlExample: `<div class="lm-filter-bar">
   <label class="lm-field">…</label>
-</div>`
+</div>`,
+    reactExample: `import { LumoraFilterBar, LumoraField, LumoraLabel, LumoraSelect } from "@lumora-ui/react";
+
+<LumoraFilterBar>
+  <LumoraField>
+    <LumoraLabel>Status</LumoraLabel>
+    <LumoraSelect><option>All</option></LumoraSelect>
+  </LumoraField>
+</LumoraFilterBar>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraFilterBar, LumoraField, LumoraLabel, LumoraSelect } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraFilterBar>
+    <LumoraField>
+      <LumoraLabel>Status</LumoraLabel>
+      <LumoraSelect><option>All</option></LumoraSelect>
+    </LumoraField>
+  </LumoraFilterBar>
+</template>`
   },
   {
     slug: "bulk-bar",
@@ -2496,7 +3813,29 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     classes: [{ name: "lm-bulk-bar", description: "Primary-tinted action ribbon" }],
     props: [{ name: "count", type: "number" }],
     accessibility: ["Use aria-live='polite' to announce selection changes."],
-    htmlExample: `<div class="lm-bulk-bar" aria-live="polite">…</div>`
+    htmlExample: `<div class="lm-bulk-bar" aria-live="polite">…</div>`,
+    reactExample: `import { LumoraBulkBar, LumoraButton } from "@lumora-ui/react";
+
+<LumoraBulkBar aria-live="polite">
+  <strong>{selected.length} accounts selected</strong>
+  <div className="flex gap-2">
+    <LumoraButton variant="outline" size="sm">Export</LumoraButton>
+    <LumoraButton variant="danger" size="sm">Suspend</LumoraButton>
+  </div>
+</LumoraBulkBar>`,
+    vueExample: `<script setup lang="ts">
+import { LumoraBulkBar, LumoraButton } from "@lumora-ui/vue";
+</script>
+
+<template>
+  <LumoraBulkBar aria-live="polite">
+    <strong>{{ selected.length }} accounts selected</strong>
+    <div class="flex gap-2">
+      <LumoraButton variant="outline" size="sm">Export</LumoraButton>
+      <LumoraButton variant="danger" size="sm">Suspend</LumoraButton>
+    </div>
+  </LumoraBulkBar>
+</template>`
   }
 ];
 

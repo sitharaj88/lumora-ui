@@ -376,10 +376,10 @@ export default function Home() {
             </thead>
             <tbody>
               {[
-                ["Components (CSS)", `${componentCatalog.length}+`, "61", "—", "500+ blocks", "100+"],
+                ["Components (CSS)", `${componentCatalog.length}`, "61", "—", "500+ blocks", "100+"],
                 ["Themes", lumoraThemes.length.toString(), "35", "1", "1", "2"],
-                ["Headless React adapter", "Beta", "—", "Yes", "Paid", "Yes"],
-                ["Headless Vue adapter", "Beta", "—", "—", "—", "—"],
+                ["Typed React adapter", "126 components", "—", "Yes", "Paid", "Yes"],
+                ["Typed Vue adapter", "131 components", "—", "—", "—", "—"],
                 ["Motion + spring tokens", "Yes", "—", "—", "—", "Yes"],
                 ["WCAG AA verified in CI", "Yes", "—", "—", "—", "Partial"],
                 ["Multi-tenant theme runtime", "Yes", "Partial", "—", "—", "Partial"],

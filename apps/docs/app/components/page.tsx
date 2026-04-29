@@ -83,12 +83,19 @@ export default function ComponentsPage() {
 
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {components.map((component) => (
-                <Link
-                  className="docs-feature-card flex flex-col gap-4 p-5 no-underline"
-                  href={`/components/${component.slug}`}
+                <article
+                  className="docs-feature-card relative flex flex-col gap-4 p-5"
                   key={component.slug}
                 >
-                  <div className="flex items-start justify-between gap-3">
+                  {/* Absolute-positioned link covers the whole card.
+                      Sits above the preview so clicks anywhere navigate,
+                      while preview content remains visually interactive. */}
+                  <Link
+                    href={`/components/${component.slug}`}
+                    aria-label={`Open ${component.name} details`}
+                    className="absolute inset-0 z-20 rounded-[inherit]"
+                  />
+                  <div className="relative z-10 flex items-start justify-between gap-3">
                     <div className="grid gap-1">
                       <strong className="text-base text-[var(--lm-color-text)]">
                         {component.name}
@@ -105,21 +112,20 @@ export default function ComponentsPage() {
                     )}
                   </div>
                   <div
-                    className="docs-preview"
+                    className="docs-preview pointer-events-none [&_*]:pointer-events-none"
                     style={{ minHeight: "11rem", padding: "1rem" }}
+                    aria-hidden="true"
                   >
-                    <div className="w-full" style={{ pointerEvents: "none" }}>
-                      {component.preview}
-                    </div>
+                    <div className="w-full">{component.preview}</div>
                   </div>
-                  <p className="line-clamp-2 text-sm text-[var(--lm-color-muted)]">
+                  <p className="relative z-10 line-clamp-2 text-sm text-[var(--lm-color-muted)]">
                     {component.description}
                   </p>
-                  <div className="mt-auto flex items-center justify-between text-xs text-[var(--lm-color-muted)]">
+                  <div className="relative z-10 mt-auto flex items-center justify-between text-xs text-[var(--lm-color-muted)]">
                     <span>View API & variants</span>
                     <span aria-hidden>→</span>
                   </div>
-                </Link>
+                </article>
               ))}
             </div>
           </section>

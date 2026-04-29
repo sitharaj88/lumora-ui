@@ -683,6 +683,975 @@ export const LumoraDensityScope = React.forwardRef<HTMLDivElement, LumoraDensity
 );
 LumoraDensityScope.displayName = "LumoraDensityScope";
 
+// ============================================================
+// v0.2 — additive components
+// ============================================================
+
+type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>;
+type AnchorProps = React.AnchorHTMLAttributes<HTMLAnchorElement>;
+type InputProps = React.InputHTMLAttributes<HTMLInputElement>;
+type UlProps = React.HTMLAttributes<HTMLUListElement>;
+type LiProps = React.LiHTMLAttributes<HTMLLIElement>;
+
+// -- Button group ----------------------------------------------------
+export const LumoraButtonGroup = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-btn-group", className)} role="group" {...props} />
+  )
+);
+LumoraButtonGroup.displayName = "LumoraButtonGroup";
+
+// -- Toggle group ----------------------------------------------------
+export type LumoraToggleGroupProps = DivProps & {
+  value?: string;
+  onValueChange?: (value: string) => void;
+};
+export const LumoraToggleGroup = React.forwardRef<HTMLDivElement, LumoraToggleGroupProps>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      role="radiogroup"
+      className={cn("lm-toggle-group", className)}
+      {...props}
+    />
+  )
+);
+LumoraToggleGroup.displayName = "LumoraToggleGroup";
+
+export type LumoraToggleGroupItemProps = ButtonProps & { pressed?: boolean };
+export const LumoraToggleGroupItem = React.forwardRef<
+  HTMLButtonElement,
+  LumoraToggleGroupItemProps
+>(({ className, pressed, ...props }, ref) => (
+  <button
+    ref={ref}
+    type="button"
+    role="radio"
+    aria-checked={pressed}
+    aria-pressed={pressed}
+    className={cn("lm-toggle-group-item", className)}
+    {...props}
+  />
+));
+LumoraToggleGroupItem.displayName = "LumoraToggleGroupItem";
+
+// -- Segmented -------------------------------------------------------
+export type LumoraSegmentedProps = DivProps;
+export const LumoraSegmented = React.forwardRef<HTMLDivElement, LumoraSegmentedProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} role="radiogroup" className={cn("lm-segmented", className)} {...props} />
+  )
+);
+LumoraSegmented.displayName = "LumoraSegmented";
+
+export type LumoraSegmentedItemProps = ButtonProps & { pressed?: boolean };
+export const LumoraSegmentedItem = React.forwardRef<HTMLButtonElement, LumoraSegmentedItemProps>(
+  ({ className, pressed, ...props }, ref) => (
+    <button
+      ref={ref}
+      type="button"
+      role="radio"
+      aria-checked={pressed}
+      aria-pressed={pressed}
+      className={cn("lm-segmented-item", className)}
+      {...props}
+    />
+  )
+);
+LumoraSegmentedItem.displayName = "LumoraSegmentedItem";
+
+// -- Tag / Chip ------------------------------------------------------
+export type LumoraTagProps = SpanProps & {
+  removable?: boolean;
+  onRemove?: () => void;
+};
+export const LumoraTag = React.forwardRef<HTMLSpanElement, LumoraTagProps>(
+  ({ className, removable, onRemove, children, ...props }, ref) => (
+    <span
+      ref={ref}
+      className={cn("lm-tag", removable && "lm-tag-removable", className)}
+      {...props}
+    >
+      {children}
+      {removable && (
+        <button
+          type="button"
+          className="lm-tag-remove"
+          aria-label="Remove tag"
+          onClick={onRemove}
+        >
+          ×
+        </button>
+      )}
+    </span>
+  )
+);
+LumoraTag.displayName = "LumoraTag";
+
+export type LumoraTagInputProps = DivProps;
+export const LumoraTagInput = React.forwardRef<HTMLDivElement, LumoraTagInputProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-tag-input", className)} {...props} />
+  )
+);
+LumoraTagInput.displayName = "LumoraTagInput";
+
+// -- Slider ----------------------------------------------------------
+export type LumoraSliderProps = Omit<InputProps, "type">;
+export const LumoraSlider = React.forwardRef<HTMLInputElement, LumoraSliderProps>(
+  ({ className, ...props }, ref) => (
+    <input ref={ref} type="range" className={cn("lm-slider", className)} {...props} />
+  )
+);
+LumoraSlider.displayName = "LumoraSlider";
+
+// -- Rating ----------------------------------------------------------
+export type LumoraRatingProps = DivProps & {
+  value?: number;
+  max?: number;
+  onValueChange?: (value: number) => void;
+};
+export const LumoraRating = React.forwardRef<HTMLDivElement, LumoraRatingProps>(
+  ({ className, value = 0, max = 5, onValueChange, ...props }, ref) => (
+    <div
+      ref={ref}
+      role="radiogroup"
+      aria-label={props["aria-label"] ?? "Rating"}
+      className={cn("lm-rating", className)}
+      {...props}
+    >
+      {Array.from({ length: max }, (_, i) => (
+        <button
+          key={i}
+          type="button"
+          role="radio"
+          aria-checked={i < value}
+          className="lm-rating-star"
+          onClick={() => onValueChange?.(i + 1)}
+        >
+          ★
+        </button>
+      ))}
+    </div>
+  )
+);
+LumoraRating.displayName = "LumoraRating";
+
+// -- Dropzone --------------------------------------------------------
+export type LumoraDropzoneProps = React.LabelHTMLAttributes<HTMLLabelElement>;
+export const LumoraDropzone = React.forwardRef<HTMLLabelElement, LumoraDropzoneProps>(
+  ({ className, ...props }, ref) => (
+    <label ref={ref} className={cn("lm-dropzone", className)} {...props} />
+  )
+);
+LumoraDropzone.displayName = "LumoraDropzone";
+
+// -- Kbd / Code / Code Block -----------------------------------------
+export const LumoraKbd = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
+  ({ className, ...props }, ref) => (
+    <kbd ref={ref} className={cn("lm-kbd", className)} {...props} />
+  )
+);
+LumoraKbd.displayName = "LumoraKbd";
+
+export const LumoraCode = React.forwardRef<HTMLElement, React.HTMLAttributes<HTMLElement>>(
+  ({ className, ...props }, ref) => (
+    <code ref={ref} className={cn("lm-code", className)} {...props} />
+  )
+);
+LumoraCode.displayName = "LumoraCode";
+
+export const LumoraCodeBlock = React.forwardRef<HTMLPreElement, React.HTMLAttributes<HTMLPreElement>>(
+  ({ className, ...props }, ref) => (
+    <pre ref={ref} className={cn("lm-code-block", className)} {...props} />
+  )
+);
+LumoraCodeBlock.displayName = "LumoraCodeBlock";
+
+// -- Banner ----------------------------------------------------------
+export type LumoraBannerProps = DivProps & { tone?: LumoraStatus };
+export const LumoraBanner = React.forwardRef<HTMLDivElement, LumoraBannerProps>(
+  ({ className, tone, ...props }, ref) => (
+    <div
+      ref={ref}
+      role="status"
+      className={cn("lm-banner", tone && `lm-banner-${tone}`, className)}
+      {...props}
+    />
+  )
+);
+LumoraBanner.displayName = "LumoraBanner";
+
+// -- Stat / Stat grid / Description list -----------------------------
+export const LumoraStatGrid = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-stat-grid", className)} {...props} />
+  )
+);
+LumoraStatGrid.displayName = "LumoraStatGrid";
+
+export type LumoraStatProps = DivProps & {
+  label?: React.ReactNode;
+  value?: React.ReactNode;
+  trend?: { direction: "up" | "down"; label: React.ReactNode };
+};
+export const LumoraStat = React.forwardRef<HTMLDivElement, LumoraStatProps>(
+  ({ className, label, value, trend, children, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-stat", className)} {...props}>
+      {label !== undefined && <span className="lm-stat-label">{label}</span>}
+      {value !== undefined && <span className="lm-stat-value">{value}</span>}
+      {trend && (
+        <span
+          className={cn(
+            "lm-stat-trend",
+            trend.direction === "up" && "lm-stat-trend-up",
+            trend.direction === "down" && "lm-stat-trend-down"
+          )}
+        >
+          {trend.label}
+        </span>
+      )}
+      {children}
+    </div>
+  )
+);
+LumoraStat.displayName = "LumoraStat";
+
+export const LumoraDescriptionList = React.forwardRef<
+  HTMLDListElement,
+  React.HTMLAttributes<HTMLDListElement>
+>(({ className, ...props }, ref) => (
+  <dl ref={ref} className={cn("lm-description-list", className)} {...props} />
+));
+LumoraDescriptionList.displayName = "LumoraDescriptionList";
+
+// -- Activity feed / Timeline ----------------------------------------
+export const LumoraActivityFeed = React.forwardRef<HTMLUListElement, UlProps>(
+  ({ className, ...props }, ref) => (
+    <ul ref={ref} className={cn("lm-activity-feed", className)} {...props} />
+  )
+);
+LumoraActivityFeed.displayName = "LumoraActivityFeed";
+
+export const LumoraActivityItem = React.forwardRef<HTMLLIElement, LiProps>(
+  ({ className, ...props }, ref) => (
+    <li ref={ref} className={cn("lm-activity-item", className)} {...props} />
+  )
+);
+LumoraActivityItem.displayName = "LumoraActivityItem";
+
+export const LumoraTimeline = React.forwardRef<HTMLUListElement, UlProps>(
+  ({ className, ...props }, ref) => (
+    <ul ref={ref} className={cn("lm-timeline", className)} {...props} />
+  )
+);
+LumoraTimeline.displayName = "LumoraTimeline";
+
+export const LumoraTimelineItem = React.forwardRef<HTMLLIElement, LiProps>(
+  ({ className, ...props }, ref) => (
+    <li ref={ref} className={cn("lm-timeline-item", className)} {...props}>
+      <span className="lm-timeline-dot" aria-hidden="true" />
+      {props.children}
+    </li>
+  )
+);
+LumoraTimelineItem.displayName = "LumoraTimelineItem";
+
+// -- Empty state -----------------------------------------------------
+export type LumoraEmptyStateProps = DivProps & {
+  title?: React.ReactNode;
+};
+export const LumoraEmptyState = React.forwardRef<HTMLDivElement, LumoraEmptyStateProps>(
+  ({ className, title, children, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-empty-state", className)} {...props}>
+      {title && <p className="lm-empty-state-title">{title}</p>}
+      {children}
+    </div>
+  )
+);
+LumoraEmptyState.displayName = "LumoraEmptyState";
+
+// -- Accordion -------------------------------------------------------
+export const LumoraAccordion = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-accordion", className)} {...props} />
+  )
+);
+LumoraAccordion.displayName = "LumoraAccordion";
+
+export const LumoraAccordionItem = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-accordion-item", className)} {...props} />
+  )
+);
+LumoraAccordionItem.displayName = "LumoraAccordionItem";
+
+export type LumoraAccordionTriggerProps = ButtonProps & { expanded?: boolean };
+export const LumoraAccordionTrigger = React.forwardRef<
+  HTMLButtonElement,
+  LumoraAccordionTriggerProps
+>(({ className, expanded, ...props }, ref) => (
+  <button
+    ref={ref}
+    type="button"
+    aria-expanded={expanded}
+    className={cn("lm-accordion-trigger", className)}
+    {...props}
+  />
+));
+LumoraAccordionTrigger.displayName = "LumoraAccordionTrigger";
+
+export type LumoraAccordionContentProps = DivProps & { open?: boolean };
+export const LumoraAccordionContent = React.forwardRef<
+  HTMLDivElement,
+  LumoraAccordionContentProps
+>(({ className, open, hidden, ...props }, ref) => (
+  <div
+    ref={ref}
+    role="region"
+    hidden={open === false || hidden}
+    className={cn("lm-accordion-content", className)}
+    {...props}
+  />
+));
+LumoraAccordionContent.displayName = "LumoraAccordionContent";
+
+// -- Tree ------------------------------------------------------------
+export const LumoraTree = React.forwardRef<HTMLUListElement, UlProps>(
+  ({ className, ...props }, ref) => (
+    <ul ref={ref} role="tree" className={cn("lm-tree", className)} {...props} />
+  )
+);
+LumoraTree.displayName = "LumoraTree";
+
+export type LumoraTreeItemProps = DivProps & { selected?: boolean };
+export const LumoraTreeItem = React.forwardRef<HTMLDivElement, LumoraTreeItemProps>(
+  ({ className, selected, ...props }, ref) => (
+    <div
+      ref={ref}
+      role="treeitem"
+      aria-selected={selected}
+      className={cn("lm-tree-item", className)}
+      {...props}
+    />
+  )
+);
+LumoraTreeItem.displayName = "LumoraTreeItem";
+
+// -- Stepper ---------------------------------------------------------
+export const LumoraStepper = React.forwardRef<HTMLOListElement, React.HTMLAttributes<HTMLOListElement>>(
+  ({ className, ...props }, ref) => (
+    <ol ref={ref} className={cn("lm-stepper", className)} {...props} />
+  )
+);
+LumoraStepper.displayName = "LumoraStepper";
+
+export type LumoraStepProps = LiProps & {
+  state?: "complete" | "current" | "pending";
+};
+export const LumoraStep = React.forwardRef<HTMLLIElement, LumoraStepProps>(
+  ({ className, state, children, ...props }, ref) => (
+    <li
+      ref={ref}
+      aria-current={state === "current" ? "step" : undefined}
+      data-state={state === "complete" ? "complete" : undefined}
+      className={cn("lm-step", state === "complete" && "lm-step-complete", className)}
+      {...props}
+    >
+      <span className="lm-step-marker" />
+      {children}
+    </li>
+  )
+);
+LumoraStep.displayName = "LumoraStep";
+
+// -- Popover ---------------------------------------------------------
+export type LumoraPopoverProps = SpanProps;
+export const LumoraPopover = React.forwardRef<HTMLSpanElement, LumoraPopoverProps>(
+  ({ className, ...props }, ref) => (
+    <span ref={ref} className={cn("lm-popover", className)} {...props} />
+  )
+);
+LumoraPopover.displayName = "LumoraPopover";
+
+export type LumoraPopoverContentProps = DivProps & {
+  side?: "top" | "right" | "bottom" | "left";
+  open?: boolean;
+};
+export const LumoraPopoverContent = React.forwardRef<HTMLDivElement, LumoraPopoverContentProps>(
+  ({ className, side, open, hidden, ...props }, ref) => (
+    <div
+      ref={ref}
+      role="dialog"
+      data-side={side}
+      data-state={open === false ? "closed" : "open"}
+      hidden={open === false || hidden}
+      className={cn("lm-popover-content", className)}
+      {...props}
+    />
+  )
+);
+LumoraPopoverContent.displayName = "LumoraPopoverContent";
+
+// -- Hover card ------------------------------------------------------
+export const LumoraHoverCard = React.forwardRef<HTMLSpanElement, SpanProps>(
+  ({ className, ...props }, ref) => (
+    <span ref={ref} className={cn("lm-hover-card", className)} {...props} />
+  )
+);
+LumoraHoverCard.displayName = "LumoraHoverCard";
+
+export type LumoraHoverCardContentProps = DivProps & { open?: boolean };
+export const LumoraHoverCardContent = React.forwardRef<HTMLDivElement, LumoraHoverCardContentProps>(
+  ({ className, open, hidden, ...props }, ref) => (
+    <div
+      ref={ref}
+      hidden={open === false || hidden}
+      className={cn("lm-hover-card-content", className)}
+      {...props}
+    />
+  )
+);
+LumoraHoverCardContent.displayName = "LumoraHoverCardContent";
+
+// -- Context menu ----------------------------------------------------
+export type LumoraContextMenuProps = DivProps & { x?: number; y?: number };
+export const LumoraContextMenu = React.forwardRef<HTMLDivElement, LumoraContextMenuProps>(
+  ({ className, x, y, style, ...props }, ref) => (
+    <div
+      ref={ref}
+      role="menu"
+      className={cn("lm-context-menu", className)}
+      style={x !== undefined && y !== undefined ? { ...style, top: y, left: x } : style}
+      {...props}
+    />
+  )
+);
+LumoraContextMenu.displayName = "LumoraContextMenu";
+
+export type LumoraContextMenuItemProps = ButtonProps & { tone?: "default" | "danger" };
+export const LumoraContextMenuItem = React.forwardRef<HTMLButtonElement, LumoraContextMenuItemProps>(
+  ({ className, tone, ...props }, ref) => (
+    <button
+      ref={ref}
+      type="button"
+      role="menuitem"
+      className={cn(
+        "lm-context-menu-item",
+        tone === "danger" && "lm-context-menu-item-danger",
+        className
+      )}
+      {...props}
+    />
+  )
+);
+LumoraContextMenuItem.displayName = "LumoraContextMenuItem";
+
+// -- Command palette -------------------------------------------------
+export const LumoraCommand = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      role="dialog"
+      aria-label="Command palette"
+      className={cn("lm-command", className)}
+      {...props}
+    />
+  )
+);
+LumoraCommand.displayName = "LumoraCommand";
+
+export const LumoraCommandInput = React.forwardRef<HTMLInputElement, InputProps>(
+  ({ className, ...props }, ref) => (
+    <input
+      ref={ref}
+      role="combobox"
+      aria-autocomplete="list"
+      className={cn("lm-command-input", className)}
+      {...props}
+    />
+  )
+);
+LumoraCommandInput.displayName = "LumoraCommandInput";
+
+export const LumoraCommandList = React.forwardRef<HTMLUListElement, UlProps>(
+  ({ className, ...props }, ref) => (
+    <ul ref={ref} role="listbox" className={cn("lm-command-list", className)} {...props} />
+  )
+);
+LumoraCommandList.displayName = "LumoraCommandList";
+
+export type LumoraCommandItemProps = LiProps & { selected?: boolean };
+export const LumoraCommandItem = React.forwardRef<HTMLLIElement, LumoraCommandItemProps>(
+  ({ className, selected, ...props }, ref) => (
+    <li
+      ref={ref}
+      role="option"
+      aria-selected={selected}
+      className={cn("lm-command-item", className)}
+      {...props}
+    />
+  )
+);
+LumoraCommandItem.displayName = "LumoraCommandItem";
+
+export const LumoraCommandGroupLabel = React.forwardRef<HTMLLIElement, LiProps>(
+  ({ className, ...props }, ref) => (
+    <li ref={ref} className={cn("lm-command-group-label", className)} {...props} />
+  )
+);
+LumoraCommandGroupLabel.displayName = "LumoraCommandGroupLabel";
+
+export const LumoraCommandFooter = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-command-footer", className)} {...props} />
+  )
+);
+LumoraCommandFooter.displayName = "LumoraCommandFooter";
+
+// -- Calendar --------------------------------------------------------
+export const LumoraCalendar = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} role="grid" className={cn("lm-calendar", className)} {...props} />
+  )
+);
+LumoraCalendar.displayName = "LumoraCalendar";
+
+export const LumoraCalendarHeader = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-calendar-header", className)} {...props} />
+  )
+);
+LumoraCalendarHeader.displayName = "LumoraCalendarHeader";
+
+export const LumoraCalendarGrid = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-calendar-grid", className)} {...props} />
+  )
+);
+LumoraCalendarGrid.displayName = "LumoraCalendarGrid";
+
+export type LumoraCalendarDayProps = ButtonProps & {
+  selected?: boolean;
+  today?: boolean;
+  outside?: boolean;
+  range?: "start" | "middle" | "end";
+};
+export const LumoraCalendarDay = React.forwardRef<HTMLButtonElement, LumoraCalendarDayProps>(
+  ({ className, selected, today, outside, range, ...props }, ref) => (
+    <button
+      ref={ref}
+      type="button"
+      role="gridcell"
+      aria-selected={selected}
+      data-today={today ? "true" : undefined}
+      data-outside={outside ? "true" : undefined}
+      data-range={range}
+      className={cn("lm-calendar-day", className)}
+      {...props}
+    />
+  )
+);
+LumoraCalendarDay.displayName = "LumoraCalendarDay";
+
+// -- Date picker -----------------------------------------------------
+export const LumoraDatePicker = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-datepicker", className)} {...props} />
+  )
+);
+LumoraDatePicker.displayName = "LumoraDatePicker";
+
+export const LumoraDatePickerTrigger = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, ...props }, ref) => (
+    <button
+      ref={ref}
+      type="button"
+      aria-haspopup="dialog"
+      className={cn("lm-datepicker-trigger", className)}
+      {...props}
+    />
+  )
+);
+LumoraDatePickerTrigger.displayName = "LumoraDatePickerTrigger";
+
+// -- Combobox --------------------------------------------------------
+export const LumoraCombobox = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-combobox", className)} {...props} />
+  )
+);
+LumoraCombobox.displayName = "LumoraCombobox";
+
+export type LumoraComboboxListboxProps = UlProps & { open?: boolean };
+export const LumoraComboboxListbox = React.forwardRef<HTMLUListElement, LumoraComboboxListboxProps>(
+  ({ className, open, hidden, ...props }, ref) => (
+    <ul
+      ref={ref}
+      role="listbox"
+      hidden={open === false || hidden}
+      className={cn("lm-combobox-listbox", className)}
+      {...props}
+    />
+  )
+);
+LumoraComboboxListbox.displayName = "LumoraComboboxListbox";
+
+export type LumoraComboboxOptionProps = LiProps & { selected?: boolean };
+export const LumoraComboboxOption = React.forwardRef<HTMLLIElement, LumoraComboboxOptionProps>(
+  ({ className, selected, ...props }, ref) => (
+    <li
+      ref={ref}
+      role="option"
+      aria-selected={selected}
+      className={cn("lm-combobox-option", className)}
+      {...props}
+    />
+  )
+);
+LumoraComboboxOption.displayName = "LumoraComboboxOption";
+
+// -- OTP / PIN -------------------------------------------------------
+export const LumoraOtp = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-otp", className)} {...props} />
+  )
+);
+LumoraOtp.displayName = "LumoraOtp";
+
+export type LumoraOtpSlotProps = InputProps & { filled?: boolean };
+export const LumoraOtpSlot = React.forwardRef<HTMLInputElement, LumoraOtpSlotProps>(
+  ({ className, filled, maxLength = 1, ...props }, ref) => (
+    <input
+      ref={ref}
+      maxLength={maxLength}
+      data-state={filled ? "filled" : undefined}
+      className={cn("lm-otp-slot", className)}
+      {...props}
+    />
+  )
+);
+LumoraOtpSlot.displayName = "LumoraOtpSlot";
+
+// -- Number input ----------------------------------------------------
+export type LumoraNumberInputProps = Omit<InputProps, "type"> & {
+  onIncrement?: () => void;
+  onDecrement?: () => void;
+};
+export const LumoraNumberInput = React.forwardRef<HTMLInputElement, LumoraNumberInputProps>(
+  ({ className, onIncrement, onDecrement, ...props }, ref) => (
+    <div className={cn("lm-number-input", className)}>
+      <button type="button" aria-label="Decrement" onClick={onDecrement}>
+        −
+      </button>
+      <input ref={ref} type="number" inputMode="numeric" {...props} />
+      <button type="button" aria-label="Increment" onClick={onIncrement}>
+        +
+      </button>
+    </div>
+  )
+);
+LumoraNumberInput.displayName = "LumoraNumberInput";
+
+// -- Carousel --------------------------------------------------------
+export const LumoraCarousel = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div
+      ref={ref}
+      role="region"
+      aria-roledescription="carousel"
+      className={cn("lm-carousel", className)}
+      {...props}
+    />
+  )
+);
+LumoraCarousel.displayName = "LumoraCarousel";
+
+export const LumoraCarouselTrack = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-carousel-track", className)} {...props} />
+  )
+);
+LumoraCarouselTrack.displayName = "LumoraCarouselTrack";
+
+export const LumoraCarouselItem = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-carousel-item", className)} {...props} />
+  )
+);
+LumoraCarouselItem.displayName = "LumoraCarouselItem";
+
+export const LumoraCarouselDots = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-carousel-dots", className)} {...props} />
+  )
+);
+LumoraCarouselDots.displayName = "LumoraCarouselDots";
+
+export type LumoraCarouselDotProps = ButtonProps & { selected?: boolean };
+export const LumoraCarouselDot = React.forwardRef<HTMLButtonElement, LumoraCarouselDotProps>(
+  ({ className, selected, ...props }, ref) => (
+    <button
+      ref={ref}
+      type="button"
+      aria-selected={selected}
+      className={cn("lm-carousel-dot", className)}
+      {...props}
+    />
+  )
+);
+LumoraCarouselDot.displayName = "LumoraCarouselDot";
+
+// -- Split pane ------------------------------------------------------
+export type LumoraSplitProps = DivProps & { orientation?: "horizontal" | "vertical" };
+export const LumoraSplit = React.forwardRef<HTMLDivElement, LumoraSplitProps>(
+  ({ className, orientation = "horizontal", ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn("lm-split", orientation === "vertical" && "lm-split-vertical", className)}
+      {...props}
+    />
+  )
+);
+LumoraSplit.displayName = "LumoraSplit";
+
+export type LumoraSplitHandleProps = DivProps & {
+  orientation?: "horizontal" | "vertical";
+};
+export const LumoraSplitHandle = React.forwardRef<HTMLDivElement, LumoraSplitHandleProps>(
+  ({ className, orientation = "vertical", ...props }, ref) => (
+    <div
+      ref={ref}
+      role="separator"
+      aria-orientation={orientation}
+      className={cn("lm-split-handle", className)}
+      {...props}
+    />
+  )
+);
+LumoraSplitHandle.displayName = "LumoraSplitHandle";
+
+// -- Diff ------------------------------------------------------------
+export const LumoraDiff = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-diff", className)} {...props} />
+  )
+);
+LumoraDiff.displayName = "LumoraDiff";
+
+export type LumoraDiffLineProps = DivProps & {
+  variant?: "context" | "add" | "remove" | "meta";
+};
+export const LumoraDiffLine = React.forwardRef<HTMLDivElement, LumoraDiffLineProps>(
+  ({ className, variant = "context", children, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(
+        "lm-diff-line",
+        variant === "add" && "lm-diff-line-add",
+        variant === "remove" && "lm-diff-line-remove",
+        variant === "meta" && "lm-diff-line-meta",
+        className
+      )}
+      {...props}
+    >
+      <span aria-hidden="true" />
+      <span>{children}</span>
+    </div>
+  )
+);
+LumoraDiffLine.displayName = "LumoraDiffLine";
+
+// -- Sparkline -------------------------------------------------------
+export type LumoraSparklineProps = React.SVGAttributes<SVGSVGElement> & {
+  values: number[];
+  showArea?: boolean;
+};
+export const LumoraSparkline = React.forwardRef<SVGSVGElement, LumoraSparklineProps>(
+  ({ className, values, showArea = true, viewBox = "0 0 100 30", ...props }, ref) => {
+    if (values.length < 2) return null;
+    const max = Math.max(...values);
+    const min = Math.min(...values);
+    const range = max - min || 1;
+    const w = 100;
+    const h = 30;
+    const points = values
+      .map((v, i) => {
+        const x = (i / (values.length - 1)) * w;
+        const y = h - ((v - min) / range) * (h - 4) - 2;
+        return `${x.toFixed(1)},${y.toFixed(1)}`;
+      })
+      .join(" ");
+    const linePath = `M ${points.split(" ").join(" L ")}`;
+    const areaPath = `M 0,${h} L ${points.split(" ").join(" L ")} L ${w},${h} Z`;
+    return (
+      <svg
+        ref={ref}
+        viewBox={viewBox}
+        preserveAspectRatio="none"
+        className={cn("lm-sparkline", className)}
+        {...props}
+      >
+        {showArea && <path className="lm-sparkline-area" d={areaPath} />}
+        <path className="lm-sparkline-line" d={linePath} />
+      </svg>
+    );
+  }
+);
+LumoraSparkline.displayName = "LumoraSparkline";
+
+// -- Inbox -----------------------------------------------------------
+export const LumoraInbox = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} role="log" aria-live="polite" className={cn("lm-inbox", className)} {...props} />
+  )
+);
+LumoraInbox.displayName = "LumoraInbox";
+
+export const LumoraInboxHeader = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-inbox-header", className)} {...props} />
+  )
+);
+LumoraInboxHeader.displayName = "LumoraInboxHeader";
+
+export const LumoraInboxList = React.forwardRef<HTMLUListElement, UlProps>(
+  ({ className, ...props }, ref) => (
+    <ul ref={ref} className={cn("lm-inbox-list", className)} {...props} />
+  )
+);
+LumoraInboxList.displayName = "LumoraInboxList";
+
+export type LumoraInboxItemProps = LiProps & { unread?: boolean };
+export const LumoraInboxItem = React.forwardRef<HTMLLIElement, LumoraInboxItemProps>(
+  ({ className, unread, ...props }, ref) => (
+    <li
+      ref={ref}
+      data-state={unread ? "unread" : undefined}
+      className={cn("lm-inbox-item", className)}
+      {...props}
+    />
+  )
+);
+LumoraInboxItem.displayName = "LumoraInboxItem";
+
+// -- Divider ---------------------------------------------------------
+export type LumoraDividerProps = DivProps & {
+  orientation?: "horizontal" | "vertical";
+};
+export const LumoraDivider = React.forwardRef<HTMLDivElement, LumoraDividerProps>(
+  ({ className, orientation = "horizontal", role = "separator", ...props }, ref) => (
+    <div
+      ref={ref}
+      role={role}
+      aria-orientation={orientation}
+      className={cn(
+        orientation === "vertical" ? "lm-divider-vertical" : "lm-divider",
+        className
+      )}
+      {...props}
+    />
+  )
+);
+LumoraDivider.displayName = "LumoraDivider";
+
+// -- Chat ------------------------------------------------------------
+export const LumoraChat = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} role="log" aria-live="polite" className={cn("lm-chat", className)} {...props} />
+  )
+);
+LumoraChat.displayName = "LumoraChat";
+
+export type LumoraChatMessageProps = DivProps & { self?: boolean };
+export const LumoraChatMessage = React.forwardRef<HTMLDivElement, LumoraChatMessageProps>(
+  ({ className, self, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn("lm-chat-message", self && "lm-chat-message-self", className)}
+      {...props}
+    />
+  )
+);
+LumoraChatMessage.displayName = "LumoraChatMessage";
+
+export const LumoraChatBubble = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-chat-bubble", className)} {...props} />
+  )
+);
+LumoraChatBubble.displayName = "LumoraChatBubble";
+
+// -- Mention ---------------------------------------------------------
+export const LumoraMention = React.forwardRef<HTMLSpanElement, SpanProps>(
+  ({ className, ...props }, ref) => (
+    <span ref={ref} className={cn("lm-mention", className)} {...props} />
+  )
+);
+LumoraMention.displayName = "LumoraMention";
+
+// -- Rich text toolbar -----------------------------------------------
+export const LumoraRichTextToolbar = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} role="toolbar" className={cn("lm-rt-toolbar", className)} {...props} />
+  )
+);
+LumoraRichTextToolbar.displayName = "LumoraRichTextToolbar";
+
+export type LumoraRichTextButtonProps = ButtonProps & { pressed?: boolean };
+export const LumoraRichTextButton = React.forwardRef<HTMLButtonElement, LumoraRichTextButtonProps>(
+  ({ className, pressed, ...props }, ref) => (
+    <button
+      ref={ref}
+      type="button"
+      aria-pressed={pressed}
+      className={cn("lm-rt-button", className)}
+      {...props}
+    />
+  )
+);
+LumoraRichTextButton.displayName = "LumoraRichTextButton";
+
+// -- Scroll area -----------------------------------------------------
+export const LumoraScrollArea = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-scroll-area", className)} {...props} />
+  )
+);
+LumoraScrollArea.displayName = "LumoraScrollArea";
+
+// -- Page header / Filter bar / Toolbars -----------------------------
+export const LumoraPageHeader = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-page-header", className)} {...props} />
+  )
+);
+LumoraPageHeader.displayName = "LumoraPageHeader";
+
+export const LumoraCommandBar = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-command-bar", className)} {...props} />
+  )
+);
+LumoraCommandBar.displayName = "LumoraCommandBar";
+
+export const LumoraFilterBar = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-filter-bar", className)} {...props} />
+  )
+);
+LumoraFilterBar.displayName = "LumoraFilterBar";
+
+export const LumoraBulkBar = React.forwardRef<HTMLDivElement, DivProps>(
+  ({ className, ...props }, ref) => (
+    <div ref={ref} className={cn("lm-bulk-bar", className)} {...props} />
+  )
+);
+LumoraBulkBar.displayName = "LumoraBulkBar";
+
+// ============================================================
+// Aliases for ergonomic usage
+// ============================================================
 export const Tabs = Object.assign(LumoraTabs, { Trigger: LumoraTab });
 export const Card = LumoraCard;
 export const Modal = LumoraModal;

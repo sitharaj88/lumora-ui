@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { CodeCopy } from "../../../components/code-copy";
 import { DocsFooter } from "../../../components/footer";
 import { DocsNav } from "../../../components/docs-nav";
+import { FrameworkTabs } from "../../../components/framework-tabs";
 import {
   componentCatalog,
   componentsByCategory,
@@ -124,44 +124,35 @@ export default async function ComponentDetailPage({
             </section>
           )}
 
-          {/* Code */}
-          <section className="grid gap-4">
-            <h2 className="docs-section-eyebrow">Usage</h2>
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="docs-code-window">
-                <div className="docs-code-window-header">
-                  <span className="docs-code-window-dot" />
-                  <span className="docs-code-window-dot" />
-                  <span className="docs-code-window-dot" />
-                  <span className="ml-2 text-xs text-[var(--lm-color-muted)]">HTML / Tailwind</span>
-                </div>
-                <pre className="docs-code">
-                  <code>{component.htmlExample}</code>
-                </pre>
+          {/* Code — HTML / React / Vue tabs */}
+          <section className="grid gap-3">
+            <div className="flex flex-wrap items-center justify-between gap-2">
+              <h2 className="docs-section-eyebrow">Usage</h2>
+              <div className="flex flex-wrap items-center gap-2 text-xs">
+                <span className="text-[var(--lm-color-muted)]">Adapters:</span>
+                <span
+                  className={`lm-badge ${
+                    component.reactExample ? "lm-badge-success lm-badge-dot" : "lm-badge-soft"
+                  } text-xs`}
+                >
+                  React {component.reactExample ? "stable" : "v0.3"}
+                </span>
+                <span
+                  className={`lm-badge ${
+                    component.vueExample ? "lm-badge-success lm-badge-dot" : "lm-badge-soft"
+                  } text-xs`}
+                >
+                  Vue {component.vueExample ? "stable" : "v0.3"}
+                </span>
               </div>
-              {component.reactExample ? (
-                <div className="docs-code-window">
-                  <div className="docs-code-window-header">
-                    <span className="docs-code-window-dot" />
-                    <span className="docs-code-window-dot" />
-                    <span className="docs-code-window-dot" />
-                    <span className="ml-2 text-xs text-[var(--lm-color-muted)]">React</span>
-                  </div>
-                  <pre className="docs-code">
-                    <code>{component.reactExample}</code>
-                  </pre>
-                </div>
-              ) : (
-                <div className="docs-feature-card grid content-center gap-2 p-6 text-center text-sm text-[var(--lm-color-muted)]">
-                  <span className="docs-section-eyebrow justify-self-center">React adapter</span>
-                  <p>
-                    Coming in <strong>@lumora-ui/react 0.3</strong>. Use the HTML class API today —
-                    same contract.
-                  </p>
-                </div>
-              )}
             </div>
-            <CodeCopy code={component.htmlExample} />
+            <FrameworkTabs
+              html={component.htmlExample}
+              react={component.reactExample}
+              vue={component.vueExample}
+              reactStatus={component.reactAdapter ?? (component.reactExample ? "stable" : "v0.3")}
+              vueStatus={component.vueAdapter ?? (component.vueExample ? "stable" : "v0.3")}
+            />
           </section>
 
           {/* Classes table */}
