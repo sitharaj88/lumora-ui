@@ -3848,4 +3848,4 @@ export function getCatalogEntry(slug: string) {
   return componentCatalog.find((entry) => entry.slug === slug);
 }
 
-export const totalComponentCount = 72;
+export const totalComponentCount = componentCatalog.length;

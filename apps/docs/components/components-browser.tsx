@@ -1,7 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useDeferredValue, useMemo, useState, type ReactNode } from "react";
+import {
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode
+} from "react";
 
 type BrowserCard = {
   slug: string;
@@ -11,6 +18,7 @@ type BrowserCard = {
   status: "stable" | "beta" | "new";
   classCount: number;
   propCount: number;
+  accent: string;
   preview: ReactNode;
 };
 
@@ -22,17 +30,47 @@ const STATUSES = [
 
 type StatusFilter = (typeof STATUSES)[number]["id"];
 
+const CATEGORY_HINTS: Record<string, string> = {
+  Action: "Buttons, button groups, and toggle pickers.",
+  Form: "Inputs, selects, sliders, calendars, and chip inputs.",
+  Display: "Badges, tags, avatars, kbd, and code.",
+  Feedback: "Alerts, toasts, banners, progress, and skeletons.",
+  Layout: "Cards, app shells, and dividers.",
+  Navigation: "Tabs, segmented, stepper, breadcrumbs, navbar, sidebar.",
+  Overlay: "Modal, drawer, tooltip, popover, dropdown, command palette.",
+  Disclosure: "Accordion and tree.",
+  Data: "Tables, stats, sparklines, timelines, diff, inbox, empty.",
+  Media: "Carousel, split pane, chat, mention, rich-text toolbar.",
+  Pattern: "Composed enterprise toolbars: command bar, filter bar, bulk bar."
+};
+
 export function ComponentsBrowser({
   cards,
-  categories
+  categories,
+  accent
 }: {
   cards: BrowserCard[];
   categories: string[];
+  accent: Record<string, string>;
 }) {
   const [query, setQuery] = useState("");
   const [active, setActive] = useState<Set<string>>(new Set());
   const [status, setStatus] = useState<StatusFilter>("all");
   const deferredQuery = useDeferredValue(query);
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  // ⌘K / Ctrl+K opens search
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        inputRef.current?.focus();
+        inputRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   const filtered = useMemo(() => {
     const q = deferredQuery.trim().toLowerCase();
@@ -73,22 +111,33 @@ export function ComponentsBrowser({
   };
 
   return (
-    <div className="grid gap-8">
+    <div className="grid gap-10">
       <div className="docs-feature-card sticky top-20 z-30 grid gap-3 p-4 backdrop-blur-md md:p-5">
         <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
-          <label className="lm-input-group">
-            <span className="lm-input-addon" aria-hidden="true">
-              ⌕
+          <div className="relative">
+            <label className="lm-input-group">
+              <span className="lm-input-addon" aria-hidden="true">
+                ⌕
+              </span>
+              <input
+                ref={inputRef}
+                type="search"
+                className="lm-input"
+                placeholder={`Search ${cards.length} components by name, role, or description…`}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                aria-label="Search components"
+                style={{ paddingRight: "5rem" }}
+              />
+            </label>
+            <span
+              className="docs-kbd-chip pointer-events-none absolute right-2 top-1/2 -translate-y-1/2"
+              aria-hidden="true"
+            >
+              <kbd>⌘</kbd>
+              <kbd>K</kbd>
             </span>
-            <input
-              type="search"
-              className="lm-input"
-              placeholder={`Search ${cards.length} components by name, role, or description…`}
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              aria-label="Search components"
-            />
-          </label>
+          </div>
           <div
             className="lm-segmented"
             role="radiogroup"
@@ -124,11 +173,19 @@ export function ComponentsBrowser({
                 onClick={() => toggleCategory(cat)}
                 aria-pressed={isOn}
                 className={
-                  isOn
-                    ? "lm-badge lm-badge-success lm-badge-dot"
-                    : "lm-badge lm-badge-outline"
+                  isOn ? "lm-badge lm-badge-dot" : "lm-badge lm-badge-outline"
                 }
-                style={{ cursor: "pointer" }}
+                style={{
+                  cursor: "pointer",
+                  ...(isOn
+                    ? {
+                        background: `color-mix(in oklab, ${accent[cat]} 18%, transparent)`,
+                        color: "var(--lm-color-text)",
+                        borderColor: `color-mix(in oklab, ${accent[cat]} 50%, var(--lm-color-border))`,
+                        ["--lm-badge-dot-color" as string]: accent[cat]
+                      }
+                    : {})
+                }}
               >
                 {cat}
               </button>
@@ -168,23 +225,28 @@ export function ComponentsBrowser({
             key={category}
             className="grid gap-5 scroll-mt-24"
           >
-            <div className="flex flex-wrap items-end justify-between gap-2">
-              <div>
-                <span className="docs-section-eyebrow">{category}</span>
-                <h2 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">
-                  <span className="docs-headline">{category}</span>{" "}
-                  <span className="text-base font-medium text-[var(--lm-color-muted)]">
-                    · {items.length}
-                  </span>
-                </h2>
+            <div
+              className="docs-cat-banner"
+              style={{ ["--lm-cat-color" as string]: accent[category] }}
+            >
+              <span className="docs-cat-banner-dot" aria-hidden="true" />
+              <div className="grid gap-0.5">
+                <strong className="text-base">{category}</strong>
+                <span className="text-xs text-[var(--lm-color-muted)]">
+                  {CATEGORY_HINTS[category] ?? ""}
+                </span>
               </div>
+              <span className="ml-auto text-sm tabular-nums text-[var(--lm-color-muted)]">
+                {items.length} component{items.length === 1 ? "" : "s"}
+              </span>
             </div>
 
             <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
               {items.map((card) => (
                 <article
-                  className="docs-feature-card relative flex flex-col gap-4 p-5 transition-transform"
+                  className="docs-feature-card docs-cat-card relative flex flex-col gap-4 p-5"
                   key={card.slug}
+                  style={{ ["--lm-cat-color" as string]: card.accent }}
                 >
                   <Link
                     href={`/components/${card.slug}`}
@@ -218,8 +280,18 @@ export function ComponentsBrowser({
                     {card.description}
                   </p>
                   <div className="relative z-10 mt-auto flex items-center justify-between text-xs text-[var(--lm-color-muted)]">
-                    <span className="lm-badge lm-badge-outline text-[10px]">{card.category}</span>
-                    <span aria-hidden>→</span>
+                    <span
+                      className="lm-badge lm-badge-outline text-[10px]"
+                      style={{
+                        borderColor: `color-mix(in oklab, ${card.accent} 40%, var(--lm-color-border))`,
+                        color: "var(--lm-color-text)"
+                      }}
+                    >
+                      {card.category}
+                    </span>
+                    <span className="transition-transform group-hover:translate-x-1" aria-hidden>
+                      →
+                    </span>
                   </div>
                 </article>
               ))}
