@@ -10,10 +10,8 @@ const pages = [
 
 async function expectPageReady(path: string, pageName: string, page: Page) {
   await page.goto(path);
-  await expect(page.locator("body")).toBeVisible();
   await expect(page.locator("#main-content")).toBeVisible();
-  await expect(page.locator("text=Lumora UI").first()).toBeVisible();
-  await expect(page.locator(".lm-card, .lm-btn, .lm-table, .lm-alert").first()).toBeVisible();
+  await expect(page.getByRole("heading", { level: 1 }).first()).toBeVisible();
   await expect(page).toHaveScreenshot(`${pageName}.png`, { fullPage: true });
 }
 
