@@ -1,6 +1,6 @@
 # @lumora-design/vue
 
-Beta Vue wrappers for Lumora UI.
+Vue wrappers for Lumora UI.
 
 ## Install
 

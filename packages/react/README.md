@@ -1,6 +1,6 @@
 # @lumora-design/react
 
-Beta React wrappers for Lumora UI.
+React wrappers for Lumora UI.
 
 ## Install
 

@@ -14,46 +14,26 @@ export const metadata = {
 const upgradeCmd = `pnpm up @lumora-design/core@latest @lumora-design/themes@latest \\
   @lumora-design/react@latest @lumora-design/vue@latest`;
 
-const v01migration = `/* Before — 0.1 */
-.lm-input { border: 1px solid var(--lm-color-border); }
-
-/* After — 0.2 */
-.lm-input { border: 1px solid var(--lm-color-border-strong); }
-
-/* Why: 0.2 split border into two tiers — color-border for subtle dividers,
-   color-border-strong for control outlines. Update theme overrides if you
-   forked the input class. */`;
-
 const toc = [
   { id: "policy", label: "Versioning policy" },
   { id: "upgrade", label: "Upgrading" },
-  { id: "v0-2", label: "0.1 → 0.2 migration" },
+  { id: "stability", label: "1.0 stability promise" },
   { id: "deprecation", label: "Deprecation policy" }
 ];
 
 const releases = [
   {
-    version: "0.2",
-    date: "April 2026",
+    version: "1.0",
+    date: "May 2026",
     tone: "primary",
-    headline: "Polish + 18 new components",
+    headline: "Initial public release",
     notes: [
-      "18 new components: calendar, date picker, OTP, number input, combobox, carousel, split pane, hover card, context menu, toggle group, diff, sparkline, inbox, divider, chat, mention, rich-text toolbar, scroll area",
-      "15 new themes: sunset, mint, berry, ocean, mocha, pastel (light + dark), carbon, solar, aurora",
-      "Polish pass: gradient buttons, glass cards, spring-eased modals, shimmer skeletons, soft badges",
-      "New tokens: surface-sunken, border-strong, primary-soft, overlay, focus-ring, shadow-xl, shadow-glow, motion tokens"
-    ]
-  },
-  {
-    version: "0.1",
-    date: "February 2026",
-    tone: "soft",
-    headline: "Initial public beta",
-    notes: [
-      "50 component families covering buttons, forms, tables, app shell",
-      "24 themes with WCAG AA contrast",
-      "React + Vue beta adapters",
-      "Tailwind v4 plugin"
+      "65 components across 11 categories with the stable lm-* class contract",
+      "39 themes (light / dark / graphite / aurora / nord / solarized and more), each WCAG-AA verified",
+      "Stable React (@lumora-design/react) and Vue (@lumora-design/vue) adapters",
+      "6 multi-page enterprise templates with 70+ preview routes",
+      "Documentation site with searchable catalog, framework code tabs, CSS class tables, props tables, accessibility notes, and sticky TOC",
+      "Visual regression suite + cross-template a11y audit (axe-core)"
     ]
   }
 ];
@@ -129,21 +109,32 @@ export default function MigrationPage() {
           <code className="lm-code">@lumora-design/core</code>,{" "}
           <code className="lm-code">@lumora-design/themes</code>,{" "}
           <code className="lm-code">@lumora-design/react</code>, and{" "}
-          <code className="lm-code">@lumora-design/vue</code> should match minors. Mixing 0.1 core
-          with 0.2 react can produce missing classes.
+          <code className="lm-code">@lumora-design/vue</code> should match minors. Mixing minor
+          versions across these packages can produce missing classes.
         </DocsCallout>
       </DocsSection>
 
-      <DocsSection id="v0-2" title="0.1 → 0.2 migration">
+      <DocsSection id="stability" title="1.0 stability promise">
         <DocsParagraph>
-          0.2 is additive. There are no breaking class removals — the only change you may need is
-          updating fork-overridden borders and shadows.
+          1.0 freezes the public surface. The <code className="lm-code">lm-*</code> class contract,
+          the theme token names, and the React + Vue adapter prop shapes will not break before 2.0.
+          Additive changes (new components, new themes, new optional props) ship as minors.
         </DocsParagraph>
-        <DocsCode filename="diff" code={v01migration} lang="css" />
-        <DocsParagraph>
-          New tokens were added — your existing themes still work without changes because new tokens
-          have sensible derived defaults via <code className="lm-code">color-mix</code>.
-        </DocsParagraph>
+        <DocsList
+          items={[
+            <>
+              <strong>Stable</strong>: 65 components, 39 themes, both adapters, all current props.
+            </>,
+            <>
+              <strong>Additive only on minors</strong>: new components, new themes, new optional
+              props, new utility classes.
+            </>,
+            <>
+              <strong>Reserved for majors</strong>: renaming classes, renaming tokens, removing
+              props, changing default behavior, raising minimum browser support.
+            </>
+          ]}
+        />
         <h3 className="text-lg font-bold tracking-tight">Release log</h3>
         <div className="grid gap-4">
           {releases.map((release) => (

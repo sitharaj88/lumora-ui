@@ -5,10 +5,10 @@
 > multi-page templates.
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![npm — core](https://img.shields.io/npm/v/@lumora-design/core.svg?label=%40lumora-ui%2Fcore)](https://www.npmjs.com/package/@lumora-design/core)
-[![npm — themes](https://img.shields.io/npm/v/@lumora-design/themes.svg?label=%40lumora-ui%2Fthemes)](https://www.npmjs.com/package/@lumora-design/themes)
-[![npm — react](https://img.shields.io/npm/v/@lumora-design/react.svg?label=%40lumora-ui%2Freact)](https://www.npmjs.com/package/@lumora-design/react)
-[![npm — vue](https://img.shields.io/npm/v/@lumora-design/vue.svg?label=%40lumora-ui%2Fvue)](https://www.npmjs.com/package/@lumora-design/vue)
+[![npm — core](https://img.shields.io/npm/v/@lumora-design/core.svg?label=%40lumora-design%2Fcore)](https://www.npmjs.com/package/@lumora-design/core)
+[![npm — themes](https://img.shields.io/npm/v/@lumora-design/themes.svg?label=%40lumora-design%2Fthemes)](https://www.npmjs.com/package/@lumora-design/themes)
+[![npm — react](https://img.shields.io/npm/v/@lumora-design/react.svg?label=%40lumora-design%2Freact)](https://www.npmjs.com/package/@lumora-design/react)
+[![npm — vue](https://img.shields.io/npm/v/@lumora-design/vue.svg?label=%40lumora-design%2Fvue)](https://www.npmjs.com/package/@lumora-design/vue)
 
 Lumora UI gives you a stable `lm-*` class contract that works straight from
 HTML, plus thin framework adapters for React and Vue. One token system, one
