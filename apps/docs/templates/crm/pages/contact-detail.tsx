@@ -48,7 +48,7 @@ export function ContactDetailPage({ contactId }: { contactId: string }) {
                     {" · "}
                     <Link
                       href="/preview/crm/contacts"
-                      className="text-[var(--lm-color-text)] hover:text-[var(--lm-color-primary)]"
+                      className="underline decoration-dotted underline-offset-2 text-[var(--lm-color-text)] hover:text-[var(--lm-color-primary)]"
                     >
                       {company.name}
                     </Link>

@@ -35,7 +35,7 @@ export function AuditPage() {
       </header>
 
       {/* Severity tabs */}
-      <div className="lm-segmented" role="tablist" aria-label="Filter by severity">
+      <div className="lm-segmented" role="group" aria-label="Filter by severity">
         <button type="button" className="lm-segmented-item" aria-pressed="true">
           All <span className="ml-1 text-[var(--lm-color-muted)]">{counts.total}</span>
         </button>

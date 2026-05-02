@@ -13,16 +13,16 @@ export function HeatmapCell({ value }: { value: number | undefined }) {
       </div>
     );
   }
-  // Map 0–100 to color intensity. Anything ≥ 80 = strong, 50 = mid, 20 = weak.
   const intensity = Math.min(value / 80, 1);
+  const strong = intensity > 0.6;
   return (
     <div
-      className="grid h-9 w-full place-items-center rounded text-[11px] font-medium tabular-nums"
+      className="grid h-9 w-full place-items-center rounded text-[11px] font-semibold tabular-nums"
       style={{
-        background: `color-mix(in oklab, var(--lm-color-primary) ${Math.round(
-          intensity * 70 + 6
-        )}%, var(--lm-color-surface))`,
-        color: intensity > 0.45 ? "var(--lm-color-primary-fg)" : "var(--lm-color-text)"
+        background: `color-mix(in oklab, var(--lm-color-primary) ${
+          strong ? 92 : Math.round(intensity * 50 + 4)
+        }%, var(--lm-color-surface))`,
+        color: strong ? "var(--lm-color-primary-fg)" : "var(--lm-color-text)"
       }}
       title={`${value}% retention`}
     >

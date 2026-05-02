@@ -3,6 +3,7 @@ import { formatPrice, type Product, type ProductBadge } from "../data/products";
 export function StarRating({ value, max = 5, size = 14 }: { value: number; max?: number; size?: number }) {
   return (
     <span
+      role="img"
       className="inline-flex items-center gap-0.5"
       style={{ color: "var(--lm-color-warning)", fontSize: size }}
       aria-label={`${value} out of ${max} stars`}

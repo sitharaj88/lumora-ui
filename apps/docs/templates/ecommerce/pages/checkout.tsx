@@ -166,10 +166,10 @@ export function CheckoutPage() {
                 </label>
               </div>
 
-              <div className="flex items-center gap-2 text-sm">
+              <label className="flex items-center gap-2 text-sm">
                 <input type="checkbox" className="lm-checkbox" defaultChecked />
                 <span>Same as shipping address</span>
-              </div>
+              </label>
             </div>
           </section>
 

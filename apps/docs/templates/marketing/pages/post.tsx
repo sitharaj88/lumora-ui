@@ -16,7 +16,7 @@ export function PostPage({ slug }: { slug: string }) {
     <div className="grid gap-12">
       {/* Hero */}
       <header className="grid gap-5">
-        <nav className="lm-breadcrumbs" aria-label="Breadcrumb">
+        <nav className="lm-breadcrumbs" aria-label="Article breadcrumb">
           <Link href="/preview/marketing/blog">Blog</Link>
           <span aria-hidden>/</span>
           <span aria-current="page">{post.category}</span>

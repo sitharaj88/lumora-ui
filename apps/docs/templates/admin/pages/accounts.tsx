@@ -38,7 +38,7 @@ export function AccountsPage() {
       </header>
 
       {/* Status segments */}
-      <div className="lm-segmented" role="tablist" aria-label="Filter by status">
+      <div className="lm-segmented" role="group" aria-label="Filter by status">
         <button type="button" className="lm-segmented-item" aria-pressed="true">
           All <span className="ml-1 text-[var(--lm-color-muted)]">{totals.all}</span>
         </button>
@@ -123,8 +123,8 @@ export function AccountsPage() {
               <th style={{ width: "1.5rem" }}>
                 <input type="checkbox" className="lm-checkbox" aria-label="Select all" />
               </th>
-              <th>
-                <button type="button" className="lm-table-sort" aria-sort="ascending">
+              <th aria-sort="ascending">
+                <button type="button" className="lm-table-sort">
                   Account
                 </button>
               </th>

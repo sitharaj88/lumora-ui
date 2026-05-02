@@ -36,7 +36,7 @@ export function ActivityPage() {
       </header>
 
       {/* Type filter */}
-      <div className="lm-segmented" role="tablist" aria-label="Filter by activity type">
+      <div className="lm-segmented" role="group" aria-label="Filter by activity type">
         <button type="button" className="lm-segmented-item" aria-pressed="true">
           All <span className="ml-1 text-[var(--lm-color-muted)]">{counts.all}</span>
         </button>

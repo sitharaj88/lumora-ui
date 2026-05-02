@@ -19,6 +19,16 @@ export function TemplateShell({
   const accentSoft = `color-mix(in oklab, ${accent} 14%, var(--lm-color-surface))`;
   const accentMid = `color-mix(in oklab, ${accent} 30%, var(--lm-color-border))`;
 
+  // For detail pages (hidden from nav), pick the visible nav item whose path is
+  // the longest prefix of the active path. This keeps "Accounts" highlighted
+  // when you're viewing /accounts/<id>.
+  const visibleItems = groups.flatMap((g) => g.items);
+  const activeItemPath =
+    visibleItems
+      .map((item) => item.path)
+      .filter((p) => activePath === p || activePath.startsWith(p ? `${p}/` : ""))
+      .sort((a, b) => b.length - a.length)[0] ?? "";
+
   return (
     <div
       style={{
@@ -96,7 +106,6 @@ export function TemplateShell({
       >
         {/* Sidebar — sticky, scrollable, promo pinned to bottom via flex */}
         <aside
-          aria-label="Template navigation"
           style={{
             position: "sticky",
             top: NAVBAR_HEIGHT,
@@ -108,8 +117,11 @@ export function TemplateShell({
             flexDirection: "column"
           }}
         >
-          {/* Nav items grow */}
+          {/* Nav items grow — `aria-label` on the <nav> exposes a navigation
+              landmark with the right accessible name. The wrapping <aside>
+              keeps a complementary landmark for the promo card. */}
           <nav
+            aria-label="Template navigation"
             style={{
               padding: "1rem 0.75rem",
               display: "flex",
@@ -140,7 +152,7 @@ export function TemplateShell({
                 )}
                 {group.items.map((item) => {
                   const href = `/preview/${template.slug}${item.path ? `/${item.path}` : ""}`;
-                  const isActive = item.path === activePath;
+                  const isActive = item.path === activeItemPath;
                   return (
                     <Link
                       key={item.path}

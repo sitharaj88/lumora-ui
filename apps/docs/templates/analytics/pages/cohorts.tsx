@@ -22,12 +22,20 @@ export function CohortsPage() {
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <select className="lm-select lm-select-sm" defaultValue="signup">
+          <select
+            className="lm-select lm-select-sm"
+            defaultValue="signup"
+            aria-label="Cohort grouping"
+          >
             <option value="signup">Cohort by signup week</option>
             <option>Cohort by first purchase</option>
             <option>Cohort by acquisition source</option>
           </select>
-          <select className="lm-select lm-select-sm" defaultValue="any">
+          <select
+            className="lm-select lm-select-sm"
+            defaultValue="any"
+            aria-label="Retention event"
+          >
             <option value="any">Any retention event</option>
             <option>page.view</option>
             <option>session.start</option>

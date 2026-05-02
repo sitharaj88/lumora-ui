@@ -42,7 +42,11 @@ export function StorefrontPage() {
               List
             </button>
           </div>
-          <select className="lm-select lm-select-sm" defaultValue="featured">
+          <select
+            className="lm-select lm-select-sm"
+            defaultValue="featured"
+            aria-label="Sort products"
+          >
             <option value="featured">Featured</option>
             <option>Newest</option>
             <option>Price: low → high</option>
@@ -106,7 +110,14 @@ export function StorefrontPage() {
           <section className="lm-card">
             <div className="lm-card-body grid gap-3 p-4">
               <strong className="text-sm">Price</strong>
-              <input className="lm-slider" type="range" min={0} max={400} defaultValue={300} />
+              <input
+                className="lm-slider"
+                type="range"
+                min={0}
+                max={400}
+                defaultValue={300}
+                aria-label="Maximum price"
+              />
               <div className="flex justify-between text-xs text-[var(--lm-color-muted)] tabular-nums">
                 <span>$0</span>
                 <span>$300</span>

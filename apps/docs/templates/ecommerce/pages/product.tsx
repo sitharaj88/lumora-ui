@@ -16,7 +16,7 @@ export function ProductPage({ productId }: { productId: string }) {
   return (
     <div className="grid gap-8">
       {/* Breadcrumb */}
-      <nav className="lm-breadcrumbs" aria-label="Breadcrumb">
+      <nav className="lm-breadcrumbs" aria-label="Product breadcrumb">
         <Link href="/preview/ecommerce">Shop</Link>
         <span aria-hidden>/</span>
         <Link href="/preview/ecommerce">{product.category}</Link>

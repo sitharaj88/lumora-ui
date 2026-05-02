@@ -131,7 +131,7 @@ export function LandingPage() {
             <div
               key={c.name}
               className="text-center text-sm font-bold tracking-tight"
-              style={{ color: "var(--lm-color-muted)", opacity: 0.7 }}
+              style={{ color: "var(--lm-color-text)" }}
             >
               {c.name}
             </div>
@@ -251,6 +251,7 @@ export function LandingPage() {
             >
               <div className="lm-card-body grid gap-4 p-6">
                 <div
+                  role="img"
                   className="flex items-center gap-1 text-base"
                   style={{ color: "var(--lm-color-warning)" }}
                   aria-label={`${t.rating} out of 5 stars`}

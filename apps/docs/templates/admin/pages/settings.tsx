@@ -109,18 +109,39 @@ export function SettingsPage() {
                 title="Single sign-on"
                 desc="Members must sign in via your IdP."
                 badge={{ tone: "success", label: "Active" }}
-                action={<input type="checkbox" className="lm-switch" defaultChecked />}
+                action={
+                  <input
+                    type="checkbox"
+                    className="lm-switch"
+                    defaultChecked
+                    aria-label="Single sign-on"
+                  />
+                }
               />
               <SettingRow
                 title="SCIM 2.0 provisioning"
                 desc="Stream user lifecycle events from your IdP."
                 badge={{ tone: "soft", label: "Configured" }}
-                action={<input type="checkbox" className="lm-switch" defaultChecked />}
+                action={
+                  <input
+                    type="checkbox"
+                    className="lm-switch"
+                    defaultChecked
+                    aria-label="SCIM 2.0 provisioning"
+                  />
+                }
               />
               <SettingRow
                 title="Multi-factor required"
                 desc="Members must complete TOTP at sign-in."
-                action={<input type="checkbox" className="lm-switch" defaultChecked />}
+                action={
+                  <input
+                    type="checkbox"
+                    className="lm-switch"
+                    defaultChecked
+                    aria-label="Multi-factor required"
+                  />
+                }
               />
               <SettingRow
                 title="Session timeout"
@@ -132,6 +153,7 @@ export function SettingsPage() {
                       type="range"
                       defaultValue="30"
                       style={{ width: "8rem" }}
+                      aria-label="Session timeout · minutes"
                     />
                     <span className="lm-badge lm-badge-soft" style={{ minWidth: "3.5rem" }}>
                       30 min
@@ -188,7 +210,12 @@ export function SettingsPage() {
                       <p className="lm-hint text-xs">{i.desc}</p>
                     </div>
                   </div>
-                  <input type="checkbox" className="lm-switch lm-switch-sm" defaultChecked={i.on} />
+                  <input
+                    type="checkbox"
+                    className="lm-switch lm-switch-sm"
+                    defaultChecked={i.on}
+                    aria-label={`${i.name} integration`}
+                  />
                 </div>
               ))}
             </div>

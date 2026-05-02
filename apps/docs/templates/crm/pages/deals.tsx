@@ -142,8 +142,8 @@ export function DealsPage() {
         <table className="lm-table">
           <thead>
             <tr>
-              <th>
-                <button type="button" className="lm-table-sort" aria-sort="descending">
+              <th aria-sort="descending">
+                <button type="button" className="lm-table-sort">
                   Deal
                 </button>
               </th>

@@ -38,7 +38,7 @@ export function OrdersPage() {
       </header>
 
       {/* Status segments */}
-      <div className="lm-segmented" role="tablist" aria-label="Filter by status">
+      <div className="lm-segmented" role="group" aria-label="Filter by status">
         <button type="button" className="lm-segmented-item" aria-pressed="true">
           All <span className="ml-1 text-[var(--lm-color-muted)]">{counts.all}</span>
         </button>
