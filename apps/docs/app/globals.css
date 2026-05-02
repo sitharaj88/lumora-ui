@@ -251,6 +251,28 @@ body {
   transform: translateY(-2px);
 }
 
+/* Showcase variant for component detail pages — adds a subtle dot grid
+   so the component sits on a textured stage instead of flat color. */
+.docs-preview-hero {
+  background-image:
+    radial-gradient(
+      circle at 1px 1px,
+      color-mix(in oklab, var(--lm-color-text) 14%, transparent) 1px,
+      transparent 0
+    ),
+    linear-gradient(
+      135deg,
+      color-mix(in oklab, var(--lm-color-primary) 6%, var(--lm-color-surface)),
+      var(--lm-color-surface) 50%
+    );
+  background-size:
+    18px 18px,
+    100% 100%;
+}
+.docs-preview-hero:hover {
+  transform: none;
+}
+
 /* -- Float animations -------------------------------------------- */
 @keyframes docs-float {
   0%,

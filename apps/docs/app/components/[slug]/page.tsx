@@ -1,5 +1,6 @@
-import { notFound } from "next/navigation";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { DetailToc } from "../../../components/detail-toc";
 import { DocsFooter } from "../../../components/footer";
 import { DocsNav } from "../../../components/docs-nav";
 import { FrameworkTabs } from "../../../components/framework-tabs";
@@ -35,14 +36,28 @@ export default async function ComponentDetailPage({
     (c) => c.category === component.category && c.slug !== component.slug
   );
 
+  const toc = [
+    { id: "preview", label: "Live preview" },
+    ...(component.variants && component.variants.length > 0
+      ? [{ id: "variants", label: "Variants & states" }]
+      : []),
+    { id: "usage", label: "Usage" },
+    { id: "classes", label: `CSS classes (${component.classes.length})` },
+    ...(component.props.length > 0
+      ? [{ id: "props", label: `React props (${component.props.length})` }]
+      : []),
+    { id: "a11y", label: "Accessibility" },
+    ...(sameCategory.length > 0 ? [{ id: "related", label: "Related" }] : [])
+  ];
+
   return (
     <main id="main-content" className="docs-shell relative min-h-screen">
       <div className="docs-grid-overlay" />
       <DocsNav />
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[16rem_1fr]">
-        {/* Sidebar */}
-        <aside className="lm-sidebar h-fit lg:sticky lg:top-24">
+      <section className="mx-auto grid max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[14rem_minmax(0,1fr)_12rem]">
+        {/* Left: category sidebar */}
+        <aside className="lm-sidebar h-fit lg:sticky lg:top-24" aria-label={`${component.category} components`}>
           <Link className="lm-sidebar-item" href="/components">
             ← All components
           </Link>
@@ -61,10 +76,17 @@ export default async function ComponentDetailPage({
             ))}
         </aside>
 
-        <div className="grid min-w-0 gap-10">
-          {/* Header */}
+        {/* Center: content */}
+        <div className="grid min-w-0 gap-12">
           <header className="grid gap-3">
-            <div className="flex flex-wrap items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              <Link
+                href="/components"
+                className="text-[var(--lm-color-muted)] hover:text-[var(--lm-color-text)]"
+              >
+                Components
+              </Link>
+              <span aria-hidden className="text-[var(--lm-color-muted)]">/</span>
               <span className="docs-section-eyebrow">{component.category}</span>
               {component.status === "new" && (
                 <span className="lm-badge lm-badge-soft">New in 0.2</span>
@@ -84,13 +106,13 @@ export default async function ComponentDetailPage({
             </p>
           </header>
 
-          {/* Live preview */}
-          <section className="grid gap-3">
+          {/* Live preview — showcase */}
+          <section id="preview" className="grid gap-3 scroll-mt-24">
             <h2 className="docs-section-eyebrow">Live preview</h2>
             <div className="docs-feature-card overflow-hidden">
               <div
-                className="docs-preview"
-                style={{ minHeight: "16rem", padding: "2rem" }}
+                className="docs-preview docs-preview-hero"
+                style={{ minHeight: "22rem", padding: "2.5rem" }}
               >
                 <div className="w-full">{component.preview}</div>
               </div>
@@ -99,7 +121,7 @@ export default async function ComponentDetailPage({
 
           {/* Variants */}
           {component.variants && component.variants.length > 0 && (
-            <section className="grid gap-3">
+            <section id="variants" className="grid gap-3 scroll-mt-24">
               <h2 className="docs-section-eyebrow">Variants & states</h2>
               <div className="grid gap-4 md:grid-cols-2">
                 {component.variants.map((variant) => (
@@ -110,10 +132,10 @@ export default async function ComponentDetailPage({
                     <div
                       className="docs-preview"
                       style={{
-                        minHeight: "10rem",
+                        minHeight: "11rem",
                         borderRadius: 0,
                         border: 0,
-                        padding: "1.5rem"
+                        padding: "1.75rem"
                       }}
                     >
                       <div className="w-full">{variant.preview}</div>
@@ -124,8 +146,8 @@ export default async function ComponentDetailPage({
             </section>
           )}
 
-          {/* Code — HTML / React / Vue tabs */}
-          <section className="grid gap-3">
+          {/* Usage / code */}
+          <section id="usage" className="grid gap-3 scroll-mt-24">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <h2 className="docs-section-eyebrow">Usage</h2>
               <div className="flex flex-wrap items-center gap-2 text-xs">
@@ -155,10 +177,10 @@ export default async function ComponentDetailPage({
             />
           </section>
 
-          {/* Classes table */}
-          <section className="grid gap-3">
+          {/* Classes */}
+          <section id="classes" className="grid gap-3 scroll-mt-24">
             <h2 className="docs-section-eyebrow">CSS classes ({component.classes.length})</h2>
-            <div className="docs-feature-card overflow-hidden">
+            <div className="docs-feature-card overflow-x-auto">
               <table className="lm-table">
                 <thead>
                   <tr>
@@ -180,11 +202,11 @@ export default async function ComponentDetailPage({
             </div>
           </section>
 
-          {/* Props table */}
+          {/* Props */}
           {component.props.length > 0 && (
-            <section className="grid gap-3">
+            <section id="props" className="grid gap-3 scroll-mt-24">
               <h2 className="docs-section-eyebrow">React props ({component.props.length})</h2>
-              <div className="docs-feature-card overflow-hidden">
+              <div className="docs-feature-card overflow-x-auto">
                 <table className="lm-table">
                   <thead>
                     <tr>
@@ -210,7 +232,11 @@ export default async function ComponentDetailPage({
                             <span className="text-[var(--lm-color-muted)]">—</span>
                           )}
                         </td>
-                        <td>{prop.description ?? <span className="text-[var(--lm-color-muted)]">—</span>}</td>
+                        <td>
+                          {prop.description ?? (
+                            <span className="text-[var(--lm-color-muted)]">—</span>
+                          )}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
@@ -220,7 +246,7 @@ export default async function ComponentDetailPage({
           )}
 
           {/* Accessibility */}
-          <section className="grid gap-3">
+          <section id="a11y" className="grid gap-3 scroll-mt-24">
             <h2 className="docs-section-eyebrow">Accessibility</h2>
             <div className="docs-feature-card grid gap-3 p-6">
               <ul className="grid gap-3">
@@ -239,7 +265,7 @@ export default async function ComponentDetailPage({
 
           {/* Related */}
           {sameCategory.length > 0 && (
-            <section className="grid gap-3">
+            <section id="related" className="grid gap-3 scroll-mt-24">
               <h2 className="docs-section-eyebrow">Related in {component.category}</h2>
               <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-3">
                 {sameCategory.slice(0, 6).map((related) => (
@@ -257,7 +283,25 @@ export default async function ComponentDetailPage({
               </div>
             </section>
           )}
+
+          <p className="text-xs text-[var(--lm-color-muted)]">
+            Spotted something wrong?{" "}
+            <a
+              className="underline hover:text-[var(--lm-color-text)]"
+              href={`https://github.com/sitharaj88/lumora-ui/edit/main/apps/docs/lib/catalog.tsx`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Edit this entry on GitHub
+            </a>
+            .
+          </p>
         </div>
+
+        {/* Right: TOC */}
+        <aside className="hidden h-fit lg:sticky lg:top-24 lg:block">
+          <DetailToc items={toc} />
+        </aside>
       </section>
 
       <DocsFooter />

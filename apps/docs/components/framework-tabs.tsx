@@ -28,6 +28,8 @@ export function FrameworkTabs({
   const code = active === "html" ? html : active === "react" ? react : vue;
   const status =
     active === "react" ? reactStatus : active === "vue" ? vueStatus : "stable";
+  const filename =
+    active === "html" ? "index.html" : active === "react" ? "Component.tsx" : "Component.vue";
 
   return (
     <div className="grid gap-4">
@@ -74,7 +76,7 @@ export function FrameworkTabs({
               </div>
             </div>
           )}
-          <CodeCopy code={code} />
+          <CodeCopy code={code} filename={filename} />
         </>
       ) : (
         <div className="lm-alert lm-alert-info">

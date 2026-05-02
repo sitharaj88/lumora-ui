@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { ComponentsBrowser } from "../../components/components-browser";
 import { DocsNav } from "../../components/docs-nav";
 import { DocsFooter } from "../../components/footer";
 import {
@@ -13,27 +13,24 @@ export const metadata = {
   description: `Browse all ${totalComponentCount} Lumora UI components with live previews, classes, props, and accessibility guidance.`
 };
 
-const categoryDescriptions: Record<string, string> = {
-  Action: "Buttons, button groups, and toggle pickers.",
-  Form: "Inputs, selects, sliders, calendars, and chip inputs.",
-  Display: "Badges, tags, avatars, kbd, and code.",
-  Feedback: "Alerts, toasts, banners, progress, and skeletons.",
-  Layout: "Cards, app shells, and dividers.",
-  Navigation: "Tabs, segmented, stepper, breadcrumbs, navbar, sidebar.",
-  Overlay: "Modal, drawer, tooltip, popover, dropdown, command palette.",
-  Disclosure: "Accordion and tree.",
-  Data: "Tables, stats, sparklines, timelines, diff, inbox, empty.",
-  Media: "Carousel, split pane, chat, mention, rich-text toolbar.",
-  Pattern: "Composed enterprise toolbars: command bar, filter bar, bulk bar."
-};
-
 export default function ComponentsPage() {
+  const cards = componentCatalog.map((c) => ({
+    slug: c.slug,
+    name: c.name,
+    category: c.category,
+    description: c.description,
+    status: c.status,
+    classCount: c.classes.length,
+    propCount: c.props.length,
+    preview: c.preview
+  }));
+
   return (
     <main id="main-content" className="docs-shell relative min-h-screen">
       <div className="docs-grid-overlay" />
       <DocsNav />
 
-      <section className="mx-auto grid max-w-7xl gap-6 px-6 py-16">
+      <section className="mx-auto grid max-w-7xl gap-6 px-6 pt-16 pb-8">
         <div className="grid max-w-3xl gap-4">
           <span className="docs-section-eyebrow">Component catalog</span>
           <h1 className="text-balance text-4xl font-bold tracking-tight md:text-6xl">
@@ -44,95 +41,35 @@ export default function ComponentsPage() {
             Every Lumora UI primitive with live previews, the exact classes you need, props for the
             React adapter, and accessibility notes you can copy into an audit.
           </p>
-          <div className="flex flex-wrap items-center gap-2">
-            {categoryOrder.map((category) => (
-              <a
-                className="lm-badge lm-badge-outline transition-transform hover:-translate-y-0.5"
-                href={`#${category.toLowerCase()}`}
-                key={category}
-              >
-                {category} ·{" "}
-                {componentsByCategory.find((c) => c.category === category)?.components.length}
-              </a>
-            ))}
-          </div>
+          <dl className="mt-2 grid grid-cols-2 gap-4 sm:grid-cols-4">
+            <Stat label="Components" value={totalComponentCount} />
+            <Stat label="Categories" value={componentsByCategory.filter((c) => c.components.length).length} />
+            <Stat
+              label="Stable adapters"
+              value={componentCatalog.filter((c) => c.reactExample && c.vueExample).length}
+            />
+            <Stat
+              label="WCAG AA verified"
+              value={`${componentCatalog.filter((c) => c.accessibility.length > 0).length}`}
+            />
+          </dl>
         </div>
       </section>
 
-      {componentsByCategory.map(({ category, components }) =>
-        components.length === 0 ? null : (
-          <section
-            id={category.toLowerCase()}
-            key={category}
-            className="mx-auto max-w-7xl px-6 py-12"
-          >
-            <div className="mb-8 flex flex-wrap items-end justify-between gap-3">
-              <div>
-                <span className="docs-section-eyebrow">{category}</span>
-                <h2 className="mt-2 text-3xl font-bold tracking-tight">
-                  <span className="docs-headline">{category}</span>{" "}
-                  <span className="text-base font-medium text-[var(--lm-color-muted)]">
-                    · {components.length} component{components.length === 1 ? "" : "s"}
-                  </span>
-                </h2>
-                <p className="mt-1 max-w-2xl text-sm text-[var(--lm-color-muted)]">
-                  {categoryDescriptions[category]}
-                </p>
-              </div>
-            </div>
-
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-              {components.map((component) => (
-                <article
-                  className="docs-feature-card relative flex flex-col gap-4 p-5"
-                  key={component.slug}
-                >
-                  {/* Absolute-positioned link covers the whole card.
-                      Sits above the preview so clicks anywhere navigate,
-                      while preview content remains visually interactive. */}
-                  <Link
-                    href={`/components/${component.slug}`}
-                    aria-label={`Open ${component.name} details`}
-                    className="absolute inset-0 z-20 rounded-[inherit]"
-                  />
-                  <div className="relative z-10 flex items-start justify-between gap-3">
-                    <div className="grid gap-1">
-                      <strong className="text-base text-[var(--lm-color-text)]">
-                        {component.name}
-                      </strong>
-                      <span className="text-xs text-[var(--lm-color-muted)]">
-                        {component.classes.length} classes · {component.props.length} props
-                      </span>
-                    </div>
-                    {component.status === "new" && (
-                      <span className="lm-badge lm-badge-soft text-xs">New</span>
-                    )}
-                    {component.status === "beta" && (
-                      <span className="lm-badge lm-badge-warning text-xs">Beta</span>
-                    )}
-                  </div>
-                  <div
-                    className="docs-preview pointer-events-none [&_*]:pointer-events-none"
-                    style={{ minHeight: "11rem", padding: "1rem" }}
-                    aria-hidden="true"
-                  >
-                    <div className="w-full">{component.preview}</div>
-                  </div>
-                  <p className="relative z-10 line-clamp-2 text-sm text-[var(--lm-color-muted)]">
-                    {component.description}
-                  </p>
-                  <div className="relative z-10 mt-auto flex items-center justify-between text-xs text-[var(--lm-color-muted)]">
-                    <span>View API & variants</span>
-                    <span aria-hidden>→</span>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
-        )
-      )}
+      <section className="mx-auto max-w-7xl px-6 pb-20">
+        <ComponentsBrowser cards={cards} categories={[...categoryOrder]} />
+      </section>
 
       <DocsFooter />
     </main>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: number | string }) {
+  return (
+    <div className="grid gap-1">
+      <dt className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">{label}</dt>
+      <dd className="text-2xl font-semibold tracking-tight tabular-nums">{value}</dd>
+    </div>
   );
 }
