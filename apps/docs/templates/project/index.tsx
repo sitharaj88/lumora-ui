@@ -1,18 +1,11 @@
 import type { TemplateMeta, TemplatePageProps } from "../../lib/templates-registry";
+import { NavIcon } from "../_shared/nav-icon";
 import { issues } from "./data/issues";
 import { BacklogPage as RealBacklog } from "./pages/backlog";
 import { BoardPage as RealBoard } from "./pages/board";
 import { RoadmapPage as RealRoadmap } from "./pages/roadmap";
 import { ProjectSettingsPage as RealSettings } from "./pages/settings";
 import { SprintPage as RealSprint } from "./pages/sprint";
-
-const dot = (color: string) => (
-  <span
-    className="h-2 w-2 rounded-full"
-    style={{ background: color }}
-    aria-hidden="true"
-  />
-);
 
 const Board = (_: TemplatePageProps) => <RealBoard />;
 const Backlog = (_: TemplatePageProps) => <RealBacklog />;
@@ -37,14 +30,14 @@ export const projectTemplate: TemplateMeta = {
       path: "",
       label: "Board",
       section: "Project",
-      icon: dot("var(--lm-color-accent)"),
+      icon: <NavIcon name="board" />,
       component: Board
     },
     {
       path: "backlog",
       label: "Backlog",
       section: "Project",
-      icon: dot("var(--lm-color-info)"),
+      icon: <NavIcon name="backlog" />,
       badge: `${backlogCount}`,
       component: Backlog
     },
@@ -52,21 +45,21 @@ export const projectTemplate: TemplateMeta = {
       path: "roadmap",
       label: "Roadmap",
       section: "Planning",
-      icon: dot("var(--lm-color-primary)"),
+      icon: <NavIcon name="roadmap" />,
       component: Roadmap
     },
     {
       path: "sprint",
       label: "Sprint 24",
       section: "Planning",
-      icon: dot("var(--lm-color-warning)"),
+      icon: <NavIcon name="sprint" />,
       component: Sprint
     },
     {
       path: "settings",
       label: "Settings",
       section: "Workspace",
-      icon: dot("var(--lm-color-muted)"),
+      icon: <NavIcon name="settings" />,
       component: Settings
     }
   ]

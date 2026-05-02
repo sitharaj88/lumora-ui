@@ -1,4 +1,5 @@
 import type { TemplateMeta, TemplatePageProps } from "../../lib/templates-registry";
+import { NavIcon } from "../_shared/nav-icon";
 import { contacts } from "./data/contacts";
 import { ActivityPage as RealActivity } from "./pages/activity";
 import { ContactDetailPage as RealContactDetail } from "./pages/contact-detail";
@@ -6,14 +7,6 @@ import { ContactsPage as RealContacts } from "./pages/contacts";
 import { DealsPage as RealDeals } from "./pages/deals";
 import { PipelinePage as RealPipeline } from "./pages/pipeline";
 import { ReportsPage as RealReports } from "./pages/reports";
-
-const dot = (color: string) => (
-  <span
-    className="h-2 w-2 rounded-full"
-    style={{ background: color }}
-    aria-hidden="true"
-  />
-);
 
 const Pipeline = (_: TemplatePageProps) => <RealPipeline />;
 const Contacts = (_: TemplatePageProps) => <RealContacts />;
@@ -39,14 +32,14 @@ export const crmTemplate: TemplateMeta = {
       path: "",
       label: "Pipeline",
       section: "Sales",
-      icon: dot("var(--lm-color-success)"),
+      icon: <NavIcon name="pipeline" />,
       component: Pipeline
     },
     {
       path: "contacts",
       label: "Contacts",
       section: "Sales",
-      icon: dot("var(--lm-color-info)"),
+      icon: <NavIcon name="contacts" />,
       badge: `${contacts.length}`,
       component: Contacts
     },
@@ -61,21 +54,21 @@ export const crmTemplate: TemplateMeta = {
       path: "deals",
       label: "Deals",
       section: "Sales",
-      icon: dot("var(--lm-color-warning)"),
+      icon: <NavIcon name="deals" />,
       component: Deals
     },
     {
       path: "activity",
       label: "Activity",
       section: "Workspace",
-      icon: dot("var(--lm-color-accent)"),
+      icon: <NavIcon name="activity" />,
       component: Activity
     },
     {
       path: "reports",
       label: "Reports",
       section: "Workspace",
-      icon: dot("var(--lm-color-primary)"),
+      icon: <NavIcon name="reports" />,
       component: Reports
     }
   ]

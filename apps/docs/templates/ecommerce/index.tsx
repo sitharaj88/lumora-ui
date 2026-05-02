@@ -1,56 +1,67 @@
-import { TemplatePlaceholder } from "../_shared/placeholder";
 import type { TemplateMeta, TemplatePageProps } from "../../lib/templates-registry";
+import { NavIcon } from "../_shared/nav-icon";
+import { products } from "./data/products";
+import { CartPage as RealCart } from "./pages/cart";
+import { CheckoutPage as RealCheckout } from "./pages/checkout";
+import { OrdersPage as RealOrders } from "./pages/orders";
+import { ProductPage as RealProduct } from "./pages/product";
+import { StorefrontPage as RealStorefront } from "./pages/storefront";
 
-const Storefront = (_: TemplatePageProps) => (
-  <TemplatePlaceholder
-    title="Storefront"
-    description="48 products across 6 categories. Sortable, filterable grid."
-    next={{ href: "/preview/ecommerce/product/raven-jacket", label: "View Raven jacket" }}
-  />
-);
+const Storefront = (_: TemplatePageProps) => <RealStorefront />;
 const Product = ({ segments }: TemplatePageProps) => (
-  <TemplatePlaceholder
-    title={`Product · ${segments[1] ?? "raven-jacket"}`}
-    description="Image gallery, variant picker, reviews, related products."
-    next={{ href: "/preview/ecommerce/cart", label: "Open cart" }}
-  />
+  <RealProduct productId={segments[1] ?? "raven-jacket"} />
 );
-const Cart = (_: TemplatePageProps) => (
-  <TemplatePlaceholder
-    title="Cart"
-    description="3 items, $284 subtotal, free shipping unlocked at $250."
-    next={{ href: "/preview/ecommerce/checkout", label: "Checkout" }}
-  />
-);
-const Checkout = (_: TemplatePageProps) => (
-  <TemplatePlaceholder
-    title="Checkout"
-    description="3-step checkout: shipping, payment, review. Saved addresses + card on file."
-    next={{ href: "/preview/ecommerce/orders", label: "View orders" }}
-  />
-);
-const Orders = (_: TemplatePageProps) => (
-  <TemplatePlaceholder
-    title="Orders"
-    description="Order history with status, tracking, and re-order shortcuts."
-  />
-);
+const Cart = (_: TemplatePageProps) => <RealCart />;
+const Checkout = (_: TemplatePageProps) => <RealCheckout />;
+const Orders = (_: TemplatePageProps) => <RealOrders />;
 
 export const ecommerceTemplate: TemplateMeta = {
   slug: "ecommerce",
   name: "Storefront",
   category: "Commerce",
-  status: "preview",
+  status: "ready",
   description:
     "A 5-page direct-to-consumer storefront: catalog, product, cart, checkout, orders.",
   productName: "Raven Outfitters",
   productInitial: "R",
   accent: "var(--lm-color-warning)",
   pages: [
-    { path: "", label: "Storefront", section: "Shop", component: Storefront },
-    { path: "product/raven-jacket", label: "Raven jacket", hideFromNav: true, component: Product },
-    { path: "cart", label: "Cart", section: "Shop", badge: "3", component: Cart },
-    { path: "checkout", label: "Checkout", section: "Shop", component: Checkout },
-    { path: "orders", label: "Orders", section: "Account", component: Orders }
+    {
+      path: "",
+      label: "Storefront",
+      section: "Shop",
+      icon: <NavIcon name="shop" />,
+      badge: `${products.length}`,
+      component: Storefront
+    },
+    // One hidden detail page per product — every product card link works.
+    ...products.map((p) => ({
+      path: `product/${p.id}`,
+      label: p.name,
+      hideFromNav: true,
+      component: Product
+    })),
+    {
+      path: "cart",
+      label: "Cart",
+      section: "Shop",
+      icon: <NavIcon name="cart" />,
+      badge: "3",
+      component: Cart
+    },
+    {
+      path: "checkout",
+      label: "Checkout",
+      section: "Shop",
+      icon: <NavIcon name="checkout" />,
+      component: Checkout
+    },
+    {
+      path: "orders",
+      label: "Orders",
+      section: "Account",
+      icon: <NavIcon name="orders" />,
+      component: Orders
+    }
   ]
 };

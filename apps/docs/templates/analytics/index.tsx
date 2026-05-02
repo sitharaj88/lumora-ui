@@ -1,3 +1,4 @@
+import { NavIcon } from "../_shared/nav-icon";
 import { TemplatePlaceholder } from "../_shared/placeholder";
 import type { TemplateMeta, TemplatePageProps } from "../../lib/templates-registry";
 
@@ -47,10 +48,10 @@ export const analyticsTemplate: TemplateMeta = {
   productInitial: "H",
   accent: "var(--lm-color-info)",
   pages: [
-    { path: "", label: "Overview", section: "Insights", component: Overview },
-    { path: "funnels", label: "Funnels", section: "Insights", component: Funnels },
-    { path: "cohorts", label: "Cohorts", section: "Insights", component: Cohorts },
-    { path: "segments", label: "Segments", section: "Tools", component: Segments },
-    { path: "reports", label: "Reports", section: "Tools", component: Reports }
+    { path: "", label: "Overview", section: "Insights", icon: <NavIcon name="overview" />, component: Overview },
+    { path: "funnels", label: "Funnels", section: "Insights", icon: <NavIcon name="funnel" />, component: Funnels },
+    { path: "cohorts", label: "Cohorts", section: "Insights", icon: <NavIcon name="cohort" />, component: Cohorts },
+    { path: "segments", label: "Segments", section: "Tools", icon: <NavIcon name="segment" />, component: Segments },
+    { path: "reports", label: "Reports", section: "Tools", icon: <NavIcon name="reports" />, component: Reports }
   ]
 };

@@ -1,3 +1,4 @@
+import { NavIcon } from "../_shared/nav-icon";
 import { TemplatePlaceholder } from "../_shared/placeholder";
 import type { TemplateMeta, TemplatePageProps } from "../../lib/templates-registry";
 
@@ -46,10 +47,10 @@ export const marketingTemplate: TemplateMeta = {
   productInitial: "L",
   accent: "var(--lm-color-accent)",
   pages: [
-    { path: "", label: "Landing", section: "Site", component: Landing },
-    { path: "features", label: "Features", section: "Site", component: Features },
-    { path: "pricing", label: "Pricing", section: "Site", component: Pricing },
-    { path: "blog", label: "Blog", section: "Content", component: Blog },
+    { path: "", label: "Landing", section: "Site", icon: <NavIcon name="home" />, component: Landing },
+    { path: "features", label: "Features", section: "Site", icon: <NavIcon name="features" />, component: Features },
+    { path: "pricing", label: "Pricing", section: "Site", icon: <NavIcon name="pricing" />, component: Pricing },
+    { path: "blog", label: "Blog", section: "Content", icon: <NavIcon name="blog" />, component: Blog },
     {
       path: "blog/why-compliance-platforms-fail",
       label: "Why compliance platforms fail",
