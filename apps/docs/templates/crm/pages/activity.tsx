@@ -117,14 +117,9 @@ export function ActivityPage() {
                           <strong>{e.authorName}</strong>{" "}
                           <span className="text-[var(--lm-color-muted)]">{e.summary}</span>
                         </p>
-                        {e.detail && (
-                          <p className="lm-hint text-xs leading-relaxed">{e.detail}</p>
-                        )}
+                        {e.detail && <p className="lm-hint text-xs leading-relaxed">{e.detail}</p>}
                         <div className="mt-1 flex flex-wrap items-center gap-2 text-xs">
-                          <span
-                            className="lm-badge lm-badge-soft"
-                            aria-label={`Type ${e.type}`}
-                          >
+                          <span className="lm-badge lm-badge-soft" aria-label={`Type ${e.type}`}>
                             {activityIcon[e.type]} {e.type}
                           </span>
                           {contact && (

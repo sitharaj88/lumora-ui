@@ -59,7 +59,9 @@ export function DocsLayout({
   prev?: { href: string; label: string };
 }) {
   const hasToc = toc && toc.length > 0;
-  const cols = hasToc ? "lg:grid-cols-[16rem_minmax(0,1fr)_15rem]" : "lg:grid-cols-[16rem_minmax(0,1fr)]";
+  const cols = hasToc
+    ? "lg:grid-cols-[16rem_minmax(0,1fr)_15rem]"
+    : "lg:grid-cols-[16rem_minmax(0,1fr)]";
 
   return (
     <main id="main-content" className="docs-shell relative min-h-screen">
@@ -110,10 +112,7 @@ export function DocsLayout({
               aria-label="Page navigation"
             >
               {prev ? (
-                <Link
-                  href={prev.href}
-                  className="docs-feature-card grid gap-1 p-5 no-underline"
-                >
+                <Link href={prev.href} className="docs-feature-card grid gap-1 p-5 no-underline">
                   <span className="text-xs text-[var(--lm-color-muted)]">← Previous</span>
                   <strong className="text-[var(--lm-color-text)]">{prev.label}</strong>
                 </Link>
@@ -178,9 +177,7 @@ export function DocsSection({
 }) {
   const Tag = level === 2 ? "h2" : "h3";
   const sizeClass =
-    level === 2
-      ? "text-2xl font-bold tracking-tight"
-      : "text-lg font-bold tracking-tight";
+    level === 2 ? "text-2xl font-bold tracking-tight" : "text-lg font-bold tracking-tight";
   return (
     <section id={id} className="grid gap-4 scroll-mt-24">
       <Tag className={sizeClass}>
@@ -192,9 +189,7 @@ export function DocsSection({
 }
 
 export function DocsParagraph({ children }: { children: ReactNode }) {
-  return (
-    <p className="max-w-3xl text-base leading-7 text-[var(--lm-color-muted)]">{children}</p>
-  );
+  return <p className="max-w-3xl text-base leading-7 text-[var(--lm-color-muted)]">{children}</p>;
 }
 
 export function DocsList({ items }: { items: ReactNode[] }) {
@@ -250,9 +245,7 @@ export function DocsCode({
         <span className="docs-code-window-dot" />
         <span className="docs-code-window-dot" />
         <span className="docs-code-window-dot" />
-        {filename && (
-          <span className="ml-2 text-xs text-[var(--lm-color-muted)]">{filename}</span>
-        )}
+        {filename && <span className="ml-2 text-xs text-[var(--lm-color-muted)]">{filename}</span>}
         {lang && (
           <span className="ml-auto text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">
             {lang}
@@ -266,11 +259,7 @@ export function DocsCode({
   );
 }
 
-export function DocsKeyTable({
-  rows
-}: {
-  rows: { label: string; value: ReactNode }[];
-}) {
+export function DocsKeyTable({ rows }: { rows: { label: string; value: ReactNode }[] }) {
   return (
     <div className="docs-feature-card overflow-hidden">
       <table className="lm-table">

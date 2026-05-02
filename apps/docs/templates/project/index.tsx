@@ -20,8 +20,7 @@ export const projectTemplate: TemplateMeta = {
   name: "Project board",
   category: "Project",
   status: "ready",
-  description:
-    "A 5-page Linear-style project tracker: board, backlog, roadmap, sprint, settings.",
+  description: "A 5-page Linear-style project tracker: board, backlog, roadmap, sprint, settings.",
   productName: "Vector Tasks",
   productInitial: "V",
   accent: "var(--lm-color-accent)",

@@ -2,12 +2,14 @@ import Link from "next/link";
 import { AreaChart } from "../../../components/chart";
 import { AccountAvatar, PersonAvatar } from "../components/account-avatar";
 import { KpiTile } from "../components/kpi-tile";
-import { accounts, formatMoney, formatMoneyFull, statusLabel, statusTone } from "../data/accounts";
+import { accounts, formatMoneyFull, statusLabel, statusTone } from "../data/accounts";
 import { recentActivity } from "../data/activity";
 
 export function AccountDetailPage({ accountId }: { accountId: string }) {
   const account = accounts.find((a) => a.id === accountId) ?? accounts[0];
-  const activity = recentActivity.filter((e) => !e.target || e.target.includes(account.name)).slice(0, 4);
+  const activity = recentActivity
+    .filter((e) => !e.target || e.target.includes(account.name))
+    .slice(0, 4);
 
   return (
     <div className="grid gap-6">
@@ -78,7 +80,9 @@ export function AccountDetailPage({ accountId }: { accountId: string }) {
           label="MRR"
           value={formatMoneyFull(account.mrr)}
           values={account.trendValues}
-          chartColor={account.trend === "up" ? "success" : account.trend === "down" ? "danger" : "info"}
+          chartColor={
+            account.trend === "up" ? "success" : account.trend === "down" ? "danger" : "info"
+          }
           tone={account.trend}
           delta={account.trend === "up" ? "+12.4%" : account.trend === "down" ? "−4.8%" : "stable"}
         />
@@ -139,11 +143,7 @@ export function AccountDetailPage({ accountId }: { accountId: string }) {
                 {account.tags.map((tag) => (
                   <span className="lm-tag lm-tag-removable" key={tag}>
                     {tag}
-                    <button
-                      type="button"
-                      className="lm-tag-remove"
-                      aria-label={`Remove ${tag}`}
-                    >
+                    <button type="button" className="lm-tag-remove" aria-label={`Remove ${tag}`}>
                       ×
                     </button>
                   </span>
@@ -188,7 +188,9 @@ export function AccountDetailPage({ accountId }: { accountId: string }) {
                 <dd>{account.plan}</dd>
                 <dt>Status</dt>
                 <dd>
-                  <span className={`lm-badge lm-badge-${statusTone[account.status]} lm-badge-dot text-xs`}>
+                  <span
+                    className={`lm-badge lm-badge-${statusTone[account.status]} lm-badge-dot text-xs`}
+                  >
                     {statusLabel[account.status]}
                   </span>
                 </dd>
@@ -221,11 +223,7 @@ export function AccountDetailPage({ accountId }: { accountId: string }) {
             </div>
             <div className="lm-card-body">
               <div className="flex items-center gap-3">
-                <PersonAvatar
-                  initials={account.ownerInitials}
-                  bg={account.ownerBg}
-                  size="md"
-                />
+                <PersonAvatar initials={account.ownerInitials} bg={account.ownerBg} size="md" />
                 <div className="grid">
                   <strong>{account.owner}</strong>
                   <span className="lm-hint text-xs">{account.admins - 1} other admins</span>

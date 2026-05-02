@@ -57,8 +57,8 @@ export function MetricTile({
                 tone === "up"
                   ? "var(--lm-color-success)"
                   : tone === "down"
-                  ? "var(--lm-color-danger)"
-                  : "var(--lm-color-muted)"
+                    ? "var(--lm-color-danger)"
+                    : "var(--lm-color-muted)"
             }}
           >
             {tone === "up" ? "▲" : tone === "down" ? "▼" : ""} {delta}
@@ -106,7 +106,7 @@ export function FunnelStepBar({
           </span>
           <strong>{name}</strong>
           {avgTime && (
-            <span className="text-xs text-[var(--lm-color-muted)]">·  median {avgTime}</span>
+            <span className="text-xs text-[var(--lm-color-muted)]">· median {avgTime}</span>
           )}
         </div>
         <div className="flex items-center gap-3 text-xs">
@@ -118,8 +118,8 @@ export function FunnelStepBar({
                   stepConversion >= 70
                     ? "var(--lm-color-success)"
                     : stepConversion >= 40
-                    ? "var(--lm-color-warning)"
-                    : "var(--lm-color-danger)"
+                      ? "var(--lm-color-warning)"
+                      : "var(--lm-color-danger)"
               }}
             >
               {stepConversion.toFixed(1)}% step

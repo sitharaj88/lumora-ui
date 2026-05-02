@@ -33,8 +33,7 @@ export const funnels: Funnel[] = [
   {
     id: "trial-to-paid",
     name: "Trial → paid",
-    description:
-      "Conversion of 14-day trial users to a paid plan, by source.",
+    description: "Conversion of 14-day trial users to a paid plan, by source.",
     category: "Conversion",
     steps: [
       { name: "Trial started", count: 4128 },

@@ -1,14 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  useDeferredValue,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-  type ReactNode
-} from "react";
+import { useDeferredValue, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
 
 type BrowserCard = {
   slug: string;
@@ -172,9 +165,7 @@ export function ComponentsBrowser({
                 type="button"
                 onClick={() => toggleCategory(cat)}
                 aria-pressed={isOn}
-                className={
-                  isOn ? "lm-badge lm-badge-dot" : "lm-badge lm-badge-outline"
-                }
+                className={isOn ? "lm-badge lm-badge-dot" : "lm-badge lm-badge-outline"}
                 style={{
                   cursor: "pointer",
                   ...(isOn
@@ -192,19 +183,15 @@ export function ComponentsBrowser({
             );
           })}
           {(active.size > 0 || query || status !== "all") && (
-            <button
-              type="button"
-              className="lm-btn lm-btn-ghost lm-btn-sm ml-auto"
-              onClick={reset}
-            >
+            <button type="button" className="lm-btn lm-btn-ghost lm-btn-sm ml-auto" onClick={reset}>
               Reset
             </button>
           )}
         </div>
 
         <p className="text-xs text-[var(--lm-color-muted)]" aria-live="polite">
-          Showing <strong className="text-[var(--lm-color-text)]">{filtered.length}</strong>{" "}
-          of {cards.length} components
+          Showing <strong className="text-[var(--lm-color-text)]">{filtered.length}</strong> of{" "}
+          {cards.length} components
         </p>
       </div>
 
@@ -220,11 +207,7 @@ export function ComponentsBrowser({
         </div>
       ) : (
         grouped.map(({ category, items }) => (
-          <section
-            id={category.toLowerCase()}
-            key={category}
-            className="grid gap-5 scroll-mt-24"
-          >
+          <section id={category.toLowerCase()} key={category} className="grid gap-5 scroll-mt-24">
             <div
               className="docs-cat-banner"
               style={{ ["--lm-cat-color" as string]: accent[category] }}
@@ -255,9 +238,7 @@ export function ComponentsBrowser({
                   />
                   <div className="relative z-10 flex items-start justify-between gap-3">
                     <div className="grid gap-1">
-                      <strong className="text-base text-[var(--lm-color-text)]">
-                        {card.name}
-                      </strong>
+                      <strong className="text-base text-[var(--lm-color-text)]">{card.name}</strong>
                       <span className="text-xs text-[var(--lm-color-muted)]">
                         {card.classCount} classes · {card.propCount} props
                       </span>

@@ -31,11 +31,7 @@ export function FeaturesPage() {
       >
         <div className="flex flex-wrap items-center gap-1">
           {featureBlocks.map((f) => (
-            <a
-              key={f.id}
-              href={`#${f.id}`}
-              className="lm-btn lm-btn-ghost lm-btn-sm no-underline"
-            >
+            <a key={f.id} href={`#${f.id}`} className="lm-btn lm-btn-ghost lm-btn-sm no-underline">
               {f.title.split(",")[0]}
             </a>
           ))}
@@ -64,7 +60,11 @@ export function FeaturesPage() {
                     className="lm-badge lm-badge-success lm-badge-dot mt-1 flex-shrink-0"
                     aria-hidden="true"
                   />
-                  <span dangerouslySetInnerHTML={{ __html: b.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>") }} />
+                  <span
+                    dangerouslySetInnerHTML={{
+                      __html: b.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+                    }}
+                  />
                 </li>
               ))}
             </ul>
@@ -220,8 +220,8 @@ export const accessReview = control({
             See every feature, in your stack.
           </h2>
           <p className="mx-auto max-w-xl text-[var(--lm-color-muted)]">
-            14-day free trial. Connect AWS, GitHub, and your IdP. We'll show you your first
-            evidence within 12 minutes.
+            14-day free trial. Connect AWS, GitHub, and your IdP. We'll show you your first evidence
+            within 12 minutes.
           </p>
           <div className="flex flex-wrap justify-center gap-3">
             <Link href="/preview/marketing/pricing" className="lm-btn lm-btn-primary lm-btn-lg">
@@ -268,9 +268,7 @@ function FeatureVisual({ id, background }: { id: string; background: string }) {
                   Live · 247 controls passing
                 </span>
                 <strong className="text-sm">SOC 2 Type II</strong>
-                <p className="lm-hint text-xs">
-                  Hourly polling · last evidence 4 minutes ago
-                </p>
+                <p className="lm-hint text-xs">Hourly polling · last evidence 4 minutes ago</p>
                 <div className="grid gap-1.5">
                   {[100, 92, 78, 64].map((pct, i) => (
                     <div key={i} className="grid gap-0.5">
@@ -336,10 +334,10 @@ function FeatureVisual({ id, background }: { id: string; background: string }) {
                 <span className="lm-badge lm-badge-soft text-xs">Streaming</span>
                 <strong className="text-sm">audit.lumora.cloud</strong>
                 <div className="grid gap-1 font-mono text-[10px] text-[var(--lm-color-muted)]">
-                  <span>09:14:22  saml.cert.rotate  atlas-finance</span>
-                  <span>09:13:08  members.invite   northstar-health</span>
-                  <span>09:11:42  plan.upgrade     vector-labs</span>
-                  <span>09:10:14  webhook.delete   atlas-finance</span>
+                  <span>09:14:22 saml.cert.rotate atlas-finance</span>
+                  <span>09:13:08 members.invite northstar-health</span>
+                  <span>09:11:42 plan.upgrade vector-labs</span>
+                  <span>09:10:14 webhook.delete atlas-finance</span>
                 </div>
                 <span className="lm-badge lm-badge-success lm-badge-dot text-xs">
                   Signed · verified

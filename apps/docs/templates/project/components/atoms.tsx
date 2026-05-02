@@ -2,13 +2,7 @@ import { getLabel } from "../data/labels";
 import { type Issue, priorityMeta, typeMeta } from "../data/issues";
 import { getMember } from "../data/members";
 
-export function MemberAvatar({
-  id,
-  size = "xs"
-}: {
-  id: string;
-  size?: "xs" | "sm" | "md";
-}) {
+export function MemberAvatar({ id, size = "xs" }: { id: string; size?: "xs" | "sm" | "md" }) {
   const m = getMember(id);
   if (!m) {
     return (

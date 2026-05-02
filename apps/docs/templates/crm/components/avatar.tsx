@@ -8,11 +8,7 @@ export function CrmAvatar({
   size?: "xs" | "sm" | "md" | "lg" | "xl";
 }) {
   return (
-    <span
-      className={`lm-avatar lm-avatar-${size}`}
-      style={{ background: bg }}
-      aria-hidden="true"
-    >
+    <span className={`lm-avatar lm-avatar-${size}`} style={{ background: bg }} aria-hidden="true">
       {initials}
     </span>
   );

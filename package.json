@@ -16,7 +16,7 @@
     "lint": "eslint . --max-warnings=0",
     "release": "pnpm build && changeset publish",
     "release:check": "pnpm check && pnpm docs:build && pnpm pack:dry",
-    "release:dry": "pnpm build && changeset publish --dry-run",
+    "release:dry": "pnpm build && pnpm pack:dry",
     "pack:dry": "pnpm -r --filter './packages/*' pack --dry-run",
     "test:visual": "pnpm build && playwright test",
     "test:visual:update": "pnpm build && playwright test --update-snapshots",

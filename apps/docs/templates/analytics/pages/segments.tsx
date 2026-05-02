@@ -43,21 +43,9 @@ export function SegmentsPage() {
           tone="up"
           caption="users · across all segments"
         />
-        <MetricTile
-          label="Shared"
-          value={`${sharedCount}`}
-          caption="visible to your team"
-        />
-        <MetricTile
-          label="Personal"
-          value={`${personalCount}`}
-          caption="visible only to owner"
-        />
-        <MetricTile
-          label="Auto-syncing"
-          value="6"
-          caption="all segments live-update"
-        />
+        <MetricTile label="Shared" value={`${sharedCount}`} caption="visible to your team" />
+        <MetricTile label="Personal" value={`${personalCount}`} caption="visible only to owner" />
+        <MetricTile label="Auto-syncing" value="6" caption="all segments live-update" />
       </div>
 
       {/* Live builder */}
@@ -66,8 +54,8 @@ export function SegmentsPage() {
           <div>
             <h2 className="lm-card-title">Segment builder</h2>
             <p className="lm-card-subtitle">
-              Editing <strong>{builderSegment.name}</strong> · {formatNumber(builderSegment.audienceSize)}{" "}
-              users match
+              Editing <strong>{builderSegment.name}</strong> ·{" "}
+              {formatNumber(builderSegment.audienceSize)} users match
             </p>
           </div>
           <div className="flex gap-2">
@@ -156,8 +144,10 @@ export function SegmentsPage() {
           <div
             className="grid gap-2 rounded-lg p-4"
             style={{
-              background: "color-mix(in oklab, var(--lm-color-success) 8%, var(--lm-color-surface))",
-              border: "1px solid color-mix(in oklab, var(--lm-color-success) 30%, var(--lm-color-border))"
+              background:
+                "color-mix(in oklab, var(--lm-color-success) 8%, var(--lm-color-surface))",
+              border:
+                "1px solid color-mix(in oklab, var(--lm-color-success) 30%, var(--lm-color-border))"
             }}
           >
             <div className="flex items-center justify-between">
@@ -219,8 +209,8 @@ export function SegmentsPage() {
                           seg.delta > 0
                             ? "var(--lm-color-success)"
                             : seg.delta < 0
-                            ? "var(--lm-color-danger)"
-                            : "var(--lm-color-muted)"
+                              ? "var(--lm-color-danger)"
+                              : "var(--lm-color-muted)"
                       }}
                     >
                       {seg.delta > 0 ? "▲" : seg.delta < 0 ? "▼" : "·"}{" "}

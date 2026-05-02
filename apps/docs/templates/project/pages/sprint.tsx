@@ -38,10 +38,7 @@ export function SprintPage() {
   }
 
   const totalPoints = sprintIssues.reduce((s, i) => s + i.points, 0);
-  const completePct =
-    totalPoints > 0
-      ? Math.round((statusPoints.done / totalPoints) * 100)
-      : 0;
+  const completePct = totalPoints > 0 ? Math.round((statusPoints.done / totalPoints) * 100) : 0;
   const daysInSprint = activeSprint.ideal.length;
   const daysElapsed = activeSprint.burndown.length;
 
@@ -96,9 +93,7 @@ export function SprintPage() {
         <div className="lm-stat">
           <span className="lm-stat-label">Days remaining</span>
           <span className="lm-stat-value tabular-nums">{daysInSprint - daysElapsed}</span>
-          <span className="lm-stat-trend">
-            ends {humanDate(activeSprint.end)}
-          </span>
+          <span className="lm-stat-trend">ends {humanDate(activeSprint.end)}</span>
         </div>
       </div>
 
@@ -109,9 +104,7 @@ export function SprintPage() {
             <div className="lm-card-header flex items-center justify-between">
               <div>
                 <h2 className="lm-card-title">Burndown</h2>
-                <p className="lm-card-subtitle">
-                  Story points remaining vs ideal trajectory
-                </p>
+                <p className="lm-card-subtitle">Story points remaining vs ideal trajectory</p>
               </div>
               <div className="flex items-center gap-3 text-xs">
                 <span className="inline-flex items-center gap-1.5">
@@ -305,9 +298,7 @@ export function SprintPage() {
                       <div className="flex items-center gap-2">
                         <MemberAvatar id={member.id} size="xs" />
                         <strong>{member.name}</strong>
-                        <span className="text-xs text-[var(--lm-color-muted)]">
-                          {member.role}
-                        </span>
+                        <span className="text-xs text-[var(--lm-color-muted)]">{member.role}</span>
                       </div>
                       <span className="tabular-nums text-xs">
                         {committed}/{member.capacity}

@@ -13,9 +13,6 @@ type RepRow = {
   winRate: number;
 };
 
-const grad = (a: string, b: string) =>
-  `linear-gradient(135deg, var(--lm-color-${a}), var(--lm-color-${b}))`;
-
 function buildLeaderboard(): RepRow[] {
   const reps = new Map<string, RepRow>();
   for (const d of deals) {
@@ -59,17 +56,13 @@ export function ReportsPage() {
   const winnableValue = deals
     .filter((d) => d.stage !== "closed-lost")
     .reduce((s, d) => s + d.value, 0);
-  const wonValue = deals
-    .filter((d) => d.stage === "closed-won")
-    .reduce((s, d) => s + d.value, 0);
+  const wonValue = deals.filter((d) => d.stage === "closed-won").reduce((s, d) => s + d.value, 0);
   const overallWinRate = Math.round(
     (deals.filter((d) => d.stage === "closed-won").length /
       deals.filter((d) => d.stage === "closed-won" || d.stage === "closed-lost").length) *
       100
   );
-  const avgCycle = Math.round(
-    deals.reduce((s, d) => s + d.ageDays, 0) / deals.length
-  );
+  const avgCycle = Math.round(deals.reduce((s, d) => s + d.ageDays, 0) / deals.length);
 
   return (
     <div className="grid gap-6">
@@ -194,52 +187,52 @@ export function ReportsPage() {
             <p className="lm-card-subtitle">Deal counts at each stage</p>
           </div>
           <div className="lm-card-body grid gap-3">
-            {(
-              ["prospecting", "qualifying", "proposal", "negotiation", "closed-won"] as const
-            ).map((stage) => {
-              const count = deals.filter((d) => d.stage === stage).length;
-              const meta = stageMeta[stage];
-              const max = Math.max(
-                ...["prospecting", "qualifying", "proposal", "negotiation", "closed-won"].map(
-                  (s) => deals.filter((d) => d.stage === (s as typeof stage)).length
-                )
-              );
-              const pct = (count / max) * 100;
-              return (
-                <div key={stage} className="grid gap-1.5">
-                  <div className="flex items-center justify-between text-sm">
-                    <div className="flex items-center gap-2">
-                      <span
-                        className="h-2 w-2 rounded-full"
-                        style={{ background: `var(--lm-color-${meta.color})` }}
-                        aria-hidden="true"
-                      />
-                      <strong>{meta.label}</strong>
+            {(["prospecting", "qualifying", "proposal", "negotiation", "closed-won"] as const).map(
+              (stage) => {
+                const count = deals.filter((d) => d.stage === stage).length;
+                const meta = stageMeta[stage];
+                const max = Math.max(
+                  ...["prospecting", "qualifying", "proposal", "negotiation", "closed-won"].map(
+                    (s) => deals.filter((d) => d.stage === (s as typeof stage)).length
+                  )
+                );
+                const pct = (count / max) * 100;
+                return (
+                  <div key={stage} className="grid gap-1.5">
+                    <div className="flex items-center justify-between text-sm">
+                      <div className="flex items-center gap-2">
+                        <span
+                          className="h-2 w-2 rounded-full"
+                          style={{ background: `var(--lm-color-${meta.color})` }}
+                          aria-hidden="true"
+                        />
+                        <strong>{meta.label}</strong>
+                      </div>
+                      <span className="tabular-nums text-[var(--lm-color-muted)]">
+                        {count} deal{count === 1 ? "" : "s"}
+                      </span>
                     </div>
-                    <span className="tabular-nums text-[var(--lm-color-muted)]">
-                      {count} deal{count === 1 ? "" : "s"}
-                    </span>
-                  </div>
-                  <div
-                    style={{
-                      background: "var(--lm-color-surface-raised)",
-                      borderRadius: "999px",
-                      height: "0.5rem",
-                      overflow: "hidden"
-                    }}
-                  >
                     <div
                       style={{
-                        background: `linear-gradient(90deg, color-mix(in oklab, var(--lm-color-${meta.color}) 80%, white), var(--lm-color-${meta.color}))`,
+                        background: "var(--lm-color-surface-raised)",
                         borderRadius: "999px",
-                        height: "100%",
-                        width: `${pct}%`
+                        height: "0.5rem",
+                        overflow: "hidden"
                       }}
-                    />
+                    >
+                      <div
+                        style={{
+                          background: `linear-gradient(90deg, color-mix(in oklab, var(--lm-color-${meta.color}) 80%, white), var(--lm-color-${meta.color}))`,
+                          borderRadius: "999px",
+                          height: "100%",
+                          width: `${pct}%`
+                        }}
+                      />
+                    </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              }
+            )}
           </div>
         </section>
 
@@ -250,7 +243,10 @@ export function ReportsPage() {
           </div>
           <div className="lm-card-body">
             <BarChart
-              values={[18, 24, 22, 28, 26, 32, 38, 34, 30, 36, 42, 48, 44, 38, 34, 30, 28, 32, 36, 40, 38, 32, 28, 26, 30, 34, 38, 42]}
+              values={[
+                18, 24, 22, 28, 26, 32, 38, 34, 30, 36, 42, 48, 44, 38, 34, 30, 28, 32, 36, 40, 38,
+                32, 28, 26, 30, 34, 38, 42
+              ]}
               labels={["W1", "W2", "W3", "W4"]}
               color="success"
               height={200}

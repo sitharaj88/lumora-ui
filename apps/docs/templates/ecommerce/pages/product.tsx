@@ -9,7 +9,9 @@ export function ProductPage({ productId }: { productId: string }) {
   const reviews = reviewsForProduct(product.id);
   const histogram = ratingHistogram(product.id);
   const totalReviews = histogram.reduce((s, c) => s + c, 0) || product.reviewCount;
-  const related = products.filter((p) => p.id !== product.id && p.category === product.category).slice(0, 4);
+  const related = products
+    .filter((p) => p.id !== product.id && p.category === product.category)
+    .slice(0, 4);
   const defaultColor =
     product.colors.find((c) => c.name === product.defaultColor) ?? product.colors[0];
 
@@ -130,7 +132,8 @@ export function ProductPage({ productId }: { productId: string }) {
                     aria-pressed={v.size === "M"}
                     className="grid gap-0.5 rounded-md border-2 px-3 py-1.5 text-center text-sm font-medium"
                     style={{
-                      borderColor: v.size === "M" ? "var(--lm-color-primary)" : "var(--lm-color-border)",
+                      borderColor:
+                        v.size === "M" ? "var(--lm-color-primary)" : "var(--lm-color-border)",
                       opacity: out ? 0.45 : 1,
                       cursor: out ? "not-allowed" : "pointer",
                       minWidth: "3rem"
@@ -162,18 +165,25 @@ export function ProductPage({ productId }: { productId: string }) {
           {/* Add to cart */}
           <div className="flex flex-wrap gap-3">
             <div className="lm-number-input" style={{ width: "8rem" }}>
-              <button type="button" aria-label="Decrement quantity">−</button>
+              <button type="button" aria-label="Decrement quantity">
+                −
+              </button>
               <input type="number" defaultValue={1} aria-label="Quantity" />
-              <button type="button" aria-label="Increment quantity">+</button>
+              <button type="button" aria-label="Increment quantity">
+                +
+              </button>
             </div>
             <Link
               href="/preview/ecommerce/cart"
               className="lm-btn lm-btn-primary lm-btn-lg flex-1 no-underline text-center"
             >
-              Add to cart · {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
-              {product.price}
+              Add to cart · {product.price}
             </Link>
-            <button type="button" className="lm-btn lm-btn-outline lm-btn-lg" aria-label="Save for later">
+            <button
+              type="button"
+              className="lm-btn lm-btn-outline lm-btn-lg"
+              aria-label="Save for later"
+            >
               ♡
             </button>
           </div>
@@ -259,9 +269,7 @@ export function ProductPage({ productId }: { productId: string }) {
           <div className="lm-card">
             <div className="lm-card-body grid gap-4 p-5">
               <div className="grid gap-1">
-                <span className="text-3xl font-bold tabular-nums">
-                  {product.rating.toFixed(1)}
-                </span>
+                <span className="text-3xl font-bold tabular-nums">{product.rating.toFixed(1)}</span>
                 <StarRating value={product.rating} size={16} />
                 <span className="text-xs text-[var(--lm-color-muted)]">
                   {product.reviewCount} verified reviews
@@ -274,7 +282,9 @@ export function ProductPage({ productId }: { productId: string }) {
                   return (
                     <div key={star} className="flex items-center gap-2 text-xs">
                       <span className="w-3 tabular-nums text-[var(--lm-color-muted)]">{star}</span>
-                      <span className="w-2" aria-hidden>★</span>
+                      <span className="w-2" aria-hidden>
+                        ★
+                      </span>
                       <div
                         className="flex-1"
                         style={{
@@ -333,10 +343,7 @@ export function ProductPage({ productId }: { productId: string }) {
                 </div>
               </article>
             ))}
-            <button
-              type="button"
-              className="lm-btn lm-btn-ghost lm-btn-sm justify-self-start"
-            >
+            <button type="button" className="lm-btn lm-btn-ghost lm-btn-sm justify-self-start">
               Show all {product.reviewCount} reviews
             </button>
           </div>

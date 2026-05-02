@@ -11,9 +11,7 @@ export function CodeCopy({ code, filename }: { code: string; filename?: string }
         <span className="docs-code-window-dot" aria-hidden="true" />
         <span className="docs-code-window-dot" aria-hidden="true" />
         <span className="docs-code-window-dot" aria-hidden="true" />
-        <span className="ml-2 text-xs text-[var(--lm-color-muted)]">
-          {filename ?? "snippet"}
-        </span>
+        <span className="ml-2 text-xs text-[var(--lm-color-muted)]">{filename ?? "snippet"}</span>
         <button
           className="lm-btn lm-btn-ghost lm-btn-sm ml-auto"
           type="button"

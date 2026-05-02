@@ -164,17 +164,17 @@ export default function ThemingPage() {
         <DocsList
           items={[
             <>
-              <strong>Color</strong>: surfaces (bg, surface, surface-raised, surface-sunken),
-              text, borders, and 7 semantic accents (primary, secondary, accent, success, warning,
-              danger, info).
+              <strong>Color</strong>: surfaces (bg, surface, surface-raised, surface-sunken), text,
+              borders, and 7 semantic accents (primary, secondary, accent, success, warning, danger,
+              info).
             </>,
             <>
-              <strong>Radius</strong>: 5 steps from <code className="lm-code">sm</code> (0.25rem)
-              to <code className="lm-code">2xl</code> (1.5rem).
+              <strong>Radius</strong>: 5 steps from <code className="lm-code">sm</code> (0.25rem) to{" "}
+              <code className="lm-code">2xl</code> (1.5rem).
             </>,
             <>
-              <strong>Shadow</strong>: 5 elevation steps including a <code className="lm-code">glow</code>{" "}
-              variant for primary actions.
+              <strong>Shadow</strong>: 5 elevation steps including a{" "}
+              <code className="lm-code">glow</code> variant for primary actions.
             </>,
             <>
               <strong>Motion</strong>: spring + ease-out curves and 3 duration tokens. Auto-disabled
@@ -186,10 +186,10 @@ export default function ThemingPage() {
           ]}
         />
         <DocsCallout tone="info" title="Derived tokens">
-          Some tokens are derived via <code className="lm-code">color-mix</code> at the CSS layer
-          — for example <code className="lm-code">--lm-color-primary-soft</code> tracks{" "}
-          <code className="lm-code">--lm-color-primary</code> automatically across every theme.
-          You only need to set the base color.
+          Some tokens are derived via <code className="lm-code">color-mix</code> at the CSS layer —
+          for example <code className="lm-code">--lm-color-primary-soft</code> tracks{" "}
+          <code className="lm-code">--lm-color-primary</code> automatically across every theme. You
+          only need to set the base color.
         </DocsCallout>
       </DocsSection>
 
@@ -200,7 +200,8 @@ export default function ThemingPage() {
         </DocsParagraph>
         <DocsCode filename="anywhere.ts" code={switchExample} />
         <DocsParagraph>
-          Here's a typed React toggle that persists to <code className="lm-code">localStorage</code>:
+          Here's a typed React toggle that persists to <code className="lm-code">localStorage</code>
+          :
         </DocsParagraph>
         <DocsCode filename="app/components/ThemeToggle.tsx" code={reactToggle} />
       </DocsSection>
@@ -245,8 +246,8 @@ export default function ThemingPage() {
       <DocsSection id="no-flash" title="Avoiding the dark→light flash">
         <DocsParagraph>
           If you persist user theme choice in <code className="lm-code">localStorage</code>, inject
-          this 6-line script in <code className="lm-code">&lt;head&gt;</code>. It runs before
-          paint, so the user never sees a flash of the wrong theme.
+          this 6-line script in <code className="lm-code">&lt;head&gt;</code>. It runs before paint,
+          so the user never sees a flash of the wrong theme.
         </DocsParagraph>
         <DocsCode filename="app/layout.html" code={noFlash} />
       </DocsSection>
@@ -266,18 +267,18 @@ export default function ThemingPage() {
         <DocsCallout tone="success" title="WCAG AA, automatically">
           Lumora ships a contrast test that verifies{" "}
           <code className="lm-code">color-bg / color-text</code>,{" "}
-          <code className="lm-code">color-primary / color-primary-fg</code>, and 8 other pairs at
-          AA across every theme. Run <code className="lm-code">pnpm test</code> to validate
-          custom themes too.
+          <code className="lm-code">color-primary / color-primary-fg</code>, and 8 other pairs at AA
+          across every theme. Run <code className="lm-code">pnpm test</code> to validate custom
+          themes too.
         </DocsCallout>
       </DocsSection>
 
       <DocsSection id="tenant" title="Per-tenant theming">
         <DocsParagraph>
           For multi-tenant SaaS, set <code className="lm-code">data-lm-theme</code> on a wrapping
-          element instead of <code className="lm-code">&lt;html&gt;</code>. Lumora components
-          inside the wrapper read the nearest ancestor — branding switches per region without
-          forking your component code.
+          element instead of <code className="lm-code">&lt;html&gt;</code>. Lumora components inside
+          the wrapper read the nearest ancestor — branding switches per region without forking your
+          component code.
         </DocsParagraph>
         <DocsCode filename="app/page.tsx" code={tenantTheme} />
       </DocsSection>
@@ -349,11 +350,7 @@ function ThemeGrid({ themes }: { themes: typeof lumoraThemes }) {
                 "var(--lm-color-warning)",
                 "var(--lm-color-danger)"
               ].map((c, i) => (
-                <span
-                  key={i}
-                  className="h-7 flex-1 rounded-md"
-                  style={{ background: c }}
-                />
+                <span key={i} className="h-7 flex-1 rounded-md" style={{ background: c }} />
               ))}
             </div>
             <code className="lm-code text-[10px] truncate">data-lm-theme="{theme.name}"</code>

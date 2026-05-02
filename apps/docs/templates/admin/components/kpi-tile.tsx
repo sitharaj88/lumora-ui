@@ -27,8 +27,8 @@ export function KpiTile({
                 tone === "up"
                   ? "var(--lm-color-success)"
                   : tone === "down"
-                  ? "var(--lm-color-danger)"
-                  : "var(--lm-color-muted)"
+                    ? "var(--lm-color-danger)"
+                    : "var(--lm-color-muted)"
             }}
           >
             {tone === "up" ? "▲" : tone === "down" ? "▼" : ""} {delta}

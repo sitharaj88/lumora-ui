@@ -62,8 +62,8 @@ export function PricingPage() {
                   {tier.id === "starter"
                     ? "Free forever"
                     : tier.id === "enterprise"
-                    ? "Talk to us"
-                    : "per workspace / month · billed annually"}
+                      ? "Talk to us"
+                      : "per workspace / month · billed annually"}
                 </span>
               </div>
               <Link
@@ -80,9 +80,7 @@ export function PricingPage() {
       {/* Compare */}
       <section className="grid gap-3">
         <div className="text-center">
-          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">
-            Compare
-          </p>
+          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">Compare</p>
           <h2 className="mt-2 text-balance text-3xl font-bold tracking-tight">
             Every feature, side by side.
           </h2>
@@ -108,10 +106,7 @@ export function PricingPage() {
             </thead>
             <tbody>
               {pricingFeatureGroups().flatMap(([group, features], gi) => [
-                <tr
-                  key={`group-${group}`}
-                  style={{ background: "var(--lm-color-surface-sunken)" }}
-                >
+                <tr key={`group-${group}`} style={{ background: "var(--lm-color-surface-sunken)" }}>
                   <td colSpan={4} className="text-xs font-bold uppercase tracking-wider">
                     {group}
                   </td>
@@ -150,9 +145,7 @@ export function PricingPage() {
       {/* Compliance + trust */}
       <section className="grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-center">
         <div className="grid gap-4">
-          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">
-            Trust
-          </p>
+          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">Trust</p>
           <h2 className="text-balance text-3xl font-bold tracking-tight">
             We hold ourselves to the bar we sell.
           </h2>
@@ -176,9 +169,14 @@ export function PricingPage() {
           }}
         >
           <div className="lm-card-body grid gap-4 p-6">
-            <div className="flex items-center gap-1 text-base" style={{ color: "var(--lm-color-warning)" }}>
+            <div
+              className="flex items-center gap-1 text-base"
+              style={{ color: "var(--lm-color-warning)" }}
+            >
               {Array.from({ length: 5 }, (_, i) => (
-                <span key={i} aria-hidden="true">★</span>
+                <span key={i} aria-hidden="true">
+                  ★
+                </span>
               ))}
             </div>
             <blockquote className="text-balance text-base font-medium leading-relaxed">
@@ -194,9 +192,7 @@ export function PricingPage() {
               </span>
               <div>
                 <strong className="text-sm">{testimonials[0].authorName}</strong>
-                <p className="text-xs text-[var(--lm-color-muted)]">
-                  {testimonials[0].authorRole}
-                </p>
+                <p className="text-xs text-[var(--lm-color-muted)]">{testimonials[0].authorRole}</p>
               </div>
             </div>
           </div>
@@ -207,19 +203,13 @@ export function PricingPage() {
       <section className="grid gap-4">
         <div className="text-center">
           <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">FAQ</p>
-          <h2 className="mt-2 text-balance text-3xl font-bold tracking-tight">
-            Common questions
-          </h2>
+          <h2 className="mt-2 text-balance text-3xl font-bold tracking-tight">Common questions</h2>
         </div>
         <div className="mx-auto w-full max-w-3xl">
           <div className="lm-accordion">
             {faqEntries.map((entry, idx) => (
               <div className="lm-accordion-item" key={entry.question}>
-                <button
-                  type="button"
-                  className="lm-accordion-trigger"
-                  aria-expanded={idx === 0}
-                >
+                <button type="button" className="lm-accordion-trigger" aria-expanded={idx === 0}>
                   {entry.question}
                 </button>
                 <div className="lm-accordion-content" hidden={idx !== 0}>
@@ -282,7 +272,5 @@ function FeatureValue({ value }: { value: string | boolean }) {
       </span>
     );
   }
-  return (
-    <span className="text-xs font-medium tabular-nums">{value}</span>
-  );
+  return <span className="text-xs font-medium tabular-nums">{value}</span>;
 }

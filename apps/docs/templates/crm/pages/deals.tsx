@@ -21,8 +21,7 @@ export function DealsPage() {
           </p>
           <h1 className="lm-page-title mt-1">All deals</h1>
           <p className="lm-page-description">
-            {open.length} open · {won.length} won this quarter ·{" "}
-            {formatValue(totalOpen)} pipeline
+            {open.length} open · {won.length} won this quarter · {formatValue(totalOpen)} pipeline
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -84,11 +83,7 @@ export function DealsPage() {
           const count = deals.filter((d) => d.stage === stage).length;
           if (count === 0) return null;
           return (
-            <button
-              type="button"
-              key={stage}
-              className={`lm-badge lm-badge-${meta.tone} text-xs`}
-            >
+            <button type="button" key={stage} className={`lm-badge lm-badge-${meta.tone} text-xs`}>
               {meta.label} <span className="ml-1">{count}</span>
             </button>
           );
@@ -205,13 +200,9 @@ export function DealsPage() {
                       </div>
                     </td>
                     <td>
-                      <span className={`lm-badge lm-badge-${meta.tone} text-xs`}>
-                        {meta.label}
-                      </span>
+                      <span className={`lm-badge lm-badge-${meta.tone} text-xs`}>{meta.label}</span>
                     </td>
-                    <td className="text-right tabular-nums font-medium">
-                      {formatValue(d.value)}
-                    </td>
+                    <td className="text-right tabular-nums font-medium">{formatValue(d.value)}</td>
                     <td style={{ minWidth: "8rem" }}>
                       <ProbabilityBar value={d.probability} />
                     </td>

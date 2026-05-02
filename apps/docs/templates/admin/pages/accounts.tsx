@@ -16,9 +16,7 @@ export function AccountsPage() {
     <div className="grid gap-6">
       <header className="lm-page-header">
         <div>
-          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">
-            Workspace
-          </p>
+          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">Workspace</p>
           <h1 className="lm-page-title mt-1">Accounts</h1>
           <p className="lm-page-description">
             {totals.all} accounts · {totals.active} active · {totals.review} in review
@@ -184,7 +182,9 @@ export function AccountsPage() {
                   <span className="lm-badge lm-badge-soft text-xs">{a.plan}</span>
                 </td>
                 <td>
-                  <span className={`lm-badge lm-badge-${statusTone[a.status]} lm-badge-dot text-xs`}>
+                  <span
+                    className={`lm-badge lm-badge-${statusTone[a.status]} lm-badge-dot text-xs`}
+                  >
                     {statusLabel[a.status]}
                   </span>
                 </td>
@@ -221,11 +221,21 @@ export function AccountsPage() {
           Showing 1–{accounts.length} of {accounts.length} accounts
         </span>
         <nav className="lm-pagination" aria-label="Pagination">
-          <a className="lm-pagination-item" aria-disabled="true">‹</a>
-          <a className="lm-pagination-item" href="#" aria-current="page">1</a>
-          <a className="lm-pagination-item" href="#">2</a>
-          <a className="lm-pagination-item" href="#">3</a>
-          <a className="lm-pagination-item" href="#">›</a>
+          <a className="lm-pagination-item" aria-disabled="true">
+            ‹
+          </a>
+          <a className="lm-pagination-item" href="#" aria-current="page">
+            1
+          </a>
+          <a className="lm-pagination-item" href="#">
+            2
+          </a>
+          <a className="lm-pagination-item" href="#">
+            3
+          </a>
+          <a className="lm-pagination-item" href="#">
+            ›
+          </a>
         </nav>
       </div>
     </div>

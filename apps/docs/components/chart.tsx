@@ -28,8 +28,7 @@ export function AreaChart({
   const innerW = width - padX * 2;
   const innerH = height - padY * 2;
 
-  const xFor = (i: number) =>
-    padX + (i / Math.max(maxLen - 1, 1)) * innerW;
+  const xFor = (i: number) => padX + (i / Math.max(maxLen - 1, 1)) * innerW;
   const yFor = (v: number) => padY + innerH - ((v - min) / range) * innerH;
 
   const linePath = (values: number[]) =>
@@ -78,17 +77,16 @@ export function AreaChart({
       >
         <defs>
           {series.map((s, i) => (
-            <linearGradient key={i} id={`grad-${s.label.replace(/\s/g, "")}`} x1="0" y1="0" x2="0" y2="1">
-              <stop
-                offset="0%"
-                stopColor={`var(--lm-color-${s.color})`}
-                stopOpacity="0.32"
-              />
-              <stop
-                offset="100%"
-                stopColor={`var(--lm-color-${s.color})`}
-                stopOpacity="0"
-              />
+            <linearGradient
+              key={i}
+              id={`grad-${s.label.replace(/\s/g, "")}`}
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
+            >
+              <stop offset="0%" stopColor={`var(--lm-color-${s.color})`} stopOpacity="0.32" />
+              <stop offset="100%" stopColor={`var(--lm-color-${s.color})`} stopOpacity="0" />
             </linearGradient>
           ))}
         </defs>
@@ -117,10 +115,7 @@ export function AreaChart({
           ))}
         {series.map((s) => (
           <g key={s.label}>
-            <path
-              d={areaPath(s.values)}
-              fill={`url(#grad-${s.label.replace(/\s/g, "")})`}
-            />
+            <path d={areaPath(s.values)} fill={`url(#grad-${s.label.replace(/\s/g, "")})`} />
             <path
               d={linePath(s.values)}
               fill="none"

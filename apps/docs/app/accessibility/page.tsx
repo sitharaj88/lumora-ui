@@ -29,8 +29,8 @@ export default function AccessibilityPage() {
     >
       <DocsSection id="promise" title="The promise">
         <DocsParagraph>
-          Every Lumora primitive is designed around five hard constraints. If a release would
-          break any of them, we don't ship it.
+          Every Lumora primitive is designed around five hard constraints. If a release would break
+          any of them, we don't ship it.
         </DocsParagraph>
         <div className="grid gap-3 md:grid-cols-2">
           {lumoraAccessibilityTarget.includes.map((item, i) => (
@@ -72,15 +72,15 @@ export default function AccessibilityPage() {
           </div>
         </div>
         <DocsCallout tone="success" title="Run it yourself">
-          Clone the repo and run <code className="lm-code">pnpm test</code> — both suites finish
-          in under 2 seconds. Use them to validate custom themes too.
+          Clone the repo and run <code className="lm-code">pnpm test</code> — both suites finish in
+          under 2 seconds. Use them to validate custom themes too.
         </DocsCallout>
       </DocsSection>
 
       <DocsSection id="patterns" title="Component patterns">
         <DocsParagraph>
-          Each component below ships specific keyboard, ARIA, and focus contracts. Treat this as
-          the audit reference for your screen-reader and keyboard testing.
+          Each component below ships specific keyboard, ARIA, and focus contracts. Treat this as the
+          audit reference for your screen-reader and keyboard testing.
         </DocsParagraph>
         <div className="grid gap-4">
           {lumoraAccessibilityGuidelines.map((guideline) => (

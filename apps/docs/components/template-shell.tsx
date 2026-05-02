@@ -60,9 +60,7 @@ export function TemplateShell({
           >
             {template.productInitial}
           </span>
-          <strong className="text-base font-bold tracking-tight">
-            {template.productName}
-          </strong>
+          <strong className="text-base font-bold tracking-tight">{template.productName}</strong>
           <span className="lm-badge lm-badge-soft hidden sm:inline-flex text-xs">
             {template.category}
           </span>
@@ -87,8 +85,7 @@ export function TemplateShell({
           <span
             className="lm-avatar lm-avatar-sm"
             style={{
-              background:
-                "linear-gradient(135deg, var(--lm-color-accent), var(--lm-color-info))"
+              background: "linear-gradient(135deg, var(--lm-color-accent), var(--lm-color-info))"
             }}
             aria-label="Demo user"
           >
@@ -131,10 +128,7 @@ export function TemplateShell({
             }}
           >
             {groups.map((group, gi) => (
-              <div
-                key={group.title ?? `group-${gi}`}
-                style={{ display: "grid", gap: "0.125rem" }}
-              >
+              <div key={group.title ?? `group-${gi}`} style={{ display: "grid", gap: "0.125rem" }}>
                 {group.title && (
                   <span
                     className="lm-sidebar-section"

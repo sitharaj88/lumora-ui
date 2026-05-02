@@ -13,7 +13,11 @@ export type Cohort = {
  */
 export const cohorts: Cohort[] = [
   { label: "Feb 8 – 14", size: 1248, retention: [100, 64, 52, 46, 42, 39, 38, 36, 35, 35, 34, 34] },
-  { label: "Feb 15 – 21", size: 1342, retention: [100, 66, 55, 49, 44, 42, 40, 38, 37, 36, 36, 35] },
+  {
+    label: "Feb 15 – 21",
+    size: 1342,
+    retention: [100, 66, 55, 49, 44, 42, 40, 38, 37, 36, 36, 35]
+  },
   { label: "Feb 22 – 28", size: 1418, retention: [100, 68, 56, 51, 46, 44, 42, 40, 39, 38, 38] },
   { label: "Mar 1 – 7", size: 1542, retention: [100, 70, 58, 53, 48, 46, 44, 42, 41, 40] },
   { label: "Mar 8 – 14", size: 1684, retention: [100, 72, 60, 55, 50, 48, 46, 44, 43] },

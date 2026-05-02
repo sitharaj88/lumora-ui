@@ -25,7 +25,15 @@ export type TemplatePageProps = {
 export type TemplateMeta = {
   slug: string;
   name: string;
-  category: "Admin" | "CRM" | "Project" | "Commerce" | "Marketing" | "Analytics" | "Auth" | "Settings";
+  category:
+    | "Admin"
+    | "CRM"
+    | "Project"
+    | "Commerce"
+    | "Marketing"
+    | "Analytics"
+    | "Auth"
+    | "Settings";
   status: "ready" | "preview" | "coming-soon";
   description: string;
   /** Brand color shown in the template chrome and gallery accent. */

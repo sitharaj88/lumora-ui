@@ -1,6 +1,14 @@
 import { formatPrice, type Product, type ProductBadge } from "../data/products";
 
-export function StarRating({ value, max = 5, size = 14 }: { value: number; max?: number; size?: number }) {
+export function StarRating({
+  value,
+  max = 5,
+  size = 14
+}: {
+  value: number;
+  max?: number;
+  size?: number;
+}) {
   return (
     <span
       role="img"
@@ -11,11 +19,7 @@ export function StarRating({ value, max = 5, size = 14 }: { value: number; max?:
       {Array.from({ length: max }, (_, i) => {
         const filled = i + 1 <= Math.round(value);
         return (
-          <span
-            key={i}
-            style={{ opacity: filled ? 1 : 0.25, lineHeight: 1 }}
-            aria-hidden="true"
-          >
+          <span key={i} style={{ opacity: filled ? 1 : 0.25, lineHeight: 1 }} aria-hidden="true">
             ★
           </span>
         );
@@ -24,7 +28,13 @@ export function StarRating({ value, max = 5, size = 14 }: { value: number; max?:
   );
 }
 
-export function PriceTag({ product, size = "md" }: { product: Product; size?: "sm" | "md" | "lg" }) {
+export function PriceTag({
+  product,
+  size = "md"
+}: {
+  product: Product;
+  size?: "sm" | "md" | "lg";
+}) {
   const fontSize = size === "lg" ? "1.5rem" : size === "sm" ? "0.875rem" : "1rem";
   return (
     <span className="flex flex-wrap items-baseline gap-2">
@@ -55,12 +65,18 @@ export function ProductBadgePill({ badge }: { badge: ProductBadge }) {
     badge === "sale"
       ? "danger"
       : badge === "new"
-      ? "primary"
-      : badge === "limited"
-      ? "warning"
-      : "success";
+        ? "primary"
+        : badge === "limited"
+          ? "warning"
+          : "success";
   const label =
-    badge === "sale" ? "Sale" : badge === "new" ? "New" : badge === "limited" ? "Limited" : "Best seller";
+    badge === "sale"
+      ? "Sale"
+      : badge === "new"
+        ? "New"
+        : badge === "limited"
+          ? "Limited"
+          : "Best seller";
   return (
     <span className={`lm-badge lm-badge-${tone} text-[10px] uppercase tracking-wider`}>
       {label}

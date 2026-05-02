@@ -1,13 +1,7 @@
 import { ProductCard } from "../components/product-card";
 import { products, type ProductCategory } from "../data/products";
 
-const CATEGORIES: ProductCategory[] = [
-  "Outerwear",
-  "Tops",
-  "Bottoms",
-  "Footwear",
-  "Accessories"
-];
+const CATEGORIES: ProductCategory[] = ["Outerwear", "Tops", "Bottoms", "Footwear", "Accessories"];
 
 export function StorefrontPage() {
   const categoryCounts = CATEGORIES.map((cat) => ({
@@ -60,7 +54,8 @@ export function StorefrontPage() {
       <div
         className="lm-banner"
         style={{
-          background: "linear-gradient(90deg, color-mix(in oklab, var(--lm-color-warning) 14%, var(--lm-color-surface)), var(--lm-color-surface))",
+          background:
+            "linear-gradient(90deg, color-mix(in oklab, var(--lm-color-warning) 14%, var(--lm-color-surface)), var(--lm-color-surface))",
           borderColor: "var(--lm-color-warning)"
         }}
       >
@@ -205,7 +200,9 @@ export function StorefrontPage() {
             ))}
           </div>
           <nav className="lm-pagination justify-self-center mt-4" aria-label="Pagination">
-            <a className="lm-pagination-item" aria-disabled="true">‹</a>
+            <a className="lm-pagination-item" aria-disabled="true">
+              ‹
+            </a>
             <a className="lm-pagination-item" aria-current="page" href="#">
               1
             </a>

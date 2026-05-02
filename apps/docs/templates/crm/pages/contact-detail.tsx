@@ -10,9 +10,7 @@ export function ContactDetailPage({ contactId }: { contactId: string }) {
   const contact = getContact(contactId) ?? contacts[0];
   const company = getCompany(contact.companyId);
   const contactDeals = dealsByContact(contact.id);
-  const contactActivity = crmActivity
-    .filter((a) => a.contactId === contact.id)
-    .slice(0, 8);
+  const contactActivity = crmActivity.filter((a) => a.contactId === contact.id).slice(0, 8);
 
   return (
     <div className="grid gap-6">
@@ -106,7 +104,10 @@ export function ContactDetailPage({ contactId }: { contactId: string }) {
         <div className="lm-stat">
           <span className="lm-stat-label">Open deals</span>
           <span className="lm-stat-value tabular-nums">
-            {contactDeals.filter((d) => d.stage !== "closed-won" && d.stage !== "closed-lost").length}
+            {
+              contactDeals.filter((d) => d.stage !== "closed-won" && d.stage !== "closed-lost")
+                .length
+            }
           </span>
           <span className="lm-stat-trend">across stages</span>
         </div>
@@ -156,7 +157,10 @@ export function ContactDetailPage({ contactId }: { contactId: string }) {
                 <tbody>
                   {contactDeals.length === 0 && (
                     <tr>
-                      <td colSpan={5} className="text-center text-sm text-[var(--lm-color-muted)] py-4">
+                      <td
+                        colSpan={5}
+                        className="text-center text-sm text-[var(--lm-color-muted)] py-4"
+                      >
                         No deals yet — start one with the button above.
                       </td>
                     </tr>

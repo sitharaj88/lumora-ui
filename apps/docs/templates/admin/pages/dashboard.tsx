@@ -25,10 +25,18 @@ export function DashboardPage() {
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <div className="lm-segmented" role="radiogroup" aria-label="Time range">
-            <button type="button" className="lm-segmented-item">24h</button>
-            <button type="button" className="lm-segmented-item" aria-pressed="true">7 days</button>
-            <button type="button" className="lm-segmented-item">30 days</button>
-            <button type="button" className="lm-segmented-item">Quarter</button>
+            <button type="button" className="lm-segmented-item">
+              24h
+            </button>
+            <button type="button" className="lm-segmented-item" aria-pressed="true">
+              7 days
+            </button>
+            <button type="button" className="lm-segmented-item">
+              30 days
+            </button>
+            <button type="button" className="lm-segmented-item">
+              Quarter
+            </button>
           </div>
           <button type="button" className="lm-btn lm-btn-outline lm-btn-sm">
             Export CSV
@@ -100,16 +108,16 @@ export function DashboardPage() {
                   label: "Revenue (k)",
                   color: "primary",
                   values: [
-                    62, 68, 71, 65, 78, 82, 80, 85, 92, 95, 98, 96, 102, 110, 115, 118, 122,
-                    128, 135, 130, 138, 142, 148, 152, 158, 162, 168, 172, 178, 184
+                    62, 68, 71, 65, 78, 82, 80, 85, 92, 95, 98, 96, 102, 110, 115, 118, 122, 128,
+                    135, 130, 138, 142, 148, 152, 158, 162, 168, 172, 178, 184
                   ]
                 },
                 {
                   label: "Seats (×100)",
                   color: "accent",
                   values: [
-                    45, 48, 52, 50, 56, 60, 58, 62, 66, 68, 70, 72, 75, 78, 82, 84, 86, 88, 90,
-                    92, 95, 97, 99, 102, 105, 108, 110, 114, 118, 122
+                    45, 48, 52, 50, 56, 60, 58, 62, 66, 68, 70, 72, 75, 78, 82, 84, 86, 88, 90, 92,
+                    95, 97, 99, 102, 105, 108, 110, 114, 118, 122
                   ]
                 }
               ]}
@@ -178,16 +186,22 @@ export function DashboardPage() {
                       <span className="lm-badge lm-badge-soft text-xs">{a.plan}</span>
                     </td>
                     <td>
-                      <span className={`lm-badge lm-badge-${statusTone[a.status]} lm-badge-dot text-xs`}>
+                      <span
+                        className={`lm-badge lm-badge-${statusTone[a.status]} lm-badge-dot text-xs`}
+                      >
                         {statusLabel[a.status]}
                       </span>
                     </td>
                     <td className="text-right tabular-nums">{formatMoney(a.mrr)}</td>
-                    <td className="text-right tabular-nums font-medium">{formatMoney(a.spendYtd)}</td>
+                    <td className="text-right tabular-nums font-medium">
+                      {formatMoney(a.spendYtd)}
+                    </td>
                     <td>
                       <MiniSpark
                         values={a.trendValues}
-                        color={a.trend === "up" ? "success" : a.trend === "down" ? "danger" : "info"}
+                        color={
+                          a.trend === "up" ? "success" : a.trend === "down" ? "danger" : "info"
+                        }
                       />
                     </td>
                   </tr>
@@ -243,7 +257,9 @@ export function DashboardPage() {
                     <span aria-hidden>{a.icon}</span>
                     {a.label}
                   </span>
-                  <span aria-hidden className="text-[var(--lm-color-muted)]">→</span>
+                  <span aria-hidden className="text-[var(--lm-color-muted)]">
+                    →
+                  </span>
                 </button>
               ))}
             </div>

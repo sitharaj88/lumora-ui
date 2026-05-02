@@ -761,12 +761,7 @@ function simple(name: string, tag: string, baseClass: string, role?: string) {
   return defineComponent({
     name,
     setup(_props, { attrs, slots }) {
-      return () =>
-        h(
-          tag,
-          { role, ...attrs, class: cn(baseClass, attrClass(attrs)) },
-          slot(slots)
-        );
+      return () => h(tag, { role, ...attrs, class: cn(baseClass, attrClass(attrs)) }, slot(slots));
     }
   });
 }
@@ -774,7 +769,12 @@ function simple(name: string, tag: string, baseClass: string, role?: string) {
 // -- Button group / Toggle group / Segmented -----------------------
 export const LumoraButtonGroup = simple("LumoraButtonGroup", "div", "lm-btn-group", "group");
 
-export const LumoraToggleGroup = simple("LumoraToggleGroup", "div", "lm-toggle-group", "radiogroup");
+export const LumoraToggleGroup = simple(
+  "LumoraToggleGroup",
+  "div",
+  "lm-toggle-group",
+  "radiogroup"
+);
 export const LumoraToggleGroupItem = defineComponent({
   name: "LumoraToggleGroupItem",
   props: { pressed: { type: Boolean, default: false } },
@@ -962,11 +962,10 @@ export const LumoraTimelineItem = defineComponent({
   name: "LumoraTimelineItem",
   setup(_props, { attrs, slots }) {
     return () =>
-      h(
-        "li",
-        { ...attrs, class: cn("lm-timeline-item", attrClass(attrs)) },
-        [h("span", { class: "lm-timeline-dot", "aria-hidden": "true" }), slot(slots)]
-      );
+      h("li", { ...attrs, class: cn("lm-timeline-item", attrClass(attrs)) }, [
+        h("span", { class: "lm-timeline-dot", "aria-hidden": "true" }),
+        slot(slots)
+      ]);
   }
 });
 
@@ -1297,23 +1296,19 @@ export const LumoraNumberInput = defineComponent({
   emits: ["increment", "decrement"],
   setup(_props, { attrs, emit }) {
     return () =>
-      h(
-        "div",
-        { class: cn("lm-number-input", attrClass(attrs)) },
-        [
-          h(
-            "button",
-            { type: "button", "aria-label": "Decrement", onClick: () => emit("decrement") },
-            "−"
-          ),
-          h("input", { type: "number", inputmode: "numeric", ...attrs }),
-          h(
-            "button",
-            { type: "button", "aria-label": "Increment", onClick: () => emit("increment") },
-            "+"
-          )
-        ]
-      );
+      h("div", { class: cn("lm-number-input", attrClass(attrs)) }, [
+        h(
+          "button",
+          { type: "button", "aria-label": "Decrement", onClick: () => emit("decrement") },
+          "−"
+        ),
+        h("input", { type: "number", inputmode: "numeric", ...attrs }),
+        h(
+          "button",
+          { type: "button", "aria-label": "Increment", onClick: () => emit("increment") },
+          "+"
+        )
+      ]);
   }
 });
 
@@ -1559,11 +1554,7 @@ export const LumoraChatMessage = defineComponent({
         "div",
         {
           ...attrs,
-          class: cn(
-            "lm-chat-message",
-            props.self && "lm-chat-message-self",
-            attrClass(attrs)
-          )
+          class: cn("lm-chat-message", props.self && "lm-chat-message-self", attrClass(attrs))
         },
         slot(slots)
       );

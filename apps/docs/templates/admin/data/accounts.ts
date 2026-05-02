@@ -303,11 +303,7 @@ export const statusLabel: Record<AccountStatus, string> = {
 };
 
 export const formatMoney = (n: number) =>
-  n >= 1000
-    ? `$${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}K`
-    : n === 0
-    ? "—"
-    : `$${n}`;
+  n >= 1000 ? `$${(n / 1000).toFixed(n >= 10000 ? 0 : 1)}K` : n === 0 ? "—" : `$${n}`;
 
 export const formatMoneyFull = (n: number) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });

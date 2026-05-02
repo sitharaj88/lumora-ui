@@ -106,7 +106,10 @@ export default function InstallationPage() {
           rows={[
             { label: "Tailwind CSS", value: "v4.0 or later" },
             { label: "Node.js", value: "20.0 or later (for tooling)" },
-            { label: "Frameworks", value: "Next.js · Vite · Astro · Remix · SvelteKit · Nuxt · Rails · Phoenix" },
+            {
+              label: "Frameworks",
+              value: "Next.js · Vite · Astro · Remix · SvelteKit · Nuxt · Rails · Phoenix"
+            },
             { label: "TypeScript", value: "Optional. Adapters ship full type definitions." }
           ]}
         />
@@ -140,8 +143,9 @@ export default function InstallationPage() {
         </DocsParagraph>
         <DocsCode filename="layout.html" code={themeAttr} />
         <DocsParagraph>
-          Without the attribute, Lumora falls back to <code className="lm-code">lumora-light</code>
-          . See the <a className="text-[var(--lm-color-primary)] underline" href="/docs/theming">
+          Without the attribute, Lumora falls back to <code className="lm-code">lumora-light</code>.
+          See the{" "}
+          <a className="text-[var(--lm-color-primary)] underline" href="/docs/theming">
             theming guide
           </a>{" "}
           for runtime switching, custom themes, and per-tenant theming.
@@ -172,8 +176,8 @@ export default function InstallationPage() {
         <DocsCode filename="terminal" code={reactInstall} />
         <DocsCode filename="app/SaveButton.tsx" code={reactExample} />
         <DocsCallout tone="success" title="Tree-shakeable">
-          Each component is a named export. Bundlers strip what you don't import — typical app
-          ships under 4 KB of adapter code.
+          Each component is a named export. Bundlers strip what you don't import — typical app ships
+          under 4 KB of adapter code.
         </DocsCallout>
       </DocsSection>
 
@@ -216,8 +220,7 @@ export default function InstallationPage() {
               label: "Classes don't apply",
               value: (
                 <>
-                  Confirm{" "}
-                  <code className="lm-code">@plugin "@lumora-ui/core"</code> appears after{" "}
+                  Confirm <code className="lm-code">@plugin "@lumora-ui/core"</code> appears after{" "}
                   <code className="lm-code">@import "tailwindcss"</code>. Restart the dev server
                   after editing CSS.
                 </>
@@ -228,8 +231,8 @@ export default function InstallationPage() {
               value: (
                 <>
                   Check that <code className="lm-code">data-lm-theme</code> is set on{" "}
-                  <code className="lm-code">&lt;html&gt;</code>. Inspect the element to confirm
-                  the CSS variables resolved.
+                  <code className="lm-code">&lt;html&gt;</code>. Inspect the element to confirm the
+                  CSS variables resolved.
                 </>
               )
             },
@@ -237,8 +240,8 @@ export default function InstallationPage() {
               label: "FOUC on theme switch",
               value: (
                 <>
-                  Inject a small inline script in <code className="lm-code">&lt;head&gt;</code>{" "}
-                  that reads <code className="lm-code">localStorage</code> and applies{" "}
+                  Inject a small inline script in <code className="lm-code">&lt;head&gt;</code> that
+                  reads <code className="lm-code">localStorage</code> and applies{" "}
                   <code className="lm-code">data-lm-theme</code> before paint. See the{" "}
                   <a className="text-[var(--lm-color-primary)] underline" href="/docs/theming">
                     theming guide

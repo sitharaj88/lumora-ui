@@ -13,18 +13,14 @@ export function AuditPage() {
     <div className="grid gap-6">
       <header className="lm-page-header">
         <div>
-          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">
-            System
-          </p>
+          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">System</p>
           <h1 className="lm-page-title mt-1">Audit log</h1>
           <p className="lm-page-description">
             Immutable record of every privileged action. Retention: 90 days.
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <span className="lm-badge lm-badge-success lm-badge-dot text-xs">
-            Live · streaming
-          </span>
+          <span className="lm-badge lm-badge-success lm-badge-dot text-xs">Live · streaming</span>
           <button type="button" className="lm-btn lm-btn-outline lm-btn-sm">
             Stream to S3
           </button>
@@ -56,10 +52,7 @@ export function AuditPage() {
           <span className="lm-label text-xs">Search</span>
           <div className="lm-input-group">
             <span className="lm-input-addon">⌕</span>
-            <input
-              className="lm-input"
-              placeholder="action, resource, IP, actor…"
-            />
+            <input className="lm-input" placeholder="action, resource, IP, actor…" />
           </div>
         </label>
         <label className="lm-field">
@@ -149,8 +142,8 @@ export function AuditPage() {
                       {e.severity === "info"
                         ? "info"
                         : e.severity === "warning"
-                        ? "warning"
-                        : "critical"}
+                          ? "warning"
+                          : "critical"}
                     </span>
                   </td>
                   <td>
@@ -191,8 +184,8 @@ export function AuditPage() {
       </section>
 
       <p className="text-xs text-[var(--lm-color-muted)]">
-        Audit log entries are signed and immutable. Retention is set per workspace plan and
-        cannot be shortened by admins. Need longer retention?{" "}
+        Audit log entries are signed and immutable. Retention is set per workspace plan and cannot
+        be shortened by admins. Need longer retention?{" "}
         <a className="text-[var(--lm-color-primary)] underline" href="#">
           Contact sales
         </a>

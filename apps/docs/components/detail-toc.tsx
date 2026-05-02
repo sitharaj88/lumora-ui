@@ -18,7 +18,9 @@ export function DetailToc({ items }: { items: TocItem[] }) {
       (entries) => {
         const visible = entries
           .filter((e) => e.isIntersecting)
-          .sort((a, b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top);
+          .sort(
+            (a, b) => a.target.getBoundingClientRect().top - b.target.getBoundingClientRect().top
+          );
         if (visible[0]?.target.id) setActive(visible[0].target.id);
       },
       { rootMargin: "-96px 0px -60% 0px", threshold: [0, 0.5, 1] }

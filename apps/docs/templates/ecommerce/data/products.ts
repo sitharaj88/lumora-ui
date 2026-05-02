@@ -33,9 +33,6 @@ export type Product = {
   tags: string[];
 };
 
-const grad = (a: string, b: string) =>
-  `linear-gradient(135deg, var(--lm-color-${a}), var(--lm-color-${b}))`;
-
 const radial = (a: string, b: string) =>
   `radial-gradient(80% 80% at 30% 20%, var(--lm-color-${a}), var(--lm-color-${b}))`;
 
@@ -112,7 +109,11 @@ export const products: Product[] = [
     badge: "new",
     description:
       "150 GSM merino wool tee. Anti-odour, fast-drying, no static cling. The shirt you forget you're wearing.",
-    details: ["100% merino wool · 150 GSM", "Flatlock seams to eliminate chafe", "Hand-feel: silky"],
+    details: [
+      "100% merino wool · 150 GSM",
+      "Flatlock seams to eliminate chafe",
+      "Hand-feel: silky"
+    ],
     image: radial("success", "info"),
     gallery: [radial("success", "info"), radial("info", "primary"), radial("primary", "accent")],
     colors: all.slice(0, 2),
@@ -130,7 +131,11 @@ export const products: Product[] = [
     badge: null,
     description:
       "Stretch nylon trail pant with abrasion-resistant knees and articulated cut. Two zip pockets, one side pocket.",
-    details: ["94% nylon / 6% spandex", "Abrasion-resistant knee panels", "Articulated 4-way stretch"],
+    details: [
+      "94% nylon / 6% spandex",
+      "Abrasion-resistant knee panels",
+      "Articulated 4-way stretch"
+    ],
     image: radial("warning", "danger"),
     gallery: [radial("warning", "danger")],
     colors: [all[0], all[2]],
@@ -183,7 +188,8 @@ export const products: Product[] = [
     rating: 4.5,
     reviewCount: 62,
     badge: null,
-    description: "Recycled-cotton 5-panel with a low crown. Looks better when it's a little broken-in.",
+    description:
+      "Recycled-cotton 5-panel with a low crown. Looks better when it's a little broken-in.",
     details: ["100% recycled cotton", "Low crown · 5-panel"],
     image: radial("primary", "info"),
     gallery: [radial("primary", "info")],

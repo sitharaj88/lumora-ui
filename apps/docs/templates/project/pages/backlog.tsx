@@ -1,6 +1,6 @@
 import { IssueKey, LabelChip, MemberAvatar, PriorityIcon, TypeIcon } from "../components/atoms";
 import { getEpic } from "../data/epics";
-import { issues, issuesByStatus, priorityMeta } from "../data/issues";
+import { issuesByStatus, priorityMeta } from "../data/issues";
 
 export function BacklogPage() {
   const backlog = issuesByStatus("backlog");
@@ -93,9 +93,7 @@ export function BacklogPage() {
                         aria-hidden="true"
                       />
                       <h2 className="lm-card-title">{epic.name}</h2>
-                      <span className="lm-badge lm-badge-soft text-xs">
-                        {epic.dueQuarter}
-                      </span>
+                      <span className="lm-badge lm-badge-soft text-xs">{epic.dueQuarter}</span>
                     </>
                   ) : (
                     <h2 className="lm-card-title">No epic</h2>
@@ -160,17 +158,12 @@ export function BacklogPage() {
                         <td>
                           <div className="flex items-center gap-1.5">
                             <PriorityIcon priority={issue.priority} />
-                            <span
-                              className="text-xs"
-                              style={{ color: "var(--lm-color-muted)" }}
-                            >
+                            <span className="text-xs" style={{ color: "var(--lm-color-muted)" }}>
                               {priorityMeta[issue.priority].label}
                             </span>
                           </div>
                         </td>
-                        <td className="text-right tabular-nums text-sm">
-                          {issue.points || "—"}
-                        </td>
+                        <td className="text-right tabular-nums text-sm">{issue.points || "—"}</td>
                         <td className="text-xs text-[var(--lm-color-muted)]">
                           {issue.due ? humanDate(issue.due) : "—"}
                         </td>

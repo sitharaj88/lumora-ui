@@ -6,7 +6,14 @@ import { formatPrice, getProduct } from "../data/products";
 export function CheckoutPage() {
   const items = cartLines
     .map((line) => ({ line, product: getProduct(line.productId) }))
-    .filter((x): x is { line: (typeof cartLines)[number]; product: NonNullable<ReturnType<typeof getProduct>> } => Boolean(x.product));
+    .filter(
+      (
+        x
+      ): x is {
+        line: (typeof cartLines)[number];
+        product: NonNullable<ReturnType<typeof getProduct>>;
+      } => Boolean(x.product)
+    );
 
   const subtotal = items.reduce((s, { line, product }) => s + product.price * line.quantity, 0);
   const tax = Math.round(subtotal * 0.0875);

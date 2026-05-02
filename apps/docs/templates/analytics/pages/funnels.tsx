@@ -20,8 +20,8 @@ export function FunnelsPage() {
           </p>
           <h1 className="lm-page-title mt-1">Conversion funnels</h1>
           <p className="lm-page-description">
-            6-step funnel · last 30 days · {formatNumber(total)} entered ·{" "}
-            {formatNumber(last)} converted
+            6-step funnel · last 30 days · {formatNumber(total)} entered · {formatNumber(last)}{" "}
+            converted
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
@@ -63,7 +63,10 @@ export function FunnelsPage() {
         />
         <MetricTile
           label="Biggest drop"
-          value={`${(((biggestDrop.s as any).count !== undefined ? biggestDrop.drop : 0) / funnel.steps[Math.max(biggestDrop.i - 1, 0)].count * 100).toFixed(1)}%`}
+          value={`${(
+            (biggestDrop.drop / funnel.steps[Math.max(biggestDrop.i - 1, 0)].count) *
+            100
+          ).toFixed(1)}%`}
           tone="down"
           caption={`${funnel.steps[biggestDrop.i - 1]?.name ?? "—"} → ${biggestDrop.s.name}`}
         />
@@ -97,9 +100,7 @@ export function FunnelsPage() {
         <div className="lm-card-header flex items-center justify-between">
           <div>
             <h2 className="lm-card-title">Funnel breakdown</h2>
-            <p className="lm-card-subtitle">
-              Step-over-step conversion · drop-off labelled inline
-            </p>
+            <p className="lm-card-subtitle">Step-over-step conversion · drop-off labelled inline</p>
           </div>
           <div className="flex gap-2">
             <button type="button" className="lm-btn lm-btn-ghost lm-btn-sm">
@@ -130,9 +131,7 @@ export function FunnelsPage() {
         <div className="lm-card-header flex items-center justify-between">
           <div>
             <h2 className="lm-card-title">Compare segments</h2>
-            <p className="lm-card-subtitle">
-              Same 6 steps · split by acquisition source
-            </p>
+            <p className="lm-card-subtitle">Same 6 steps · split by acquisition source</p>
           </div>
           <button type="button" className="lm-btn lm-btn-outline lm-btn-sm">
             + Add segment
@@ -183,8 +182,8 @@ export function FunnelsPage() {
                           conv >= 25
                             ? "var(--lm-color-success)"
                             : conv >= 15
-                            ? "var(--lm-color-warning)"
-                            : "var(--lm-color-danger)"
+                              ? "var(--lm-color-warning)"
+                              : "var(--lm-color-danger)"
                       }}
                     >
                       {conv.toFixed(1)}%
@@ -214,9 +213,7 @@ export function FunnelsPage() {
                 Step {i + 1}
               </span>
               <strong className="text-xs leading-tight">{step.name}</strong>
-              <span className="text-base font-bold tabular-nums">
-                {step.avgTime ?? "—"}
-              </span>
+              <span className="text-base font-bold tabular-nums">{step.avgTime ?? "—"}</span>
             </div>
           ))}
         </div>

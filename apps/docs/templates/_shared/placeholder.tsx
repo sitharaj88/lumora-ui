@@ -23,8 +23,8 @@ export function TemplatePlaceholder({
         <div className="lm-card-body grid gap-3 p-8">
           <strong className="text-sm">This page lights up in the next phase.</strong>
           <p className="lm-hint">
-            Phase 1 wires the navigation. Phases 2+ replace each stub with real,
-            production-grade content built from Lumora components.
+            Phase 1 wires the navigation. Phases 2+ replace each stub with real, production-grade
+            content built from Lumora components.
           </p>
           {next && (
             <Link className="lm-btn lm-btn-primary lm-btn-sm w-fit" href={next.href}>

@@ -31,9 +31,7 @@ export function DealCard({ deal }: { deal: Deal }) {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <CrmAvatar initials={deal.ownerInitials} bg={deal.ownerBg} size="xs" />
-            <span className="text-[10px] text-[var(--lm-color-muted)]">
-              {deal.ownerName}
-            </span>
+            <span className="text-[10px] text-[var(--lm-color-muted)]">{deal.ownerName}</span>
           </div>
           <span className="text-[10px] text-[var(--lm-color-muted)]">
             {deal.expectedCloseRelative}

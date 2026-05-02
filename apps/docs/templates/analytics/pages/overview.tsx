@@ -1,13 +1,7 @@
 import Link from "next/link";
 import { AreaChart, BarChart } from "../../../components/chart";
 import { MetricTile } from "../components/atoms";
-import {
-  dailyMetrics,
-  formatNumber,
-  liveEvents,
-  sourceTone,
-  topEvents
-} from "../data/events";
+import { dailyMetrics, formatNumber, liveEvents, sourceTone, topEvents } from "../data/events";
 
 export function OverviewPage() {
   // Today's "now" values from the last entry of the daily series.
@@ -19,9 +13,7 @@ export function OverviewPage() {
 
   const dauDelta = ((dau - dauPrev) / dauPrev) * 100;
 
-  const last7DaysLabels = Array.from({ length: 30 }, (_, i) =>
-    i % 5 === 0 ? `D${i + 1}` : ""
-  );
+  const last7DaysLabels = Array.from({ length: 30 }, (_, i) => (i % 5 === 0 ? `D${i + 1}` : ""));
 
   return (
     <div className="grid gap-6">
@@ -98,9 +90,7 @@ export function OverviewPage() {
           <div className="lm-card-header flex items-center justify-between">
             <div>
               <h2 className="lm-card-title">Active users · last 30 days</h2>
-              <p className="lm-card-subtitle">
-                Daily actives vs signups (×10 for visual scale)
-              </p>
+              <p className="lm-card-subtitle">Daily actives vs signups (×10 for visual scale)</p>
             </div>
             <div className="flex gap-2">
               <button type="button" className="lm-btn lm-btn-ghost lm-btn-sm">
@@ -185,10 +175,7 @@ export function OverviewPage() {
                     <td
                       className="text-right tabular-nums text-xs font-bold"
                       style={{
-                        color:
-                          e.delta > 0
-                            ? "var(--lm-color-success)"
-                            : "var(--lm-color-danger)"
+                        color: e.delta > 0 ? "var(--lm-color-success)" : "var(--lm-color-danger)"
                       }}
                     >
                       {e.delta > 0 ? "▲" : "▼"} {Math.abs(e.delta).toFixed(1)}%
@@ -233,9 +220,7 @@ export function OverviewPage() {
                       <span className="truncate">{e.user}</span>
                     </div>
                     <div className="flex items-center gap-1.5 flex-shrink-0">
-                      <span
-                        className={`lm-badge lm-badge-${sourceTone[e.source]} text-[10px]`}
-                      >
+                      <span className={`lm-badge lm-badge-${sourceTone[e.source]} text-[10px]`}>
                         {e.source}
                       </span>
                       <span className="text-[10px] text-[var(--lm-color-muted)] tabular-nums">
@@ -345,10 +330,26 @@ export function OverviewPage() {
           </div>
           <div className="lm-card-body grid gap-1">
             {[
-              { label: "Open the funnel explorer", href: "/preview/analytics/funnels", desc: "6-step signup → paid" },
-              { label: "View cohort retention", href: "/preview/analytics/cohorts", desc: "12 weekly cohorts" },
-              { label: "Browse saved segments", href: "/preview/analytics/segments", desc: "6 active segments" },
-              { label: "Schedule a digest", href: "/preview/analytics/reports", desc: "6 saved reports" }
+              {
+                label: "Open the funnel explorer",
+                href: "/preview/analytics/funnels",
+                desc: "6-step signup → paid"
+              },
+              {
+                label: "View cohort retention",
+                href: "/preview/analytics/cohorts",
+                desc: "12 weekly cohorts"
+              },
+              {
+                label: "Browse saved segments",
+                href: "/preview/analytics/segments",
+                desc: "6 active segments"
+              },
+              {
+                label: "Schedule a digest",
+                href: "/preview/analytics/reports",
+                desc: "6 saved reports"
+              }
             ].map((l) => (
               <Link
                 key={l.href}

@@ -129,8 +129,8 @@ export default function MigrationPage() {
           <code className="lm-code">@lumora-ui/core</code>,{" "}
           <code className="lm-code">@lumora-ui/themes</code>,{" "}
           <code className="lm-code">@lumora-ui/react</code>, and{" "}
-          <code className="lm-code">@lumora-ui/vue</code> should match minors. Mixing 0.1 core
-          with 0.2 react can produce missing classes.
+          <code className="lm-code">@lumora-ui/vue</code> should match minors. Mixing 0.1 core with
+          0.2 react can produce missing classes.
         </DocsCallout>
       </DocsSection>
 
@@ -141,8 +141,8 @@ export default function MigrationPage() {
         </DocsParagraph>
         <DocsCode filename="diff" code={v01migration} lang="css" />
         <DocsParagraph>
-          New tokens were added — your existing themes still work without changes because new
-          tokens have sensible derived defaults via <code className="lm-code">color-mix</code>.
+          New tokens were added — your existing themes still work without changes because new tokens
+          have sensible derived defaults via <code className="lm-code">color-mix</code>.
         </DocsParagraph>
         <h3 className="text-lg font-bold tracking-tight">Release log</h3>
         <div className="grid gap-4">

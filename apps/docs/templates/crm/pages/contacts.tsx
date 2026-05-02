@@ -24,8 +24,8 @@ export function ContactsPage() {
           </p>
           <h1 className="lm-page-title mt-1">Contacts</h1>
           <p className="lm-page-description">
-            {counts.all} contacts across {new Set(contacts.map((c) => c.companyId)).size}{" "}
-            companies · {formatValue(totalPipeline)} in associated deals
+            {counts.all} contacts across {new Set(contacts.map((c) => c.companyId)).size} companies
+            · {formatValue(totalPipeline)} in associated deals
           </p>
         </div>
         <div className="flex flex-wrap items-center gap-2">

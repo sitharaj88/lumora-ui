@@ -19,9 +19,7 @@ export const templates: TemplateEntry[] = [
       "Production-grade SaaS admin shell with sidebar, KPI strip, table workflow, and bulk actions.",
     highlights: ["Sidebar + sticky navbar", "4 KPI tiles with sparklines", "Filterable table"],
     componentsUsed: ["Sidebar", "Navbar", "Stat", "Table", "Command bar", "Filter bar", "Bulk bar"],
-    preview: (
-      <span className="lm-badge lm-badge-soft">View live →</span>
-    )
+    preview: <span className="lm-badge lm-badge-soft">View live →</span>
   },
   {
     slug: "settings",

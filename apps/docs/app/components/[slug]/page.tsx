@@ -4,11 +4,7 @@ import { DetailToc } from "../../../components/detail-toc";
 import { DocsFooter } from "../../../components/footer";
 import { DocsNav } from "../../../components/docs-nav";
 import { FrameworkTabs } from "../../../components/framework-tabs";
-import {
-  componentCatalog,
-  componentsByCategory,
-  getCatalogEntry
-} from "../../../lib/catalog";
+import { componentCatalog, componentsByCategory, getCatalogEntry } from "../../../lib/catalog";
 
 export function generateStaticParams() {
   return componentCatalog.map((component) => ({ slug: component.slug }));
@@ -57,7 +53,10 @@ export default async function ComponentDetailPage({
 
       <section className="mx-auto grid max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[14rem_minmax(0,1fr)_12rem]">
         {/* Left: category sidebar */}
-        <aside className="lm-sidebar h-fit lg:sticky lg:top-24" aria-label={`${component.category} components`}>
+        <aside
+          className="lm-sidebar h-fit lg:sticky lg:top-24"
+          aria-label={`${component.category} components`}
+        >
           <Link className="lm-sidebar-item" href="/components">
             ← All components
           </Link>
@@ -86,7 +85,9 @@ export default async function ComponentDetailPage({
               >
                 Components
               </Link>
-              <span aria-hidden className="text-[var(--lm-color-muted)]">/</span>
+              <span aria-hidden className="text-[var(--lm-color-muted)]">
+                /
+              </span>
               <span className="docs-section-eyebrow">{component.category}</span>
               {component.status === "new" && (
                 <span className="lm-badge lm-badge-soft">New in 0.2</span>

@@ -123,9 +123,7 @@ export function CohortsPage() {
             ))}
 
             {/* Footer — averages */}
-            <div className="mt-2 text-xs font-bold tracking-tight">
-              Average
-            </div>
+            <div className="mt-2 text-xs font-bold tracking-tight">Average</div>
             <div className="mt-2 text-xs text-[var(--lm-color-muted)] tabular-nums text-right">
               {formatNumber(totalUsers)}
             </div>

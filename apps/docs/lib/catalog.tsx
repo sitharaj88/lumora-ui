@@ -177,7 +177,11 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     ],
     classes: [
       { name: "lm-btn", description: "Base class — required on every button" },
-      { name: "lm-btn-{variant}", description: "primary | secondary | accent | success | warning | danger | info | outline | ghost | link" },
+      {
+        name: "lm-btn-{variant}",
+        description:
+          "primary | secondary | accent | success | warning | danger | info | outline | ghost | link"
+      },
       { name: "lm-btn-{size}", description: "xs | sm | md | lg | xl" },
       { name: "lm-btn-icon", description: "Square icon-only button" },
       { name: "lm-btn-block", description: "Full-width button" },
@@ -187,11 +191,21 @@ export const componentCatalog: ComponentCatalogEntry[] = [
     props: [
       { name: "variant", type: "Variant", default: "default", description: "Visual emphasis" },
       { name: "size", type: "Size", default: "md", description: "xs / sm / md / lg / xl" },
-      { name: "loading", type: "boolean", default: "false", description: "Adds spinner + sets aria-busy" },
+      {
+        name: "loading",
+        type: "boolean",
+        default: "false",
+        description: "Adds spinner + sets aria-busy"
+      },
       { name: "pressed", type: "boolean", description: "Toggle pressed state via aria-pressed" },
       { name: "iconOnly", type: "boolean", description: "Square padding for icon-only" },
       { name: "block", type: "boolean", description: "Full-width" },
-      { name: "as", type: "ElementType", default: "button", description: "Render as <a>, <Link>, etc." }
+      {
+        name: "as",
+        type: "ElementType",
+        default: "button",
+        description: "Render as <a>, <Link>, etc."
+      }
     ],
     accessibility: a11yButton,
     htmlExample: `<button class="lm-btn lm-btn-primary lm-btn-md" type="button">
@@ -227,7 +241,8 @@ import { LumoraButton } from "@lumora-ui/vue";
     name: "Button group",
     category: "Action",
     status: "stable",
-    description: "Adjacent buttons with shared borders and isolation, perfect for segmented filter controls.",
+    description:
+      "Adjacent buttons with shared borders and isolation, perfect for segmented filter controls.",
     preview: (
       <div className="lm-btn-group">
         <button className="lm-btn">Day</button>
@@ -241,7 +256,12 @@ import { LumoraButton } from "@lumora-ui/vue";
       { name: "lm-btn-group", description: "Inline-flex wrapper that joins .lm-btn children" }
     ],
     props: [
-      { name: "orientation", type: "horizontal | vertical", default: "horizontal", description: "Stack direction" }
+      {
+        name: "orientation",
+        type: "horizontal | vertical",
+        default: "horizontal",
+        description: "Stack direction"
+      }
     ],
     accessibility: a11yButton,
     htmlExample: `<div class="lm-btn-group" role="group" aria-label="Time range">
@@ -273,7 +293,8 @@ import { LumoraButtonGroup, LumoraButton } from "@lumora-ui/vue";
     name: "Toggle group",
     category: "Action",
     status: "new",
-    description: "Single-select segmented buttons for view modes, filter dimensions, or unit pickers.",
+    description:
+      "Single-select segmented buttons for view modes, filter dimensions, or unit pickers.",
     preview: (
       <div className="lm-toggle-group">
         <button className="lm-toggle-group-item">Compact</button>
@@ -338,7 +359,10 @@ import { LumoraToggleGroup, LumoraToggleGroupItem } from "@lumora-ui/vue";
     ),
     classes: [
       { name: "lm-badge", description: "Base pill" },
-      { name: "lm-badge-{variant}", description: "primary | secondary | accent | success | warning | danger | info" },
+      {
+        name: "lm-badge-{variant}",
+        description: "primary | secondary | accent | success | warning | danger | info"
+      },
       { name: "lm-badge-soft", description: "Muted primary tint" },
       { name: "lm-badge-outline", description: "Transparent with stronger border" },
       { name: "lm-badge-dot", description: "Adds a leading colored dot" },
@@ -346,7 +370,12 @@ import { LumoraToggleGroup, LumoraToggleGroupItem } from "@lumora-ui/vue";
     ],
     props: [
       { name: "variant", type: "Variant", default: "default", description: "Color scheme" },
-      { name: "tone", type: "solid | soft | outline", default: "solid", description: "Surface treatment" },
+      {
+        name: "tone",
+        type: "solid | soft | outline",
+        default: "solid",
+        description: "Surface treatment"
+      },
       { name: "dot", type: "boolean", description: "Show leading dot" }
     ],
     accessibility: [
@@ -373,7 +402,8 @@ import { LumoraBadge } from "@lumora-ui/vue";
     name: "Tag / Chip",
     category: "Display",
     status: "stable",
-    description: "Removable tags with optional remove button. Pair with .lm-tag-input for chip-input fields.",
+    description:
+      "Removable tags with optional remove button. Pair with .lm-tag-input for chip-input fields.",
     preview: (
       <div className="flex flex-wrap gap-2">
         <span className="lm-tag">enterprise</span>
@@ -429,7 +459,8 @@ import { LumoraTag } from "@lumora-ui/vue";
     name: "Avatar",
     category: "Display",
     status: "stable",
-    description: "Circular user identity. Sizes xs–xl, image fallback, group with overlap, status dot.",
+    description:
+      "Circular user identity. Sizes xs–xl, image fallback, group with overlap, status dot.",
     preview: (
       <div className="flex items-center gap-3">
         <span className="lm-avatar lm-avatar-sm">AL</span>
@@ -489,7 +520,8 @@ import { LumoraAvatar } from "@lumora-ui/vue";
     name: "Kbd",
     category: "Display",
     status: "new",
-    description: "Keyboard key indicator for shortcuts and command palettes. Monospace + raised border.",
+    description:
+      "Keyboard key indicator for shortcuts and command palettes. Monospace + raised border.",
     preview: (
       <div className="flex items-center gap-2 text-sm">
         <span>Quick search</span>
@@ -520,7 +552,8 @@ import { LumoraKbd } from "@lumora-ui/vue";
     name: "Code & Code block",
     category: "Display",
     status: "new",
-    description: "Inline code and full code blocks with monospace, sunken background, and bordered container.",
+    description:
+      "Inline code and full code blocks with monospace, sunken background, and bordered container.",
     preview: (
       <div className="grid gap-3">
         <p className="text-sm">
@@ -618,7 +651,8 @@ import { LumoraAlert } from "@lumora-ui/vue";
     name: "Toast",
     category: "Feedback",
     status: "stable",
-    description: "Slide-in notification with semantic left stripe. Use the lm-toaster region for stacking.",
+    description:
+      "Slide-in notification with semantic left stripe. Use the lm-toaster region for stacking.",
     preview: (
       <div className="grid gap-2">
         <div className="lm-toast lm-toast-success">
@@ -756,7 +790,9 @@ import { LumoraBanner } from "@lumora-ui/vue";
       { name: "lm-spinner-{size}", description: "sm | md | lg" }
     ],
     props: [{ name: "size", type: "Size", default: "md" }],
-    accessibility: ["Wrap in aria-live='polite' if standalone, or pair with aria-busy on container."],
+    accessibility: [
+      "Wrap in aria-live='polite' if standalone, or pair with aria-busy on container."
+    ],
     htmlExample: `<span class="lm-spinner" aria-hidden="true"></span><span class="sr-only">Loading…</span>`,
     reactExample: `import { LumoraSpinner } from "@lumora-ui/react";
 
@@ -928,10 +964,7 @@ import {
               className="h-1.5 w-12 rounded-full"
               style={{ background: "color-mix(in oklab, var(--lm-color-text) 60%, transparent)" }}
             />
-            <span
-              className="h-2 w-8 rounded"
-              style={{ background: "var(--lm-color-primary)" }}
-            />
+            <span className="h-2 w-8 rounded" style={{ background: "var(--lm-color-primary)" }} />
           </div>
           <span className="h-1 w-20 rounded-full bg-[var(--lm-color-border)]" />
           <div
@@ -1252,7 +1285,9 @@ import { LumoraSwitch } from "@lumora-ui/vue";
       { name: "step", type: "number" },
       { name: "value", type: "number" }
     ],
-    accessibility: ["Provide aria-label or visible <label>; aria-valuetext for non-numeric values."],
+    accessibility: [
+      "Provide aria-label or visible <label>; aria-valuetext for non-numeric values."
+    ],
     htmlExample: `<input class="lm-slider" type="range" min="0" max="100" value="50" aria-label="Volume" />`,
     reactExample: `import { LumoraSlider } from "@lumora-ui/react";
 
@@ -1620,13 +1655,7 @@ import { LumoraCombobox, LumoraComboboxListbox, LumoraComboboxOption, LumoraInpu
               aria-selected={d === 18 ? "true" : undefined}
               data-today={d === 22 ? "true" : undefined}
               data-range={
-                d >= 18 && d <= 24
-                  ? d === 18
-                    ? "start"
-                    : d === 24
-                    ? "end"
-                    : "middle"
-                  : undefined
+                d >= 18 && d <= 24 ? (d === 18 ? "start" : d === 24 ? "end" : "middle") : undefined
               }
             >
               {d}
@@ -1893,7 +1922,10 @@ import { LumoraSegmented, LumoraSegmentedItem } from "@lumora-ui/vue";
       { name: "current", type: "number", description: "Active step index" },
       { name: "orientation", type: "horizontal | vertical" }
     ],
-    accessibility: ["Use aria-current='step' on the active step.", "Pair with aria-label='Progress'."],
+    accessibility: [
+      "Use aria-current='step' on the active step.",
+      "Pair with aria-label='Progress'."
+    ],
     htmlExample: `<ol class="lm-stepper" aria-label="Onboarding">
   <li class="lm-step lm-step-complete"><span class="lm-step-marker"></span>Connect</li>
   <li class="lm-step" aria-current="step"><span class="lm-step-marker"></span>Map roles</li>
@@ -2075,10 +2107,7 @@ import { LumoraNavbar } from "@lumora-ui/vue";
     status: "stable",
     description: "App-shell side navigation with sections, active state, and compact variant.",
     preview: (
-      <aside
-        className="lm-sidebar rounded-lg"
-        style={{ width: "100%", maxWidth: "16rem" }}
-      >
+      <aside className="lm-sidebar rounded-lg" style={{ width: "100%", maxWidth: "16rem" }}>
         <span className="lm-sidebar-section">Workspace</span>
         <a className="lm-sidebar-item" href="#" aria-current="page">
           Dashboard
@@ -2311,7 +2340,10 @@ const open = ref(false);
     ),
     classes: [
       { name: "lm-tooltip", description: "Inline-flex anchor" },
-      { name: "lm-tooltip-content", description: "Floating content (data-side='top|right|bottom|left')" }
+      {
+        name: "lm-tooltip-content",
+        description: "Floating content (data-side='top|right|bottom|left')"
+      }
     ],
     props: [
       { name: "side", type: "top | right | bottom | left", default: "top" },
@@ -2617,7 +2649,8 @@ import { LumoraContextMenu, LumoraContextMenuItem } from "@lumora-ui/vue";
     name: "Command palette",
     category: "Overlay",
     status: "new",
-    description: "⌘K finder with input, grouped list, footer with keyboard hints, and animated selection.",
+    description:
+      "⌘K finder with input, grouped list, footer with keyboard hints, and animated selection.",
     preview: (
       <div className="lm-command" style={{ maxWidth: "100%" }}>
         <input
@@ -3688,10 +3721,7 @@ import { LumoraMention } from "@lumora-ui/vue";
       { name: "lm-rt-divider", description: "1px vertical divider" }
     ],
     props: [],
-    accessibility: [
-      "Use role='toolbar' on wrapper.",
-      "Active formatting: aria-pressed='true'."
-    ],
+    accessibility: ["Use role='toolbar' on wrapper.", "Active formatting: aria-pressed='true'."],
     htmlExample: `<div class="lm-rt-toolbar" role="toolbar">
   <button class="lm-rt-button" aria-pressed="true">B</button>
 </div>`,
@@ -3720,7 +3750,8 @@ import { LumoraRichTextToolbar, LumoraRichTextButton } from "@lumora-ui/vue";
     name: "Command bar",
     category: "Pattern",
     status: "stable",
-    description: "Toolbar above tables and lists with title, primary action, and secondary actions.",
+    description:
+      "Toolbar above tables and lists with title, primary action, and secondary actions.",
     preview: (
       <div className="lm-command-bar">
         <div className="grid gap-1">

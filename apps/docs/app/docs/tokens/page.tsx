@@ -28,12 +28,7 @@ const colorGroups = [
   {
     title: "Surfaces",
     description: "Backgrounds and elevation tiers — every Lumora surface uses one of these.",
-    tokens: [
-      "color-bg",
-      "color-surface",
-      "color-surface-raised",
-      "color-surface-sunken"
-    ]
+    tokens: ["color-bg", "color-surface", "color-surface-raised", "color-surface-sunken"]
   },
   {
     title: "Text & borders",
@@ -76,13 +71,7 @@ const colorGroups = [
 
 const radiusTokens = ["radius-sm", "radius-md", "radius-lg", "radius-xl", "radius-2xl"];
 const shadowTokens = ["shadow-sm", "shadow-md", "shadow-lg", "shadow-xl", "shadow-glow"];
-const motionTokens = [
-  "ease-out",
-  "ease-spring",
-  "duration-fast",
-  "duration-base",
-  "duration-slow"
-];
+const motionTokens = ["ease-out", "ease-spring", "duration-fast", "duration-base", "duration-slow"];
 
 const toc = [
   { id: "usage", label: "Using tokens" },
@@ -108,9 +97,9 @@ export default function TokensPage() {
     >
       <DocsSection id="usage" title="Using tokens">
         <DocsParagraph>
-          Tokens are emitted as plain CSS variables on the active theme selector. Use them
-          anywhere — your own components, third-party widgets, or marketing pages — and they'll
-          stay in sync with the active theme.
+          Tokens are emitted as plain CSS variables on the active theme selector. Use them anywhere
+          — your own components, third-party widgets, or marketing pages — and they'll stay in sync
+          with the active theme.
         </DocsParagraph>
         <DocsCode filename="my-styles.css" code={usageExample} lang="css" />
         <DocsCallout tone="info" title="Color-mix is fair game">
@@ -171,16 +160,13 @@ export default function TokensPage() {
 
       <DocsSection id="radius" title="Radius">
         <DocsParagraph>
-          5 radius steps drive every Lumora corner. Buttons use{" "}
-          <code className="lm-code">md</code>, cards use <code className="lm-code">lg</code>,
-          modals use <code className="lm-code">xl</code>.
+          5 radius steps drive every Lumora corner. Buttons use <code className="lm-code">md</code>,
+          cards use <code className="lm-code">lg</code>, modals use{" "}
+          <code className="lm-code">xl</code>.
         </DocsParagraph>
         <div className="grid gap-3 md:grid-cols-5">
           {radiusTokens.map((token) => (
-            <div
-              key={token}
-              className="docs-feature-card grid gap-3 p-4 text-center"
-            >
+            <div key={token} className="docs-feature-card grid gap-3 p-4 text-center">
               <div
                 className="mx-auto h-20 w-full bg-[var(--lm-color-primary-soft)]"
                 style={{
@@ -207,10 +193,7 @@ export default function TokensPage() {
         </DocsParagraph>
         <div className="grid gap-3 md:grid-cols-3 lg:grid-cols-5">
           {shadowTokens.map((token) => (
-            <div
-              key={token}
-              className="docs-feature-card grid gap-3 p-4 text-center"
-            >
+            <div key={token} className="docs-feature-card grid gap-3 p-4 text-center">
               <div
                 className="mx-auto h-16 w-full rounded-lg bg-[var(--lm-color-surface)]"
                 style={{ boxShadow: `var(--lm-${token})` }}
@@ -269,9 +252,8 @@ export default function TokensPage() {
       <DocsSection id="density" title="Density">
         <DocsParagraph>
           A single multiplier scales control padding and gaps. Default is{" "}
-          <code className="lm-code">1</code>. Set{" "}
-          <code className="lm-code">density: 0.88</code> in your theme for compact admin views,{" "}
-          <code className="lm-code">1.14</code> for marketing.
+          <code className="lm-code">1</code>. Set <code className="lm-code">density: 0.88</code> in
+          your theme for compact admin views, <code className="lm-code">1.14</code> for marketing.
         </DocsParagraph>
         <DocsCode
           filename="example.html"

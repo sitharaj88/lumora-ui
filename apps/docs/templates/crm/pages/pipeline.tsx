@@ -1,6 +1,13 @@
 import { CrmAvatar } from "../components/avatar";
 import { DealCard } from "../components/deal-card";
-import { dealsByStage, formatValue, formatValueFull, pipelineStages, stageMeta, deals } from "../data/deals";
+import {
+  dealsByStage,
+  formatValue,
+  formatValueFull,
+  pipelineStages,
+  stageMeta,
+  deals
+} from "../data/deals";
 
 export function PipelinePage() {
   const totalValue = deals

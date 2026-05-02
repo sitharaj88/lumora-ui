@@ -20,24 +20,23 @@ export function BlogPage() {
           The Lumora blog
         </h1>
         <p className="mx-auto max-w-2xl text-[var(--lm-color-muted)] md:text-lg">
-          Engineering deep dives, customer stories, and field notes from the people building
-          Lumora.
+          Engineering deep dives, customer stories, and field notes from the people building Lumora.
         </p>
       </header>
 
       {/* Filter chips */}
       <div className="flex flex-wrap items-center justify-center gap-2">
-        <button type="button" className="lm-segmented-item lm-badge lm-badge-soft" aria-pressed="true">
+        <button
+          type="button"
+          className="lm-segmented-item lm-badge lm-badge-soft"
+          aria-pressed="true"
+        >
           All <span className="ml-1 text-[var(--lm-color-muted)]">{posts.length}</span>
         </button>
         {CATEGORIES.map((cat) => {
           const count = posts.filter((p) => p.category === cat).length;
           return (
-            <button
-              type="button"
-              key={cat}
-              className="lm-badge lm-badge-outline cursor-pointer"
-            >
+            <button type="button" key={cat} className="lm-badge lm-badge-outline cursor-pointer">
               {cat} <span className="ml-1 text-[var(--lm-color-muted)]">{count}</span>
             </button>
           );
@@ -81,9 +80,7 @@ export function BlogPage() {
       <section className="grid gap-4">
         <div className="flex items-end justify-between">
           <h2 className="text-2xl font-bold tracking-tight">Latest</h2>
-          <span className="text-xs text-[var(--lm-color-muted)]">
-            {others.length} posts
-          </span>
+          <span className="text-xs text-[var(--lm-color-muted)]">{others.length} posts</span>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {others.map((p) => (
@@ -95,9 +92,7 @@ export function BlogPage() {
       {/* Authors */}
       <section className="grid gap-4">
         <div className="text-center">
-          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">
-            Writers
-          </p>
+          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">Writers</p>
           <h2 className="mt-2 text-balance text-2xl font-bold tracking-tight">
             People writing for Lumora
           </h2>

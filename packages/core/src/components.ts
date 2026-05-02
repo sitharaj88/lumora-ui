@@ -1097,8 +1097,7 @@ export const lumoraComponents: LumoraComponentStyles = {
   // -- Navbar / Sidebar -------------------------------------------------
   ".lm-navbar": {
     alignItems: "center",
-    backgroundColor:
-      "color-mix(in oklab, var(--lm-color-surface) 78%, transparent)",
+    backgroundColor: "color-mix(in oklab, var(--lm-color-surface) 78%, transparent)",
     backdropFilter: "saturate(180%) blur(14px)",
     borderBottom: "1px solid var(--lm-color-border)",
     color: "var(--lm-color-text)",
@@ -2396,8 +2395,7 @@ export const lumoraComponents: LumoraComponentStyles = {
   ".lm-scroll-area": {
     overflow: "auto",
     scrollbarWidth: "thin",
-    scrollbarColor:
-      "color-mix(in oklab, var(--lm-color-text) 14%, transparent) transparent"
+    scrollbarColor: "color-mix(in oklab, var(--lm-color-text) 14%, transparent) transparent"
   },
 
   // -- Density modifiers ------------------------------------------------

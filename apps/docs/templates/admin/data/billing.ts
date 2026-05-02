@@ -8,12 +8,54 @@ export type Invoice = {
 };
 
 export const invoices: Invoice[] = [
-  { id: "i-1042", number: "INV-1042", date: "Apr 1, 2026", plan: "Growth", amount: 24960, status: "paid" },
-  { id: "i-1031", number: "INV-1031", date: "Mar 1, 2026", plan: "Growth", amount: 24960, status: "paid" },
-  { id: "i-1019", number: "INV-1019", date: "Feb 1, 2026", plan: "Growth", amount: 23440, status: "paid" },
-  { id: "i-1008", number: "INV-1008", date: "Jan 1, 2026", plan: "Growth", amount: 22180, status: "paid" },
-  { id: "i-998", number: "INV-998", date: "Dec 1, 2025", plan: "Growth", amount: 21940, status: "paid" },
-  { id: "i-986", number: "INV-986", date: "Nov 1, 2025", plan: "Growth", amount: 20820, status: "paid" }
+  {
+    id: "i-1042",
+    number: "INV-1042",
+    date: "Apr 1, 2026",
+    plan: "Growth",
+    amount: 24960,
+    status: "paid"
+  },
+  {
+    id: "i-1031",
+    number: "INV-1031",
+    date: "Mar 1, 2026",
+    plan: "Growth",
+    amount: 24960,
+    status: "paid"
+  },
+  {
+    id: "i-1019",
+    number: "INV-1019",
+    date: "Feb 1, 2026",
+    plan: "Growth",
+    amount: 23440,
+    status: "paid"
+  },
+  {
+    id: "i-1008",
+    number: "INV-1008",
+    date: "Jan 1, 2026",
+    plan: "Growth",
+    amount: 22180,
+    status: "paid"
+  },
+  {
+    id: "i-998",
+    number: "INV-998",
+    date: "Dec 1, 2025",
+    plan: "Growth",
+    amount: 21940,
+    status: "paid"
+  },
+  {
+    id: "i-986",
+    number: "INV-986",
+    date: "Nov 1, 2025",
+    plan: "Growth",
+    amount: 20820,
+    status: "paid"
+  }
 ];
 
 export type PricingTier = {
@@ -32,7 +74,12 @@ export const pricingTiers: PricingTier[] = [
     price: "$0",
     period: "Free forever",
     cta: "Downgrade",
-    features: ["3 workspaces", "5,000 events / month", "14-day audit retention", "Community support"]
+    features: [
+      "3 workspaces",
+      "5,000 events / month",
+      "14-day audit retention",
+      "Community support"
+    ]
   },
   {
     name: "Growth",

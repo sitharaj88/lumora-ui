@@ -3,7 +3,7 @@ import Link from "next/link";
 import { AreaChart, BarChart, DonutChart } from "../../../components/chart";
 import { DocsFooter } from "../../../components/footer";
 import { DocsNav } from "../../../components/docs-nav";
-import { Icon } from "../../../components/icon";
+import { Icon, type IconName } from "../../../components/icon";
 import { getTemplate, templates } from "../../../lib/templates";
 
 export function generateStaticParams() {
@@ -19,11 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function TemplatePage({
-  params
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function TemplatePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const template = getTemplate(slug);
   if (!template) notFound();
@@ -109,11 +105,13 @@ function TemplateBody({ slug }: { slug: string }) {
 function NavIcon({ name }: { name: string }) {
   const paths: Record<string, string> = {
     dashboard: "M3 13h8V3H3v10zm0 8h8v-6H3v6zm10 0h8V11h-8v10zm0-18v6h8V3h-8z",
-    accounts: "M16 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 13a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8zM16 13a7.96 7.96 0 0 0-3.6.85A9.99 9.99 0 0 1 18 21h6a8 8 0 0 0-8-8z",
+    accounts:
+      "M16 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM8 13a8 8 0 0 0-8 8h16a8 8 0 0 0-8-8zM16 13a7.96 7.96 0 0 0-3.6.85A9.99 9.99 0 0 1 18 21h6a8 8 0 0 0-8-8z",
     billing: "M2 7h20v4H2zM2 13h20v6H2z",
     reports: "M3 22V8h4v14H3zm7 0V2h4v20h-4zm7 0v-9h4v9h-4z",
     audit: "M5 3h11l5 5v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm10 0v6h6M8 13h8M8 17h6",
-    settings: "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19 12a7 7 0 0 0-.18-1.62l2.12-1.65-2-3.46-2.5 1a7 7 0 0 0-2.81-1.63L13 2h-2l-.63 2.64A7 7 0 0 0 7.56 6.27l-2.5-1-2 3.46 2.12 1.65A7 7 0 0 0 5 12c0 .56.07 1.1.18 1.62L3.06 15.27l2 3.46 2.5-1a7 7 0 0 0 2.81 1.63L11 22h2l.63-2.64a7 7 0 0 0 2.81-1.63l2.5 1 2-3.46-2.12-1.65A7 7 0 0 0 19 12z"
+    settings:
+      "M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM19 12a7 7 0 0 0-.18-1.62l2.12-1.65-2-3.46-2.5 1a7 7 0 0 0-2.81-1.63L13 2h-2l-.63 2.64A7 7 0 0 0 7.56 6.27l-2.5-1-2 3.46 2.12 1.65A7 7 0 0 0 5 12c0 .56.07 1.1.18 1.62L3.06 15.27l2 3.46 2.5-1a7 7 0 0 0 2.81 1.63L11 22h2l.63-2.64a7 7 0 0 0 2.81-1.63l2.5 1 2-3.46-2.12-1.65A7 7 0 0 0 19 12z"
   };
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -127,17 +125,13 @@ function NavIcon({ name }: { name: string }) {
 // ============================================================
 function AdminDashboard() {
   return (
-    <div
-      className="lm-app-shell"
-      style={{ background: "var(--lm-color-bg)", minHeight: "auto" }}
-    >
+    <div className="lm-app-shell" style={{ background: "var(--lm-color-bg)", minHeight: "auto" }}>
       <header className="lm-navbar" style={{ position: "static" }}>
         <div className="lm-navbar-brand">
           <span
             className="lm-avatar lm-avatar-sm"
             style={{
-              background:
-                "linear-gradient(135deg, var(--lm-color-primary), var(--lm-color-accent))"
+              background: "linear-gradient(135deg, var(--lm-color-primary), var(--lm-color-accent))"
             }}
           >
             A
@@ -373,14 +367,15 @@ function AdminDashboard() {
                     {accountRows.map((row) => (
                       <tr key={row.name}>
                         <td>
-                          <input type="checkbox" className="lm-checkbox" defaultChecked={row.checked} />
+                          <input
+                            type="checkbox"
+                            className="lm-checkbox"
+                            defaultChecked={row.checked}
+                          />
                         </td>
                         <td>
                           <div className="flex items-center gap-2">
-                            <span
-                              className="lm-avatar lm-avatar-xs"
-                              style={{ background: row.bg }}
-                            >
+                            <span className="lm-avatar lm-avatar-xs" style={{ background: row.bg }}>
                               {row.initials}
                             </span>
                             <div>
@@ -393,9 +388,7 @@ function AdminDashboard() {
                           <span className="lm-badge lm-badge-soft">{row.plan}</span>
                         </td>
                         <td>
-                          <span
-                            className={`lm-badge lm-badge-${row.statusTone} lm-badge-dot`}
-                          >
+                          <span className={`lm-badge lm-badge-${row.statusTone} lm-badge-dot`}>
                             {row.status}
                           </span>
                         </td>
@@ -587,8 +580,8 @@ function KpiTile({
               tone === "up"
                 ? "var(--lm-color-success)"
                 : tone === "down"
-                ? "var(--lm-color-danger)"
-                : "var(--lm-color-muted)"
+                  ? "var(--lm-color-danger)"
+                  : "var(--lm-color-muted)"
           }}
         >
           {delta}
@@ -633,8 +626,7 @@ function SettingsTemplate() {
         className="lm-banner"
         style={{
           borderColor: "var(--lm-color-warning)",
-          background:
-            "color-mix(in oklab, var(--lm-color-warning) 10%, var(--lm-color-surface))"
+          background: "color-mix(in oklab, var(--lm-color-warning) 10%, var(--lm-color-surface))"
         }}
       >
         <div className="flex items-center gap-3">
@@ -884,9 +876,17 @@ function SettingsTemplate() {
             </div>
             <div className="lm-card-body grid gap-3">
               {[
-                { label: "Account changes", desc: "Sign-ins, role changes, key rotations.", on: true },
+                {
+                  label: "Account changes",
+                  desc: "Sign-ins, role changes, key rotations.",
+                  on: true
+                },
                 { label: "Weekly digest", desc: "Summary of activity, every Monday.", on: true },
-                { label: "Security alerts", desc: "Failed logins and suspicious access.", on: true },
+                {
+                  label: "Security alerts",
+                  desc: "Failed logins and suspicious access.",
+                  on: true
+                },
                 { label: "Marketing", desc: "Product news and roadmap updates.", on: false }
               ].map((row) => (
                 <SettingRow
@@ -944,10 +944,7 @@ function SettingRow({
 // ============================================================
 function AuthTemplate() {
   return (
-    <div
-      className="grid gap-0 overflow-hidden md:grid-cols-2"
-      style={{ minHeight: "44rem" }}
-    >
+    <div className="grid gap-0 overflow-hidden md:grid-cols-2" style={{ minHeight: "44rem" }}>
       {/* Branding panel */}
       <div
         className="relative flex flex-col justify-between p-12 text-[var(--lm-color-primary-fg)]"
@@ -1041,9 +1038,7 @@ function AuthTemplate() {
             <h1 className="text-balance text-3xl font-bold tracking-tight">
               <span className="docs-headline">Welcome back</span>
             </h1>
-            <p className="text-[var(--lm-color-muted)]">
-              Sign in to continue to your workspace.
-            </p>
+            <p className="text-[var(--lm-color-muted)]">Sign in to continue to your workspace.</p>
           </div>
 
           <div className="grid gap-2">
@@ -1064,9 +1059,7 @@ function AuthTemplate() {
             <span className="lm-label">Work email</span>
             <input className="lm-input lm-input-lg" type="email" placeholder="name@company.com" />
           </label>
-          <button className="lm-btn lm-btn-primary lm-btn-block lm-btn-lg">
-            Send magic link
-          </button>
+          <button className="lm-btn lm-btn-primary lm-btn-block lm-btn-lg">Send magic link</button>
 
           <p className="text-center text-xs text-[var(--lm-color-muted)]">
             By continuing you agree to our{" "}
@@ -1086,18 +1079,8 @@ function AuthTemplate() {
             <span className="text-sm font-medium">Verify with the code we sent</span>
             <div className="lm-otp justify-center">
               <input className="lm-otp-slot" defaultValue="9" maxLength={1} />
-              <input
-                className="lm-otp-slot"
-                defaultValue="2"
-                data-state="filled"
-                maxLength={1}
-              />
-              <input
-                className="lm-otp-slot"
-                defaultValue="4"
-                data-state="filled"
-                maxLength={1}
-              />
+              <input className="lm-otp-slot" defaultValue="2" data-state="filled" maxLength={1} />
+              <input className="lm-otp-slot" defaultValue="4" data-state="filled" maxLength={1} />
               <span className="lm-otp-separator">—</span>
               <input className="lm-otp-slot" maxLength={1} />
               <input className="lm-otp-slot" maxLength={1} />
@@ -1121,10 +1104,7 @@ function AuthTemplate() {
 // ============================================================
 function BillingTemplate() {
   return (
-    <div
-      className="grid gap-6"
-      style={{ background: "var(--lm-color-bg)", padding: "1.5rem" }}
-    >
+    <div className="grid gap-6" style={{ background: "var(--lm-color-bg)", padding: "1.5rem" }}>
       <div className="lm-page-header">
         <div>
           <h1 className="lm-page-title">Billing & subscriptions</h1>
@@ -1136,10 +1116,7 @@ function BillingTemplate() {
         </div>
       </div>
 
-      <div
-        className="lm-card lm-card-gradient"
-        style={{ borderColor: "var(--lm-color-primary)" }}
-      >
+      <div className="lm-card lm-card-gradient" style={{ borderColor: "var(--lm-color-primary)" }}>
         <div className="lm-card-body grid gap-6 md:grid-cols-[1.4fr_1fr]">
           <div className="grid gap-3">
             <div className="flex items-center gap-2">
@@ -1147,7 +1124,8 @@ function BillingTemplate() {
               <span className="text-sm text-[var(--lm-color-muted)]">Annual · renews Apr 2027</span>
             </div>
             <div className="text-4xl font-bold tracking-tight">
-              $24,960 <span className="text-base font-medium text-[var(--lm-color-muted)]">/ mo</span>
+              $24,960{" "}
+              <span className="text-base font-medium text-[var(--lm-color-muted)]">/ mo</span>
             </div>
             <p className="text-sm text-[var(--lm-color-muted)]">
               Includes 200 seats, 500K events/mo, 90-day audit retention.
@@ -1174,7 +1152,12 @@ function BillingTemplate() {
             period: "Free forever",
             cta: "Current",
             ctaVariant: "outline",
-            features: ["3 workspaces", "5,000 events / month", "14-day retention", "Community support"]
+            features: [
+              "3 workspaces",
+              "5,000 events / month",
+              "14-day retention",
+              "Community support"
+            ]
           },
           {
             name: "Growth",
@@ -1221,9 +1204,7 @@ function BillingTemplate() {
             <div className="lm-card-body grid gap-5 p-6">
               <div className="flex items-center justify-between">
                 <h3 className="lm-card-title text-lg">{plan.name}</h3>
-                {plan.highlight && (
-                  <span className="lm-badge lm-badge-primary">Recommended</span>
-                )}
+                {plan.highlight && <span className="lm-badge lm-badge-primary">Recommended</span>}
               </div>
               <div className="grid gap-1">
                 <span className="text-4xl font-bold tracking-tight">{plan.price}</span>
@@ -1538,8 +1519,7 @@ function KanbanTemplate() {
             <span
               className="lm-avatar lm-avatar-sm"
               style={{
-                background:
-                  "linear-gradient(135deg, var(--lm-color-accent), var(--lm-color-info))"
+                background: "linear-gradient(135deg, var(--lm-color-accent), var(--lm-color-info))"
               }}
             >
               MK
@@ -1547,8 +1527,7 @@ function KanbanTemplate() {
             <span
               className="lm-avatar lm-avatar-sm"
               style={{
-                background:
-                  "linear-gradient(135deg, var(--lm-color-success), var(--lm-color-info))"
+                background: "linear-gradient(135deg, var(--lm-color-success), var(--lm-color-info))"
               }}
             >
               RS
@@ -1569,9 +1548,7 @@ function KanbanTemplate() {
       >
         {columns.map((col) => (
           <div key={col.title} className="grid gap-3">
-            <div
-              className="flex items-center justify-between rounded-lg border border-[var(--lm-color-border)] bg-[var(--lm-color-surface-raised)] px-3 py-2"
-            >
+            <div className="flex items-center justify-between rounded-lg border border-[var(--lm-color-border)] bg-[var(--lm-color-surface-raised)] px-3 py-2">
               <div className="flex items-center gap-2">
                 <span className={`h-2 w-2 rounded-full bg-[var(--lm-color-${col.tone})]`} />
                 <strong className="text-sm">{col.title}</strong>
@@ -1579,14 +1556,21 @@ function KanbanTemplate() {
                   {col.cards.length}
                 </span>
               </div>
-              <button
-                className="lm-btn lm-btn-ghost lm-btn-icon lm-btn-sm"
-                aria-label="Add card"
-              >
+              <button className="lm-btn lm-btn-ghost lm-btn-icon lm-btn-sm" aria-label="Add card">
                 +
               </button>
             </div>
-            {col.cards.map((card: any) => (
+            {(
+              col.cards as ReadonlyArray<{
+                title: string;
+                desc?: string;
+                labels?: string[];
+                progress?: number;
+                priority?: string;
+                due?: string;
+                assignees: ReadonlyArray<{ initials: string; bg?: string }>;
+              }>
+            ).map((card) => (
               <article
                 key={card.title}
                 className="lm-card lm-card-interactive"
@@ -1628,7 +1612,7 @@ function KanbanTemplate() {
                   )}
                   <div className="flex items-center justify-between">
                     <div className="lm-avatar-group">
-                      {card.assignees.map((a: any, i: number) => (
+                      {card.assignees.map((a, i) => (
                         <span
                           key={i}
                           className="lm-avatar lm-avatar-xs"
@@ -1651,8 +1635,8 @@ function KanbanTemplate() {
                           card.priority === "High"
                             ? "lm-badge-danger"
                             : card.priority === "Med"
-                            ? "lm-badge-warning"
-                            : "lm-badge-soft"
+                              ? "lm-badge-warning"
+                              : "lm-badge-soft"
                         } text-[10px]`}
                       >
                         {card.priority}
@@ -1702,8 +1686,8 @@ function MarketingTemplate() {
           <span className="docs-accent-text">your auditors will love.</span>
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg text-[var(--lm-color-muted)]">
-          Continuous SOC 2, ISO 27001, and HIPAA evidence collection. Wired into the tools your
-          team already uses. No agents. No audits-of-audits.
+          Continuous SOC 2, ISO 27001, and HIPAA evidence collection. Wired into the tools your team
+          already uses. No agents. No audits-of-audits.
         </p>
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <button className="lm-btn lm-btn-primary lm-btn-xl">Start free 14-day trial</button>
@@ -1757,7 +1741,10 @@ function MarketingTemplate() {
                       {
                         label: "Controls",
                         color: "primary",
-                        values: [42, 48, 52, 56, 62, 68, 72, 78, 84, 92, 102, 118, 132, 148, 168, 184, 198, 214, 226, 238, 247]
+                        values: [
+                          42, 48, 52, 56, 62, 68, 72, 78, 84, 92, 102, 118, 132, 148, 168, 184, 198,
+                          214, 226, 238, 247
+                        ]
                       }
                     ]}
                   />
@@ -1803,8 +1790,7 @@ function MarketingTemplate() {
               {
                 icon: "spark",
                 title: "Continuous evidence",
-                body:
-                  "Scans 40+ tools every hour and files findings to your auditor in one click."
+                body: "Scans 40+ tools every hour and files findings to your auditor in one click."
               },
               {
                 icon: "shield",
@@ -1814,26 +1800,22 @@ function MarketingTemplate() {
               {
                 icon: "scale",
                 title: "Audit log API",
-                body:
-                  "Stream every privileged action to your SIEM with immutable, queryable retention."
+                body: "Stream every privileged action to your SIEM with immutable, queryable retention."
               },
               {
                 icon: "globe",
                 title: "Vendor risk",
-                body:
-                  "Auto-assess subprocessors. Renewal alerts before SOC 2 reports go stale."
+                body: "Auto-assess subprocessors. Renewal alerts before SOC 2 reports go stale."
               },
               {
                 icon: "wand",
                 title: "Policy generator",
-                body:
-                  "AI-drafted policies grounded in your real config — not generic templates."
+                body: "AI-drafted policies grounded in your real config — not generic templates."
               },
               {
                 icon: "command",
                 title: "Slack-native",
-                body:
-                  "Approvals, evidence requests, and remediation — all in your existing channels."
+                body: "Approvals, evidence requests, and remediation — all in your existing channels."
               }
             ].map((f) => (
               <div className="docs-feature-card p-6" key={f.title}>
@@ -1842,7 +1824,7 @@ function MarketingTemplate() {
                     className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-[var(--lm-color-primary)]"
                     style={{ background: "var(--lm-color-primary-soft)" }}
                   >
-                    <Icon name={f.icon as any} size={22} />
+                    <Icon name={f.icon as IconName} size={22} />
                   </span>
                   <h3 className="text-lg font-bold tracking-tight">{f.title}</h3>
                   <p className="text-sm text-[var(--lm-color-muted)]">{f.body}</p>
@@ -1901,7 +1883,9 @@ function MarketingTemplate() {
                 </span>
                 <div>
                   <strong>Sam Chen</strong>
-                  <p className="text-sm text-[var(--lm-color-muted)]">VP Engineering, Atlas Finance</p>
+                  <p className="text-sm text-[var(--lm-color-muted)]">
+                    VP Engineering, Atlas Finance
+                  </p>
                 </div>
               </div>
             </div>

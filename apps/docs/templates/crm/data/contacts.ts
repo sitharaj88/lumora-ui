@@ -267,13 +267,14 @@ export const contacts: Contact[] = [
   }
 ];
 
-export const statusTone: Record<ContactStatus, "success" | "soft" | "warning" | "danger" | "info"> = {
-  champion: "success",
-  customer: "info",
-  qualified: "warning",
-  lead: "soft",
-  lapsed: "danger"
-};
+export const statusTone: Record<ContactStatus, "success" | "soft" | "warning" | "danger" | "info"> =
+  {
+    champion: "success",
+    customer: "info",
+    qualified: "warning",
+    lead: "soft",
+    lapsed: "danger"
+  };
 
 export const statusLabel: Record<ContactStatus, string> = {
   champion: "Champion",

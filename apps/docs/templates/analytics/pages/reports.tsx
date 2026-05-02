@@ -45,16 +45,8 @@ export function ReportsPage() {
           tone="up"
           caption="auto-emailed"
         />
-        <MetricTile
-          label="Subscribers"
-          value={`${totalRecipients}`}
-          caption="across all digests"
-        />
-        <MetricTile
-          label="Widgets"
-          value={`${totalWidgets}`}
-          caption="charts, tables, KPIs"
-        />
+        <MetricTile label="Subscribers" value={`${totalRecipients}`} caption="across all digests" />
+        <MetricTile label="Widgets" value={`${totalWidgets}`} caption="charts, tables, KPIs" />
       </div>
 
       {/* Filter chips */}
@@ -113,9 +105,7 @@ export function ReportsPage() {
             <div className="grid gap-3 p-5 flex-1">
               <div className="grid gap-1">
                 <strong className="text-base leading-tight">{r.name}</strong>
-                <p className="line-clamp-2 text-sm text-[var(--lm-color-muted)]">
-                  {r.description}
-                </p>
+                <p className="line-clamp-2 text-sm text-[var(--lm-color-muted)]">{r.description}</p>
               </div>
 
               <div className="grid gap-2 text-xs">
@@ -220,7 +210,7 @@ export function ReportsPage() {
                     <td>
                       <span className="lm-badge lm-badge-soft text-xs">
                         {/* Deterministic "next run" derived from id length */}
-                        in {(r.id.length * 3) % 22 + 2} hr
+                        in {((r.id.length * 3) % 22) + 2} hr
                       </span>
                     </td>
                     <td>

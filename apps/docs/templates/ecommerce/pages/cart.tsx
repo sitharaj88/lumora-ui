@@ -11,7 +11,14 @@ export function CartPage() {
       if (!product) return null;
       return { line, product };
     })
-    .filter((x): x is { line: (typeof cartLines)[number]; product: ReturnType<typeof getProduct> & object } => Boolean(x));
+    .filter(
+      (
+        x
+      ): x is {
+        line: (typeof cartLines)[number];
+        product: ReturnType<typeof getProduct> & object;
+      } => Boolean(x)
+    );
 
   const subtotal = items.reduce((s, { line, product }) => s + product!.price * line.quantity, 0);
   const tax = Math.round(subtotal * 0.0875);
@@ -28,9 +35,7 @@ export function CartPage() {
     <div className="grid gap-6">
       <header className="lm-page-header">
         <div>
-          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">
-            Your cart
-          </p>
+          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">Your cart</p>
           <h1 className="lm-page-title mt-1">Cart · {items.length} items</h1>
         </div>
         <Link href="/preview/ecommerce" className="lm-btn lm-btn-ghost lm-btn-sm no-underline">
@@ -113,13 +118,17 @@ export function CartPage() {
                   </div>
                   <div className="grid place-content-start">
                     <div className="lm-number-input" style={{ width: "7rem" }}>
-                      <button type="button" aria-label="Decrement">−</button>
+                      <button type="button" aria-label="Decrement">
+                        −
+                      </button>
                       <input
                         type="number"
                         defaultValue={line.quantity}
                         aria-label={`Quantity for ${product!.name}`}
                       />
-                      <button type="button" aria-label="Increment">+</button>
+                      <button type="button" aria-label="Increment">
+                        +
+                      </button>
                     </div>
                   </div>
                   <div className="grid place-content-start text-right">
@@ -236,10 +245,7 @@ function SummaryRow({
   const display = value === 0 && zeroLabel ? zeroLabel : formatPrice(value);
   const fontSize = size === "lg" ? "1.125rem" : "0.875rem";
   return (
-    <div
-      className="flex items-center justify-between"
-      style={{ fontSize }}
-    >
+    <div className="flex items-center justify-between" style={{ fontSize }}>
       <span className={bold ? "font-bold" : "text-[var(--lm-color-muted)]"}>{label}</span>
       <span
         className={`tabular-nums ${bold ? "font-bold" : ""}`}

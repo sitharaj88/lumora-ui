@@ -5,9 +5,7 @@ export function SettingsPage() {
     <div className="grid gap-6">
       <header className="lm-page-header">
         <div>
-          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">
-            System
-          </p>
+          <p className="text-xs uppercase tracking-wider text-[var(--lm-color-muted)]">System</p>
           <h1 className="lm-page-title mt-1">Workspace settings</h1>
           <p className="lm-page-description">
             Authentication, integrations, API access, and workspace defaults.
@@ -186,10 +184,30 @@ export function SettingsPage() {
             </div>
             <div className="lm-card-body grid gap-3">
               {[
-                { name: "Slack", desc: "Critical events to #ops-alerts", on: true, badge: "success" },
-                { name: "PagerDuty", desc: "Page on-call for severity 1+", on: true, badge: "success" },
-                { name: "Datadog", desc: "Stream audit log to Logs Explorer", on: true, badge: "success" },
-                { name: "Jira", desc: "Auto-create tickets from review events", on: false, badge: "soft" }
+                {
+                  name: "Slack",
+                  desc: "Critical events to #ops-alerts",
+                  on: true,
+                  badge: "success"
+                },
+                {
+                  name: "PagerDuty",
+                  desc: "Page on-call for severity 1+",
+                  on: true,
+                  badge: "success"
+                },
+                {
+                  name: "Datadog",
+                  desc: "Stream audit log to Logs Explorer",
+                  on: true,
+                  badge: "success"
+                },
+                {
+                  name: "Jira",
+                  desc: "Auto-create tickets from review events",
+                  on: false,
+                  badge: "soft"
+                }
               ].map((i) => (
                 <div
                   key={i.name}
@@ -357,7 +375,11 @@ export function SettingsPage() {
           </section>
 
           {/* Danger zone */}
-          <section id="danger" className="lm-card" style={{ borderColor: "var(--lm-color-danger)" }}>
+          <section
+            id="danger"
+            className="lm-card"
+            style={{ borderColor: "var(--lm-color-danger)" }}
+          >
             <div className="lm-card-header">
               <h2 className="lm-card-title">Danger zone</h2>
               <p className="lm-card-subtitle">Irreversible workspace operations.</p>

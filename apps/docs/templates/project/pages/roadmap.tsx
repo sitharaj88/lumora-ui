@@ -71,8 +71,7 @@ export function RoadmapPage() {
                 style={
                   i === 1
                     ? {
-                        background:
-                          "color-mix(in oklab, var(--lm-color-primary) 6%, transparent)"
+                        background: "color-mix(in oklab, var(--lm-color-primary) 6%, transparent)"
                       }
                     : undefined
                 }
@@ -80,9 +79,7 @@ export function RoadmapPage() {
                 <span className="flex items-center gap-2">
                   {q}
                   {i === 1 && (
-                    <span className="lm-badge lm-badge-primary lm-badge-dot text-[10px]">
-                      now
-                    </span>
+                    <span className="lm-badge lm-badge-primary lm-badge-dot text-[10px]">now</span>
                   )}
                 </span>
               </div>
@@ -94,8 +91,7 @@ export function RoadmapPage() {
             const startIdx = QUARTERS.indexOf(epic.startQuarter);
             const endIdx = QUARTERS.indexOf(epic.dueQuarter);
             const span = Math.max(endIdx - startIdx + 1, 1);
-            const progress =
-              epic.totalIssues > 0 ? (epic.doneIssues / epic.totalIssues) * 100 : 0;
+            const progress = epic.totalIssues > 0 ? (epic.doneIssues / epic.totalIssues) * 100 : 0;
             return (
               <div
                 key={epic.id}
@@ -125,8 +121,8 @@ export function RoadmapPage() {
                           epic.status === "shipped"
                             ? "success"
                             : epic.status === "in-progress"
-                            ? "warning"
-                            : "soft"
+                              ? "warning"
+                              : "soft"
                         } text-[10px]`}
                       >
                         {epic.status}

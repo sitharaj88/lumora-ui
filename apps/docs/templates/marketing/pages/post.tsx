@@ -10,7 +10,9 @@ export function PostPage({ slug }: { slug: string }) {
   const headings = post.body.filter(
     (b): b is Extract<PostBlock, { kind: "h2" }> => b.kind === "h2"
   );
-  const related = posts.filter((p) => p.slug !== post.slug && p.category === post.category).slice(0, 3);
+  const related = posts
+    .filter((p) => p.slug !== post.slug && p.category === post.category)
+    .slice(0, 3);
 
   return (
     <div className="grid gap-12">
@@ -27,11 +29,7 @@ export function PostPage({ slug }: { slug: string }) {
             {post.title}
           </h1>
           <p className="text-lg text-[var(--lm-color-muted)] leading-relaxed">{post.excerpt}</p>
-          <AuthorByline
-            authorId={post.authorId}
-            date={post.date}
-            readMinutes={post.readMinutes}
-          />
+          <AuthorByline authorId={post.authorId} date={post.date} readMinutes={post.readMinutes} />
         </div>
         <PostCover post={post} aspect="2.4/1" />
       </header>
@@ -39,10 +37,7 @@ export function PostPage({ slug }: { slug: string }) {
       {/* Article + TOC */}
       <div className="grid gap-12 lg:grid-cols-[1fr_15rem] lg:gap-16">
         {/* Body */}
-        <article
-          className="grid gap-6"
-          style={{ maxWidth: "44rem" }}
-        >
+        <article className="grid gap-6" style={{ maxWidth: "44rem" }}>
           {post.body.map((block, idx) => (
             <BlockRenderer key={idx} block={block} />
           ))}
@@ -105,10 +100,7 @@ export function PostPage({ slug }: { slug: string }) {
 
         {/* TOC + meta */}
         <aside className="hidden lg:block">
-          <div
-            className="sticky grid gap-6"
-            style={{ top: "calc(4rem + 1.5rem)" }}
-          >
+          <div className="sticky grid gap-6" style={{ top: "calc(4rem + 1.5rem)" }}>
             <div className="grid gap-2 text-xs">
               <p className="font-bold uppercase tracking-wider text-[var(--lm-color-muted)]">
                 On this page
@@ -137,7 +129,13 @@ export function PostPage({ slug }: { slug: string }) {
               <dl className="grid gap-1.5 text-sm">
                 <div className="flex justify-between">
                   <dt className="text-[var(--lm-color-muted)]">Published</dt>
-                  <dd>{new Date(post.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}</dd>
+                  <dd>
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      month: "short",
+                      day: "numeric",
+                      year: "numeric"
+                    })}
+                  </dd>
                 </div>
                 <div className="flex justify-between">
                   <dt className="text-[var(--lm-color-muted)]">Read time</dt>
@@ -211,11 +209,7 @@ function BlockRenderer({ block }: { block: PostBlock }): ReactNode {
         </h3>
       );
     case "p":
-      return (
-        <p className="text-base leading-relaxed text-[var(--lm-color-text)]">
-          {block.text}
-        </p>
-      );
+      return <p className="text-base leading-relaxed text-[var(--lm-color-text)]">{block.text}</p>;
     case "list":
       return (
         <ul className="grid gap-2.5">
@@ -225,7 +219,11 @@ function BlockRenderer({ block }: { block: PostBlock }): ReactNode {
                 className="lm-badge lm-badge-success lm-badge-dot mt-1.5 flex-shrink-0"
                 aria-hidden="true"
               />
-              <span dangerouslySetInnerHTML={{ __html: item.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>") }} />
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: item.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+                }}
+              />
             </li>
           ))}
         </ul>
@@ -255,9 +253,7 @@ function BlockRenderer({ block }: { block: PostBlock }): ReactNode {
             background: "color-mix(in oklab, var(--lm-color-primary) 6%, var(--lm-color-surface))"
           }}
         >
-          <p className="text-balance text-lg font-medium leading-relaxed italic">
-            "{block.text}"
-          </p>
+          <p className="text-balance text-lg font-medium leading-relaxed italic">"{block.text}"</p>
           <cite className="text-sm not-italic text-[var(--lm-color-muted)]">
             — {block.attribution}
           </cite>
@@ -267,7 +263,13 @@ function BlockRenderer({ block }: { block: PostBlock }): ReactNode {
       return (
         <div className={`lm-alert lm-alert-${block.tone}`}>
           <span aria-hidden="true">
-            {block.tone === "warning" ? "!" : block.tone === "danger" ? "✕" : block.tone === "success" ? "✓" : "i"}
+            {block.tone === "warning"
+              ? "!"
+              : block.tone === "danger"
+                ? "✕"
+                : block.tone === "success"
+                  ? "✓"
+                  : "i"}
           </span>
           <div>
             <p className="lm-alert-title">{block.title}</p>

@@ -14,8 +14,7 @@ export function DocsNav() {
           <span
             className="lm-avatar lm-avatar-sm"
             style={{
-              background:
-                "linear-gradient(135deg, var(--lm-color-primary), var(--lm-color-accent))"
+              background: "linear-gradient(135deg, var(--lm-color-primary), var(--lm-color-accent))"
             }}
           >
             L

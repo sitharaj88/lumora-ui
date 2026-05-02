@@ -36,9 +36,7 @@ export function BillingPage() {
           <div className="grid gap-3">
             <div className="flex items-center gap-2">
               <span className="lm-badge lm-badge-primary">Growth plan</span>
-              <span className="text-sm text-[var(--lm-color-muted)]">
-                Annual · renews Apr 2027
-              </span>
+              <span className="text-sm text-[var(--lm-color-muted)]">Annual · renews Apr 2027</span>
             </div>
             <div className="text-4xl font-bold tracking-tight tabular-nums">
               $24,960{" "}
@@ -95,9 +93,7 @@ export function BillingPage() {
               <div className="lm-card-body grid gap-5 p-6">
                 <div className="flex items-center justify-between">
                   <h3 className="text-lg font-bold tracking-tight">{plan.name}</h3>
-                  {plan.current && (
-                    <span className="lm-badge lm-badge-primary">Current</span>
-                  )}
+                  {plan.current && <span className="lm-badge lm-badge-primary">Current</span>}
                 </div>
                 <div className="grid gap-1">
                   <span className="text-4xl font-bold tracking-tight tabular-nums">
@@ -118,9 +114,7 @@ export function BillingPage() {
                 </ul>
                 <button
                   type="button"
-                  className={`lm-btn lm-btn-block lm-btn-${
-                    plan.highlight ? "primary" : "outline"
-                  }`}
+                  className={`lm-btn lm-btn-block lm-btn-${plan.highlight ? "primary" : "outline"}`}
                   disabled={plan.current}
                 >
                   {plan.cta}
@@ -183,9 +177,7 @@ export function BillingPage() {
                   </span>
                   <span className="text-xs opacity-70">Exp 12/27</span>
                 </div>
-                <div className="font-mono text-lg tracking-widest">
-                  •••• •••• •••• 4242
-                </div>
+                <div className="font-mono text-lg tracking-widest">•••• •••• •••• 4242</div>
                 <div className="flex items-center justify-between text-xs">
                   <span>ATLAS FINANCE</span>
                   <span className="opacity-70">Default</span>
@@ -237,9 +229,7 @@ export function BillingPage() {
                   <td>
                     <span className="lm-badge lm-badge-soft text-xs">{row.plan}</span>
                   </td>
-                  <td className="text-right tabular-nums font-medium">
-                    {formatMoney(row.amount)}
-                  </td>
+                  <td className="text-right tabular-nums font-medium">{formatMoney(row.amount)}</td>
                   <td>
                     <span className="lm-badge lm-badge-success lm-badge-dot text-xs">Paid</span>
                   </td>

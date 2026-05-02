@@ -398,7 +398,11 @@ export function ProjectSettingsPage() {
           </section>
 
           {/* Danger zone */}
-          <section id="danger" className="lm-card" style={{ borderColor: "var(--lm-color-danger)" }}>
+          <section
+            id="danger"
+            className="lm-card"
+            style={{ borderColor: "var(--lm-color-danger)" }}
+          >
             <div className="lm-card-header">
               <h2 className="lm-card-title">Danger zone</h2>
               <p className="lm-card-subtitle">Irreversible project operations.</p>

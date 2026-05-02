@@ -44,11 +44,7 @@ export function AuthorByline({
   if (!author) return null;
   return (
     <div className="flex items-center gap-2 text-xs text-[var(--lm-color-muted)]">
-      <span
-        className="lm-avatar lm-avatar-xs"
-        style={{ background: author.bg }}
-        aria-hidden="true"
-      >
+      <span className="lm-avatar lm-avatar-xs" style={{ background: author.bg }} aria-hidden="true">
         {author.initials}
       </span>
       <span className="text-[var(--lm-color-text)] font-medium">{author.name}</span>
@@ -73,17 +69,11 @@ export function PostCard({ post, size = "md" }: { post: Post; size?: "md" | "lg"
           <p className="text-[10px] uppercase tracking-wider text-[var(--lm-color-muted)]">
             {post.category} · {post.readMinutes} min
           </p>
-          <strong className={`leading-snug ${isLg ? "text-lg" : "text-base"}`}>
-            {post.title}
-          </strong>
+          <strong className={`leading-snug ${isLg ? "text-lg" : "text-base"}`}>{post.title}</strong>
           <p className="line-clamp-2 text-sm text-[var(--lm-color-muted)]">{post.excerpt}</p>
         </div>
         <div className="mt-auto pt-1">
-          <AuthorByline
-            authorId={post.authorId}
-            date={post.date}
-            readMinutes={post.readMinutes}
-          />
+          <AuthorByline authorId={post.authorId} date={post.date} readMinutes={post.readMinutes} />
         </div>
       </Link>
     </article>

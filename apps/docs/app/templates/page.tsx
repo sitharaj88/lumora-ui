@@ -20,7 +20,9 @@ export default function TemplatesPage() {
         <div className="grid max-w-3xl gap-4">
           <div className="flex flex-wrap items-center gap-2">
             <span className="lm-badge lm-badge-soft lm-badge-dot">New in v0.2</span>
-            <span className="lm-badge lm-badge-outline">{templateRegistry.length} multi-page apps</span>
+            <span className="lm-badge lm-badge-outline">
+              {templateRegistry.length} multi-page apps
+            </span>
             <span className="lm-badge lm-badge-outline">
               {templateRegistry.reduce((s, t) => s + t.pages.length, 0)} pages total
             </span>
@@ -47,7 +49,9 @@ export default function TemplatesPage() {
             </h2>
           </div>
           <span className="text-xs text-[var(--lm-color-muted)]">
-            {templateRegistry.length} templates · {templateRegistry.reduce((s, t) => s + t.pages.filter((p) => !p.hideFromNav).length, 0)} navigable pages
+            {templateRegistry.length} templates ·{" "}
+            {templateRegistry.reduce((s, t) => s + t.pages.filter((p) => !p.hideFromNav).length, 0)}{" "}
+            navigable pages
           </span>
         </div>
 
@@ -106,9 +110,7 @@ export default function TemplatesPage() {
                       <span className="lm-badge lm-badge-warning text-xs">Phase 1 stub</span>
                     )}
                     {tpl.status === "ready" && (
-                      <span className="lm-badge lm-badge-success lm-badge-dot text-xs">
-                        Ready
-                      </span>
+                      <span className="lm-badge lm-badge-success lm-badge-dot text-xs">Ready</span>
                     )}
                   </div>
                   <h3 className="text-base font-bold text-[var(--lm-color-text)]">{tpl.name}</h3>
@@ -124,9 +126,7 @@ export default function TemplatesPage() {
                         <span>{p.label}</span>
                       </li>
                     ))}
-                    {pages.length > 4 && (
-                      <li className="text-[10px]">+ {pages.length - 4} more</li>
-                    )}
+                    {pages.length > 4 && <li className="text-[10px]">+ {pages.length - 4} more</li>}
                   </ul>
 
                   <div className="mt-2 flex items-center justify-between text-xs text-[var(--lm-color-muted)]">

@@ -1,5 +1,3 @@
-import type { ReactNode } from "react";
-
 export type FeatureBlock = {
   id: string;
   eyebrow: string;
@@ -19,8 +17,7 @@ export const featureBlocks: FeatureBlock[] = [
     id: "continuous-evidence",
     eyebrow: "Evidence",
     title: "Continuous evidence, not screenshots",
-    body:
-      "Forty integrations, hourly polling, signed events. Your auditor sees a stream — not a folder of last quarter's PNGs.",
+    body: "Forty integrations, hourly polling, signed events. Your auditor sees a stream — not a folder of last quarter's PNGs.",
     bullets: [
       "40+ continuous integrations · AWS · GCP · Azure · Okta · GitHub · Datadog · Snowflake",
       "Hourly polling cadence · 24-hour coverage gap maximum",
@@ -32,8 +29,7 @@ export const featureBlocks: FeatureBlock[] = [
     id: "policy-as-code",
     eyebrow: "Policy",
     title: "Policy as code, with guardrails",
-    body:
-      "Write policies in Rego or our typed DSL. Diff them in pull requests. Test them against historical evidence before they ship.",
+    body: "Write policies in Rego or our typed DSL. Diff them in pull requests. Test them against historical evidence before they ship.",
     bullets: [
       "Native Rego support + a typed DSL for non-engineers",
       "Pull-request diffs against the live evidence corpus",
@@ -46,8 +42,7 @@ export const featureBlocks: FeatureBlock[] = [
     id: "frameworks",
     eyebrow: "Frameworks",
     title: "Every framework your auditor reads",
-    body:
-      "SOC 2, ISO 27001, HIPAA, PCI DSS, FedRAMP, GDPR, and 12 more. Map your existing controls in minutes; we suggest the gaps.",
+    body: "SOC 2, ISO 27001, HIPAA, PCI DSS, FedRAMP, GDPR, and 12 more. Map your existing controls in minutes; we suggest the gaps.",
     bullets: [
       "18 built-in framework templates · always-current",
       "AI-suggested mappings from your existing control library",
@@ -59,8 +54,7 @@ export const featureBlocks: FeatureBlock[] = [
     id: "audit-log",
     eyebrow: "Audit log",
     title: "An audit log your SIEM can query",
-    body:
-      "Stream every privileged action to your SIEM, your warehouse, or a webhook. Sign and verify with chain-of-custody guarantees.",
+    body: "Stream every privileged action to your SIEM, your warehouse, or a webhook. Sign and verify with chain-of-custody guarantees.",
     bullets: [
       "Push or pull · webhook, Kafka, or REST",
       "Chain-of-custody signatures verifiable offline",

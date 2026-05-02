@@ -111,12 +111,12 @@ export default function ApiReferencePage() {
                             {isColor
                               ? "color"
                               : isShadow
-                              ? "shadow"
-                              : isRadius
-                              ? "radius"
-                              : isMotion
-                              ? "motion"
-                              : "scalar"}
+                                ? "shadow"
+                                : isRadius
+                                  ? "radius"
+                                  : isMotion
+                                    ? "motion"
+                                    : "scalar"}
                           </span>
                         </td>
                       </tr>
@@ -156,11 +156,7 @@ export default function ApiReferencePage() {
                         "var(--lm-color-warning)",
                         "var(--lm-color-danger)"
                       ].map((c, i) => (
-                        <span
-                          key={i}
-                          className="h-6 flex-1 rounded-md"
-                          style={{ background: c }}
-                        />
+                        <span key={i} className="h-6 flex-1 rounded-md" style={{ background: c }} />
                       ))}
                     </div>
                     <code className="lm-code text-xs">data-lm-theme="{theme.name}"</code>
@@ -182,7 +178,8 @@ export default function ApiReferencePage() {
               Every class organized by component category. Click a component for full details.
             </p>
             {categoryOrder.map((category) => {
-              const components = componentsByCategory.find((c) => c.category === category)?.components ?? [];
+              const components =
+                componentsByCategory.find((c) => c.category === category)?.components ?? [];
               if (components.length === 0) return null;
               return (
                 <div key={category} className="docs-feature-card overflow-hidden">

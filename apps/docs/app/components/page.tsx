@@ -44,9 +44,9 @@ export default function ComponentsPage() {
     preview: c.preview
   }));
 
-  const featured = FEATURED_SLUGS.map((slug) => componentCatalog.find((c) => c.slug === slug)).filter(
-    (c): c is (typeof componentCatalog)[number] => !!c
-  );
+  const featured = FEATURED_SLUGS.map((slug) =>
+    componentCatalog.find((c) => c.slug === slug)
+  ).filter((c): c is (typeof componentCatalog)[number] => !!c);
 
   return (
     <main id="main-content" className="docs-shell relative min-h-screen">
@@ -58,7 +58,9 @@ export default function ComponentsPage() {
         <div className="grid max-w-3xl gap-5">
           <div className="flex flex-wrap items-center gap-2">
             <span className="docs-section-eyebrow">Component catalog</span>
-            <span className="lm-badge lm-badge-soft text-xs">v0.2 · {totalComponentCount} components</span>
+            <span className="lm-badge lm-badge-soft text-xs">
+              v0.2 · {totalComponentCount} components
+            </span>
           </div>
           <h1 className="text-balance text-4xl font-bold tracking-tight md:text-6xl">
             <span className="docs-headline">Every primitive your team ships,</span>{" "}
@@ -70,11 +72,7 @@ export default function ComponentsPage() {
             accessibility checklist.
           </p>
           <div className="flex flex-wrap items-center gap-3">
-            <Link
-              href="#catalog"
-              className="lm-btn lm-btn-primary"
-              data-anchor-cta
-            >
+            <Link href="#catalog" className="lm-btn lm-btn-primary" data-anchor-cta>
               Browse the catalog
             </Link>
             <span className="docs-kbd-chip">
@@ -143,9 +141,7 @@ export default function ComponentsPage() {
                   </span>
                   <strong className="text-lg text-[var(--lm-color-text)]">{c.name}</strong>
                 </div>
-                {c.status === "new" && (
-                  <span className="lm-badge lm-badge-soft text-xs">New</span>
-                )}
+                {c.status === "new" && <span className="lm-badge lm-badge-soft text-xs">New</span>}
               </div>
               <div
                 className="docs-preview pointer-events-none [&_*]:pointer-events-none"

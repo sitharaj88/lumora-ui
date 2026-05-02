@@ -26,8 +26,7 @@ export function FrameworkTabs({
 }) {
   const [active, setActive] = useState<Framework>("html");
   const code = active === "html" ? html : active === "react" ? react : vue;
-  const status =
-    active === "react" ? reactStatus : active === "vue" ? vueStatus : "stable";
+  const status = active === "react" ? reactStatus : active === "vue" ? vueStatus : "stable";
   const filename =
     active === "html" ? "index.html" : active === "react" ? "Component.tsx" : "Component.vue";
 
@@ -40,8 +39,7 @@ export function FrameworkTabs({
         style={{ gap: "0.25rem" }}
       >
         {(["html", "react", "vue"] as const).map((tab) => {
-          const tabStatus =
-            tab === "react" ? reactStatus : tab === "vue" ? vueStatus : "stable";
+          const tabStatus = tab === "react" ? reactStatus : tab === "vue" ? vueStatus : "stable";
           return (
             <button
               key={tab}

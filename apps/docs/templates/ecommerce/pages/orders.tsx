@@ -49,7 +49,8 @@ export function OrdersPage() {
           Shipped <span className="ml-1 text-[var(--lm-color-info)]">{counts.shipped}</span>
         </button>
         <button type="button" className="lm-segmented-item">
-          Processing <span className="ml-1 text-[var(--lm-color-warning)]">{counts.processing}</span>
+          Processing{" "}
+          <span className="ml-1 text-[var(--lm-color-warning)]">{counts.processing}</span>
         </button>
         <button type="button" className="lm-segmented-item">
           Cancelled <span className="ml-1 text-[var(--lm-color-danger)]">{counts.cancelled}</span>
@@ -201,8 +202,7 @@ export function OrdersPage() {
                 }}
               >
                 <span className="text-[var(--lm-color-muted)]">
-                  Tracking ·{" "}
-                  <code className="lm-code text-[10px]">{order.tracking}</code>
+                  Tracking · <code className="lm-code text-[10px]">{order.tracking}</code>
                 </span>
                 {order.status === "shipped" && (
                   <span className="lm-badge lm-badge-info lm-badge-dot">
@@ -210,9 +210,7 @@ export function OrdersPage() {
                   </span>
                 )}
                 {order.status === "delivered" && (
-                  <span className="lm-badge lm-badge-success lm-badge-dot">
-                    Delivered · Apr 24
-                  </span>
+                  <span className="lm-badge lm-badge-success lm-badge-dot">Delivered · Apr 24</span>
                 )}
               </div>
             )}

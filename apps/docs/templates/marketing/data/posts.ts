@@ -21,7 +21,12 @@ export type PostBlock =
   | { kind: "list"; items: string[] }
   | { kind: "code"; lang: string; text: string }
   | { kind: "quote"; text: string; attribution: string }
-  | { kind: "callout"; tone: "info" | "success" | "warning" | "danger"; title: string; body: string };
+  | {
+      kind: "callout";
+      tone: "info" | "success" | "warning" | "danger";
+      title: string;
+      body: string;
+    };
 
 const radial = (a: string, b: string) =>
   `radial-gradient(80% 80% at 30% 20%, var(--lm-color-${a}), var(--lm-color-${b}))`;
@@ -39,23 +44,54 @@ export const posts: Post[] = [
     cover: radial("primary", "accent"),
     featured: true,
     body: [
-      { kind: "p", text: "If you've shipped a SOC 2 Type II report, you know the rhythm. The first 270 days feel calm. The last 90 don't. Engineering rewires Slack channels, security cancels weekend plans, and someone — always — discovers a control they thought was covered by a vendor and isn't." },
-      { kind: "p", text: "After working with 1,200+ teams through their first audit, we've found that this isn't a tooling problem in the traditional sense. The tools exist. The gaps are structural." },
+      {
+        kind: "p",
+        text: "If you've shipped a SOC 2 Type II report, you know the rhythm. The first 270 days feel calm. The last 90 don't. Engineering rewires Slack channels, security cancels weekend plans, and someone — always — discovers a control they thought was covered by a vendor and isn't."
+      },
+      {
+        kind: "p",
+        text: "After working with 1,200+ teams through their first audit, we've found that this isn't a tooling problem in the traditional sense. The tools exist. The gaps are structural."
+      },
       { kind: "h2", id: "three-patterns", text: "Three patterns we see in every failed audit" },
-      { kind: "p", text: "Auditors don't fail teams because they couldn't gather evidence. They fail teams because the evidence they gathered didn't match the controls they claimed." },
-      { kind: "list", items: [
-        "**Evidence drift.** Controls were defined in Q1, the stack changed in Q2, no one updated the mapping.",
-        "**Vendor blindspots.** A subprocessor lost their own certification mid-cycle and nobody noticed.",
-        "**Manual screenshot debt.** A control marked 'automated' actually requires a quarterly screenshot that was last taken in October."
-      ] },
+      {
+        kind: "p",
+        text: "Auditors don't fail teams because they couldn't gather evidence. They fail teams because the evidence they gathered didn't match the controls they claimed."
+      },
+      {
+        kind: "list",
+        items: [
+          "**Evidence drift.** Controls were defined in Q1, the stack changed in Q2, no one updated the mapping.",
+          "**Vendor blindspots.** A subprocessor lost their own certification mid-cycle and nobody noticed.",
+          "**Manual screenshot debt.** A control marked 'automated' actually requires a quarterly screenshot that was last taken in October."
+        ]
+      },
       { kind: "h2", id: "continuous-evidence", text: "What 'continuous evidence' actually means" },
-      { kind: "p", text: "Most platforms ship continuous evidence as a marketing page. In practice, what they ship is a connector that fetches data once a day and stores it next to a control. That's a snapshot, not continuous." },
-      { kind: "callout", tone: "info", title: "The bar we hold ourselves to", body: "Continuous evidence means: every privileged action emits a signed event in real time, every control is mapped to a query against those events, and every query runs at least hourly with versioned results stored for 7 years." },
+      {
+        kind: "p",
+        text: "Most platforms ship continuous evidence as a marketing page. In practice, what they ship is a connector that fetches data once a day and stores it next to a control. That's a snapshot, not continuous."
+      },
+      {
+        kind: "callout",
+        tone: "info",
+        title: "The bar we hold ourselves to",
+        body: "Continuous evidence means: every privileged action emits a signed event in real time, every control is mapped to a query against those events, and every query runs at least hourly with versioned results stored for 7 years."
+      },
       { kind: "h2", id: "what-good-looks-like", text: "What good looks like" },
-      { kind: "p", text: "An auditor opens your dashboard. They click any control. They see a stream of evidence dating back to the last audit. They click any event. They see who, what, where, when, with cryptographic chain-of-custody." },
+      {
+        kind: "p",
+        text: "An auditor opens your dashboard. They click any control. They see a stream of evidence dating back to the last audit. They click any event. They see who, what, where, when, with cryptographic chain-of-custody."
+      },
       { kind: "p", text: "Time spent: minutes. Confidence: total. That's the bar." },
-      { kind: "code", lang: "ts", text: "// Define a control as a query, not a checklist.\nexport const accessReviewControl = {\n  id: 'CC6.3',\n  name: 'Quarterly access review',\n  evidence: query(`\n    SELECT actor, target, granted_at\n    FROM permission_grants\n    WHERE granted_at > NOW() - INTERVAL '90 days'\n  `)\n}" },
-      { kind: "quote", text: "We went from spending 3 weeks per quarter on SOC 2 evidence collection to 2 hours. Lumora pays for itself in the first audit.", attribution: "Sam Chen — VP Engineering, Atlas Finance" }
+      {
+        kind: "code",
+        lang: "ts",
+        text: "// Define a control as a query, not a checklist.\nexport const accessReviewControl = {\n  id: 'CC6.3',\n  name: 'Quarterly access review',\n  evidence: query(`\n    SELECT actor, target, granted_at\n    FROM permission_grants\n    WHERE granted_at > NOW() - INTERVAL '90 days'\n  `)\n}"
+      },
+      {
+        kind: "quote",
+        text: "We went from spending 3 weeks per quarter on SOC 2 evidence collection to 2 hours. Lumora pays for itself in the first audit.",
+        attribution: "Sam Chen — VP Engineering, Atlas Finance"
+      }
     ]
   },
   {
@@ -69,11 +105,20 @@ export const posts: Post[] = [
     readMinutes: 12,
     cover: radial("info", "accent"),
     body: [
-      { kind: "p", text: "Detection engines look simple from the product side: events come in, alerts come out. The hard part is doing it for $0.0004 per event when your customers are sending 30 million events a day." },
+      {
+        kind: "p",
+        text: "Detection engines look simple from the product side: events come in, alerts come out. The hard part is doing it for $0.0004 per event when your customers are sending 30 million events a day."
+      },
       { kind: "h2", id: "the-budget", text: "Setting a per-event budget" },
-      { kind: "p", text: "Before any code, we set a budget: under half a millicent per event, end-to-end. If we couldn't hit that, the customer pricing model didn't work." },
+      {
+        kind: "p",
+        text: "Before any code, we set a budget: under half a millicent per event, end-to-end. If we couldn't hit that, the customer pricing model didn't work."
+      },
       { kind: "h2", id: "the-architecture", text: "Architecture in three sentences" },
-      { kind: "p", text: "Events land in a Kafka topic, partitioned by tenant. A pool of stateless workers consumes the topic and writes to ClickHouse. Continuous queries run hourly against the same ClickHouse cluster, materialising into a per-tenant evidence table." }
+      {
+        kind: "p",
+        text: "Events land in a Kafka topic, partitioned by tenant. A pool of stateless workers consumes the topic and writes to ClickHouse. Continuous queries run hourly against the same ClickHouse cluster, materialising into a per-tenant evidence table."
+      }
     ]
   },
   {
@@ -87,7 +132,10 @@ export const posts: Post[] = [
     readMinutes: 7,
     cover: radial("danger", "warning"),
     body: [
-      { kind: "p", text: "FedRAMP Moderate in two months sounds impossible. It's not — but it requires a specific kind of customer and a specific kind of platform partner." }
+      {
+        kind: "p",
+        text: "FedRAMP Moderate in two months sounds impossible. It's not — but it requires a specific kind of customer and a specific kind of platform partner."
+      }
     ]
   },
   {
@@ -101,7 +149,10 @@ export const posts: Post[] = [
     readMinutes: 8,
     cover: radial("accent", "info"),
     body: [
-      { kind: "p", text: "Every team adopting policy-as-code starts with the same hopeful sentence: \"We'll just write our controls as Rego.\" Six months later, the Rego file is 4,000 lines, nobody touches it, and the business team can't read it." }
+      {
+        kind: "p",
+        text: "Every team adopting policy-as-code starts with the same hopeful sentence: \"We'll just write our controls as Rego.\" Six months later, the Rego file is 4,000 lines, nobody touches it, and the business team can't read it."
+      }
     ]
   },
   {
@@ -115,7 +166,10 @@ export const posts: Post[] = [
     readMinutes: 5,
     cover: radial("primary", "info"),
     body: [
-      { kind: "p", text: "Today we're shipping the Audit Log API. Every privileged action — sign-in, key rotation, role grant, policy change — is now available as a signed, queryable, exportable stream." }
+      {
+        kind: "p",
+        text: "Today we're shipping the Audit Log API. Every privileged action — sign-in, key rotation, role grant, policy change — is now available as a signed, queryable, exportable stream."
+      }
     ]
   },
   {
@@ -129,7 +183,10 @@ export const posts: Post[] = [
     readMinutes: 11,
     cover: radial("info", "primary"),
     body: [
-      { kind: "p", text: "SCIM is a protocol for syncing users between identity providers and applications. The spec is 90 pages. The implementations are inventive." }
+      {
+        kind: "p",
+        text: "SCIM is a protocol for syncing users between identity providers and applications. The spec is 90 pages. The implementations are inventive."
+      }
     ]
   }
 ];
@@ -141,5 +198,9 @@ export function postsByCategory(category: PostCategory) {
 }
 
 export function formatPostDate(iso: string) {
-  return new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+  });
 }

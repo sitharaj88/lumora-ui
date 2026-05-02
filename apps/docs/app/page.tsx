@@ -5,11 +5,7 @@ import { CodeCopy } from "../components/code-copy";
 import { DocsFooter } from "../components/footer";
 import { DocsNav } from "../components/docs-nav";
 import { Icon } from "../components/icon";
-import {
-  categoryOrder,
-  componentCatalog,
-  componentsByCategory
-} from "../lib/catalog";
+import { categoryOrder, componentCatalog, componentsByCategory } from "../lib/catalog";
 import { templates } from "../lib/templates";
 
 const installCss = `/* app/globals.css */
@@ -114,9 +110,7 @@ export default function Home() {
       <section className="relative mx-auto grid max-w-7xl gap-12 px-6 pt-20 pb-16 lg:grid-cols-[1fr_1fr] lg:pt-28">
         <div className="grid content-center gap-7">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="lm-badge lm-badge-soft lm-badge-dot">
-              v0.2 · Tailwind v4 plugin
-            </span>
+            <span className="lm-badge lm-badge-soft lm-badge-dot">v0.2 · Tailwind v4 plugin</span>
             <span className="lm-badge lm-badge-outline">MIT licensed</span>
             <span className="lm-badge lm-badge-outline">SSR-safe</span>
           </div>
@@ -128,9 +122,9 @@ export default function Home() {
           </h1>
 
           <p className="max-w-xl text-lg leading-8 text-[var(--lm-color-muted)]">
-            {componentCatalog.length} semantic components, {lumoraThemes.length} themes, motion
-            and accessibility verified in CI. Built on a single Tailwind plugin so your bundle
-            stays tree-shaken and your markup stays readable.
+            {componentCatalog.length} semantic components, {lumoraThemes.length} themes, motion and
+            accessibility verified in CI. Built on a single Tailwind plugin so your bundle stays
+            tree-shaken and your markup stays readable.
           </p>
 
           <div className="flex flex-wrap items-center gap-3">
@@ -252,11 +246,7 @@ export default function Home() {
                       "var(--lm-color-warning)",
                       "var(--lm-color-danger)"
                     ].map((c, i) => (
-                      <span
-                        key={i}
-                        className="h-7 flex-1 rounded-md"
-                        style={{ background: c }}
-                      />
+                      <span key={i} className="h-7 flex-1 rounded-md" style={{ background: c }} />
                     ))}
                   </div>
                   <div className="flex items-center gap-2">
@@ -303,9 +293,7 @@ export default function Home() {
               >
                 <div className="flex items-center justify-between">
                   <strong className="text-base text-[var(--lm-color-text)]">{category}</strong>
-                  <span className="lm-badge lm-badge-soft text-xs">
-                    {components.length}
-                  </span>
+                  <span className="lm-badge lm-badge-soft text-xs">{components.length}</span>
                 </div>
                 <ul className="grid gap-1 text-sm text-[var(--lm-color-muted)]">
                   {components.slice(0, 4).map((c) => (
@@ -335,8 +323,8 @@ export default function Home() {
           </h2>
           <p className="max-w-xl text-[var(--lm-color-muted)]">
             Add the plugin to your CSS, install the package, and every{" "}
-            <code className="lm-code">lm-*</code> class is available. No build config, no
-            adapters required.
+            <code className="lm-code">lm-*</code> class is available. No build config, no adapters
+            required.
           </p>
           <CodeCopy code={installShell} />
           <p className="text-xs text-[var(--lm-color-muted)]">
@@ -376,7 +364,14 @@ export default function Home() {
             </thead>
             <tbody>
               {[
-                ["Components (CSS)", `${componentCatalog.length}`, "61", "—", "500+ blocks", "100+"],
+                [
+                  "Components (CSS)",
+                  `${componentCatalog.length}`,
+                  "61",
+                  "—",
+                  "500+ blocks",
+                  "100+"
+                ],
                 ["Themes", lumoraThemes.length.toString(), "35", "1", "1", "2"],
                 ["Typed React adapter", "126 components", "—", "Yes", "Paid", "Yes"],
                 ["Typed Vue adapter", "131 components", "—", "—", "—", "—"],
@@ -438,9 +433,7 @@ export default function Home() {
                 </span>
               </div>
               <strong className="text-base text-[var(--lm-color-text)]">{tpl.name}</strong>
-              <p className="line-clamp-2 text-sm text-[var(--lm-color-muted)]">
-                {tpl.description}
-              </p>
+              <p className="line-clamp-2 text-sm text-[var(--lm-color-muted)]">{tpl.description}</p>
               <div className="mt-auto flex items-center justify-between text-xs text-[var(--lm-color-muted)]">
                 <span>View live</span>
                 <span aria-hidden>→</span>

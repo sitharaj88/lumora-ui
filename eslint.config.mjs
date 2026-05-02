@@ -26,7 +26,16 @@ export default [
       }
     },
     rules: {
-      "no-undef": "off"
+      "no-undef": "off",
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+          destructuredArrayIgnorePattern: "^_"
+        }
+      ]
     }
   },
   {

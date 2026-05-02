@@ -20,8 +20,7 @@ export const ecommerceTemplate: TemplateMeta = {
   name: "Storefront",
   category: "Commerce",
   status: "ready",
-  description:
-    "A 5-page direct-to-consumer storefront: catalog, product, cart, checkout, orders.",
+  description: "A 5-page direct-to-consumer storefront: catalog, product, cart, checkout, orders.",
   productName: "Raven Outfitters",
   productInitial: "R",
   accent: "var(--lm-color-warning)",

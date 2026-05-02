@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { AreaChart } from "../../../components/chart";
 import { ComplianceBadge, PostCard } from "../components/atoms";
-import { featureBlocks } from "../data/features";
 import { posts } from "../data/posts";
 import { customerLogos, heroStats, testimonials } from "../data/site";
 
