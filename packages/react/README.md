@@ -1,24 +1,24 @@
-# @lumora-ui/react
+# @lumora-design/react
 
 Beta React wrappers for Lumora UI.
 
 ## Install
 
 ```bash
-pnpm add @lumora-ui/core @lumora-ui/react
+pnpm add @lumora-design/core @lumora-design/react
 ```
 
 Make sure the core plugin is loaded in your Tailwind CSS entrypoint:
 
 ```css
 @import "tailwindcss";
-@plugin "@lumora-ui/core";
+@plugin "@lumora-design/core";
 ```
 
 ## Usage
 
 ```tsx
-import { LumoraButton, LumoraCard, LumoraInput } from "@lumora-ui/react";
+import { LumoraButton, LumoraCard, LumoraInput } from "@lumora-design/react";
 
 export function Example() {
   return (
@@ -64,4 +64,4 @@ Compound aliases are available for common structures:
 </LumoraModal>
 ```
 
-React components are intentionally thin and emit the same `lm-*` classes documented by `@lumora-ui/core`.
+React components are intentionally thin and emit the same `lm-*` classes documented by `@lumora-design/core`.

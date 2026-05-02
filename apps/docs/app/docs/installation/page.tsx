@@ -13,37 +13,37 @@ export const metadata = {
 };
 
 const installPnpm = `# pnpm
-pnpm add @lumora-ui/core tailwindcss
+pnpm add @lumora-design/core tailwindcss
 
 # npm
-npm install @lumora-ui/core tailwindcss
+npm install @lumora-design/core tailwindcss
 
 # yarn
-yarn add @lumora-ui/core tailwindcss
+yarn add @lumora-design/core tailwindcss
 
 # bun
-bun add @lumora-ui/core tailwindcss`;
+bun add @lumora-design/core tailwindcss`;
 
 const cssSnippet = `/* app/globals.css */
 @import "tailwindcss";
-@plugin "@lumora-ui/core";`;
+@plugin "@lumora-design/core";`;
 
 const htmlVerify = `<button class="lm-btn lm-btn-primary lm-btn-md">It works</button>`;
 
-const reactInstall = `pnpm add @lumora-ui/react`;
+const reactInstall = `pnpm add @lumora-design/react`;
 
 const reactExample = `// app/SaveButton.tsx
-import { LumoraButton } from "@lumora-ui/react";
+import { LumoraButton } from "@lumora-design/react";
 
 export function SaveButton() {
   return <LumoraButton variant="primary">Save changes</LumoraButton>;
 }`;
 
-const vueInstall = `pnpm add @lumora-ui/vue`;
+const vueInstall = `pnpm add @lumora-design/vue`;
 
 const vueExample = `<!-- App.vue -->
 <script setup lang="ts">
-import { LumoraButton } from "@lumora-ui/vue";
+import { LumoraButton } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -220,9 +220,9 @@ export default function InstallationPage() {
               label: "Classes don't apply",
               value: (
                 <>
-                  Confirm <code className="lm-code">@plugin "@lumora-ui/core"</code> appears after{" "}
-                  <code className="lm-code">@import "tailwindcss"</code>. Restart the dev server
-                  after editing CSS.
+                  Confirm <code className="lm-code">@plugin "@lumora-design/core"</code> appears
+                  after <code className="lm-code">@import "tailwindcss"</code>. Restart the dev
+                  server after editing CSS.
                 </>
               )
             },
@@ -254,8 +254,8 @@ export default function InstallationPage() {
               label: "Adapter classes mismatch",
               value: (
                 <>
-                  Pin <code className="lm-code">@lumora-ui/core</code> and{" "}
-                  <code className="lm-code">@lumora-ui/react</code> to matching minor versions —
+                  Pin <code className="lm-code">@lumora-design/core</code> and{" "}
+                  <code className="lm-code">@lumora-design/react</code> to matching minor versions —
                   they share the class contract.
                 </>
               )

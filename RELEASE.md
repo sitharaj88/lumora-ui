@@ -4,7 +4,7 @@ Lumora UI uses Changesets for versioning and publishing.
 
 ## Before publishing
 
-1. Confirm npm organization ownership for `@lumora-ui`.
+1. Confirm npm organization ownership for `@lumora-design`.
 2. Create `NPM_TOKEN` in GitHub repository secrets.
 3. Run `pnpm install --frozen-lockfile`.
 4. Run `pnpm release:check`.
@@ -25,7 +25,7 @@ The docs app is private and excluded from package publishing.
 ## Public launch checklist
 
 - [ ] GitHub repository created at `sitharaj88/lumora-ui`.
-- [ ] npm organization `@lumora-ui` claimed.
+- [ ] npm organization `@lumora-design` claimed.
 - [ ] `NPM_TOKEN` configured with publish access.
 - [ ] Docs site deployed.
 - [ ] `README.md`, `ROADMAP.md`, and `CHANGELOG.md` reviewed.

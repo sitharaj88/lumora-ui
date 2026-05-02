@@ -6,10 +6,10 @@
     "moduleResolution": "Bundler",
     "baseUrl": ".",
     "paths": {
-      "@lumora-ui/core": ["packages/core/src/index.ts"],
-      "@lumora-ui/react": ["packages/react/src/index.tsx"],
-      "@lumora-ui/themes": ["packages/themes/src/index.ts"],
-      "@lumora-ui/vue": ["packages/vue/src/index.ts"]
+      "@lumora-design/core": ["packages/core/src/index.ts"],
+      "@lumora-design/react": ["packages/react/src/index.tsx"],
+      "@lumora-design/themes": ["packages/themes/src/index.ts"],
+      "@lumora-design/vue": ["packages/vue/src/index.ts"]
     },
     "jsx": "react-jsx",
     "strict": true,

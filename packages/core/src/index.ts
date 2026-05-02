@@ -4,7 +4,7 @@ import {
   defaultThemeName,
   lumoraThemes,
   tokensToCssVariables
-} from "@lumora-ui/themes";
+} from "@lumora-design/themes";
 import { lumoraComponents } from "./components";
 
 export {
@@ -20,8 +20,8 @@ export {
   lumoraThemes,
   requiredThemeTokens,
   tokensToCssVariables
-} from "@lumora-ui/themes";
-export type { LumoraTheme, LumoraThemeMode, LumoraThemeToken } from "@lumora-ui/themes";
+} from "@lumora-design/themes";
+export type { LumoraTheme, LumoraThemeMode, LumoraThemeToken } from "@lumora-design/themes";
 
 export type LumoraDensity = "compact" | "comfortable" | "spacious";
 

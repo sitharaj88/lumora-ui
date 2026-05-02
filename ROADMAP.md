@@ -5,7 +5,7 @@
 - 65 components across 11 categories with the stable `lm-*` class contract.
 - 39 themes (light / dark / graphite / aurora / nord / solarized and more),
   each WCAG-AA verified for every semantic surface.
-- React (`@lumora-ui/react`) and Vue (`@lumora-ui/vue`) adapters.
+- React (`@lumora-design/react`) and Vue (`@lumora-design/vue`) adapters.
 - 6 multi-page enterprise templates (Admin Console, CRM, Project tracker,
   E-commerce, Marketing, Analytics) with 70+ preview routes.
 - Documentation site with searchable catalog, framework code tabs, CSS

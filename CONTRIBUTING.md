@@ -12,7 +12,7 @@ pnpm docs:dev
 
 ## Development rules
 
-- Keep styling behavior in `@lumora-ui/core`; React and Vue packages should remain thin wrappers.
+- Keep styling behavior in `@lumora-design/core`; React and Vue packages should remain thin wrappers.
 - Use the public `lm-*` class contract for examples and adapter output.
 - Add or update tests when changing tokens, component classes, or adapter props.
 - Keep themes WCAG AA for the tested foreground/background pairs.

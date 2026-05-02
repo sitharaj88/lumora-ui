@@ -11,8 +11,8 @@ export const metadata = {
   title: "Versioning & migration — Lumora UI"
 };
 
-const upgradeCmd = `pnpm up @lumora-ui/core@latest @lumora-ui/themes@latest \\
-  @lumora-ui/react@latest @lumora-ui/vue@latest`;
+const upgradeCmd = `pnpm up @lumora-design/core@latest @lumora-design/themes@latest \\
+  @lumora-design/react@latest @lumora-design/vue@latest`;
 
 const v01migration = `/* Before — 0.1 */
 .lm-input { border: 1px solid var(--lm-color-border); }
@@ -87,7 +87,7 @@ export default function MigrationPage() {
             </>,
             <>
               <strong>Plugin options</strong>: the API of{" "}
-              <code className="lm-code">@plugin "@lumora-ui/core"</code>.
+              <code className="lm-code">@plugin "@lumora-design/core"</code>.
             </>
           ]}
         />
@@ -126,11 +126,11 @@ export default function MigrationPage() {
         </DocsParagraph>
         <DocsCode filename="terminal" code={upgradeCmd} />
         <DocsCallout tone="info" title="Always pin same minor version">
-          <code className="lm-code">@lumora-ui/core</code>,{" "}
-          <code className="lm-code">@lumora-ui/themes</code>,{" "}
-          <code className="lm-code">@lumora-ui/react</code>, and{" "}
-          <code className="lm-code">@lumora-ui/vue</code> should match minors. Mixing 0.1 core with
-          0.2 react can produce missing classes.
+          <code className="lm-code">@lumora-design/core</code>,{" "}
+          <code className="lm-code">@lumora-design/themes</code>,{" "}
+          <code className="lm-code">@lumora-design/react</code>, and{" "}
+          <code className="lm-code">@lumora-design/vue</code> should match minors. Mixing 0.1 core
+          with 0.2 react can produce missing classes.
         </DocsCallout>
       </DocsSection>
 

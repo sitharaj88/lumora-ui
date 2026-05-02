@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import { lumoraThemes } from "@lumora-ui/themes";
+import { lumoraThemes } from "@lumora-design/themes";
 import { componentCatalog } from "../lib/catalog";
 import "./globals.css";
 

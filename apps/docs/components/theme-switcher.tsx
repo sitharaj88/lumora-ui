@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { lumoraThemes } from "@lumora-ui/themes";
+import { lumoraThemes } from "@lumora-design/themes";
 
 export function ThemeSwitcher() {
   const [theme, setTheme] = useState("lumora-light");

@@ -6,7 +6,7 @@ import {
   tokensToCssVariables
 } from "../packages/core/src";
 
-describe("@lumora-ui/core", () => {
+describe("@lumora-design/core", () => {
   it("exposes the planned lm-* component surface", () => {
     const required = [
       ".lm-btn",

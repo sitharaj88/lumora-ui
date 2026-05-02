@@ -1,4 +1,4 @@
-import { lumoraThemes, requiredThemeTokens } from "@lumora-ui/themes";
+import { lumoraThemes, requiredThemeTokens } from "@lumora-design/themes";
 import Link from "next/link";
 import { DocsFooter } from "../../components/footer";
 import { DocsNav } from "../../components/docs-nav";

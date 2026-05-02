@@ -1,18 +1,18 @@
-# @lumora-ui/vue
+# @lumora-design/vue
 
 Beta Vue wrappers for Lumora UI.
 
 ## Install
 
 ```bash
-pnpm add @lumora-ui/core @lumora-ui/vue
+pnpm add @lumora-design/core @lumora-design/vue
 ```
 
 Make sure the core plugin is loaded in your Tailwind CSS entrypoint:
 
 ```css
 @import "tailwindcss";
-@plugin "@lumora-ui/core";
+@plugin "@lumora-design/core";
 ```
 
 ## Usage
@@ -27,7 +27,7 @@ import {
   LumoraCardHeader,
   LumoraCardTitle,
   LumoraInput
-} from "@lumora-ui/vue";
+} from "@lumora-design/vue";
 </script>
 
 <template>
@@ -56,4 +56,4 @@ The package includes slot-based wrappers for:
 - Data display: `LumoraTable`, `LumoraAvatar`, `LumoraSkeleton`, `LumoraProgress`, `LumoraSpinner`
 - Utilities: `LumoraDensityScope`, `cn`
 
-Vue components are intentionally thin and emit the same `lm-*` classes documented by `@lumora-ui/core`.
+Vue components are intentionally thin and emit the same `lm-*` classes documented by `@lumora-design/core`.

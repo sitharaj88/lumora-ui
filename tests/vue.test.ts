@@ -50,7 +50,7 @@ import {
   cn
 } from "../packages/vue/src";
 
-describe("@lumora-ui/vue", () => {
+describe("@lumora-design/vue", () => {
   it("renders form and feedback wrappers with expected lm-* classes", async () => {
     const markup = await renderToString(
       h("div", [

@@ -5,10 +5,10 @@
 > multi-page templates.
 
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
-[![npm — core](https://img.shields.io/npm/v/@lumora-ui/core.svg?label=%40lumora-ui%2Fcore)](https://www.npmjs.com/package/@lumora-ui/core)
-[![npm — themes](https://img.shields.io/npm/v/@lumora-ui/themes.svg?label=%40lumora-ui%2Fthemes)](https://www.npmjs.com/package/@lumora-ui/themes)
-[![npm — react](https://img.shields.io/npm/v/@lumora-ui/react.svg?label=%40lumora-ui%2Freact)](https://www.npmjs.com/package/@lumora-ui/react)
-[![npm — vue](https://img.shields.io/npm/v/@lumora-ui/vue.svg?label=%40lumora-ui%2Fvue)](https://www.npmjs.com/package/@lumora-ui/vue)
+[![npm — core](https://img.shields.io/npm/v/@lumora-design/core.svg?label=%40lumora-ui%2Fcore)](https://www.npmjs.com/package/@lumora-design/core)
+[![npm — themes](https://img.shields.io/npm/v/@lumora-design/themes.svg?label=%40lumora-ui%2Fthemes)](https://www.npmjs.com/package/@lumora-design/themes)
+[![npm — react](https://img.shields.io/npm/v/@lumora-design/react.svg?label=%40lumora-ui%2Freact)](https://www.npmjs.com/package/@lumora-design/react)
+[![npm — vue](https://img.shields.io/npm/v/@lumora-design/vue.svg?label=%40lumora-ui%2Fvue)](https://www.npmjs.com/package/@lumora-design/vue)
 
 Lumora UI gives you a stable `lm-*` class contract that works straight from
 HTML, plus thin framework adapters for React and Vue. One token system, one
@@ -16,7 +16,7 @@ plugin, every component reachable without JavaScript.
 
 ## Why Lumora UI
 
-- **Tailwind-native.** Drop in via `@plugin "@lumora-ui/core"` — no separate
+- **Tailwind-native.** Drop in via `@plugin "@lumora-design/core"` — no separate
   CSS bundle, no runtime, no peer-dependency dance.
 - **Class-first contract.** Every component is one or two `lm-*` classes
   on plain HTML. Frameworks are optional, the markup is the API.
@@ -34,16 +34,16 @@ plugin, every component reachable without JavaScript.
 ### 1. Install
 
 ```bash
-pnpm add -D tailwindcss @lumora-ui/core
+pnpm add -D tailwindcss @lumora-design/core
 ```
 
-`@lumora-ui/core` is the only package most projects need — it transitively
+`@lumora-design/core` is the only package most projects need — it transitively
 ships every theme. Add the React or Vue adapter only if you want JS
 components:
 
 ```bash
-pnpm add @lumora-ui/react   # React adapter
-pnpm add @lumora-ui/vue     # Vue adapter
+pnpm add @lumora-design/react   # React adapter
+pnpm add @lumora-design/vue     # Vue adapter
 ```
 
 ### 2. Wire up Tailwind v4
@@ -51,7 +51,7 @@ pnpm add @lumora-ui/vue     # Vue adapter
 ```css
 /* app.css */
 @import "tailwindcss";
-@plugin "@lumora-ui/core";
+@plugin "@lumora-design/core";
 ```
 
 That single `@plugin` line emits the `lm-*` component classes plus every
@@ -82,7 +82,7 @@ theme as a `[data-lm-theme="…"]` selector.
 Or use the React adapter:
 
 ```tsx
-import { LumoraButton, LumoraCard } from "@lumora-ui/react";
+import { LumoraButton, LumoraCard } from "@lumora-design/react";
 
 export function SaveBar() {
   return (
@@ -100,7 +100,7 @@ The Vue adapter mirrors the API exactly:
 
 ```vue
 <script setup lang="ts">
-import { LumoraButton, LumoraCard, LumoraCardBody, LumoraCardFooter } from "@lumora-ui/vue";
+import { LumoraButton, LumoraCard, LumoraCardBody, LumoraCardFooter } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -129,13 +129,13 @@ import { LumoraButton, LumoraCard, LumoraCardBody, LumoraCardFooter } from "@lum
 
 ## Packages
 
-| Package             | Purpose                                                           |
-| ------------------- | ----------------------------------------------------------------- |
-| `@lumora-ui/core`   | Tailwind v4 plugin and the complete `lm-*` class contract.        |
-| `@lumora-ui/themes` | Theme tokens, theme CSS files, and contrast validation helpers.   |
-| `@lumora-ui/react`  | React wrappers and behavior helpers around the class contract.    |
-| `@lumora-ui/vue`    | Vue wrappers and behavior helpers around the class contract.      |
-| `@lumora-ui/docs`   | Next.js documentation site (lives in `apps/docs`, not published). |
+| Package                 | Purpose                                                           |
+| ----------------------- | ----------------------------------------------------------------- |
+| `@lumora-design/core`   | Tailwind v4 plugin and the complete `lm-*` class contract.        |
+| `@lumora-design/themes` | Theme tokens, theme CSS files, and contrast validation helpers.   |
+| `@lumora-design/react`  | React wrappers and behavior helpers around the class contract.    |
+| `@lumora-design/vue`    | Vue wrappers and behavior helpers around the class contract.      |
+| `@lumora-design/docs`   | Next.js documentation site (lives in `apps/docs`, not published). |
 
 ## Documentation
 

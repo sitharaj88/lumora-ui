@@ -22,10 +22,10 @@ body:
     attributes:
       label: Package
       options:
-        - "@lumora-ui/core"
-        - "@lumora-ui/themes"
-        - "@lumora-ui/react"
-        - "@lumora-ui/vue"
+        - "@lumora-design/core"
+        - "@lumora-design/themes"
+        - "@lumora-design/react"
+        - "@lumora-design/vue"
         - "docs"
     validations:
       required: true

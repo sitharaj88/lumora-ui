@@ -1,14 +1,14 @@
-# @lumora-ui/themes
+# @lumora-design/themes
 
 Theme tokens for Lumora UI.
 
 ## Usage
 
 ```ts
-import { lumoraThemes, tokensToCssVariables } from "@lumora-ui/themes";
+import { lumoraThemes, tokensToCssVariables } from "@lumora-design/themes";
 ```
 
-The package exports the built-in theme list, required token names, lookup helpers, and CSS variable conversion helpers used by `@lumora-ui/core`.
+The package exports the built-in theme list, required token names, lookup helpers, and CSS variable conversion helpers used by `@lumora-design/core`.
 
 ## Quality bar
 

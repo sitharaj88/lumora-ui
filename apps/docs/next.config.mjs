@@ -9,7 +9,7 @@ const nextConfig = {
     ignoreDuringBuilds: true
   },
   outputFileTracingRoot: join(docsDir, "../.."),
-  transpilePackages: ["@lumora-ui/themes"]
+  transpilePackages: ["@lumora-design/themes"]
 };
 
 export default nextConfig;

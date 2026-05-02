@@ -15,7 +15,7 @@ release notes.
   HTML with the Tailwind v4 plugin alone.
 - 39 themes (20+ light, 18+ dark), each WCAG-AA verified for foreground
   contrast on every semantic surface.
-- React (`@lumora-ui/react`) and Vue (`@lumora-ui/vue`) adapters that wrap
+- React (`@lumora-design/react`) and Vue (`@lumora-design/vue`) adapters that wrap
   the same class contract — drop in or stay on plain HTML.
 - 6 multi-page enterprise templates (Admin Console, CRM, Project tracker,
   E-commerce, Marketing, Analytics) with realistic sample data and 70+
@@ -32,12 +32,12 @@ release notes.
 
 ### Packages
 
-- **@lumora-ui/core 1.0.0** — Tailwind v4 plugin and the complete `lm-*`
+- **@lumora-design/core 1.0.0** — Tailwind v4 plugin and the complete `lm-*`
   component class contract.
-- **@lumora-ui/themes 1.0.0** — 39 themes with required token exports.
-- **@lumora-ui/react 1.0.0** — React component wrappers and behavior
+- **@lumora-design/themes 1.0.0** — 39 themes with required token exports.
+- **@lumora-design/react 1.0.0** — React component wrappers and behavior
   helpers around the same class contract.
-- **@lumora-ui/vue 1.0.0** — Vue component wrappers and helpers.
+- **@lumora-design/vue 1.0.0** — Vue component wrappers and helpers.
 
 ### Quality
 

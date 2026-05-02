@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { lumoraThemes, requiredThemeTokens } from "@lumora-ui/themes";
+import { lumoraThemes, requiredThemeTokens } from "@lumora-design/themes";
 import { AreaChart } from "../components/chart";
 import { CodeCopy } from "../components/code-copy";
 import { DocsFooter } from "../components/footer";
@@ -10,16 +10,16 @@ import { templates } from "../lib/templates";
 
 const installCss = `/* app/globals.css */
 @import "tailwindcss";
-@plugin "@lumora-ui/core";`;
+@plugin "@lumora-design/core";`;
 
-const installShell = `pnpm add @lumora-ui/core
-# or: npm install @lumora-ui/core
+const installShell = `pnpm add @lumora-design/core
+# or: npm install @lumora-design/core
 # optional adapters
-pnpm add @lumora-ui/react   # React adapter
-pnpm add @lumora-ui/vue     # Vue adapter`;
+pnpm add @lumora-design/react   # React adapter
+pnpm add @lumora-design/vue     # Vue adapter`;
 
 const reactExample = `// app/billing/AccountCard.tsx
-import { LumoraButton, LumoraCard } from "@lumora-ui/react";
+import { LumoraButton, LumoraCard } from "@lumora-design/react";
 
 export function AccountCard() {
   return (

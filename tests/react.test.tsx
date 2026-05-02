@@ -39,7 +39,7 @@ import {
   cn
 } from "../packages/react/src";
 
-describe("@lumora-ui/react", () => {
+describe("@lumora-design/react", () => {
   it("renders form and feedback wrappers with expected lm-* classes", () => {
     const markup = renderToStaticMarkup(
       <>

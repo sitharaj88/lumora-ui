@@ -1,4 +1,4 @@
-import { lumoraAccessibilityGuidelines, lumoraAccessibilityTarget } from "@lumora-ui/core";
+import { lumoraAccessibilityGuidelines, lumoraAccessibilityTarget } from "@lumora-design/core";
 import {
   DocsCallout,
   DocsLayout,

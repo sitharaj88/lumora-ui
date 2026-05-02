@@ -215,7 +215,7 @@ export const componentCatalog: ComponentCatalogEntry[] = [
 <button class="lm-btn lm-btn-primary" aria-busy="true">
   Saving…
 </button>`,
-    reactExample: `import { LumoraButton } from "@lumora-ui/react";
+    reactExample: `import { LumoraButton } from "@lumora-design/react";
 
 export function SaveBar() {
   return (
@@ -227,7 +227,7 @@ export function SaveBar() {
   );
 }`,
     vueExample: `<script setup lang="ts">
-import { LumoraButton } from "@lumora-ui/vue";
+import { LumoraButton } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -269,7 +269,7 @@ import { LumoraButton } from "@lumora-ui/vue";
   <button class="lm-btn" aria-pressed="true">Week</button>
   <button class="lm-btn">Month</button>
 </div>`,
-    reactExample: `import { LumoraButtonGroup, LumoraButton } from "@lumora-ui/react";
+    reactExample: `import { LumoraButtonGroup, LumoraButton } from "@lumora-design/react";
 
 <LumoraButtonGroup aria-label="Time range">
   <LumoraButton>Day</LumoraButton>
@@ -277,7 +277,7 @@ import { LumoraButton } from "@lumora-ui/vue";
   <LumoraButton>Month</LumoraButton>
 </LumoraButtonGroup>`,
     vueExample: `<script setup lang="ts">
-import { LumoraButtonGroup, LumoraButton } from "@lumora-ui/vue";
+import { LumoraButtonGroup, LumoraButton } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -321,7 +321,7 @@ import { LumoraButtonGroup, LumoraButton } from "@lumora-ui/vue";
   <button class="lm-toggle-group-item" aria-pressed="true" aria-checked="true">Comfortable</button>
   <button class="lm-toggle-group-item" aria-checked="false">Spacious</button>
 </div>`,
-    reactExample: `import { LumoraToggleGroup, LumoraToggleGroupItem } from "@lumora-ui/react";
+    reactExample: `import { LumoraToggleGroup, LumoraToggleGroupItem } from "@lumora-design/react";
 
 <LumoraToggleGroup value={density} onValueChange={setDensity}>
   <LumoraToggleGroupItem pressed={density === "compact"}>Compact</LumoraToggleGroupItem>
@@ -329,7 +329,7 @@ import { LumoraButtonGroup, LumoraButton } from "@lumora-ui/vue";
   <LumoraToggleGroupItem pressed={density === "spacious"}>Spacious</LumoraToggleGroupItem>
 </LumoraToggleGroup>`,
     vueExample: `<script setup lang="ts">
-import { LumoraToggleGroup, LumoraToggleGroupItem } from "@lumora-ui/vue";
+import { LumoraToggleGroup, LumoraToggleGroupItem } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -384,12 +384,12 @@ import { LumoraToggleGroup, LumoraToggleGroupItem } from "@lumora-ui/vue";
     ],
     htmlExample: `<span class="lm-badge lm-badge-success lm-badge-dot">Active</span>
 <span class="lm-badge lm-badge-soft">12 new</span>`,
-    reactExample: `import { LumoraBadge } from "@lumora-ui/react";
+    reactExample: `import { LumoraBadge } from "@lumora-design/react";
 
 <LumoraBadge tone="success" dot>Active</LumoraBadge>
 <LumoraBadge variant="soft">12 new</LumoraBadge>`,
     vueExample: `<script setup lang="ts">
-import { LumoraBadge } from "@lumora-ui/vue";
+import { LumoraBadge } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -439,13 +439,13 @@ import { LumoraBadge } from "@lumora-ui/vue";
   enterprise
   <button class="lm-tag-remove" aria-label="Remove enterprise">×</button>
 </span>`,
-    reactExample: `import { LumoraTag } from "@lumora-ui/react";
+    reactExample: `import { LumoraTag } from "@lumora-design/react";
 
 <LumoraTag removable onRemove={() => removeTag("enterprise")}>
   enterprise
 </LumoraTag>`,
     vueExample: `<script setup lang="ts">
-import { LumoraTag } from "@lumora-ui/vue";
+import { LumoraTag } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -502,12 +502,12 @@ import { LumoraTag } from "@lumora-ui/vue";
   <span class="lm-avatar lm-avatar-sm">MK</span>
   <span class="lm-avatar-stack-more">+5</span>
 </div>`,
-    reactExample: `import { LumoraAvatar } from "@lumora-ui/react";
+    reactExample: `import { LumoraAvatar } from "@lumora-design/react";
 
 <LumoraAvatar size="md" fallback="AL" />
 <LumoraAvatar size="md" src="/users/maya.jpg" alt="Maya" />`,
     vueExample: `<script setup lang="ts">
-import { LumoraAvatar } from "@lumora-ui/vue";
+import { LumoraAvatar } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -535,11 +535,11 @@ import { LumoraAvatar } from "@lumora-ui/vue";
     props: [],
     accessibility: ["Wrap keys in <kbd> element for semantic HTML."],
     htmlExample: `<kbd class="lm-kbd">⌘</kbd> <kbd class="lm-kbd">K</kbd>`,
-    reactExample: `import { LumoraKbd } from "@lumora-ui/react";
+    reactExample: `import { LumoraKbd } from "@lumora-design/react";
 
 <LumoraKbd>⌘</LumoraKbd> <LumoraKbd>K</LumoraKbd>`,
     vueExample: `<script setup lang="ts">
-import { LumoraKbd } from "@lumora-ui/vue";
+import { LumoraKbd } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -557,10 +557,10 @@ import { LumoraKbd } from "@lumora-ui/vue";
     preview: (
       <div className="grid gap-3">
         <p className="text-sm">
-          Add <code className="lm-code">@plugin "@lumora-ui/core"</code> to your CSS.
+          Add <code className="lm-code">@plugin "@lumora-design/core"</code> to your CSS.
         </p>
         <pre className="lm-code-block">{`@import "tailwindcss";
-@plugin "@lumora-ui/core";`}</pre>
+@plugin "@lumora-design/core";`}</pre>
       </div>
     ),
     classes: [
@@ -571,19 +571,19 @@ import { LumoraKbd } from "@lumora-ui/vue";
     accessibility: ["Use semantic <code> and <pre><code> elements."],
     htmlExample: `<code class="lm-code">npm install</code>
 <pre class="lm-code-block"><code>const x = 1;</code></pre>`,
-    reactExample: `import { LumoraCode, LumoraCodeBlock } from "@lumora-ui/react";
+    reactExample: `import { LumoraCode, LumoraCodeBlock } from "@lumora-design/react";
 
 <p>Run <LumoraCode>npm install</LumoraCode> first.</p>
 <LumoraCodeBlock>{\`@import "tailwindcss";
-@plugin "@lumora-ui/core";\`}</LumoraCodeBlock>`,
+@plugin "@lumora-design/core";\`}</LumoraCodeBlock>`,
     vueExample: `<script setup lang="ts">
-import { LumoraCode, LumoraCodeBlock } from "@lumora-ui/vue";
+import { LumoraCode, LumoraCodeBlock } from "@lumora-design/vue";
 </script>
 
 <template>
   <p>Run <LumoraCode>npm install</LumoraCode> first.</p>
   <LumoraCodeBlock>@import "tailwindcss";
-@plugin "@lumora-ui/core";</LumoraCodeBlock>
+@plugin "@lumora-design/core";</LumoraCodeBlock>
 </template>`
   },
   // -- FEEDBACK --------------------------------------------------------
@@ -631,13 +631,13 @@ import { LumoraCode, LumoraCodeBlock } from "@lumora-ui/vue";
     <p class="lm-hint">Changes apply on next sign-in.</p>
   </div>
 </div>`,
-    reactExample: `import { LumoraAlert } from "@lumora-ui/react";
+    reactExample: `import { LumoraAlert } from "@lumora-design/react";
 
 <LumoraAlert tone="success" title="Settings saved">
   Changes apply on next sign-in.
 </LumoraAlert>`,
     vueExample: `<script setup lang="ts">
-import { LumoraAlert } from "@lumora-ui/vue";
+import { LumoraAlert } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -687,13 +687,13 @@ import { LumoraAlert } from "@lumora-ui/vue";
     htmlExample: `<div class="lm-toaster" aria-live="polite">
   <div class="lm-toast lm-toast-success">…</div>
 </div>`,
-    reactExample: `import { LumoraToast } from "@lumora-ui/react";
+    reactExample: `import { LumoraToast } from "@lumora-design/react";
 
 <LumoraToast tone="success" title="Backup completed">
   128 GB encrypted snapshot uploaded.
 </LumoraToast>`,
     vueExample: `<script setup lang="ts">
-import { LumoraToast } from "@lumora-ui/vue";
+import { LumoraToast } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -723,13 +723,13 @@ import { LumoraToast } from "@lumora-ui/vue";
     htmlExample: `<div class="lm-banner lm-banner-warning" role="status">
   SSO certificate rotates in 7 days.
 </div>`,
-    reactExample: `import { LumoraBanner } from "@lumora-ui/react";
+    reactExample: `import { LumoraBanner } from "@lumora-design/react";
 
 <LumoraBanner tone="warning">
   SSO certificate rotates in 7 days.
 </LumoraBanner>`,
     vueExample: `<script setup lang="ts">
-import { LumoraBanner } from "@lumora-ui/vue";
+import { LumoraBanner } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -761,7 +761,7 @@ import { LumoraBanner } from "@lumora-ui/vue";
     ],
     accessibility: ["Use native <progress>; provide aria-label for context."],
     htmlExample: `<progress class="lm-progress" value="68" max="100" aria-label="Upload"></progress>`,
-    reactExample: `import { LumoraProgress } from "@lumora-ui/react";
+    reactExample: `import { LumoraProgress } from "@lumora-design/react";
 
 <LumoraProgress value={68} max={100} size="md" aria-label="Upload" />`,
     vueExample: `<script setup lang="ts">
@@ -794,7 +794,7 @@ import { LumoraBanner } from "@lumora-ui/vue";
       "Wrap in aria-live='polite' if standalone, or pair with aria-busy on container."
     ],
     htmlExample: `<span class="lm-spinner" aria-hidden="true"></span><span class="sr-only">Loading…</span>`,
-    reactExample: `import { LumoraSpinner } from "@lumora-ui/react";
+    reactExample: `import { LumoraSpinner } from "@lumora-design/react";
 
 <LumoraSpinner size="md" aria-label="Loading" />`,
     vueExample: `<script setup lang="ts">
@@ -834,7 +834,7 @@ import { LumoraBanner } from "@lumora-ui/vue";
     props: [],
     accessibility: ["Mark loading regions with aria-busy='true' on a parent."],
     htmlExample: `<div class="lm-skeleton h-6 w-1/2"></div>`,
-    reactExample: `import { LumoraSkeleton } from "@lumora-ui/react";
+    reactExample: `import { LumoraSkeleton } from "@lumora-design/react";
 
 {loading ? (
   <LumoraSkeleton className="h-6 w-2/3" />
@@ -842,7 +842,7 @@ import { LumoraBanner } from "@lumora-ui/vue";
   <h2>{user.name}</h2>
 )}`,
     vueExample: `<script setup lang="ts">
-import { LumoraSkeleton } from "@lumora-ui/vue";
+import { LumoraSkeleton } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -902,7 +902,7 @@ import { LumoraSkeleton } from "@lumora-ui/vue";
   <div class="lm-card-body">…</div>
   <footer class="lm-card-footer">…</footer>
 </article>`,
-    reactExample: `import { LumoraCard } from "@lumora-ui/react";
+    reactExample: `import { LumoraCard } from "@lumora-design/react";
 
 <LumoraCard variant="glass">
   <LumoraCard.Header>
@@ -917,7 +917,7 @@ import { LumoraSkeleton } from "@lumora-ui/vue";
 import {
   LumoraCard, LumoraCardHeader, LumoraCardTitle,
   LumoraCardBody, LumoraCardFooter
-} from "@lumora-ui/vue";
+} from "@lumora-design/vue";
 </script>
 
 <template>
@@ -992,7 +992,7 @@ import {
   <nav class="lm-sidebar">…</nav>
   <main class="lm-app-main">…</main>
 </div>`,
-    reactExample: `import { LumoraSidebar, LumoraSidebarItem, LumoraPageHeader } from "@lumora-ui/react";
+    reactExample: `import { LumoraSidebar, LumoraSidebarItem, LumoraPageHeader } from "@lumora-design/react";
 
 <div className="lm-app-shell lm-app-shell-sidebar">
   <LumoraSidebar aria-label="Primary">
@@ -1006,7 +1006,7 @@ import {
   </main>
 </div>`,
     vueExample: `<script setup lang="ts">
-import { LumoraSidebar, LumoraSidebarItem, LumoraPageHeader } from "@lumora-ui/vue";
+import { LumoraSidebar, LumoraSidebarItem, LumoraPageHeader } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1050,12 +1050,12 @@ import { LumoraSidebar, LumoraSidebarItem, LumoraPageHeader } from "@lumora-ui/v
     accessibility: ["Use role='separator' if used purely for layout."],
     htmlExample: `<div class="lm-divider">or</div>
 <span class="lm-divider-vertical" role="separator"></span>`,
-    reactExample: `import { LumoraDivider } from "@lumora-ui/react";
+    reactExample: `import { LumoraDivider } from "@lumora-design/react";
 
 <LumoraDivider>or</LumoraDivider>
 <LumoraDivider orientation="vertical" />`,
     vueExample: `<script setup lang="ts">
-import { LumoraDivider } from "@lumora-ui/vue";
+import { LumoraDivider } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1102,7 +1102,7 @@ import { LumoraDivider } from "@lumora-ui/vue";
     <input class="lm-input" type="email" required />
   </div>
 </label>`,
-    reactExample: `import { LumoraField, LumoraLabel, LumoraInput, LumoraHint } from "@lumora-ui/react";
+    reactExample: `import { LumoraField, LumoraLabel, LumoraInput, LumoraHint } from "@lumora-design/react";
 
 <LumoraField>
   <LumoraLabel required>Company email</LumoraLabel>
@@ -1110,7 +1110,7 @@ import { LumoraDivider } from "@lumora-ui/vue";
   <LumoraHint>Used for billing and security alerts.</LumoraHint>
 </LumoraField>`,
     vueExample: `<script setup lang="ts">
-import { LumoraField, LumoraLabel, LumoraInput, LumoraHint } from "@lumora-ui/vue";
+import { LumoraField, LumoraLabel, LumoraInput, LumoraHint } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1137,11 +1137,11 @@ import { LumoraField, LumoraLabel, LumoraInput, LumoraHint } from "@lumora-ui/vu
     ],
     accessibility: a11yForm,
     htmlExample: `<textarea class="lm-textarea" rows="4"></textarea>`,
-    reactExample: `import { LumoraTextarea } from "@lumora-ui/react";
+    reactExample: `import { LumoraTextarea } from "@lumora-design/react";
 
 <LumoraTextarea rows={4} placeholder="Type a note…" />`,
     vueExample: `<script setup lang="ts">
-import { LumoraTextarea } from "@lumora-ui/vue";
+import { LumoraTextarea } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1168,14 +1168,14 @@ import { LumoraTextarea } from "@lumora-ui/vue";
     props: [{ name: "size", type: "Size", default: "md" }],
     accessibility: a11yForm,
     htmlExample: `<select class="lm-select"><option>Annual</option></select>`,
-    reactExample: `import { LumoraSelect } from "@lumora-ui/react";
+    reactExample: `import { LumoraSelect } from "@lumora-design/react";
 
 <LumoraSelect defaultValue="annual">
   <option value="annual">Annual</option>
   <option value="quarterly">Quarterly</option>
 </LumoraSelect>`,
     vueExample: `<script setup lang="ts">
-import { LumoraSelect } from "@lumora-ui/vue";
+import { LumoraSelect } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1213,7 +1213,7 @@ import { LumoraSelect } from "@lumora-ui/vue";
     accessibility: a11yForm,
     htmlExample: `<input class="lm-checkbox" type="checkbox" id="terms" />
 <label for="terms">I agree</label>`,
-    reactExample: `import { LumoraCheckbox, LumoraRadio } from "@lumora-ui/react";
+    reactExample: `import { LumoraCheckbox, LumoraRadio } from "@lumora-design/react";
 
 <label className="flex items-center gap-2">
   <LumoraCheckbox defaultChecked /> Subscribe
@@ -1222,7 +1222,7 @@ import { LumoraSelect } from "@lumora-ui/vue";
   <LumoraRadio name="plan" value="annual" /> Annual
 </label>`,
     vueExample: `<script setup lang="ts">
-import { LumoraCheckbox, LumoraRadio } from "@lumora-ui/vue";
+import { LumoraCheckbox, LumoraRadio } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1254,11 +1254,11 @@ import { LumoraCheckbox, LumoraRadio } from "@lumora-ui/vue";
     props: [{ name: "size", type: "Size", default: "md" }],
     accessibility: a11yForm,
     htmlExample: `<input class="lm-switch" type="checkbox" aria-label="Enable SSO" />`,
-    reactExample: `import { LumoraSwitch } from "@lumora-ui/react";
+    reactExample: `import { LumoraSwitch } from "@lumora-design/react";
 
 <LumoraSwitch size="md" defaultChecked aria-label="Enable SSO" />`,
     vueExample: `<script setup lang="ts">
-import { LumoraSwitch } from "@lumora-ui/vue";
+import { LumoraSwitch } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1289,11 +1289,11 @@ import { LumoraSwitch } from "@lumora-ui/vue";
       "Provide aria-label or visible <label>; aria-valuetext for non-numeric values."
     ],
     htmlExample: `<input class="lm-slider" type="range" min="0" max="100" value="50" aria-label="Volume" />`,
-    reactExample: `import { LumoraSlider } from "@lumora-ui/react";
+    reactExample: `import { LumoraSlider } from "@lumora-design/react";
 
 <LumoraSlider min={0} max={100} defaultValue={50} aria-label="Volume" />`,
     vueExample: `<script setup lang="ts">
-import { LumoraSlider } from "@lumora-ui/vue";
+import { LumoraSlider } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1338,11 +1338,11 @@ import { LumoraSlider } from "@lumora-ui/vue";
   <button class="lm-rating-star" aria-checked="true">★</button>
   <button class="lm-rating-star" aria-checked="false">★</button>
 </div>`,
-    reactExample: `import { LumoraRating } from "@lumora-ui/react";
+    reactExample: `import { LumoraRating } from "@lumora-design/react";
 
 <LumoraRating value={4} max={5} onValueChange={setRating} aria-label="Rating" />`,
     vueExample: `<script setup lang="ts">
-import { LumoraRating } from "@lumora-ui/vue";
+import { LumoraRating } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1383,7 +1383,7 @@ import { LumoraRating } from "@lumora-ui/vue";
   <input class="lm-otp-slot" maxlength="1" aria-label="Digit 1 of 6" />
   <!-- … -->
 </div>`,
-    reactExample: `import { LumoraOtp, LumoraOtpSlot } from "@lumora-ui/react";
+    reactExample: `import { LumoraOtp, LumoraOtpSlot } from "@lumora-design/react";
 
 <LumoraOtp>
   {Array.from({ length: 6 }, (_, i) => (
@@ -1391,7 +1391,7 @@ import { LumoraRating } from "@lumora-ui/vue";
   ))}
 </LumoraOtp>`,
     vueExample: `<script setup lang="ts">
-import { LumoraOtp, LumoraOtpSlot } from "@lumora-ui/vue";
+import { LumoraOtp, LumoraOtpSlot } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1431,7 +1431,7 @@ import { LumoraOtp, LumoraOtpSlot } from "@lumora-ui/vue";
   <input type="number" value="42" />
   <button type="button" aria-label="Increment">+</button>
 </div>`,
-    reactExample: `import { LumoraNumberInput } from "@lumora-ui/react";
+    reactExample: `import { LumoraNumberInput } from "@lumora-design/react";
 
 <LumoraNumberInput
   value={count}
@@ -1440,7 +1440,7 @@ import { LumoraOtp, LumoraOtpSlot } from "@lumora-ui/vue";
   onDecrement={() => setCount((c) => c - 1)}
 />`,
     vueExample: `<script setup lang="ts">
-import { LumoraNumberInput } from "@lumora-ui/vue";
+import { LumoraNumberInput } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1487,7 +1487,7 @@ import { LumoraNumberInput } from "@lumora-ui/vue";
   <span class="lm-tag lm-tag-removable">enterprise<button class="lm-tag-remove">×</button></span>
   <input placeholder="Add tag…" />
 </div>`,
-    reactExample: `import { LumoraTagInput, LumoraTag } from "@lumora-ui/react";
+    reactExample: `import { LumoraTagInput, LumoraTag } from "@lumora-design/react";
 
 <LumoraTagInput>
   {tags.map((t) => (
@@ -1496,7 +1496,7 @@ import { LumoraNumberInput } from "@lumora-ui/vue";
   <input placeholder="Add tag…" onKeyDown={onAddTag} />
 </LumoraTagInput>`,
     vueExample: `<script setup lang="ts">
-import { LumoraTagInput, LumoraTag } from "@lumora-ui/vue";
+import { LumoraTagInput, LumoraTag } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1536,7 +1536,7 @@ import { LumoraTagInput, LumoraTag } from "@lumora-ui/vue";
   <strong class="lm-dropzone-title">Drop files</strong>
   <input type="file" class="sr-only" />
 </label>`,
-    reactExample: `import { LumoraDropzone } from "@lumora-ui/react";
+    reactExample: `import { LumoraDropzone } from "@lumora-design/react";
 
 <LumoraDropzone>
   <strong className="lm-dropzone-title">Drop files here</strong>
@@ -1544,7 +1544,7 @@ import { LumoraTagInput, LumoraTag } from "@lumora-ui/vue";
   <input type="file" className="sr-only" multiple onChange={onSelect} />
 </LumoraDropzone>`,
     vueExample: `<script setup lang="ts">
-import { LumoraDropzone } from "@lumora-ui/vue";
+import { LumoraDropzone } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1598,7 +1598,7 @@ import { LumoraDropzone } from "@lumora-ui/vue";
     <li class="lm-combobox-option" role="option" aria-selected="true">…</li>
   </ul>
 </div>`,
-    reactExample: `import { LumoraCombobox, LumoraComboboxListbox, LumoraComboboxOption, LumoraInput } from "@lumora-ui/react";
+    reactExample: `import { LumoraCombobox, LumoraComboboxListbox, LumoraComboboxOption, LumoraInput } from "@lumora-design/react";
 
 <LumoraCombobox>
   <LumoraInput value={query} onChange={onQuery} />
@@ -1611,7 +1611,7 @@ import { LumoraDropzone } from "@lumora-ui/vue";
   </LumoraComboboxListbox>
 </LumoraCombobox>`,
     vueExample: `<script setup lang="ts">
-import { LumoraCombobox, LumoraComboboxListbox, LumoraComboboxOption, LumoraInput } from "@lumora-ui/vue";
+import { LumoraCombobox, LumoraComboboxListbox, LumoraComboboxOption, LumoraInput } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1679,7 +1679,7 @@ import { LumoraCombobox, LumoraComboboxListbox, LumoraComboboxOption, LumoraInpu
       "Arrow keys move focus; Page Up/Down for months."
     ],
     htmlExample: `<div class="lm-calendar" role="grid">…</div>`,
-    reactExample: `import { LumoraCalendar, LumoraCalendarHeader, LumoraCalendarGrid, LumoraCalendarDay } from "@lumora-ui/react";
+    reactExample: `import { LumoraCalendar, LumoraCalendarHeader, LumoraCalendarGrid, LumoraCalendarDay } from "@lumora-design/react";
 
 <LumoraCalendar>
   <LumoraCalendarHeader>
@@ -1699,7 +1699,7 @@ import { LumoraCombobox, LumoraComboboxListbox, LumoraComboboxOption, LumoraInpu
   </LumoraCalendarGrid>
 </LumoraCalendar>`,
     vueExample: `<script setup lang="ts">
-import { LumoraCalendar, LumoraCalendarHeader, LumoraCalendarGrid, LumoraCalendarDay } from "@lumora-ui/vue";
+import { LumoraCalendar, LumoraCalendarHeader, LumoraCalendarGrid, LumoraCalendarDay } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1738,7 +1738,7 @@ import { LumoraCalendar, LumoraCalendarHeader, LumoraCalendarGrid, LumoraCalenda
     ],
     accessibility: ["Trigger uses aria-haspopup='dialog' + aria-expanded."],
     htmlExample: `<button class="lm-datepicker-trigger">Apr 18 — Apr 24</button>`,
-    reactExample: `import { LumoraDatePicker, LumoraDatePickerTrigger } from "@lumora-ui/react";
+    reactExample: `import { LumoraDatePicker, LumoraDatePickerTrigger } from "@lumora-design/react";
 
 <LumoraDatePicker>
   <LumoraDatePickerTrigger aria-expanded={open} onClick={() => setOpen((o) => !o)}>
@@ -1746,7 +1746,7 @@ import { LumoraCalendar, LumoraCalendarHeader, LumoraCalendarGrid, LumoraCalenda
   </LumoraDatePickerTrigger>
 </LumoraDatePicker>`,
     vueExample: `<script setup lang="ts">
-import { LumoraDatePicker, LumoraDatePickerTrigger } from "@lumora-ui/vue";
+import { LumoraDatePicker, LumoraDatePickerTrigger } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1822,7 +1822,7 @@ import { LumoraDatePicker, LumoraDatePickerTrigger } from "@lumora-ui/vue";
   <button class="lm-tab" role="tab" aria-selected="true">Overview</button>
   <button class="lm-tab" role="tab">Activity</button>
 </div>`,
-    reactExample: `import { LumoraTabs, LumoraTab } from "@lumora-ui/react";
+    reactExample: `import { LumoraTabs, LumoraTab } from "@lumora-design/react";
 
 <LumoraTabs aria-label="Settings">
   <LumoraTab active>Overview</LumoraTab>
@@ -1830,7 +1830,7 @@ import { LumoraDatePicker, LumoraDatePickerTrigger } from "@lumora-ui/vue";
   <LumoraTab>Settings</LumoraTab>
 </LumoraTabs>`,
     vueExample: `<script setup lang="ts">
-import { LumoraTabs, LumoraTab } from "@lumora-ui/vue";
+import { LumoraTabs, LumoraTab } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1866,7 +1866,7 @@ import { LumoraTabs, LumoraTab } from "@lumora-ui/vue";
     htmlExample: `<div class="lm-segmented" role="radiogroup">
   <button class="lm-segmented-item" aria-pressed="true">7 days</button>
 </div>`,
-    reactExample: `import { LumoraSegmented, LumoraSegmentedItem } from "@lumora-ui/react";
+    reactExample: `import { LumoraSegmented, LumoraSegmentedItem } from "@lumora-design/react";
 
 <LumoraSegmented value={range} onValueChange={setRange}>
   <LumoraSegmentedItem pressed={range === "24h"}>24h</LumoraSegmentedItem>
@@ -1874,7 +1874,7 @@ import { LumoraTabs, LumoraTab } from "@lumora-ui/vue";
   <LumoraSegmentedItem pressed={range === "30d"}>30 days</LumoraSegmentedItem>
 </LumoraSegmented>`,
     vueExample: `<script setup lang="ts">
-import { LumoraSegmented, LumoraSegmentedItem } from "@lumora-ui/vue";
+import { LumoraSegmented, LumoraSegmentedItem } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1930,7 +1930,7 @@ import { LumoraSegmented, LumoraSegmentedItem } from "@lumora-ui/vue";
   <li class="lm-step lm-step-complete"><span class="lm-step-marker"></span>Connect</li>
   <li class="lm-step" aria-current="step"><span class="lm-step-marker"></span>Map roles</li>
 </ol>`,
-    reactExample: `import { LumoraStepper, LumoraStep } from "@lumora-ui/react";
+    reactExample: `import { LumoraStepper, LumoraStep } from "@lumora-design/react";
 
 <LumoraStepper aria-label="Onboarding">
   <LumoraStep state="complete">Connect identity</LumoraStep>
@@ -1939,7 +1939,7 @@ import { LumoraSegmented, LumoraSegmentedItem } from "@lumora-ui/vue";
   <LumoraStep>Review</LumoraStep>
 </LumoraStepper>`,
     vueExample: `<script setup lang="ts">
-import { LumoraStepper, LumoraStep } from "@lumora-ui/vue";
+import { LumoraStepper, LumoraStep } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -1973,7 +1973,7 @@ import { LumoraStepper, LumoraStep } from "@lumora-ui/vue";
   <a href="/">Workspace</a> /
   <span aria-current="page">Atlas</span>
 </nav>`,
-    reactExample: `import { LumoraBreadcrumbs } from "@lumora-ui/react";
+    reactExample: `import { LumoraBreadcrumbs } from "@lumora-design/react";
 
 <LumoraBreadcrumbs aria-label="Breadcrumb">
   <a href="/">Workspace</a>
@@ -1981,7 +1981,7 @@ import { LumoraStepper, LumoraStep } from "@lumora-ui/vue";
   <span aria-current="page">Atlas Finance</span>
 </LumoraBreadcrumbs>`,
     vueExample: `<script setup lang="ts">
-import { LumoraBreadcrumbs } from "@lumora-ui/vue";
+import { LumoraBreadcrumbs } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -2034,7 +2034,7 @@ import { LumoraBreadcrumbs } from "@lumora-ui/vue";
     htmlExample: `<nav class="lm-pagination">
   <a class="lm-pagination-item" aria-current="page">2</a>
 </nav>`,
-    reactExample: `import { LumoraPagination, LumoraPaginationItem } from "@lumora-ui/react";
+    reactExample: `import { LumoraPagination, LumoraPaginationItem } from "@lumora-design/react";
 
 <LumoraPagination aria-label="Pagination">
   <LumoraPaginationItem disabled>‹</LumoraPaginationItem>
@@ -2044,7 +2044,7 @@ import { LumoraBreadcrumbs } from "@lumora-ui/vue";
   <LumoraPaginationItem>›</LumoraPaginationItem>
 </LumoraPagination>`,
     vueExample: `<script setup lang="ts">
-import { LumoraPagination, LumoraPaginationItem } from "@lumora-ui/vue";
+import { LumoraPagination, LumoraPaginationItem } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -2083,14 +2083,14 @@ import { LumoraPagination, LumoraPaginationItem } from "@lumora-ui/vue";
     htmlExample: `<header class="lm-navbar">
   <a class="lm-navbar-brand" href="/">Lumora</a>
 </header>`,
-    reactExample: `import { LumoraNavbar } from "@lumora-ui/react";
+    reactExample: `import { LumoraNavbar } from "@lumora-design/react";
 
 <LumoraNavbar>
   <a className="lm-navbar-brand" href="/">Lumora</a>
   <a href="/components" className="lm-btn lm-btn-ghost lm-btn-sm">Components</a>
 </LumoraNavbar>`,
     vueExample: `<script setup lang="ts">
-import { LumoraNavbar } from "@lumora-ui/vue";
+import { LumoraNavbar } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -2138,7 +2138,7 @@ import { LumoraNavbar } from "@lumora-ui/vue";
     htmlExample: `<nav class="lm-sidebar" aria-label="Primary">
   <a class="lm-sidebar-item" aria-current="page">Dashboard</a>
 </nav>`,
-    reactExample: `import { LumoraSidebar, LumoraSidebarItem } from "@lumora-ui/react";
+    reactExample: `import { LumoraSidebar, LumoraSidebarItem } from "@lumora-design/react";
 
 <LumoraSidebar aria-label="Primary">
   <LumoraSidebarItem href="/dashboard" active>Dashboard</LumoraSidebarItem>
@@ -2146,7 +2146,7 @@ import { LumoraNavbar } from "@lumora-ui/vue";
   <LumoraSidebarItem href="/billing">Billing</LumoraSidebarItem>
 </LumoraSidebar>`,
     vueExample: `<script setup lang="ts">
-import { LumoraSidebar, LumoraSidebarItem } from "@lumora-ui/vue";
+import { LumoraSidebar, LumoraSidebarItem } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -2210,7 +2210,7 @@ import { LumoraSidebar, LumoraSidebarItem } from "@lumora-ui/vue";
     <div class="lm-modal-body">…</div>
   </section>
 </div>`,
-    reactExample: `import { LumoraModal, LumoraButton } from "@lumora-ui/react";
+    reactExample: `import { LumoraModal, LumoraButton } from "@lumora-design/react";
 
 <LumoraModal open={open} size="md" onOpenChange={setOpen}>
   <LumoraModal.Panel>
@@ -2230,7 +2230,7 @@ import { LumoraSidebar, LumoraSidebarItem } from "@lumora-ui/vue";
 import {
   LumoraModal, LumoraModalPanel, LumoraModalHeader,
   LumoraModalBody, LumoraModalFooter, LumoraButton
-} from "@lumora-ui/vue";
+} from "@lumora-design/vue";
 const open = ref(false);
 </script>
 
@@ -2292,13 +2292,13 @@ const open = ref(false);
     ],
     accessibility: a11yOverlay,
     htmlExample: `<aside class="lm-drawer lm-drawer-md" role="dialog" aria-modal="true">…</aside>`,
-    reactExample: `import { LumoraDrawer } from "@lumora-ui/react";
+    reactExample: `import { LumoraDrawer } from "@lumora-design/react";
 
 <LumoraDrawer open={open} side="right" size="md" onOpenChange={setOpen}>
   <h3 className="lm-card-title">Filters</h3>
 </LumoraDrawer>`,
     vueExample: `<script setup lang="ts">
-import { LumoraDrawer } from "@lumora-ui/vue";
+import { LumoraDrawer } from "@lumora-design/vue";
 const open = ref(false);
 </script>
 
@@ -2357,13 +2357,13 @@ const open = ref(false);
   <button aria-describedby="tip-1">?</button>
   <span class="lm-tooltip-content" id="tip-1">Help text</span>
 </span>`,
-    reactExample: `import { LumoraTooltip } from "@lumora-ui/react";
+    reactExample: `import { LumoraTooltip } from "@lumora-design/react";
 
 <LumoraTooltip content="Help text" side="top">
   <button className="lm-btn lm-btn-outline">Hover me</button>
 </LumoraTooltip>`,
     vueExample: `<script setup lang="ts">
-import { LumoraTooltip } from "@lumora-ui/vue";
+import { LumoraTooltip } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -2416,7 +2416,7 @@ import { LumoraTooltip } from "@lumora-ui/vue";
   <button aria-haspopup="dialog">Open</button>
   <div class="lm-popover-content"><div class="lm-popover-arrow"></div>…</div>
 </span>`,
-    reactExample: `import { LumoraPopover, LumoraPopoverContent } from "@lumora-ui/react";
+    reactExample: `import { LumoraPopover, LumoraPopoverContent } from "@lumora-design/react";
 
 <LumoraPopover>
   <button onClick={() => setOpen(true)} aria-haspopup="dialog">Open settings</button>
@@ -2426,7 +2426,7 @@ import { LumoraTooltip } from "@lumora-ui/vue";
   </LumoraPopoverContent>
 </LumoraPopover>`,
     vueExample: `<script setup lang="ts">
-import { LumoraPopover, LumoraPopoverContent } from "@lumora-ui/vue";
+import { LumoraPopover, LumoraPopoverContent } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -2497,7 +2497,7 @@ import { LumoraPopover, LumoraPopoverContent } from "@lumora-ui/vue";
   <a href="/users/maya">@maya</a>
   <div class="lm-hover-card-content">…</div>
 </span>`,
-    reactExample: `import { LumoraHoverCard, LumoraHoverCardContent } from "@lumora-ui/react";
+    reactExample: `import { LumoraHoverCard, LumoraHoverCardContent } from "@lumora-design/react";
 
 <LumoraHoverCard>
   <a href="/users/maya">@maya</a>
@@ -2507,7 +2507,7 @@ import { LumoraPopover, LumoraPopoverContent } from "@lumora-ui/vue";
   </LumoraHoverCardContent>
 </LumoraHoverCard>`,
     vueExample: `<script setup lang="ts">
-import { LumoraHoverCard, LumoraHoverCardContent } from "@lumora-ui/vue";
+import { LumoraHoverCard, LumoraHoverCardContent } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -2569,7 +2569,7 @@ import { LumoraHoverCard, LumoraHoverCardContent } from "@lumora-ui/vue";
   <button aria-haspopup="menu" aria-expanded="true">Actions</button>
   <div class="lm-dropdown-menu" role="menu">…</div>
 </div>`,
-    reactExample: `import { LumoraDropdown, LumoraDropdownMenu, LumoraDropdownItem } from "@lumora-ui/react";
+    reactExample: `import { LumoraDropdown, LumoraDropdownMenu, LumoraDropdownItem } from "@lumora-design/react";
 
 <LumoraDropdown>
   <LumoraDropdownMenu>
@@ -2579,7 +2579,7 @@ import { LumoraHoverCard, LumoraHoverCardContent } from "@lumora-ui/vue";
   </LumoraDropdownMenu>
 </LumoraDropdown>`,
     vueExample: `<script setup lang="ts">
-import { LumoraDropdown, LumoraDropdownMenu, LumoraDropdownItem } from "@lumora-ui/vue";
+import { LumoraDropdown, LumoraDropdownMenu, LumoraDropdownItem } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -2624,7 +2624,7 @@ import { LumoraDropdown, LumoraDropdownMenu, LumoraDropdownItem } from "@lumora-
     props: [{ name: "anchor", type: "{x: number; y: number}" }],
     accessibility: ["Open on contextmenu OR Shift+F10.", "Same role/aria as dropdown."],
     htmlExample: `<div class="lm-context-menu" role="menu" style="top: 100px; left: 200px">…</div>`,
-    reactExample: `import { LumoraContextMenu, LumoraContextMenuItem } from "@lumora-ui/react";
+    reactExample: `import { LumoraContextMenu, LumoraContextMenuItem } from "@lumora-design/react";
 
 <LumoraContextMenu x={pos.x} y={pos.y}>
   <LumoraContextMenuItem onClick={cut}>Cut</LumoraContextMenuItem>
@@ -2633,7 +2633,7 @@ import { LumoraDropdown, LumoraDropdownMenu, LumoraDropdownItem } from "@lumora-
   <LumoraContextMenuItem tone="danger" onClick={remove}>Delete</LumoraContextMenuItem>
 </LumoraContextMenu>`,
     vueExample: `<script setup lang="ts">
-import { LumoraContextMenu, LumoraContextMenuItem } from "@lumora-ui/vue";
+import { LumoraContextMenu, LumoraContextMenuItem } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -2707,7 +2707,7 @@ import { LumoraContextMenu, LumoraContextMenuItem } from "@lumora-ui/vue";
     reactExample: `import {
   LumoraCommand, LumoraCommandInput, LumoraCommandList,
   LumoraCommandItem, LumoraCommandGroupLabel, LumoraCommandFooter
-} from "@lumora-ui/react";
+} from "@lumora-design/react";
 
 <LumoraCommand>
   <LumoraCommandInput placeholder="Search…" value={query} onChange={onQuery} />
@@ -2722,7 +2722,7 @@ import { LumoraContextMenu, LumoraContextMenuItem } from "@lumora-ui/vue";
 import {
   LumoraCommand, LumoraCommandInput, LumoraCommandList,
   LumoraCommandItem, LumoraCommandGroupLabel, LumoraCommandFooter
-} from "@lumora-ui/vue";
+} from "@lumora-design/vue";
 </script>
 
 <template>
@@ -2784,7 +2784,7 @@ import {
 </div>`,
     reactExample: `import {
   LumoraAccordion, LumoraAccordionItem, LumoraAccordionTrigger, LumoraAccordionContent
-} from "@lumora-ui/react";
+} from "@lumora-design/react";
 
 <LumoraAccordion>
   {items.map((item) => (
@@ -2805,7 +2805,7 @@ import {
 import {
   LumoraAccordion, LumoraAccordionItem,
   LumoraAccordionTrigger, LumoraAccordionContent
-} from "@lumora-ui/vue";
+} from "@lumora-design/vue";
 </script>
 
 <template>
@@ -2861,7 +2861,7 @@ import {
     htmlExample: `<ul class="lm-tree" role="tree">
   <li role="treeitem"><div class="lm-tree-item">src</div></li>
 </ul>`,
-    reactExample: `import { LumoraTree, LumoraTreeItem } from "@lumora-ui/react";
+    reactExample: `import { LumoraTree, LumoraTreeItem } from "@lumora-design/react";
 
 <LumoraTree>
   <li role="treeitem">
@@ -2874,7 +2874,7 @@ import {
   </li>
 </LumoraTree>`,
     vueExample: `<script setup lang="ts">
-import { LumoraTree, LumoraTreeItem } from "@lumora-ui/vue";
+import { LumoraTree, LumoraTreeItem } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -2956,7 +2956,7 @@ import { LumoraTree, LumoraTreeItem } from "@lumora-ui/vue";
   <thead><tr><th><button class="lm-table-sort" aria-sort="ascending">Name</button></th></tr></thead>
   <tbody>…</tbody>
 </table>`,
-    reactExample: `import { LumoraTable } from "@lumora-ui/react";
+    reactExample: `import { LumoraTable } from "@lumora-design/react";
 
 <LumoraTable striped>
   <LumoraTable.Header>
@@ -2978,7 +2978,7 @@ import { LumoraTree, LumoraTreeItem } from "@lumora-ui/vue";
 import {
   LumoraTable, LumoraTableHeader, LumoraTableBody,
   LumoraTableRow, LumoraTableHead, LumoraTableCell
-} from "@lumora-ui/vue";
+} from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3041,7 +3041,7 @@ import {
   <span class="lm-stat-value">$1.28M</span>
   <span class="lm-stat-trend lm-stat-trend-up">▲ 12.4%</span>
 </div>`,
-    reactExample: `import { LumoraStat, LumoraStatGrid } from "@lumora-ui/react";
+    reactExample: `import { LumoraStat, LumoraStatGrid } from "@lumora-design/react";
 
 <LumoraStatGrid>
   <LumoraStat
@@ -3056,7 +3056,7 @@ import {
   />
 </LumoraStatGrid>`,
     vueExample: `<script setup lang="ts">
-import { LumoraStat, LumoraStatGrid, LumoraStatLabel, LumoraStatValue, LumoraStatTrend } from "@lumora-ui/vue";
+import { LumoraStat, LumoraStatGrid, LumoraStatLabel, LumoraStatValue, LumoraStatTrend } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3106,11 +3106,11 @@ import { LumoraStat, LumoraStatGrid, LumoraStatLabel, LumoraStatValue, LumoraSta
     htmlExample: `<svg class="lm-sparkline" viewBox="0 0 100 30">
   <path class="lm-sparkline-line" d="M0,22 L10,18 …" />
 </svg>`,
-    reactExample: `import { LumoraSparkline } from "@lumora-ui/react";
+    reactExample: `import { LumoraSparkline } from "@lumora-design/react";
 
 <LumoraSparkline values={[42, 48, 52, 56, 62, 68, 72, 78, 84, 92]} />`,
     vueExample: `<script setup lang="ts">
-import { LumoraSparkline } from "@lumora-ui/vue";
+import { LumoraSparkline } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3139,7 +3139,7 @@ import { LumoraSparkline } from "@lumora-ui/vue";
     htmlExample: `<dl class="lm-description-list">
   <dt>Plan</dt><dd>Enterprise</dd>
 </dl>`,
-    reactExample: `import { LumoraDescriptionList } from "@lumora-ui/react";
+    reactExample: `import { LumoraDescriptionList } from "@lumora-design/react";
 
 <LumoraDescriptionList>
   <dt>Plan</dt><dd>Enterprise</dd>
@@ -3147,7 +3147,7 @@ import { LumoraSparkline } from "@lumora-ui/vue";
   <dt>Owner</dt><dd>finance@atlas.example</dd>
 </LumoraDescriptionList>`,
     vueExample: `<script setup lang="ts">
-import { LumoraDescriptionList } from "@lumora-ui/vue";
+import { LumoraDescriptionList } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3203,7 +3203,7 @@ import { LumoraDescriptionList } from "@lumora-ui/vue";
     htmlExample: `<ul class="lm-activity-feed">
   <li class="lm-activity-item">…</li>
 </ul>`,
-    reactExample: `import { LumoraActivityFeed, LumoraActivityItem, LumoraAvatar } from "@lumora-ui/react";
+    reactExample: `import { LumoraActivityFeed, LumoraActivityItem, LumoraAvatar } from "@lumora-design/react";
 
 <LumoraActivityFeed>
   {events.map((e) => (
@@ -3217,7 +3217,7 @@ import { LumoraDescriptionList } from "@lumora-ui/vue";
   ))}
 </LumoraActivityFeed>`,
     vueExample: `<script setup lang="ts">
-import { LumoraActivityFeed, LumoraActivityItem, LumoraAvatar } from "@lumora-ui/vue";
+import { LumoraActivityFeed, LumoraActivityItem, LumoraAvatar } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3273,7 +3273,7 @@ import { LumoraActivityFeed, LumoraActivityItem, LumoraAvatar } from "@lumora-ui
     htmlExample: `<ul class="lm-timeline">
   <li class="lm-timeline-item"><span class="lm-timeline-dot"></span>…</li>
 </ul>`,
-    reactExample: `import { LumoraTimeline, LumoraTimelineItem } from "@lumora-ui/react";
+    reactExample: `import { LumoraTimeline, LumoraTimelineItem } from "@lumora-design/react";
 
 <LumoraTimeline>
   {events.map((e) => (
@@ -3284,7 +3284,7 @@ import { LumoraActivityFeed, LumoraActivityItem, LumoraAvatar } from "@lumora-ui
   ))}
 </LumoraTimeline>`,
     vueExample: `<script setup lang="ts">
-import { LumoraTimeline, LumoraTimelineItem } from "@lumora-ui/vue";
+import { LumoraTimeline, LumoraTimelineItem } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3330,7 +3330,7 @@ import { LumoraTimeline, LumoraTimelineItem } from "@lumora-ui/vue";
     htmlExample: `<div class="lm-diff">
   <div class="lm-diff-line lm-diff-line-add"><span></span><span> new line</span></div>
 </div>`,
-    reactExample: `import { LumoraDiff, LumoraDiffLine } from "@lumora-ui/react";
+    reactExample: `import { LumoraDiff, LumoraDiffLine } from "@lumora-design/react";
 
 <LumoraDiff>
   <LumoraDiffLine variant="meta">tokens.css</LumoraDiffLine>
@@ -3338,7 +3338,7 @@ import { LumoraTimeline, LumoraTimelineItem } from "@lumora-ui/vue";
   <LumoraDiffLine variant="add">--lm-radius-md: 0.5rem;</LumoraDiffLine>
 </LumoraDiff>`,
     vueExample: `<script setup lang="ts">
-import { LumoraDiff, LumoraDiffLine } from "@lumora-ui/vue";
+import { LumoraDiff, LumoraDiffLine } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3398,7 +3398,7 @@ import { LumoraDiff, LumoraDiffLine } from "@lumora-ui/vue";
     htmlExample: `<div class="lm-inbox" role="log" aria-live="polite">
   <ul class="lm-inbox-list">…</ul>
 </div>`,
-    reactExample: `import { LumoraInbox, LumoraInboxHeader, LumoraInboxList, LumoraInboxItem } from "@lumora-ui/react";
+    reactExample: `import { LumoraInbox, LumoraInboxHeader, LumoraInboxList, LumoraInboxItem } from "@lumora-design/react";
 
 <LumoraInbox>
   <LumoraInboxHeader>
@@ -3415,7 +3415,7 @@ import { LumoraDiff, LumoraDiffLine } from "@lumora-ui/vue";
   </LumoraInboxList>
 </LumoraInbox>`,
     vueExample: `<script setup lang="ts">
-import { LumoraInbox, LumoraInboxHeader, LumoraInboxList, LumoraInboxItem } from "@lumora-ui/vue";
+import { LumoraInbox, LumoraInboxHeader, LumoraInboxList, LumoraInboxItem } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3454,14 +3454,14 @@ import { LumoraInbox, LumoraInboxHeader, LumoraInboxList, LumoraInboxItem } from
     htmlExample: `<div class="lm-empty-state">
   <div class="lm-empty-state-title">No data</div>
 </div>`,
-    reactExample: `import { LumoraEmptyState, LumoraButton } from "@lumora-ui/react";
+    reactExample: `import { LumoraEmptyState, LumoraButton } from "@lumora-design/react";
 
 <LumoraEmptyState title="No accounts yet">
   <p className="lm-hint">Connect your first identity provider to get started.</p>
   <LumoraButton variant="primary" size="sm">Connect provider</LumoraButton>
 </LumoraEmptyState>`,
     vueExample: `<script setup lang="ts">
-import { LumoraEmptyState, LumoraButton } from "@lumora-ui/vue";
+import { LumoraEmptyState, LumoraButton } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3519,7 +3519,7 @@ import { LumoraEmptyState, LumoraButton } from "@lumora-ui/vue";
     reactExample: `import {
   LumoraCarousel, LumoraCarouselTrack, LumoraCarouselItem,
   LumoraCarouselDots, LumoraCarouselDot
-} from "@lumora-ui/react";
+} from "@lumora-design/react";
 
 <LumoraCarousel>
   <LumoraCarouselTrack>
@@ -3537,7 +3537,7 @@ import { LumoraEmptyState, LumoraButton } from "@lumora-ui/vue";
 import {
   LumoraCarousel, LumoraCarouselTrack, LumoraCarouselItem,
   LumoraCarouselDots, LumoraCarouselDot
-} from "@lumora-ui/vue";
+} from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3585,7 +3585,7 @@ import {
   <div class="lm-split-handle" role="separator"></div>
   <div>Right</div>
 </div>`,
-    reactExample: `import { LumoraSplit, LumoraSplitHandle } from "@lumora-ui/react";
+    reactExample: `import { LumoraSplit, LumoraSplitHandle } from "@lumora-design/react";
 
 <LumoraSplit>
   <div>Left pane</div>
@@ -3593,7 +3593,7 @@ import {
   <div>Right pane</div>
 </LumoraSplit>`,
     vueExample: `<script setup lang="ts">
-import { LumoraSplit, LumoraSplitHandle } from "@lumora-ui/vue";
+import { LumoraSplit, LumoraSplitHandle } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3642,7 +3642,7 @@ import { LumoraSplit, LumoraSplitHandle } from "@lumora-ui/vue";
     htmlExample: `<div class="lm-chat" role="log">
   <div class="lm-chat-message">…</div>
 </div>`,
-    reactExample: `import { LumoraChat, LumoraChatMessage, LumoraChatBubble, LumoraAvatar } from "@lumora-ui/react";
+    reactExample: `import { LumoraChat, LumoraChatMessage, LumoraChatBubble, LumoraAvatar } from "@lumora-design/react";
 
 <LumoraChat>
   {messages.map((m) => (
@@ -3653,7 +3653,7 @@ import { LumoraSplit, LumoraSplitHandle } from "@lumora-ui/vue";
   ))}
 </LumoraChat>`,
     vueExample: `<script setup lang="ts">
-import { LumoraChat, LumoraChatMessage, LumoraChatBubble, LumoraAvatar } from "@lumora-ui/vue";
+import { LumoraChat, LumoraChatMessage, LumoraChatBubble, LumoraAvatar } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3681,11 +3681,11 @@ import { LumoraChat, LumoraChatMessage, LumoraChatBubble, LumoraAvatar } from "@
     props: [],
     accessibility: ["Use <a> if mentions link to a profile."],
     htmlExample: `<a class="lm-mention" href="/users/alex">alex</a>`,
-    reactExample: `import { LumoraMention } from "@lumora-ui/react";
+    reactExample: `import { LumoraMention } from "@lumora-design/react";
 
 <p>Reviewed by <LumoraMention as="a" href="/users/alex">alex</LumoraMention>.</p>`,
     vueExample: `<script setup lang="ts">
-import { LumoraMention } from "@lumora-ui/vue";
+import { LumoraMention } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3725,7 +3725,7 @@ import { LumoraMention } from "@lumora-ui/vue";
     htmlExample: `<div class="lm-rt-toolbar" role="toolbar">
   <button class="lm-rt-button" aria-pressed="true">B</button>
 </div>`,
-    reactExample: `import { LumoraRichTextToolbar, LumoraRichTextButton } from "@lumora-ui/react";
+    reactExample: `import { LumoraRichTextToolbar, LumoraRichTextButton } from "@lumora-design/react";
 
 <LumoraRichTextToolbar aria-label="Formatting">
   <LumoraRichTextButton pressed={isBold} onClick={toggleBold}>B</LumoraRichTextButton>
@@ -3733,7 +3733,7 @@ import { LumoraMention } from "@lumora-ui/vue";
   <LumoraRichTextButton pressed={isUnderline} onClick={toggleUnderline}><u>U</u></LumoraRichTextButton>
 </LumoraRichTextToolbar>`,
     vueExample: `<script setup lang="ts">
-import { LumoraRichTextToolbar, LumoraRichTextButton } from "@lumora-ui/vue";
+import { LumoraRichTextToolbar, LumoraRichTextButton } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3768,7 +3768,7 @@ import { LumoraRichTextToolbar, LumoraRichTextButton } from "@lumora-ui/vue";
     props: [],
     accessibility: ["Use role='toolbar' if it contains only buttons."],
     htmlExample: `<div class="lm-command-bar">…</div>`,
-    reactExample: `import { LumoraCommandBar, LumoraButton } from "@lumora-ui/react";
+    reactExample: `import { LumoraCommandBar, LumoraButton } from "@lumora-design/react";
 
 <LumoraCommandBar>
   <strong>Accounts</strong>
@@ -3778,7 +3778,7 @@ import { LumoraRichTextToolbar, LumoraRichTextButton } from "@lumora-ui/vue";
   </div>
 </LumoraCommandBar>`,
     vueExample: `<script setup lang="ts">
-import { LumoraCommandBar, LumoraButton } from "@lumora-ui/vue";
+import { LumoraCommandBar, LumoraButton } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3827,7 +3827,7 @@ import { LumoraCommandBar, LumoraButton } from "@lumora-ui/vue";
     htmlExample: `<div class="lm-filter-bar">
   <label class="lm-field">…</label>
 </div>`,
-    reactExample: `import { LumoraFilterBar, LumoraField, LumoraLabel, LumoraSelect } from "@lumora-ui/react";
+    reactExample: `import { LumoraFilterBar, LumoraField, LumoraLabel, LumoraSelect } from "@lumora-design/react";
 
 <LumoraFilterBar>
   <LumoraField>
@@ -3836,7 +3836,7 @@ import { LumoraCommandBar, LumoraButton } from "@lumora-ui/vue";
   </LumoraField>
 </LumoraFilterBar>`,
     vueExample: `<script setup lang="ts">
-import { LumoraFilterBar, LumoraField, LumoraLabel, LumoraSelect } from "@lumora-ui/vue";
+import { LumoraFilterBar, LumoraField, LumoraLabel, LumoraSelect } from "@lumora-design/vue";
 </script>
 
 <template>
@@ -3867,7 +3867,7 @@ import { LumoraFilterBar, LumoraField, LumoraLabel, LumoraSelect } from "@lumora
     props: [{ name: "count", type: "number" }],
     accessibility: ["Use aria-live='polite' to announce selection changes."],
     htmlExample: `<div class="lm-bulk-bar" aria-live="polite">…</div>`,
-    reactExample: `import { LumoraBulkBar, LumoraButton } from "@lumora-ui/react";
+    reactExample: `import { LumoraBulkBar, LumoraButton } from "@lumora-design/react";
 
 <LumoraBulkBar aria-live="polite">
   <strong>{selected.length} accounts selected</strong>
@@ -3877,7 +3877,7 @@ import { LumoraFilterBar, LumoraField, LumoraLabel, LumoraSelect } from "@lumora
   </div>
 </LumoraBulkBar>`,
     vueExample: `<script setup lang="ts">
-import { LumoraBulkBar, LumoraButton } from "@lumora-ui/vue";
+import { LumoraBulkBar, LumoraButton } from "@lumora-design/vue";
 </script>
 
 <template>

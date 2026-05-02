@@ -1,16 +1,16 @@
-# @lumora-ui/core
+# @lumora-design/core
 
 Tailwind v4 plugin for Lumora UI.
 
 ## Install
 
 ```bash
-pnpm add @lumora-ui/core tailwindcss
+pnpm add @lumora-design/core tailwindcss
 ```
 
 ```css
 @import "tailwindcss";
-@plugin "@lumora-ui/core";
+@plugin "@lumora-design/core";
 ```
 
 ## Usage
@@ -40,7 +40,7 @@ Lumora uses semantic base classes plus modifiers:
 The plugin also accepts theme and density options when used from a Tailwind config:
 
 ```ts
-import lumora from "@lumora-ui/core";
+import lumora from "@lumora-design/core";
 
 export default {
   plugins: [lumora({ defaultDensity: "compact" })]
@@ -56,7 +56,7 @@ The `lm-*` class contract is the foundation for all framework adapters. React an
 Lumora targets WCAG 2.2 AA. The package exports accessibility guidance for documented components:
 
 ```ts
-import { lumoraAccessibilityGuidelines, lumoraAccessibilityTarget } from "@lumora-ui/core";
+import { lumoraAccessibilityGuidelines, lumoraAccessibilityTarget } from "@lumora-design/core";
 ```
 
 The automated test suite validates representative markup with axe, verifies theme contrast separately, and locks reduced-motion base styles.

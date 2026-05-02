@@ -1,4 +1,4 @@
-import { lumoraThemes, requiredThemeTokens } from "@lumora-ui/themes";
+import { lumoraThemes, requiredThemeTokens } from "@lumora-design/themes";
 import {
   DocsCallout,
   DocsCode,

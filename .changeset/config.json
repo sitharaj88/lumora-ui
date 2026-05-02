@@ -3,9 +3,11 @@
   "changelog": "@changesets/cli/changelog",
   "commit": false,
   "fixed": [],
-  "linked": [["@lumora-ui/core", "@lumora-ui/themes", "@lumora-ui/react", "@lumora-ui/vue"]],
+  "linked": [
+    ["@lumora-design/core", "@lumora-design/themes", "@lumora-design/react", "@lumora-design/vue"]
+  ],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@lumora-ui/docs"]
+  "ignore": ["@lumora-design/docs"]
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@lumora-ui/docs",
+  "name": "@lumora-design/docs",
   "version": "1.0.0",
   "private": true,
   "type": "module",
@@ -10,8 +10,8 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@lumora-ui/core": "workspace:*",
-    "@lumora-ui/themes": "workspace:*",
+    "@lumora-design/core": "workspace:*",
+    "@lumora-design/themes": "workspace:*",
     "geist": "^1.7.0",
     "next": "^15.5.0",
     "react": "^19.0.0",

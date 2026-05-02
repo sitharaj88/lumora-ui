@@ -1,4 +1,4 @@
-import { lumoraThemes, requiredThemeTokens } from "@lumora-ui/themes";
+import { lumoraThemes, requiredThemeTokens } from "@lumora-design/themes";
 
 export type DocsExample = {
   html: string;

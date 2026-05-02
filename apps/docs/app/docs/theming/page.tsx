@@ -1,4 +1,4 @@
-import { lumoraThemes, requiredThemeTokens } from "@lumora-ui/themes";
+import { lumoraThemes, requiredThemeTokens } from "@lumora-design/themes";
 import {
   DocsCallout,
   DocsCode,
@@ -52,7 +52,7 @@ const noFlash = `<!-- app/layout.html — inject in <head> -->
 </script>`;
 
 const customTheme = `// my-app/lumora-themes.ts
-import type { LumoraTheme } from "@lumora-ui/themes";
+import type { LumoraTheme } from "@lumora-design/themes";
 
 export const acmeTheme: LumoraTheme = {
   name: "acme",
@@ -105,7 +105,7 @@ export const acmeTheme: LumoraTheme = {
 
 const registerTheme = `/* app/globals.css */
 @import "tailwindcss";
-@plugin "@lumora-ui/core" {
+@plugin "@lumora-design/core" {
   themes: ["lumora-light", "lumora-dark", "acme"];
   defaultTheme: "acme";
 }`;
