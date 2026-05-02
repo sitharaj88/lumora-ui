@@ -1,26 +1,32 @@
 # Roadmap
 
-## Release candidate
+## Shipped — 1.0
 
-- Claim npm organization scope `@lumora-ui`.
-- Publish `@lumora-ui/core`, `@lumora-ui/themes`, `@lumora-ui/react`, and `@lumora-ui/vue`.
-- Deploy the docs site publicly.
-- Add package badges after the GitHub repository is created.
+- 65 components across 11 categories with the stable `lm-*` class contract.
+- 39 themes (light / dark / graphite / aurora / nord / solarized and more),
+  each WCAG-AA verified for every semantic surface.
+- React (`@lumora-ui/react`) and Vue (`@lumora-ui/vue`) adapters.
+- 6 multi-page enterprise templates (Admin Console, CRM, Project tracker,
+  E-commerce, Marketing, Analytics) with 70+ preview routes.
+- Documentation site with searchable catalog, framework code tabs, CSS
+  class tables, props tables, accessibility notes, and sticky TOC.
+- Visual regression suite + cross-template a11y audit (axe-core).
 
-## 0.2
+## 1.1
 
-- Expand component docs with more live examples per component.
-- Add richer React and Vue behavior helpers for tabs, modal focus management, dropdowns, and toasts.
-- Add framework examples for Next.js, Vite React, and Vite Vue.
+- Expand React + Vue behavior helpers for tabs, modal focus management,
+  dropdowns, and toasts.
+- Add Next.js, Vite + React, and Vite + Vue starter examples.
+- More live, multi-state previews per component on the docs site.
 
-## 0.3
+## 1.2
 
-- Add Svelte and Web Components feasibility spikes.
-- Add CLI scaffolding for enterprise dashboard shells.
-- Add more industry-oriented theme presets.
+- Svelte and Web Components feasibility spikes.
+- CLI scaffolding for enterprise dashboard shells.
+- More industry-oriented theme presets (healthcare, fintech, government).
 
-## 1.0
+## 2.0
 
-- Freeze the stable `lm-*` class contract.
-- Publish full migration guidance.
-- Complete manual accessibility audit and browser/device QA matrix.
+- Open the `lm-*` class contract for community-curated extensions.
+- Expanded migration guide from daisyUI / shadcn-ui / Mantine.
+- Browser/device QA matrix with manual accessibility audit sign-off.

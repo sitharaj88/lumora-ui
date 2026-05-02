@@ -20,7 +20,7 @@ export function DocsNav() {
             L
           </span>
           <strong className="text-base font-bold tracking-tight">Lumora UI</strong>
-          <span className="lm-badge lm-badge-soft hidden sm:inline-flex">v0.2</span>
+          <span className="lm-badge lm-badge-soft hidden sm:inline-flex">v1.0</span>
         </Link>
         <div className="hidden items-center gap-1 md:flex">
           <Link className="lm-btn lm-btn-ghost lm-btn-sm" href="/components">

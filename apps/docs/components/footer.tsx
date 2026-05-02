@@ -56,7 +56,7 @@ export function DocsFooter() {
           </p>
           <div className="mt-2 flex flex-wrap gap-2">
             <span className="lm-badge lm-badge-soft">MIT licensed</span>
-            <span className="lm-badge lm-badge-soft">v0.2 beta</span>
+            <span className="lm-badge lm-badge-soft">v1.0</span>
           </div>
         </div>
         {links.map((column) => (

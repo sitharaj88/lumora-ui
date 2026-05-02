@@ -1,7 +1,7 @@
 {
   "name": "@lumora-ui/vue",
-  "version": "0.1.0",
-  "description": "Beta Vue wrappers for Lumora UI.",
+  "version": "1.0.0",
+  "description": "Vue wrappers for Lumora UI.",
   "license": "MIT",
   "homepage": "https://github.com/sitharaj88/lumora-ui#readme",
   "repository": {

@@ -19,7 +19,7 @@ export default function TemplatesPage() {
       <section className="mx-auto grid max-w-7xl gap-6 px-6 pt-16 pb-10">
         <div className="grid max-w-3xl gap-4">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="lm-badge lm-badge-soft lm-badge-dot">New in v0.2</span>
+            <span className="lm-badge lm-badge-soft lm-badge-dot">New in v1.0</span>
             <span className="lm-badge lm-badge-outline">
               {templateRegistry.length} multi-page apps
             </span>

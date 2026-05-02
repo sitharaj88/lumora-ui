@@ -15,8 +15,8 @@ const installCss = `/* app/globals.css */
 const installShell = `pnpm add @lumora-ui/core
 # or: npm install @lumora-ui/core
 # optional adapters
-pnpm add @lumora-ui/react   # React beta
-pnpm add @lumora-ui/vue     # Vue beta`;
+pnpm add @lumora-ui/react   # React adapter
+pnpm add @lumora-ui/vue     # Vue adapter`;
 
 const reactExample = `// app/billing/AccountCard.tsx
 import { LumoraButton, LumoraCard } from "@lumora-ui/react";
@@ -110,7 +110,7 @@ export default function Home() {
       <section className="relative mx-auto grid max-w-7xl gap-12 px-6 pt-20 pb-16 lg:grid-cols-[1fr_1fr] lg:pt-28">
         <div className="grid content-center gap-7">
           <div className="flex flex-wrap items-center gap-2">
-            <span className="lm-badge lm-badge-soft lm-badge-dot">v0.2 · Tailwind v4 plugin</span>
+            <span className="lm-badge lm-badge-soft lm-badge-dot">v1.0 · Tailwind v4 plugin</span>
             <span className="lm-badge lm-badge-outline">MIT licensed</span>
             <span className="lm-badge lm-badge-outline">SSR-safe</span>
           </div>

@@ -7,3 +7,4 @@ playwright-report
 .turbo
 .DS_Store
 *.log
+apps/docs/tsconfig.tsbuildinfo

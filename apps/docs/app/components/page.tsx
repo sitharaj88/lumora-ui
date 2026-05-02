@@ -59,7 +59,7 @@ export default function ComponentsPage() {
           <div className="flex flex-wrap items-center gap-2">
             <span className="docs-section-eyebrow">Component catalog</span>
             <span className="lm-badge lm-badge-soft text-xs">
-              v0.2 · {totalComponentCount} components
+              v1.0 · {totalComponentCount} components
             </span>
           </div>
           <h1 className="text-balance text-4xl font-bold tracking-tight md:text-6xl">
