@@ -251,6 +251,33 @@ body {
   transform: translateY(-2px);
 }
 
+/* Catalog card preview — fixed-height stage with a soft fade at the
+   bottom so taller previews feel intentional instead of clipped. */
+.docs-preview-clip {
+  align-items: flex-start;
+  overflow: hidden;
+  position: relative;
+}
+.docs-preview-clip > div {
+  align-self: center;
+  max-height: 100%;
+  width: 100%;
+}
+.docs-preview-clip::after {
+  background: linear-gradient(
+    180deg,
+    transparent 60%,
+    color-mix(in oklab, var(--lm-color-surface) 96%, transparent)
+  );
+  bottom: 0;
+  content: "";
+  height: 2.5rem;
+  left: 0;
+  pointer-events: none;
+  position: absolute;
+  right: 0;
+}
+
 /* Showcase variant for component detail pages — adds a subtle dot grid
    so the component sits on a textured stage instead of flat color. */
 .docs-preview-hero {

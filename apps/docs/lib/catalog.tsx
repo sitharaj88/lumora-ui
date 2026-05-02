@@ -901,26 +901,48 @@ import {
     status: "stable",
     description: "Full-page application layout: sidebar + main content with sticky navbar.",
     preview: (
-      <div className="lm-app-shell rounded-lg border border-[var(--lm-color-border)]">
-        <div className="lm-app-shell-sidebar">
-          <aside className="lm-sidebar">
-            <span className="lm-sidebar-section">Workspace</span>
-            <a className="lm-sidebar-item" href="#" aria-current="page">
-              Dashboard
-            </a>
-            <a className="lm-sidebar-item" href="#">
-              Accounts
-            </a>
-          </aside>
-          <main className="lm-app-main">
-            <div className="lm-page-header">
-              <div>
-                <h1 className="lm-page-title">Dashboard</h1>
-                <p className="lm-page-description">Active accounts, billing, and workflows.</p>
-              </div>
-              <button className="lm-btn lm-btn-primary lm-btn-sm">Export</button>
-            </div>
-          </main>
+      <div
+        className="grid w-full overflow-hidden rounded-lg border border-[var(--lm-color-border)]"
+        style={{
+          gridTemplateColumns: "5.5rem 1fr",
+          background: "var(--lm-color-surface)",
+          aspectRatio: "16 / 9"
+        }}
+      >
+        <aside
+          className="grid content-start gap-1.5 p-2"
+          style={{ background: "var(--lm-color-surface-raised)" }}
+        >
+          <span
+            className="h-1.5 rounded-full"
+            style={{ background: "color-mix(in oklab, var(--lm-color-primary) 60%, transparent)" }}
+          />
+          <span className="h-1 rounded-full bg-[var(--lm-color-border)]" />
+          <span className="h-1 rounded-full bg-[var(--lm-color-border)]" />
+          <span className="mt-1 h-1 rounded-full bg-[var(--lm-color-border)]" />
+          <span className="h-1 rounded-full bg-[var(--lm-color-border)]" />
+        </aside>
+        <div className="grid content-start gap-2 p-2.5">
+          <div className="flex items-center justify-between">
+            <span
+              className="h-1.5 w-12 rounded-full"
+              style={{ background: "color-mix(in oklab, var(--lm-color-text) 60%, transparent)" }}
+            />
+            <span
+              className="h-2 w-8 rounded"
+              style={{ background: "var(--lm-color-primary)" }}
+            />
+          </div>
+          <span className="h-1 w-20 rounded-full bg-[var(--lm-color-border)]" />
+          <div
+            className="mt-1 grid gap-1.5"
+            style={{ gridTemplateColumns: "repeat(3, minmax(0, 1fr))" }}
+          >
+            <span className="h-6 rounded-md border border-[var(--lm-color-border)] bg-[var(--lm-color-surface-raised)]" />
+            <span className="h-6 rounded-md border border-[var(--lm-color-border)] bg-[var(--lm-color-surface-raised)]" />
+            <span className="h-6 rounded-md border border-[var(--lm-color-border)] bg-[var(--lm-color-surface-raised)]" />
+          </div>
+          <span className="mt-0.5 h-8 rounded-md border border-[var(--lm-color-border)] bg-[var(--lm-color-surface-raised)]" />
         </div>
       </div>
     ),

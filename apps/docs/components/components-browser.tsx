@@ -270,8 +270,8 @@ export function ComponentsBrowser({
                     )}
                   </div>
                   <div
-                    className="docs-preview pointer-events-none [&_*]:pointer-events-none"
-                    style={{ minHeight: "12rem", padding: "1.25rem" }}
+                    className="docs-preview docs-preview-clip pointer-events-none [&_*]:pointer-events-none"
+                    style={{ height: "12rem", padding: "1.25rem" }}
                     aria-hidden="true"
                   >
                     <div className="w-full">{card.preview}</div>
