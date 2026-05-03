@@ -213,6 +213,21 @@ By participating you agree to the [Code of Conduct](./CODE_OF_CONDUCT.md).
 Found a vulnerability? Please follow the disclosure process in
 [SECURITY.md](./SECURITY.md) — do not open a public issue.
 
+## Maintainer
+
+Built and maintained by **[Sitharaj Seenivasan](https://sitharaj.in)**.
+
+|          |                                                         |
+| -------- | ------------------------------------------------------- |
+| Website  | [sitharaj.in](https://sitharaj.in)                      |
+| GitHub   | [@sitharaj88](https://github.com/sitharaj88)            |
+| LinkedIn | [in/sitharaj08](https://www.linkedin.com/in/sitharaj08) |
+| npm      | [~sitharaj](https://www.npmjs.com/~sitharaj)            |
+
+If Lumora UI saves your team time, [buy me a coffee](https://www.buymeacoffee.com/sitharaj88)
+or [sponsor on GitHub](https://github.com/sponsors/sitharaj88) — every cup keeps the
+themes contrast-checked and the templates shipping.
+
 ## License
 
-[MIT](./LICENSE) — Copyright (c) 2026 Sitharaj Seenivasan and contributors.
+[MIT](./LICENSE) — Copyright (c) 2026 [Sitharaj Seenivasan](https://sitharaj.in) and contributors.
