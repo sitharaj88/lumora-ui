@@ -42,8 +42,20 @@ jobs:
         env:
           GITHUB_PAGES: "true"
 
-      - name: Add .nojekyll
-        run: touch apps/docs/out/.nojekyll
+      - name: Add .nojekyll (disable Jekyll so _next/ is served)
+        run: |
+          : > apps/docs/out/.nojekyll
+          ls -la apps/docs/out/.nojekyll
+
+      - name: Verify build output
+        run: |
+          test -d apps/docs/out/_next || (echo "::error::_next folder missing — basePath/output config broken"; exit 1)
+          test -f apps/docs/out/.nojekyll || (echo "::error::.nojekyll missing — Pages will strip _next"; exit 1)
+          test -f apps/docs/out/index.html || (echo "::error::index.html missing"; exit 1)
+          echo "Top-level out/ entries:"
+          ls -la apps/docs/out
+          echo "_next/static counts:"
+          find apps/docs/out/_next/static -type f | wc -l
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
