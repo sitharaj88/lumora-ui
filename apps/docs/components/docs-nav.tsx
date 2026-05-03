@@ -67,6 +67,40 @@ export function DocsNav() {
       >
         GitHub
       </a>
+
+      {/* Mobile menu — hamburger that opens the same nav links via <details> */}
+      <details className="lm-dropdown md:hidden">
+        <summary
+          className="lm-btn lm-btn-ghost lm-btn-icon lm-btn-sm list-none"
+          aria-label="Open menu"
+        >
+          <span aria-hidden="true">☰</span>
+        </summary>
+        <div className="lm-dropdown-menu" style={{ right: 0, left: "auto", minWidth: "14rem" }}>
+          <Link className="lm-dropdown-item" href="/components">
+            Components
+          </Link>
+          <Link className="lm-dropdown-item" href="/templates">
+            Templates
+          </Link>
+          <Link className="lm-dropdown-item" href="/api">
+            API
+          </Link>
+          <Link className="lm-dropdown-item" href="/docs/theming">
+            Theming
+          </Link>
+          <span className="lm-dropdown-label">Guides</span>
+          {guideCards.slice(0, 4).map((guide) => (
+            <Link className="lm-dropdown-item" href={guide.href} key={guide.href}>
+              {guide.title}
+            </Link>
+          ))}
+          <span className="lm-dropdown-label">Theme</span>
+          <div style={{ padding: "0.25rem 0.5rem" }}>
+            <ThemeToggle />
+          </div>
+        </div>
+      </details>
     </nav>
   );
 }
