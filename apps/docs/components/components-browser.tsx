@@ -105,7 +105,8 @@ export function ComponentsBrowser({
 
   return (
     <div className="grid gap-10">
-      <div className="docs-feature-card sticky top-20 z-30 grid gap-3 p-4 backdrop-blur-md md:p-5">
+      <div className="sticky top-20 z-30">
+        <div className="docs-feature-card grid gap-3 p-4 backdrop-blur-md md:p-5">
         <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
           <div className="relative">
             <label className="lm-input-group">
@@ -193,6 +194,7 @@ export function ComponentsBrowser({
           Showing <strong className="text-[var(--lm-color-text)]">{filtered.length}</strong> of{" "}
           {cards.length} components
         </p>
+        </div>
       </div>
 
       {grouped.length === 0 ? (

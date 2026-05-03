@@ -19,13 +19,20 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+html {
+  /* clip (not hidden) prevents horizontal page scroll without making
+     html/body a scroll container — overflow-x: hidden silently promotes
+     overflow-y to auto, which breaks position: sticky descendants. */
+  overflow-x: clip;
+}
+
 body {
   font-family: var(--font-sans);
   font-feature-settings: "ss01", "cv11";
   letter-spacing: -0.005em;
   margin: 0;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 ::selection {
@@ -72,9 +79,6 @@ body {
   background-color: var(--lm-color-bg);
   position: relative;
   isolation: isolate;
-  /* Prevent any descendant (carousel previews, wide stepper rails, etc.)
-     from creating a page-level horizontal scrollbar. */
-  overflow-x: clip;
 }
 
 .docs-shell::before,
@@ -263,7 +267,11 @@ body {
    bottom so taller previews feel intentional instead of clipped. */
 .docs-preview-clip {
   align-items: flex-start;
-  overflow: hidden;
+  /* Use overflow: clip (not hidden) so wide preview content (carousel
+     items, inline buttons past the card edge) doesn't contribute to
+     page-level scrollWidth. clip — unlike hidden — removes the box
+     from the scroll chain entirely. */
+  overflow: clip;
   position: relative;
 }
 .docs-preview-clip > div {
