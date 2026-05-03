@@ -224,7 +224,7 @@ export function ComponentsBrowser({
               </span>
             </div>
 
-            <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
               {items.map((card) => (
                 <article
                   className="docs-feature-card docs-cat-card relative flex flex-col gap-4 p-5"

@@ -72,6 +72,9 @@ body {
   background-color: var(--lm-color-bg);
   position: relative;
   isolation: isolate;
+  /* Prevent any descendant (carousel previews, wide stepper rails, etc.)
+     from creating a page-level horizontal scrollbar. */
+  overflow-x: clip;
 }
 
 .docs-shell::before,
@@ -235,7 +238,12 @@ body {
   border: 1px solid var(--lm-color-border);
   border-radius: var(--lm-radius-lg);
   display: grid;
+  /* Clamp the column track so a wide child (lm-stepper, lm-navbar) can't
+     stretch the preview past its parent. Wide previews get clipped by
+     overflow: hidden instead of pushing the card out. */
+  grid-template-columns: minmax(0, 1fr);
   min-height: 9rem;
+  min-width: 0;
   overflow: hidden;
   padding: 1rem;
   place-items: center;
