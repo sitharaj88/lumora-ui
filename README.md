@@ -26,54 +26,12 @@
 
 ## Why Lumora UI
 
-<table>
-<tr>
-<td width="33%" valign="top">
-
-### Class-first
-
-Every component is one or two `lm-*` classes on plain HTML. Frameworks are optional — the markup _is_ the API. Drop into HTML, Astro, Rails, Django, Phoenix, Laravel, or anywhere Tailwind runs.
-
-</td>
-<td width="33%" valign="top">
-
-### Tailwind v4 native
-
-A single `@plugin "@lumora-design/core";` line in your CSS. No separate stylesheet, no CSS-in-JS runtime, no peer-dependency dance. Built on cascade layers, `color-mix`, and `oklab`.
-
-</td>
-<td width="33%" valign="top">
-
-### Tokens, not overrides
-
-39 themes flip a single `data-lm-theme` attribute. No global cascade fights, no `darkMode: 'class'` juggling. Switch themes anywhere — at runtime, per route, even per `<section>`.
-
-</td>
-</tr>
-<tr>
-<td valign="top">
-
-### WCAG-AA by default
-
-Every theme is contrast-verified for every semantic surface. Every component ships with an accessibility checklist. Cross-template axe audit on every commit — zero serious or critical violations.
-
-</td>
-<td valign="top">
-
-### Enterprise patterns
-
-Not just primitives — composed shells: command bar, filter bar, bulk-action bar, audit log, account drilldown, pipeline kanban, cohort heatmap, settings drawer.
-
-</td>
-<td valign="top">
-
-### React + Vue + HTML
-
-The same class contract powers all three. The React and Vue adapters are thin wrappers — pick whichever your team uses, or skip them entirely. No re-skinning, ever.
-
-</td>
-</tr>
-</table>
+- **Class-first.** Every component is one or two `lm-*` classes on plain HTML. Frameworks are optional — the markup _is_ the API. Drop into HTML, Astro, Rails, Django, Phoenix, Laravel, or anywhere Tailwind runs.
+- **Tailwind v4 native.** A single `@plugin "@lumora-design/core";` line in your CSS. No separate stylesheet, no CSS-in-JS runtime, no peer-dependency dance. Built on cascade layers, `color-mix`, and `oklab`.
+- **Tokens, not overrides.** 39 themes flip a single `data-lm-theme` attribute. No global cascade fights, no `darkMode: 'class'` juggling. Switch themes anywhere — at runtime, per route, even per `<section>`.
+- **WCAG-AA by default.** Every theme is contrast-verified for every semantic surface. Every component ships with an accessibility checklist. Cross-template axe audit on every commit — zero serious or critical violations.
+- **Enterprise patterns.** Not just primitives — composed shells: command bar, filter bar, bulk-action bar, audit log, account drilldown, pipeline kanban, cohort heatmap, settings drawer.
+- **React + Vue + HTML.** The same class contract powers all three. The React and Vue adapters are thin wrappers — pick whichever your team uses, or skip them entirely. No re-skinning, ever.
 
 ---
 
@@ -293,31 +251,27 @@ Works with **Vue 3.5+**, **Nuxt 3**, **Vite + Vue**, **Astro + Vue**. Component 
 
 ## What's in the box
 
-<table>
-<tr>
-<td valign="top" width="50%">
-
 ### 65 components, 11 categories
 
-**Action** &nbsp;·&nbsp; Button, Button group, Toggle group<br>
-**Form** &nbsp;·&nbsp; Input, Textarea, Select, Checkbox, Radio, Switch, Slider, Field, Calendar, Date picker, OTP, Combobox, Number input, Tag input, Color picker, Rating<br>
-**Display** &nbsp;·&nbsp; Badge, Tag, Avatar, Avatar group, KBD, Code, Icon<br>
-**Feedback** &nbsp;·&nbsp; Alert, Toast, Banner, Progress, Spinner, Skeleton<br>
-**Layout** &nbsp;·&nbsp; Card, App shell, Divider<br>
-**Navigation** &nbsp;·&nbsp; Tabs, Segmented, Stepper, Breadcrumbs, Navbar, Sidebar, Pagination, Mega menu<br>
-**Overlay** &nbsp;·&nbsp; Modal, Drawer, Tooltip, Popover, Dropdown, Hover card, Context menu, Command palette<br>
-**Disclosure** &nbsp;·&nbsp; Accordion, Tree<br>
-**Data** &nbsp;·&nbsp; Table, Stat, Sparkline, Timeline, Activity feed, Diff, Inbox, Empty<br>
-**Media** &nbsp;·&nbsp; Carousel, Split pane, Chat, Mention, Rich-text toolbar, Scroll area<br>
-**Pattern** &nbsp;·&nbsp; Command bar, Filter bar, Bulk action bar
-
-</td>
-<td valign="top" width="50%">
+| Category       | Primitives                                                                                                                                           |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Action**     | Button, Button group, Toggle group                                                                                                                   |
+| **Form**       | Input, Textarea, Select, Checkbox, Radio, Switch, Slider, Field, Calendar, Date picker, OTP, Combobox, Number input, Tag input, Color picker, Rating |
+| **Display**    | Badge, Tag, Avatar, Avatar group, KBD, Code, Icon                                                                                                    |
+| **Feedback**   | Alert, Toast, Banner, Progress, Spinner, Skeleton                                                                                                    |
+| **Layout**     | Card, App shell, Divider                                                                                                                             |
+| **Navigation** | Tabs, Segmented, Stepper, Breadcrumbs, Navbar, Sidebar, Pagination, Mega menu                                                                        |
+| **Overlay**    | Modal, Drawer, Tooltip, Popover, Dropdown, Hover card, Context menu, Command palette                                                                 |
+| **Disclosure** | Accordion, Tree                                                                                                                                      |
+| **Data**       | Table, Stat, Sparkline, Timeline, Activity feed, Diff, Inbox, Empty                                                                                  |
+| **Media**      | Carousel, Split pane, Chat, Mention, Rich-text toolbar, Scroll area                                                                                  |
+| **Pattern**    | Command bar, Filter bar, Bulk action bar                                                                                                             |
 
 ### 39 WCAG-AA themes
 
-**Light** &nbsp;·&nbsp; Lumora Light, Slate Boardroom, Cobalt Office, Solar, Aurora, Sunset, Mint, Berry, Ocean, Mocha, Pastel, Forest, Sand, Linen, Paper, Cream, Mist, Peach, Sage, Lilac<br>
-**Dark** &nbsp;·&nbsp; Lumora Dark, Graphite Command, Tokyo Night, Nord, Cobalt Night, Ember, Carbon, Solarized Dark, Midnight, Eclipse, Onyx, Slate Dark, Pine, Ruby, Plum, Gold, Steel, Pebble, Inkwell
+**Light** &nbsp;·&nbsp; Lumora Light · Slate Boardroom · Cobalt Office · Solar · Aurora · Sunset · Mint · Berry · Ocean · Mocha · Pastel · Forest · Sand · Linen · Paper · Cream · Mist · Peach · Sage · Lilac
+
+**Dark** &nbsp;·&nbsp; Lumora Dark · Graphite Command · Tokyo Night · Nord · Cobalt Night · Ember · Carbon · Solarized Dark · Midnight · Eclipse · Onyx · Slate Dark · Pine · Ruby · Plum · Gold · Steel · Pebble · Inkwell
 
 Switch with one attribute — no rebuild needed:
 
@@ -326,10 +280,6 @@ Switch with one attribute — no rebuild needed:
 ```
 
 Define your own theme in 12 lines — see the [theming guide](https://sitharaj88.github.io/lumora-design/docs/theming/).
-
-</td>
-</tr>
-</table>
 
 ### 6 production-ready templates
 
