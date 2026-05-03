@@ -18,7 +18,7 @@
 [![@lumora-design/react](https://img.shields.io/npm/v/@lumora-design/react.svg?label=%40lumora-design%2Freact&style=flat-square&color=cb3837)](https://www.npmjs.com/package/@lumora-design/react)
 [![@lumora-design/vue](https://img.shields.io/npm/v/@lumora-design/vue.svg?label=%40lumora-design%2Fvue&style=flat-square&color=cb3837)](https://www.npmjs.com/package/@lumora-design/vue)
 
-**[Documentation](https://sitharaj88.github.io/lumora-ui/)** · **[Components](https://sitharaj88.github.io/lumora-ui/components/)** · **[Templates](https://sitharaj88.github.io/lumora-ui/templates/)** · **[Themes](https://sitharaj88.github.io/lumora-ui/docs/theming/)** · **[Changelog](./CHANGELOG.md)**
+**[Documentation](https://sitharaj88.github.io/lumora-design/)** · **[Components](https://sitharaj88.github.io/lumora-design/components/)** · **[Templates](https://sitharaj88.github.io/lumora-design/templates/)** · **[Themes](https://sitharaj88.github.io/lumora-design/docs/theming/)** · **[Changelog](./CHANGELOG.md)**
 
 </div>
 
@@ -325,7 +325,7 @@ Switch with one attribute — no rebuild needed:
 <html data-lm-theme="tokyo-night"></html>
 ```
 
-Define your own theme in 12 lines — see the [theming guide](https://sitharaj88.github.io/lumora-ui/docs/theming/).
+Define your own theme in 12 lines — see the [theming guide](https://sitharaj88.github.io/lumora-design/docs/theming/).
 
 </td>
 </tr>
@@ -375,14 +375,14 @@ Every template is wired to realistic mock data and uses only the public `lm-*` c
 
 ## Documentation
 
-- **[Installation](https://sitharaj88.github.io/lumora-ui/docs/installation/)** — three-step setup for HTML, React, and Vue.
-- **[Components](https://sitharaj88.github.io/lumora-ui/components/)** — searchable catalog with live previews, framework code tabs, CSS class tables, props tables, and accessibility notes.
-- **[Theming](https://sitharaj88.github.io/lumora-ui/docs/theming/)** — token taxonomy, the `data-lm-theme` switch, and the contrast verification tooling.
-- **[Tokens](https://sitharaj88.github.io/lumora-ui/docs/tokens/)** — the full design token system.
-- **[Templates](https://sitharaj88.github.io/lumora-ui/templates/)** — six multi-page application templates with realistic data.
-- **[API](https://sitharaj88.github.io/lumora-ui/api/)** — typed props for the React adapter.
-- **[Accessibility](https://sitharaj88.github.io/lumora-ui/accessibility/)** — per-component a11y checklist.
-- **[Migration](https://sitharaj88.github.io/lumora-ui/docs/migration/)** — versioning policy and the 1.0 stability promise.
+- **[Installation](https://sitharaj88.github.io/lumora-design/docs/installation/)** — three-step setup for HTML, React, and Vue.
+- **[Components](https://sitharaj88.github.io/lumora-design/components/)** — searchable catalog with live previews, framework code tabs, CSS class tables, props tables, and accessibility notes.
+- **[Theming](https://sitharaj88.github.io/lumora-design/docs/theming/)** — token taxonomy, the `data-lm-theme` switch, and the contrast verification tooling.
+- **[Tokens](https://sitharaj88.github.io/lumora-design/docs/tokens/)** — the full design token system.
+- **[Templates](https://sitharaj88.github.io/lumora-design/templates/)** — six multi-page application templates with realistic data.
+- **[API](https://sitharaj88.github.io/lumora-design/api/)** — typed props for the React adapter.
+- **[Accessibility](https://sitharaj88.github.io/lumora-design/accessibility/)** — per-component a11y checklist.
+- **[Migration](https://sitharaj88.github.io/lumora-design/docs/migration/)** — versioning policy and the 1.0 stability promise.
 
 ---
 
@@ -481,6 +481,6 @@ If Lumora UI saves your team time, [buy me a coffee](https://www.buymeacoffee.co
 
 <div align="center">
 
-If Lumora UI helped you, please **[star the repo](https://github.com/sitharaj88/lumora-ui)** — it's the easiest way to support the project.
+If Lumora UI helped you, please **[star the repo](https://github.com/sitharaj88/lumora-design)** — it's the easiest way to support the project.
 
 </div>

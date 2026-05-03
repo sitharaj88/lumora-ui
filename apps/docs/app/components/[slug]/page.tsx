@@ -289,7 +289,7 @@ export default async function ComponentDetailPage({
             Spotted something wrong?{" "}
             <a
               className="underline hover:text-[var(--lm-color-text)]"
-              href={`https://github.com/sitharaj88/lumora-ui/edit/main/apps/docs/lib/catalog.tsx`}
+              href={`https://github.com/sitharaj88/lumora-design/edit/main/apps/docs/lib/catalog.tsx`}
               target="_blank"
               rel="noreferrer"
             >

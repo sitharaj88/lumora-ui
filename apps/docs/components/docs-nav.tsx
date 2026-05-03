@@ -60,7 +60,7 @@ export function DocsNav() {
       <ThemeToggle />
       <a
         className="lm-btn lm-btn-primary lm-btn-sm"
-        href="https://github.com/sitharaj88/lumora-ui"
+        href="https://github.com/sitharaj88/lumora-design"
         rel="noreferrer"
       >
         GitHub

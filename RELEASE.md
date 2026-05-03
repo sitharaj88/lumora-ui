@@ -24,7 +24,7 @@ The docs app is private and excluded from package publishing.
 
 ## Public launch checklist
 
-- [ ] GitHub repository created at `sitharaj88/lumora-ui`.
+- [ ] GitHub repository created at `sitharaj88/lumora-design`.
 - [ ] npm organization `@lumora-design` claimed.
 - [ ] `NPM_TOKEN` configured with publish access.
 - [ ] Docs site deployed.

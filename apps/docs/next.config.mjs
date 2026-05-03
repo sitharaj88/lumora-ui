@@ -14,8 +14,8 @@ const nextConfig = {
   transpilePackages: ["@lumora-design/themes"],
   ...(isPagesBuild && {
     output: "export",
-    basePath: "/lumora-ui",
-    assetPrefix: "/lumora-ui/",
+    basePath: "/lumora-design",
+    assetPrefix: "/lumora-design/",
     trailingSlash: true,
     images: { unoptimized: true }
   })

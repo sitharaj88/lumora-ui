@@ -471,7 +471,7 @@ export default function Home() {
             </Link>
             <a
               className="lm-btn lm-btn-outline lm-btn-lg"
-              href="https://github.com/sitharaj88/lumora-ui"
+              href="https://github.com/sitharaj88/lumora-design"
               rel="noreferrer"
             >
               View source

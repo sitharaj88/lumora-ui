@@ -22,7 +22,7 @@ const links = [
   {
     title: "Resources",
     items: [
-      { label: "GitHub", href: "https://github.com/sitharaj88/lumora-ui" },
+      { label: "GitHub", href: "https://github.com/sitharaj88/lumora-design" },
       { label: "Changelog", href: "/docs/migration" },
       { label: "Roadmap", href: "/docs/migration" }
     ]

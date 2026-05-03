@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "Theme tokens for Lumora UI.",
   "license": "MIT",
-  "homepage": "https://github.com/sitharaj88/lumora-ui#readme",
+  "homepage": "https://github.com/sitharaj88/lumora-design#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sitharaj88/lumora-ui.git",
+    "url": "git+https://github.com/sitharaj88/lumora-design.git",
     "directory": "packages/themes"
   },
   "bugs": {
-    "url": "https://github.com/sitharaj88/lumora-ui/issues"
+    "url": "https://github.com/sitharaj88/lumora-design/issues"
   },
   "keywords": [
     "design-tokens",
