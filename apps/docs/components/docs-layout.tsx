@@ -68,9 +68,11 @@ export function DocsLayout({
       <div className="docs-grid-overlay" />
       <DocsNav />
 
-      <section className={`mx-auto grid max-w-7xl gap-10 px-6 py-12 ${cols}`}>
-        {/* Sidebar */}
-        <aside className="lg:sticky lg:top-24 lg:h-fit">
+      <section
+        className={`mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:px-6 sm:py-12 lg:gap-10 ${cols}`}
+      >
+        {/* Sidebar — full size on lg+, collapsible on mobile */}
+        <aside className="hidden lg:sticky lg:top-24 lg:block lg:h-fit">
           <nav aria-label="Documentation" className="lm-sidebar">
             {docsNavigation.map((section) => (
               <div key={section.title} className="grid gap-0.5">
@@ -89,6 +91,33 @@ export function DocsLayout({
             ))}
           </nav>
         </aside>
+
+        <details className="docs-feature-card lg:hidden">
+          <summary className="cursor-pointer list-none px-4 py-3 text-sm font-medium">
+            Documentation menu
+          </summary>
+          <nav
+            aria-label="Documentation"
+            className="lm-sidebar border-t border-[var(--lm-color-border)]"
+            style={{ borderRadius: 0 }}
+          >
+            {docsNavigation.map((section) => (
+              <div key={section.title} className="grid gap-0.5">
+                <span className="lm-sidebar-section">{section.title}</span>
+                {section.items.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="lm-sidebar-item"
+                    aria-current={item.href === current ? "page" : undefined}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            ))}
+          </nav>
+        </details>
 
         {/* Content */}
         <article className="grid min-w-0 gap-10">

@@ -57,7 +57,9 @@ export function DocsNav() {
         <span className="lm-kbd">⌘</span>
         <span className="lm-kbd">K</span>
       </button>
-      <ThemeToggle />
+      <div className="hidden sm:block">
+        <ThemeToggle />
+      </div>
       <a
         className="lm-btn lm-btn-primary lm-btn-sm"
         href="https://github.com/sitharaj88/lumora-design"

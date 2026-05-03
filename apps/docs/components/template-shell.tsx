@@ -95,160 +95,75 @@ export function TemplateShell({
       </header>
 
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "16rem minmax(0, 1fr)",
-          minHeight: `calc(100dvh - ${NAVBAR_HEIGHT})`
-        }}
+        className="grid lg:grid-cols-[16rem_minmax(0,1fr)]"
+        style={{ minHeight: `calc(100dvh - ${NAVBAR_HEIGHT})` }}
       >
-        {/* Sidebar — sticky, scrollable, promo pinned to bottom via flex */}
+        {/* Desktop sidebar — sticky, scrollable, promo pinned to bottom via flex */}
         <aside
+          className="hidden lg:flex lg:flex-col"
           style={{
             position: "sticky",
             top: NAVBAR_HEIGHT,
             height: `calc(100dvh - ${NAVBAR_HEIGHT})`,
             overflowY: "auto",
             background: "var(--lm-color-surface)",
-            borderRight: "1px solid var(--lm-color-border)",
-            display: "flex",
-            flexDirection: "column"
+            borderRight: "1px solid var(--lm-color-border)"
           }}
         >
-          {/* Nav items grow — `aria-label` on the <nav> exposes a navigation
-              landmark with the right accessible name. The wrapping <aside>
-              keeps a complementary landmark for the promo card. */}
-          <nav
-            aria-label="Template navigation"
-            style={{
-              padding: "1rem 0.75rem",
-              display: "flex",
-              flexDirection: "column",
-              gap: "0.875rem",
-              flex: "1 1 auto"
-            }}
-          >
-            {groups.map((group, gi) => (
-              <div key={group.title ?? `group-${gi}`} style={{ display: "grid", gap: "0.125rem" }}>
-                {group.title && (
-                  <span
-                    className="lm-sidebar-section"
-                    style={{
-                      padding: "0.5rem 0.75rem 0.375rem",
-                      fontSize: "0.6875rem",
-                      letterSpacing: "0.08em",
-                      textTransform: "uppercase",
-                      fontWeight: 700,
-                      color: "var(--lm-color-muted)"
-                    }}
-                  >
-                    {group.title}
-                  </span>
-                )}
-                {group.items.map((item) => {
-                  const href = `/preview/${template.slug}${item.path ? `/${item.path}` : ""}`;
-                  const isActive = item.path === activeItemPath;
-                  return (
-                    <Link
-                      key={item.path}
-                      href={href}
-                      aria-current={isActive ? "page" : undefined}
-                      className="lm-sidebar-item"
-                      style={
-                        isActive
-                          ? {
-                              background: accentSoft,
-                              color: accent,
-                              fontWeight: 650,
-                              boxShadow: `inset 2px 0 0 ${accent}`
-                            }
-                          : undefined
-                      }
-                    >
-                      <span
-                        aria-hidden="true"
-                        style={{
-                          flex: "0 0 auto",
-                          display: "inline-flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          width: "1rem",
-                          height: "1rem",
-                          color: isActive ? accent : "var(--lm-color-muted)"
-                        }}
-                      >
-                        {item.icon ?? <DefaultIcon />}
-                      </span>
-                      <span
-                        style={{
-                          flex: "1 1 auto",
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                          whiteSpace: "nowrap"
-                        }}
-                      >
-                        {item.label}
-                      </span>
-                      {item.badge && (
-                        <span
-                          className="lm-badge lm-badge-soft text-xs"
-                          style={{
-                            flex: "0 0 auto",
-                            fontVariantNumeric: "tabular-nums",
-                            ...(isActive
-                              ? {
-                                  background: `color-mix(in oklab, ${accent} 22%, transparent)`,
-                                  color: accent
-                                }
-                              : null)
-                          }}
-                        >
-                          {item.badge}
-                        </span>
-                      )}
-                    </Link>
-                  );
-                })}
-              </div>
-            ))}
-          </nav>
+          <SidebarNav
+            groups={groups}
+            template={template}
+            activeItemPath={activeItemPath}
+            accent={accent}
+            accentSoft={accentSoft}
+          />
 
           {/* Promo pinned to bottom by flex column */}
           <div style={{ padding: "0.75rem", flex: "0 0 auto" }}>
-            <div
-              className="lm-card"
-              style={{
-                background: `linear-gradient(135deg, ${accentSoft}, var(--lm-color-surface))`,
-                borderColor: accentMid
-              }}
-            >
-              <div
-                className="lm-card-body"
-                style={{ display: "grid", gap: "0.5rem", padding: "0.875rem" }}
-              >
-                <strong className="text-sm">Template preview</strong>
-                <p className="lm-hint text-xs">
-                  Built with Lumora UI. Copy the markup, wire your data, ship.
-                </p>
-                <Link
-                  className="lm-btn lm-btn-sm"
-                  href={`/templates/${template.slug}`}
-                  style={{
-                    background: accent,
-                    borderColor: accent,
-                    color: "var(--lm-color-primary-fg)",
-                    backgroundImage: `linear-gradient(180deg, color-mix(in oklab, ${accent} 92%, white), ${accent})`
-                  }}
-                >
-                  View source
-                </Link>
-              </div>
-            </div>
+            <SidebarPromo
+              template={template}
+              accent={accent}
+              accentSoft={accentSoft}
+              accentMid={accentMid}
+            />
           </div>
         </aside>
 
+        {/* Mobile nav — collapsible block above main content */}
+        <details
+          className="lg:hidden"
+          style={{
+            background: "var(--lm-color-surface)",
+            borderBottom: "1px solid var(--lm-color-border)"
+          }}
+        >
+          <summary
+            className="cursor-pointer list-none px-4 py-3 text-sm flex items-center gap-2"
+            style={{ color: "var(--lm-color-text)" }}
+          >
+            <span aria-hidden="true">☰</span>
+            <span>
+              {activePage?.label ? (
+                <>
+                  Browse · <strong>{activePage.label}</strong>
+                </>
+              ) : (
+                <>Browse {template.productName}</>
+              )}
+            </span>
+          </summary>
+          <SidebarNav
+            groups={groups}
+            template={template}
+            activeItemPath={activeItemPath}
+            accent={accent}
+            accentSoft={accentSoft}
+          />
+        </details>
+
         <main
-          className="lm-app-main"
-          style={{ minWidth: 0, display: "grid", gap: "1.5rem", padding: "1.5rem" }}
+          className="lm-app-main p-4 sm:p-6"
+          style={{ minWidth: 0, display: "grid", gap: "1.5rem" }}
         >
           {/* Breadcrumbs */}
           <nav
@@ -269,6 +184,158 @@ export function TemplateShell({
 
           {children}
         </main>
+      </div>
+    </div>
+  );
+}
+
+function SidebarNav({
+  groups,
+  template,
+  activeItemPath,
+  accent,
+  accentSoft
+}: {
+  groups: ReturnType<typeof groupPages>;
+  template: TemplateMeta;
+  activeItemPath: string;
+  accent: string;
+  accentSoft: string;
+}) {
+  return (
+    <nav
+      aria-label="Template navigation"
+      style={{
+        padding: "1rem 0.75rem",
+        display: "flex",
+        flexDirection: "column",
+        gap: "0.875rem",
+        flex: "1 1 auto"
+      }}
+    >
+      {groups.map((group, gi) => (
+        <div key={group.title ?? `group-${gi}`} style={{ display: "grid", gap: "0.125rem" }}>
+          {group.title && (
+            <span
+              className="lm-sidebar-section"
+              style={{
+                padding: "0.5rem 0.75rem 0.375rem",
+                fontSize: "0.6875rem",
+                letterSpacing: "0.08em",
+                textTransform: "uppercase",
+                fontWeight: 700,
+                color: "var(--lm-color-muted)"
+              }}
+            >
+              {group.title}
+            </span>
+          )}
+          {group.items.map((item) => {
+            const href = `/preview/${template.slug}${item.path ? `/${item.path}` : ""}`;
+            const isActive = item.path === activeItemPath;
+            return (
+              <Link
+                key={item.path}
+                href={href}
+                aria-current={isActive ? "page" : undefined}
+                className="lm-sidebar-item"
+                style={
+                  isActive
+                    ? {
+                        background: accentSoft,
+                        color: accent,
+                        fontWeight: 650,
+                        boxShadow: `inset 2px 0 0 ${accent}`
+                      }
+                    : undefined
+                }
+              >
+                <span
+                  aria-hidden="true"
+                  style={{
+                    flex: "0 0 auto",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    width: "1rem",
+                    height: "1rem",
+                    color: isActive ? accent : "var(--lm-color-muted)"
+                  }}
+                >
+                  {item.icon ?? <DefaultIcon />}
+                </span>
+                <span
+                  style={{
+                    flex: "1 1 auto",
+                    overflow: "hidden",
+                    textOverflow: "ellipsis",
+                    whiteSpace: "nowrap"
+                  }}
+                >
+                  {item.label}
+                </span>
+                {item.badge && (
+                  <span
+                    className="lm-badge lm-badge-soft text-xs"
+                    style={{
+                      flex: "0 0 auto",
+                      fontVariantNumeric: "tabular-nums",
+                      ...(isActive
+                        ? {
+                            background: `color-mix(in oklab, ${accent} 22%, transparent)`,
+                            color: accent
+                          }
+                        : null)
+                    }}
+                  >
+                    {item.badge}
+                  </span>
+                )}
+              </Link>
+            );
+          })}
+        </div>
+      ))}
+    </nav>
+  );
+}
+
+function SidebarPromo({
+  template,
+  accent,
+  accentSoft,
+  accentMid
+}: {
+  template: TemplateMeta;
+  accent: string;
+  accentSoft: string;
+  accentMid: string;
+}) {
+  return (
+    <div
+      className="lm-card"
+      style={{
+        background: `linear-gradient(135deg, ${accentSoft}, var(--lm-color-surface))`,
+        borderColor: accentMid
+      }}
+    >
+      <div className="lm-card-body" style={{ display: "grid", gap: "0.5rem", padding: "0.875rem" }}>
+        <strong className="text-sm">Template preview</strong>
+        <p className="lm-hint text-xs">
+          Built with Lumora UI. Copy the markup, wire your data, ship.
+        </p>
+        <Link
+          className="lm-btn lm-btn-sm"
+          href={`/templates/${template.slug}`}
+          style={{
+            background: accent,
+            borderColor: accent,
+            color: "var(--lm-color-primary-fg)",
+            backgroundImage: `linear-gradient(180deg, color-mix(in oklab, ${accent} 92%, white), ${accent})`
+          }}
+        >
+          View source
+        </Link>
       </div>
     </div>
   );

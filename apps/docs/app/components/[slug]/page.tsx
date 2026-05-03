@@ -51,10 +51,10 @@ export default async function ComponentDetailPage({
       <div className="docs-grid-overlay" />
       <DocsNav />
 
-      <section className="mx-auto grid max-w-7xl gap-10 px-6 py-12 lg:grid-cols-[14rem_minmax(0,1fr)_12rem]">
-        {/* Left: category sidebar */}
+      <section className="mx-auto grid max-w-7xl gap-6 px-4 py-8 sm:px-6 sm:py-12 lg:grid-cols-[14rem_minmax(0,1fr)_12rem] lg:gap-10">
+        {/* Left: category sidebar — hidden on mobile/tablet, sticky on lg+ */}
         <aside
-          className="lm-sidebar h-fit lg:sticky lg:top-24"
+          className="lm-sidebar hidden h-fit lg:sticky lg:top-24 lg:block"
           aria-label={`${component.category} components`}
         >
           <Link className="lm-sidebar-item" href="/components">
@@ -74,6 +74,35 @@ export default async function ComponentDetailPage({
               </Link>
             ))}
         </aside>
+
+        {/* Mobile: collapsible category nav */}
+        <details className="docs-feature-card lg:hidden">
+          <summary className="cursor-pointer list-none px-4 py-3 text-sm">
+            <span className="lm-badge lm-badge-soft text-xs mr-2">{component.category}</span>
+            Browse {component.category.toLowerCase()} components
+          </summary>
+          <nav
+            className="lm-sidebar border-t border-[var(--lm-color-border)]"
+            style={{ borderRadius: 0 }}
+            aria-label={`${component.category} components`}
+          >
+            <Link className="lm-sidebar-item" href="/components">
+              ← All components
+            </Link>
+            {componentsByCategory
+              .find((c) => c.category === component.category)
+              ?.components.map((c) => (
+                <Link
+                  key={c.slug}
+                  className="lm-sidebar-item"
+                  href={`/components/${c.slug}`}
+                  aria-current={c.slug === component.slug ? "page" : undefined}
+                >
+                  {c.name}
+                </Link>
+              ))}
+          </nav>
+        </details>
 
         {/* Center: content */}
         <div className="grid min-w-0 gap-12">
@@ -111,10 +140,7 @@ export default async function ComponentDetailPage({
           <section id="preview" className="grid gap-3 scroll-mt-24">
             <h2 className="docs-section-eyebrow">Live preview</h2>
             <div className="docs-feature-card overflow-hidden">
-              <div
-                className="docs-preview docs-preview-hero"
-                style={{ minHeight: "22rem", padding: "2.5rem" }}
-              >
+              <div className="docs-preview docs-preview-hero docs-preview-showcase">
                 <div className="w-full">{component.preview}</div>
               </div>
             </div>

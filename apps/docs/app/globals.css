@@ -300,6 +300,25 @@ body {
   transform: none;
 }
 
+/* Detail-page showcase — taller stage, but shrinks on mobile so the
+   live preview doesn't dominate a narrow viewport. */
+.docs-preview-showcase {
+  min-height: 14rem;
+  padding: 1.25rem;
+}
+@media (min-width: 640px) {
+  .docs-preview-showcase {
+    min-height: 18rem;
+    padding: 1.75rem;
+  }
+}
+@media (min-width: 1024px) {
+  .docs-preview-showcase {
+    min-height: 22rem;
+    padding: 2.5rem;
+  }
+}
+
 /* -- Float animations -------------------------------------------- */
 @keyframes docs-float {
   0%,
@@ -517,8 +536,12 @@ body {
   border: 1px solid color-mix(in oklab, var(--lm-cat-color) 30%, var(--lm-color-border));
   border-radius: var(--lm-radius-lg);
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
   padding: 0.875rem 1.125rem;
+}
+.docs-cat-banner > div {
+  min-width: 0;
 }
 .docs-cat-banner-dot {
   background: var(--lm-cat-color);
