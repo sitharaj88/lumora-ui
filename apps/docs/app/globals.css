@@ -577,3 +577,27 @@ body {
   border: 1px solid var(--lm-color-border);
   border-radius: var(--lm-radius-2xl);
 }
+
+/* -- Responsive tables -------------------------------------------- */
+/* Every card or feature-card that wraps an lm-table needs a horizontal
+   scroll on narrow viewports — the templates use 6-10 column tables
+   that are 900-1100px wide and were getting clipped by the card's
+   overflow: hidden rounded-corner mask. :has() is supported on every
+   browser we target (Chrome 105+, Safari 15.4+, Firefox 121+). */
+.lm-card:has(.lm-table),
+.docs-feature-card:has(.lm-table) {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  /* Without min-width: 0 the table's max-content width propagates up to
+     the card and makes the card itself wider than the viewport, which
+     triggers a page-level horizontal scroll. min-width: 0 lets the card
+     stay at its parent-derived width while the table scrolls inside. */
+  min-width: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Stop tables from squishing below their natural width — without this,
+   browsers shrink columns to fit, making cell content unreadable. */
+.lm-table {
+  min-width: max-content;
+}
